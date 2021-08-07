@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Enderal - Novel: Dreams of the Dying</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Enderal - Novel: Dreams of the Dying</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-22/04/2020">22/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-15/02/2019">15/02/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-72">72</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Nicolas Lietzau">Nicolas Lietzau</a><br/><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-SureAI">SureAI</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Downloadable Content">Downloadable Content</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=955650" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/955650" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/955650/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/955650/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/955650" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=955650" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Dreams of the Dying is the first book of the Enderal trilogy, a new-canon spin-off that takes place in the Enderal universe and explores the mercenary years of Jespar Dal’Varek. It’s written and independently published by Nicolas Lietzau, the Lead Writer of Enderal.<br><br>This is the heavily revised and restructured version of the 2019 web novel Dreams of the Dying. Translations and a full audiobook voiced by Ben Britton are in the making, but there is no release date yet.<h2 class="bb_tag">The Story</h2><i>Years after a harrowing war experience, ex-mercenary Jespar Dal’Varek has taken to drifting. It’s a lonely existence, but barring the occasional bout of melancholia, he has found the closest thing to peace a man like him deserves. Life is “all right.”</i><br><br><i>Or so he tells himself. Hoping to turn the page, Jespar accepts a mysterious invitation into the beautiful but dangerous archipelago of Kilay—and everything changes. Plagued by boiling social tensions and terrorism, the tropical empire is edging ever closer to civil war. Kilay’s merchant king may be the only one able to prevent this catastrophe, but he has fallen into a preternatural coma—and it’s Jespar’s job to figure out who or what caused it. As the investigation takes him across the archipelago and into the king’s nightmares, unexpected events not only tie Jespar’s own life to the mystery but also unearth inner demons he believed to be long exorcised.</i><br><br><i>Battling old trauma while fighting for his life, his sanity, and the fate of Kilay, the line between dream and reality blurs further and further, until only one question remains: If your mind is the enemy, where do you run?</i><br><br><i>A slow-burning, riveting blend of fantasy, mystery, and psychological horror, Dreams of the Dying is a deep exploration of mental illness, morality, and the dark sides of humanity.</i><h2 class="bb_tag">Reader Voices &amp; Reviews</h2><i>&quot;A sense of pure evil suffuses Lietzau's utterly complex high fantasy universe, which is almost as complex and immersive as that of Tolkien. His acute analyses of mental illness, self-doubt, and guilt combined with the subtlety and nuance of his evocative storytelling makes it a treat for readers weary of formulaic dark fantasy. This novel deserves a wide audience.&quot; - ThePrairiesBookReview</i><br><br><i>&quot;Dreams of the Dying is a dark and wonderful epic fantasy that draws you in from the very first page.” — San Francisco Book Review<br>“Masterful story-telling. World building with worlds inside of worlds. It's a must read and should be considered a classic in the making.” – Amanda Castro (TheCrookedHouse), Bookstagrammer</i><br><br><i>“This book has a mix of humor, amazing details and descriptions of this world, while also dealing with some serious moral issues that can be hard to read about but, still, enlightening. (...) I am absolutely fascinated by this world after reading this. Its haunting, its beautiful... I don't know what else to say. Amazing.” – Jesse Ruth (OracleOfMadness), Bookstagrammer</i><br><br><i>“Dreams of the Dying is at once a very dark but also incredibly beautiful, hopeful, intelligent, and highly ambitious debut novel that pushes the limits of what fantasy can be and serves as a testament to everything that I love about this genre. It’s damn near criminal that Nicolas Lietzau isn’t being talked about as one of the rising stars of sff.” – Goodreads Review</i><br><br><i>“Amazing. This is more than just another fantasy novel - it's a deep and thoughtful exploration of morality, determinism, mental illness and how generally fucked up humanity can be.” – Goodreads Review</i><br><br><i>“I'm terrible at reviews, I suck at giving praise and I'm even worse at not dropping books all the time. Yet here I am at 3AM, having blazed through this book in a day and a half, telling whoever needs to hear that I want nothing more than to forget it all just so I can read it AGAIN. Yes, it's that good.” – Goodreads Review</i><br><br><i>“Dreams of the Dying really has everything: friendships/relationships, revenge, political intrigue, philosophy, tension, LGBT representation, et cetera. What really struck me about the discussion of mental health family cycles was the wanting so much to overcome them and do better but falling short in spite of your best efforts. And I was so inspired by how Nicolas navigated discussing mental health without making it uncomfortable. It was raw. It was real and, as a person who has had mental health struggles, I appreciated that so much. I loved that it was grim, but managed to remain hopeful.” – Goodreads Review</i>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pendula Swing Episode 1 - Tired and Retired</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Pendula Swing Episode 1 - Tired and Retired</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-17/04/2020">17/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-15/08/2018">15/08/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-63">63</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-50">50</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Valiant Game Studio AB">Valiant Game Studio AB</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Valiant Game Studio AB">Valiant Game Studio AB</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=840290" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/840290" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/840290/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/840290/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/840290/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/840290" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=840290" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Digital Deluxe Edition</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840290/extras/PSe1Artboard_1announcement.png?t=1591632065" /><br><br><strong>Pendula Swing: The Complete Journey</strong> is now available on <strong><a href="https://store.steampowered.com/app/1230200/Pendula_Swing__The_Complete_Journey/" target="_blank" rel="noreferrer"  >Steam</a></strong>! <br><br><strong>Pendula Swing: The Complete Journey</strong> is the full &amp; premium version of our existing episodic game Pendula Swing. It collects all the content available in our 7 episodes and adds a little bit of extra glamour and cosines to experience for vanity purposes only. EUR/USD/GBP 16.99.</p><br><h1>About the Game</h1><strong>Pendula Swing</strong> is an episodic point &amp; click adventure game set in a <strong>Fantasy version of the American Roaring 1920s</strong>. You play as Brialynne, an old, rich and rather introverted dwarf lady who was this world's most famous hero, but she retired a long time ago. Brialynne loves her solitude and refuses to leave her island. But one day her magical axe is stolen so she is forced to go back to the town of Duberdon to find it. She was aware that the world around her is advancing, but until going back to Duberdon, she never realised just how much! Strange music, a completely new fashion, fast moving steel horses and now goblins and orcs roaming the streets in broad daylight?! Discover the districts of Duberdon and interact with incredibly diverse characters inspired by real 1920s stories through the eyes of a grumpy hero who is already rich and famous.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840290/extras/PendulaSwingArtboard_1SteamBanner_FunFacts.png?t=1591632065" /><br><ul class="bb_ul"><li>Brialynne retired to spend her days with her wife, Taheena, who has now passed. <i>A word of warning: Pendula Swing portrays a lot of diverse characters and relationships!</i><br></li><li> Since Taheena was nice enough to <i>go to the other side</i>, you are therefore a widow. Aka single. You don't have to be single. <strong>You can go have some dates!</strong> <br></li><li>As Pendula's greatest hero, Brialynne is rich. <strong>Very. Rich.</strong> So your choices in Pendula Swing can, but do not have to be guided by fortunes to gain. You can choose to be (<i>very</i>) generous, since you have a huge treasure at home<br></li><li>You have <strong>a very sassy cat</strong>. You can have pets in many games, but none grants you a sassier companion than Katya<br></li><li>In fact,<strong> the critters of Pendula Swing can be... special</strong>. We assure you it's not weird at all to talk to critters. Just please make sure you stay calm and don't blame the Ale if they respond back <br></li><li>...which brings us to <strong>Dwarven Ale</strong>. It's <strong>illegal</strong>, strong and, of course, very tasty and fantastic for your health! But be prepared for <strong>dizziness </strong>and <strong>speech impairment</strong> if you drink it<br></li><li>Since Pendula is inspired not only by the glamorous aesthetics, but also by the political, social and economic landscape of the Roaring 1920s, expect a lot of situations in which class disparity, prejudice and racism are obvious </li></ul>Play for yourself and discover more &quot;fun facts&quot; in Pendula Swing! Like the philosophical orc or... You know what? Sorry For The Spoilers!<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840290/extras/PendulaSwingArtboard_2SteamBanner_EpisodesRundown.png?t=1591632065" /><br><ul class="bb_ul"><li><strong>Pendula Swing Episode 1 – Tired and Retired</strong> - The once famous dwarven hero, Brialynne Donu Tenúm, is forced to interrupt her indefinite retirement on her idyllic island when she discovers that an important artifact has been stolen.<br></li><li><strong>Pendula Swing Episode 2 – The Old Hero’s New Journey </strong>- Brialynne sets foot in Duberdon for the first time in 400 years and is mesmerized by how the world changed. She hopes to find someone who can help recover her axe, which appears to be harder than she had anticipated. And who is that strangely familiar elf…?<br></li><li><strong>Pendula Swing Episode 3 – Orcing Hard or Hardly Orcing </strong>- A lead brings Brialynne to the Harbor District, where she aims to ask the captain of a ship what she knows about the missing axe. Were the bars in Duberdon always this seedy, though?<br></li><li><strong>Pendula Swing Episode 4 – No Silver Spoons</strong> - When entering a familiar part of Duberdon, now called Old Town, Brialynne finds that it is in great disrepair. A great place for the thief who stole her axe to hide out.<br></li><li><strong>Pendula Swing Episode 5 – Glamour Spell</strong> - The fact that dwarven ale is prohibited does not mean it’s not possible to find if you know where to look. Many interesting people frequent the establishments who provide it.<br></li><li><i>Coming soon!</i> <strong>Pendula Swing Episode 6 – Public Display of Heroism</strong> - The hunt for her missing axe brings Brialynne to the seat of the academics in Duberdon. Could these scholars be the ones hiding her precious artifact?<br></li><li><i>Coming soon!</i> <strong>Pendula Swing Episode 7 – Facts and Artifact</strong>s - Brialynne is closing in on the mastermind who brought her out on the wild goose chase. Yet still, there are more surprises waiting.</li></ul><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840290/extras/PendulaSwingArtboard_3SteamBanner_StillReading.png?t=1591632065" /><br>...then this is probably the game for you! <br><br>Pendula Swing's main gameplay mechanic is <strong>having conversations</strong>. As one of our awesome players put it, &quot;<i>Heavy emphasis on dialogue and exploring the world and the main mystery through dialogue and lore. I keep finding myself so immersed even though I'm &quot;just having conversations&quot; with NPCs.</i>&quot; <br><br>Our aim is to build a friendly, familiar, relaxing and meaningful world where you want to get to know the characters, their stories and the intricacies of their relationships. While we have a few other varied quests, puzzles and features (<i>and we certainly plan to add more</i>) we want to stay away from violence, mandatory quests and mastering numbers, and focus instead of portraying a gentle and somewhat more realistic fantasy meets 1920s experience (<i>for example, no, you can't just throw away stuff from your backpack, which is why we are currently adding a Garbage Bin Function (tm) </i>). This is why you can actually finish each episode quite fast if you follow the main storyline and just go find your axe, but the flavour is in discovering the world and the purposely non mandatory side quests. <br><br>Because frankly, if you were an old, grumpy, rich and famous hero lady, would you really pay any attention for anyone making you do stuff?!<br><br>Alas, dear adventurers....<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840290/extras/PendulaSwingArtboard_4SteamBanner_ThankYou.png?t=1591632065" /><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840290/extras/Goblin_banner_optimised.png?t=1591632065" />
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

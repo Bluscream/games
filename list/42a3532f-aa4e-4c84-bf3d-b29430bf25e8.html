@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Gala Collider</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Gala Collider</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-22/04/2020">22/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-16/01/2020">16/01/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-58">58</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-NeoCrux Ltd.">NeoCrux Ltd.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-NeoCrux Ltd.">NeoCrux Ltd.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=970370" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/970370" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/970370/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/970370/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/970370" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=970370" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Feature List</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/970370/extras/img3.png?t=1580279384" /><br><ul class="bb_ul"><li><strong>A unique gameplay experience</strong> Gala Collider fuses the conquest of turn-based strategy games (AKA 4X games) with the fluid tension and high paced play of digital card games, creating a new genre with the best aspects of both.<br></li><li><strong>Build decks with a huge variety of strategies and depth</strong> Build your deck and seed your technology pool before each game with your favorite strategies. Then, modify your deck as you play to adapt it and beat your opponents.<br></li><li><strong>Play at your own pace</strong> Optional turn timer allows for either long, calculated matches over several days or for quicker, casual skirmishes that you can play in a single sitting.<br></li><li><strong>Play as distinct factions for asymmetrical gameplay</strong> Conquer the galaxy as the quick, alien Sylith faction or the steadfast, human-descended Coalition.<br></li><li><strong>Free starter decks</strong> Every faction gets a free starter deck, and all players receive starter decks each time they are released, completely for free.<br></li><li><strong>New material in release cycles</strong> Each release cycle of cards will explore a different theme and showcase new mechanics, opening up fresh strategies for you to discover and master.</li></ul></p><br><h1>Reviews</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/970370/extras/img2.png?t=1580279384" /><br><ul class="bb_ul"><li>&quot;Even at this early stage, the game has so much depth and replayability. I was actually struggling to stop playing because I was enjoying finding all the subtle nuances to it.&quot;<br><strong>Edd Harding, Video Game Almanac</strong><br></li><li>&quot;This is a pretty ambitious game, and I say that in a good way.&quot;<br><strong>Jose San Mateo, Indie Haven</strong><br></li><li>&quot;With deep, strategic gameplay that doesn’t get too complex to be inaccessible, Gala Collider is a rich and refreshing take on the ever expanding market of digital card games&quot;<br><strong> John Edward Bridgman, indiegames</strong><br></li><li>&quot;NeoCrux has put a whole lot of thought into deckbuilding. It’s nice to see that it’s not just ‘Here’s an attack card. Here’s a defense card.’&quot;<br> <strong>Travis Williams, Reflective Riot</strong></li></ul></p><br><h1>About the Game</h1><img src="https://cdn.akamai.steamstatic.com/steam/apps/970370/extras/Img4.png?t=1580279384" /><br><br>Gala Collider is an exciting space-exploration expandable card game with a rich story and intuitive mechanics played on an ever-changing planetary map. Compete head-to-head against other players as you move your armada, defend your homeland, and partake in strategic tactical battles. Master your strategy by researching new cards, scouting your enemies, and outwitting your opponents.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/970370/extras/Img1.png?t=1580279384" /><h2 class="bb_tag">GAMEPLAY</h2>When you play cards on the galaxy map, they transform into 3D models of ships or structures that you can move around from planet to planet. Turns happen simultaneously, so you will need to anticipate, bluff, and out-think your opponent during each turn if you want to win. Your strategy relies on the deck you build and your choice of technology options selected before you play. During the game, you can modify your strategy by adding powerful, new cards to your deck from your tech-pool.  Explore worlds, colonize sectors, and gain resources to expand your galactic empire and conquer your enemies.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

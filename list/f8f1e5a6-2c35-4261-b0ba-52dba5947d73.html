@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Aim Lab</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Aim Lab</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-18/04/2020">18/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-07/02/2018">07/02/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-94">94</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Statespace">Statespace</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Statespace">Statespace</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Leaderboards">Leaderboards</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=714010" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/714010" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/714010/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/714010/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/app/714010/workshop/" target="_blank">Workshop</a><br/><a href="https://steamcommunity.com/stats/714010/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/714010" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=714010" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image1_About.gif?t=1626361092" /> <br><br>Aim Lab has been developed to make anyone's aim crispy, whether you’re a brand new PC player or a pro.  Build your flicking, tracking, speed, perception, and cognition skills with our detailed aim analytics. Train in custom tasks, create your own training playlists &amp; improve your biases based on feedback you receive after every round. Aim Lab is constantly being updated as we perfect how players can best improve, so our Discord is a great place to talk with our devs and get updates first.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image2.gif?t=1626361092" /><h2 class="bb_tag">Aim Analysis </h2><br>Your personal Aim Lab profile breaks down your performance and skills into detailed feedback to help you measure your progress and improvements over time. After each task, you get direct feedback of that run, with visual insights and pointers to help you identify your weaknesses - and eliminate them. We're more than just an FPS aim trainer.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image3_AimAnalysis.gif?t=1626361092" /><h2 class="bb_tag">Create unlimited tasks &amp; scenarios in the Creator Studio</h2><br>If you can dream it, you can build it. Our newly launched Creator Studio Beta lets you create custom maps with insane exterior terrains, hundreds of items and an array of different bots and behaviors with custom pathing. Anything is possible with an infinite amount of scenarios, can’t find a specific task? You can easily build it or search our Workshop to see if it’s been created. We already have popular game maps like Haven, Gulag &amp; Dust II recreated with more to come soon.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image4_TasksandScenarios.gif?t=1626361092" /><h2 class="bb_tag">Game Sensitivity Converter</h2><br>Select from over <strong>500+ FPS/TPS games</strong> to make sure you match your game sensitivity inside of Aim Lab. Want to change the game but keep the same sensitivity? Just select another game from the list and it will automatically convert.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image5_sensitivity.gif?t=1626361092" /> <br><br>Here is a quick overview of some games that are available:<br><br><table><tr>	<td>• Apex Legends</td>	<td>• Diabotical</td>	<td>• PUBG</td></tr><tr>	<td>• Battlefield Series</td>	<td>• Escape from Tarkov</td>	<td>• Quake</td></tr><tr>	<td>• Call of Duty Series</td>	<td>• Fortnite</td>	<td>• Rainbow 6 Siege</td></tr><tr>	<td>• CS:GO</td>	<td>• Minecraft</td>	<td>• Rust</td></tr><tr>	<td>• Destiny 2</td>	<td>• Overwatch</td>	<td>• VALORANT</td> </tr></table><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image6_CreateandCustumize.gif?t=1626361092" /><br><br>You can customize every detail of your training! Change your crosshair settings to match your in-game crosshair, target colors, your training ground and more! Or jump straight into the Creator Studio and let your imagination run wild!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image7_CreateandCustomize2.gif?t=1626361092" /><h2 class="bb_tag">Controller Support</h2>Aim Lab supports controllers with built in customization settings. We’re also planning on releasing onto consoles in the future, so watch this space!<h2 class="bb_tag">Weapon Choices</h2>Got a weapon you own with? We have a variety of weapons to choose from in our loadouts including pistols, assault rifles, shotguns, snipers &amp; more.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image8_WeaponChoices.gif?t=1626361092" /><h2 class="bb_tag">Custom Recoil Patterns</h2><br>We all know that controlling recoil is half the battle in some games. Our custom recoil patterns let you modify weapons to keep you practicing as close to the game as possible. Backwards sevens all the way!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/714010/extras/image9_Community.gif?t=1626361092" /><h2 class="bb_tag">“Aim Lab made me not suck at Valorant.”</h2> - <strong>Someone in Discord</strong><h2 class="bb_tag">“I just love playing Aim Lab. My Wingman shots have definitely improved.&quot;</h2> - <strong> Lululuvely</strong><h2 class="bb_tag">“Aim Lab removed my left-side weakness”</h2> - <strong>King George</strong><h2 class="bb_tag">“Why go to the gym when you have Aim Lab?” </h2> - <strong>Aceu</strong><h2 class="bb_tag">“Aim Lab made me get a girlfriend&quot;</h2> - <strong>Someone on Twitter</strong>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

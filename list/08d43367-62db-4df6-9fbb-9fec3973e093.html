@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>MetaWare High School (Demo)</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> MetaWare High School (Demo)</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-28/04/2020">28/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-02/04/2020">02/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Not Fun Games">Not Fun Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Not Fun Games">Not Fun Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1194740" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1194740" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1194740/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1194740/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/1194740/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/1194740" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1194740" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<i>Each character was assigned to give a statement to be posted on this store page. Their responses are below:</i><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194740/extras/chrisicon_steam.jpg?t=1620806688" /><strong>CHRIS:</strong> Hello! I’m so excited that you’re considering playing our game! I'll tell you as much as I can. So we're actually not the full game. We're the demo! No one knows if the real game is out yet or not, or what genre we're really supposed to be....it's kind of confusing. But that's just fine, I guess! Anyway, I suppose it's already been determined where you'll be going and what kinds of things you might be doing? I hope I get to actually meet you later. I've really been looking forward to it! Have a nice day!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194740/extras/hopeicon_steam.jpg?t=1620806688" /><strong>HOPE:</strong> hey if u get any choices that lead u to a mochi store go there thats where the cool ppl in the game r if you dont youll probably lose ok bye<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194740/extras/aspenicon_steam.jpg?t=1620806688" /><strong>ASPEN:</strong> Hey YOU! Yeah, YOU! Wanna chat it up with some cute girls? (And a super cute non-binary person?) Then you've definitely found the right game! We're not like those other inferior dating simulators. We have the advantage of knowing who, how, why, and what we truly are! Well, uh...mostly. That's where you come in! You can be the one to tell us once and for all what we're really doing here! And with the help of your good buddy Aspen, we'll ensure that this game gets its best ending! Our fate rests upon your shoulders, O wise player!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194740/extras/nariicon_steam.jpg?t=1620806688" /><strong>NARI: </strong>[Declined to give a statement.]<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1194740/extras/isadoraicon_steam.jpg?t=1620806688" /><strong>ISADORA: </strong>WHAT?!??! MY QUOTE IS GOING TO BE LAST????? THAT'S NO FAIR!!! YOU SHOULD CHANGE IT SO THAT I'M, LIKE, AT LEAST SECOND? OR THIRD?!?!!? LAST IS SO STUPID!!!!!! NARI DIDN'T EVEN SAY ANYTHING AND SHE'S NOT EVEN LAST!!!!! Mine is probably gonna be HIDDEN by that STUPID READ MORE BUTTON NOW!!!!! UUUUUGGGGGGGGGGG <i>(...wait so what exactly should I say then? ...oh, ok.)</i> Hi! I'm Isadora, and...uh... <i>(Oh, whatever, this is so stupid! Was that enough? Can I go now?)</i><h2 class="bb_tag">A NOTE FROM THE CREATOR</h2>Hello. I am the Creator. I created this Visual Novel's script, code, and music.<br><br>The game runs in the RenPy engine and is formatted as a visual novel. Occasionally you will choose what to say by selecting a dialogue box. There are multiple endings. It takes around 2-3 hours to complete everything.<br><br>It is recommended that players are at least 12 years or older. The game contains strong language and the occasional discussion of heavy topics. There is no shock imagery or jump scares.<br><br>The complete soundtrack is also available. It contains a little over an hour of music.<br>Thank you to SparkBag, Keeby, and Alexander A. McDonald for creating the majority of the visual assets.<br><br>Please enjoy free of charge.<br><br><i>-The Creator.</i>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

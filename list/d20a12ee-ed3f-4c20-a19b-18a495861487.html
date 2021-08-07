@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Oats Studios - Volume 1 Assets</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Oats Studios - Volume 1 Assets</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-20/04/2020">20/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-14/06/2017">14/06/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Gore">Gore</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Video Production">Video Production</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Violent">Violent</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Oats Studios">Oats Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Oats Studios">Oats Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=652150" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/652150" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/652150/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/652150/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/652150" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=652150" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Zygote DLC - NEW</h1><p>Zygote DLC<br><br>July 12th, 2017<br><br>Once you have installed the base Oats Studios – Volume 1 Assets launcher in your Software Library, you will have a set of optional DLC related to Zygote that you can choose to install from that same location. Please read the description below to find out more information about what’s in each folder and their respective size and below that, a description of how best to unpack the 3d assets.<br><br>The Zygote DLC includes the following:<br><br><strong>Zygote 3d Models: - 23.6GB</strong><br><ul class="bb_ul"><li>Zygote – 13.7GB<br></li><li>Synthetic Skulls for Print – 509MB</li></ul><br><strong>Zygote Concept Art Booklet – Total size: 500 MB – File Name: Zygote_Booklet_v2</strong><br><ul class="bb_ul"><li>Concept Art<br></li><li>VFX look-development<br></li><li>Oats Workshop BTS Selects<br></li><li>Filming BTS selects</li></ul><br><strong>Zygote High Resolution Video (Stereo)</strong><br><br><ul class="bb_ul"><li>OatsZygoteDLCStereo.mp4 – 5.70GB<br></li><li>320 kbps AAC Stereo Audio<br></li><li>1920x1080<br></li><li>h.264 40mbit/sec (approximately Blu-Ray quality)</li></ul><br><strong>Zygote High Resolution Video (Surround)</strong><br><ul class="bb_ul"><li>OatsZygoteDLCSurround.mp4 – 5.77GB<br></li><li>640 kbps AAC 5.1 Surround Audio<br></li><li>1920x1080<br></li><li>h.264 40mbit/sec (approximately Blu-Ray quality)</li></ul><br><strong>Zygote Script</strong><br><br>A few general notes about all 3D assets uploaded for Zygote.<br><br><strong>LOOKDEV</strong><br><ul class="bb_ul"><li>These folders contain the assembled 3dsmax file used for final rendering.  <br></li><li>They also contain all the necessary textures in the directory structure that should ensure everything is correctly linked.  It’s a very deep directory structure but it was the easiest way to collect the data to share with the community.  You can of course remap the directory structure on your own to simplify it.<br></li><li>These files (and shaders) are set-up to be used with Redshift (our renderer of choice).  However, you can rebuild them to work in whatever renderer you choose.<br></li><li>The model in this file is our working resolution (with displacement maps to render like the highres sculpt)<br></li><li>The model in this file is in the T-pose (NOT the pose displayed in the thumbnail)</li></ul><br><strong>MODEL</strong><br><ul class="bb_ul"><li>We provide a series of various model files and formats.<br></li><li>Cleaned up mudbox file with high and low resolution meshes (used for exporting our various displacements and working resolution models.<br></li><li>Two .obj files, one the lowres working model and one high resolution sculpt<br></li><li>All of these models are in the default T-pose (not the pose displayed in the thumbnail)</li></ul><br><strong>RIG</strong><br><ul class="bb_ul"><li>There are two files here, both Maya files (the program we use for animation)<br></li><li>One file is the “fast” animation rig.  This file does not contain the final working resolution mesh but instead contains a lower resolution cut-up mesh for fast animation interactivity.  Its rig also is a stripped-down version missing some of the slower fancy things.  Basically, this is the rig the animators work with 95% of the time.<br></li><li>The second file contains the same rig but with the full working resolution mesh with skinning.  It also contains extra bits in the rig to assist with skinning or secondary motion.  It is THIS file that you would export a model cache (whatever format you wish) from to then apply to the lookdev model for rendering.<br></li><li>The rigs are set-up to make use of the Maya referencing system so that if rig is REFERENCED in you can swap the reference on the fly.  To use this do not animate directly in the rig file.  </li></ul><br>*** As a final note if you have issues or questions pertaining to any of these files please go to the Oats Studios Forum in the DLC category and ask away: <a href="https://steamcommunity.com/linkfilter/?url=http://forums.oatsstudios.com/categories/dlc" target="_blank" rel="noopener"  >http://forums.oatsstudios.com/categories/dlc</a></p><br><h1>Stream Oats Studios Shorts Free on Steam</h1><p><a href="http://store.steampowered.com/app/633030" target="_blank" rel="noreferrer"  id="dynamiclink_0" >http://store.steampowered.com/app/633030</a></p><br><h1>About the Software</h1>At Oats Studios, the creation of Volume 1 required immense resources. Our wish is to receive funding sourced directly from our audience, as we establish a studio fueled by pure creativity and passion. We have many, many more worlds to create and stories to tell, but we need help from people around the globe. Our goal is to create Volumes 2, 3 and more and eventually, full scale-scale features. If you feel positive about what you’ve seen and want more, please support us by purchasing our additional content as it becomes available. <br><br>We plan to include in the Oats Studios - Volume 1 Assets as many pieces of concept art, models, footage etc. for each of our shorts, however as part of supporting Oats we will charge for these.<br><br>The newest DLC available is Zygote: please check out the special announcement below to see whats included. <br><br>We want users to engage with our content and hope that by opening up resources like these, we inspire young filmmakers.<br><br>Additionally if people are interested in licencing material for commercial purposes then please send an email to <a href="mailto:licensing@oatsstudios.com">licensing@oatsstudios.com</a>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

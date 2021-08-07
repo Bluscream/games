@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Governor of Poker 3</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Governor of Poker 3</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>1m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-13/05/2019">13/05/2019</a> 5:26:46</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-06/06/2016">06/06/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-19/02/2016">19/02/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Azerion">Azerion</a><br/><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-YoudaGames">YoudaGames</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Azerion">Azerion</a><br/><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Youda Games Holding B.V.">Youda Games Holding B.V.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=436150" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/436150" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/436150/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/436150/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/436150/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/436150" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=436150" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Play poker online in this awesome <strong>Texas Holdem Poker </strong>casino and be a star in this fun, multiplayer social poker game with progression!<br><br>Texas Holdem Poker is a popular card game and <strong>Governor of Poker</strong> has a huge variety of poker games to choose from that let you compete with friends, challenge new poker players and much more! If you like missions and daily challenges to win spectacular rewards with lots of amazing hats, you will love this addicting game!<br><br>Becoming a poker pro is an exciting journey; you will start as a cowboy poker rookie and work all the way up to become a high roller to play with millions of chips. The ultimate goal is to become a VIP poker star, winning high stakes Western games in Las Vegas!<br><br>Enjoy Texas Holdem in: Cash games, tournaments, Spin &amp; Play, Sit &amp; Go, Royal Poker, Party Poker, friends games, Heads-up, online Blackjack 21, PVP and Wild West saloon tourneys!<br><br><strong>GOVERNOR OF POKER 3 (GOP 3) FEATURES:</strong><br><br>● BIG FREE WELCOME PACKAGE:<br>$30,000 FREE poker chips, gold and avatar hat!<br>● 7 DIFFERENT POKER FORMATS:<br>Cash games, Sit &amp; Go tournaments, Spin &amp; Play, Heads Up Challenge, Push or Fold with Royal Poker, No-limit and Pot Limit.<br>● POKER TEAMS: TEAM UP AND PLAY FOR THE REWARDS<br>Make friends and compete against other teams and check out the all-new challenges!<br>● PARTY POKER: PLAY WITH FRIENDS FOR FUN<br>Invite friends and have a blast!<br>● ENJOY TEXAS: WESTERN GAMES OF THE WILD WEST<br>Travel through Texas by winning poker tournaments, beat friends at Texas Holdem poker, cash games and poker tournaments. The further you travel the higher the stakes!<br>● BLACKJACK 21:<br>Play Blackjack with many different betting amounts.<br>● FREE CHIPS:<br>Loads of free chips options every few hours!<br>● MISSIONS:<br>Complete them all in every area and claim great rewards!<br>● WIN RINGS, BADGES &amp; ACHIEVEMENTS:<br>Distinguish yourself by winning rings, badges and trophies with your poker skills!<br>● PLAY ALWAYS AND EVERYWHERE:<br>Play poker on your mobile device and continue to play on your tablet, web, laptop and desktop.<br>● BONUS FOR CONNECTING WITH FACEBOOK:<br>Earn extra chips and play poker with friends!<br>● CHAT: Talk with other hold em players through chat and animated emoticons. Use them to bluff or taunt and try to take down the pot!<br>● CERTIFIED RNG<br><br>With GOP3 you can learn how to play hold em poker, raise the stakes and win more. Grab a deck of cards, memorize the poker hand ranking chart and know what the best starting hands in poker are. Even use the cheat sheet to increase your chances to win a fortune in chips. Be the shark at the table, ready to dominate the fish. Read your opponents' poker face and use your best poker strategy to outplay everyone. Know when to hold ’em, fold ’em, check and raise.<br><br>ARE YOU READY TO GO ALL-IN? Dominate the online (PvP) Poker Tournament World Leaderboard, rule the Black Jack tables and win big time with free daily spins in the bonus slot machine. A huge jackpot awaits you in our social casino card games. Start betting now and may lady luck be on your side!<br><br>Note: We love a fair game! We use industry standard RNG methods and never manipulate cards or favor certain players. This poker game is intended for an adult audience. (e.g Intended for use by those 18 or older) The games do not offer “real money gambling” or an opportunity to win real money or prizes (e.g the game is for entertainment purposes only). Practice or success at social casino poker gaming does not imply future success at “real money poker”. Gender is requested to let players select if they want to play with a male or a female presenting character.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

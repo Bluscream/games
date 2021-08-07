@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Echoes+</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Echoes+</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>1m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-17/09/2018">17/09/2018</a> 12:42:00</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-03/02/2016">03/02/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-15/01/2015">15/01/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-87">87</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Binary Zoo">Binary Zoo</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-The Game Creators Ltd">The Game Creators Ltd</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=338000" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/338000" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/338000/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/338000/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/338000" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=338000" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Echoes+ is an intense retro action space shooter created with App Game Kit 2. It will test your reactions and concentration levels to the max!<br>Fight your way through wave after wave of neon coloured space enemies, leveling up your score multiplayer and shields as you go. The onslaught just keeps on building with new challenges the further you progress. You'll need to be super focused if you want a place on the global high score table, one blink and it can be all over!<br><br>Echoes+ is a showcase game made using App Game Kit 2 (AGK). You can learn more about App Game Kit 2 here:<br><br><a href="http://store.steampowered.com/app/325180/" target="_blank" rel="noreferrer"  id="dynamiclink_0" >http://store.steampowered.com/app/325180/</a><h2 class="bb_tag">Echoes mode</h2>Echoes mode consists of 10 levels of blasting action, each introducing a new enemy with different strengths &amp; weaknesses.<br>When you get hit you lose energy but it can be replenished by collecting green power ups. Getting hit may also downgrade your weapon, but act fast and you can power it back up again. Increased kills means more power-ups.<h2 class="bb_tag">Time Attack</h2>Just want a quick blast? Then try time attack. In this mode you have to score as many points as you can in 3 minutes.  You get unlimited energy but being hit incurs a points penalty.<br><br><i>Tips</i><br><ul class="bb_ul"><li>The secret to a high score is collecting multipliers.<br></li><li>The more enemies you kill the more multiplier power-ups will be dropped.<br></li><li>Shooting stars will always drop a score multiplier.<br></li><li>Warning! Points lost if hit are linked to the score multiplier.</li></ul><h2 class="bb_tag">Survivor Mode</h2>This is all about how long you can survive without taking a hit. The score is irrelevant!<br><br><i>Tips</i><br><ul class="bb_ul"><li>Your weapon will power up over time automatically.<br></li><li>Time is your priority so shooting enemies might not always be the best approach.<br></li><li>Destroying planets might be risky but they drop shields which will protect you for 10 seconds, invaluable in this game mode.</li></ul><h2 class="bb_tag">Classic Mode</h2>This has a simpler game play and modified controls making it more like the 80's retro games.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/338000/extras/classic.jpg?t=1560447308" /><br><br><i>Tips</i><br><ul class="bb_ul"><li>Use smaller and more controlled movements than in other game modes.<br></li><li>Try and stay away from the edge of the play area whenever possible.<br></li><li>Listen out for the warning sounds that mean a saucer is approaching.</li></ul><h2 class="bb_tag">Meteor Storm Mode</h2>This challenges you to fend off increasingly frequent and dense waves of meteors. Destroy the golden meteors &amp; collect score multipliers.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/338000/extras/meteor.jpg?t=1560447308" /><br><br><ul class="bb_ul"><li><i>Tips</i><br><ul class="bb_ul"><li>Your ship starts with a fixed amount of energy which cannot be replenished.<br></li><li>Getting hit reduces your energy but also causes you to drop some of your score multipliers.<br></li><li>Your weapon power is fixed and cannot be increased.</li></ul><h2 class="bb_tag">Asteroid Belt Mode</h2>Here you face snakes of energy that increase in both quantity and length at each new level.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/338000/extras/asteroid.jpg?t=1560447308" /><br><br><i>Tips</i><br><ul class="bb_ul"><li>Your ship starts with a fixed amount of energy which cannot be replenished.<br></li><li>The score multiplier is linked to the number of asteroid belts at the start of the current level.<br></li><li>Your weapon power is fixed and cannot be increased.</li></ul><h2 class="bb_tag">Zoo Trials (zoots)</h2><ul class="bb_ul"><li>These are a series of additional challenges. Each zoot can be attempted on any of the four difficulty levels, with harder difficulties contributing more towards your total completion percentage; Easy = 1%, Normal = 2%, Hard = 3% and Insane = 4%<br></li><li>Only the hardest difficulty achieved counts towards your total, so for the ultimate 100% score you need to complete each of the 25 zoots on insane difficulty.<br></li><li>Zoots can only be completed in specific game modes so make sure you check these on the zoo trials menu screen.<br></li><li>The Pause screen shows your progress towards and zoots.</li></ul><br>If you enjoyed Echoes+ then you might also like 1982!<br><a href="http://store.steampowered.com/app/639650/1982/" target="_blank" rel="noreferrer"  id="dynamiclink_1" >http://store.steampowered.com/app/639650/1982/</a></li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

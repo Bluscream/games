@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>LAMO</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> LAMO</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-23/04/2020">23/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-09/10/2019">09/10/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-58">58</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-LAMO LLC">LAMO LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-LAMO LLC">LAMO LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1119690" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1119690" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1119690/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1119690/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1119690" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1119690" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Update Notes</h1><p><strong>November 6th 2019 Patch Notes</strong><br><strong>Build alpha 1.6.44</strong><br>Thank you all for helping LAMO during our closed alpha! Your feedback has been tremendously helpful.<br><br>We’d like to welcome you all to our early access public release of LAMO: The Game on Steam.<br>Please come join the fun in our destructible LAMO world!<br><br>Please report any issues you encounter while battling to <a href="mailto:support@playlamo.com">support@playlamo.com</a> - one of the LAMO Support Agents will handle your request.<br><br>If you have any ideas or suggestions, please head over to our discussion board here on Steam and let us know what you think!<br> <br>Thank you all for being here.<br>Enjoy our public early access release!<br><br><ul class="bb_ul"><h2 class="bb_tag"><strong>General Bug Fixes:</strong></h2><li>Main menu and UI freezing glitch.<br></li><li>Missing artwork from loading screen. <br></li><li>Cursor reappearing in-game after closing pause menu.<br></li><li>Jelly counter animates when other players collect jelly.<br></li><li>Sniper Tower laser goes through terrain.<br></li><li>Skybox clips on specific parts of the map. <br></li><li>Remove player from party does not stop queue. <br></li><li>LAMOs lose their fire rate/damage while on foot.<br></li><li>Jelly Boys faulty idle animation.<br></li><li>Ferris wheel flickering graphics issue.<br></li><li>Ferris wheel and Viking ship collision.<br></li><li>Lava animation flickering issue.<br></li><li>Players can hover with hover cars while in tower.<br></li><li>Mine and trap texture disappear after placing.<br></li><li>Hyper Tower attack charge fixed to reflect actual attack charge.<br></li><li>Catastrophic laser does not extend all the way down when going over gaps.<br></li><li>Players receive 0 XP bug match.<br></li><li>Missing hertz speed on resolution drop down in settings.<br></li><li>Missing SFX on item pick up, health use, building mode and capture refinery.<br></li><li>Players retain control after the match is over.<br></li><li>Various destruction animation bugs.<br></li><li>Various UI and texture fixes.<h2 class="bb_tag"><strong>Matchmaking:</strong></h2></li><li>Decreased matchmaking time, players should no longer experience long wait queues.<br></li><li>Improved region detection, players reported being queued in the wrong region should no longer encounter that issue we also improved automatic region detection and queuing with friends outside your region.<br></li><li>Reducing the amount of data traffic game requires to ensure better game-play with higher latency and streaming.<h2 class="bb_tag"><strong>Game Play:</strong></h2>Overall aiming system improvements where players used experience slight aiming issues with high latency, now game should feel more crisp with the new aiming system.<h2 class="bb_tag"><strong>Mech Rebalance:</strong></h2></li><li>Speed boost increased in speed to 80 <br></li><li>Speed boost cost increased 20 per second<br></li><li>Cannons damage increased to 60<br></li><li>Added eject button to exit out of mech.<br></li><li>Mech cost decreased to 900 Jelly<br></li><li>Mech spawn decreased to 60 seconds<h2 class="bb_tag"><strong>Ninja LAMO Rebalance:</strong></h2></li><li>Decreased base attack rate to 0.5<br></li><li>Increased base Ninja Start Damage to 8<h2 class="bb_tag"><strong>Tim LAMO Rebalance:</strong></h2></li><li>Changed reticle to match Tim’s melee attack.<h2 class="bb_tag"><strong>Shroud LAMO Rebalance:</strong></h2></li><li>Changed attack type to arch on Bionic Fist.<br></li><li>Increased Bionic Fist weight.<br></li><li>Increased Maximum Bionic Fist damage 35.<br></li><li>Increased base Bionic Fist attack rate 0.55.<h2 class="bb_tag"><strong>Andy NoScope:</strong></h2></li><li>Increased base Jelly Shot attack rate 0.5.<br></li><li>Decreased base Jelly Shot damage to 10.<h2 class="bb_tag"><strong>Map Rebalance and Improvements:</strong></h2></li><li>Fired Up Vending Machines now have limited usage then they’re out order.<br></li><li>Hover Cars speed decreased speed to 24.<br></li><li>Catastrophic event now happens after 250 seconds after “Match Start”.<br></li><li>Mini Map now shows catastrophic event lasers and vending machine locations.<br></li><li>Mines and traps are now hidden from enemies and can only be seen as a slightly different hex floor.<br></li><li>Jelly Boys are now destructible too.<h2 class="bb_tag"><strong>New Features:</strong></h2></li><li>New aiming system<br></li><li>New profile portraits<br></li><li>Battle pass system<br></li><li>Shroud LAMO<br></li><li>Email sign up</li></ul></p><br><h1>Update Notes</h1><p><strong>October 24th 2019 Patch Notes</strong><br><br>Thank you all for participating in our closed alpha play tests, we appreciate all your feedback and we’re working hard on resolving the problems that you helped uncover during our previous play tests. Head over to the discussion board and post any comments or concerns about LAMO The Game, or email us at <a href="mailto:support@playlamo.com">support@playlamo.com</a> to report bugs.  <br><br>Thank you all for being here.<br><br><br><ul class="bb_ul"><h2 class="bb_tag"><strong>General Bug Fixes:</strong></h2><li>Player stuck in loading screen<br></li><li>Authenticator login issue with email account<br></li><li>Cursor disappearing after match end<br></li><li>Sniper Tower laser goes through terrain <br></li><li>Party disbanded after leaving match<h2 class="bb_tag"><strong>Performance Enhancements:</strong></h2></li><li>Improved overall FPS and optimization<br></li><li>Improved overall gameplay feel and character control<br></li><li>Decreased loading times<h2 class="bb_tag"><strong>Matchmaking:</strong></h2></li><li>Improved party system<br></li><li>Improved region detection<br></li><li>Improved latency handling<br></li><li>Significantly reduced the amount of data traffic required by the game to reduce latency in online matches<h2 class="bb_tag"><strong>Gameplay:</strong></h2></li><li>Weapons system tweaks<br></li><li>LAMOs Attack Balances<br></li><li>LAMOs movement improvements</li></ul></p><br><h1>About the Game</h1><strong>LAMO </strong>pits the biggest names in gaming against each other in an epic 8-player online destruction arena. Pick your favorite streamer and dive into a round of insanely explosive action!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1119690/extras/LAMO_Misc02.gif?t=1578428553" /><br>Chaos is the name of the game. In <strong>LAMO</strong>, everything, including the world itself, is destructible. Outlast your opponents by blasting away the map, constructing massive attack towers, capturing vital control points, and raining destruction from your personalized hovercar. Party up for strategic Team Battles, or ride into Duos mode solo - It's your call.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1119690/extras/LAMO_MechShort.gif?t=1578428553" /><br>Every <strong>LAMO </strong>comes equipped with a unique starting weapon and stats, meaning no game is ever the same. Each match is a short burst of whirlwind action, counting down to an insane Cataclysmic Event. Only the strongest will survive, and only one <strong>LAMO </strong>can claim the crown as the <strong>LAST LAMO STANDING!</strong><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1119690/extras/LAMO_Emotes.gif?t=1578428553" /><br>With unlockable skins, leaderboards, and regular seasons of fresh content, you'll never run out of new ways to experience the world of <strong>LAMO</strong>. It's time to show the world what you're made of!
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

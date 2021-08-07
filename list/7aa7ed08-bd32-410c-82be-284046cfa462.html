@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>HITMAN Free Trial</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> HITMAN Free Trial</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-12/04/2020">12/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-"></a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-83">83</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Feral Interactive (Linux)">Feral Interactive (Linux)</a><br/><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Feral Interactive (Mac)">Feral Interactive (Mac)</a><br/><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-IO Interactive A/S">IO Interactive A/S</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Feral Interactive (Linux)">Feral Interactive (Linux)</a><br/><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Feral Interactive (Mac)">Feral Interactive (Mac)</a><br/><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-IO Interactive A/S">IO Interactive A/S</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Game Demo">Game Demo</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=649780" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/649780" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/649780/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/649780/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/649780" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=649780" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Reviews and Accolades</h1><p>&quot;<strong>Recommended</strong> <i>Agent 47 is back with a vengeance, and vengeance has seldom tasted sweeter.</i>&quot; - <strong><a href="https://steamcommunity.com/linkfilter/?url=http://www.eurogamer.net/articles/2017-01-31-hitman-the-complete-first-season-review" target="_blank" rel="noopener"  >Eurogamer</a></strong><br><br>&quot;<i>Hitman has gone from an enjoyable dalliance to a minor obsession to a bona fide stealth classic.</i>&quot; - <strong><a href="http://kotaku.com/the-hitman-experiment-has-been-a-success-1786352218" target="_blank" rel="noreferrer"  >Kotaku</a></strong><br><br>&quot;<strong>5 / 5</strong> <i>They've managed to prove to the rest of the industry that AAA games done episodically can work, and can work incredibly well.</i>&quot; - <strong><a href="https://steamcommunity.com/linkfilter/?url=http://www.digitalspy.com/gaming/review/a812740/hitman-2016-complete-first-season-review/?utm_content=bufferd86cf&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer" target="_blank" rel="noopener"  >Digital Spy</a></strong><br><br>&quot;<strong>5 / 5</strong> <i>A beautiful puzzle box of a game</i>&quot; - <strong><a href="https://steamcommunity.com/linkfilter/?url=https://www.theguardian.com/technology/2017/jan/31/hitman-review-a-beautiful-puzzle-box-of-a-game" target="_blank" rel="noopener"  >The Guardian</a></strong><br><br>&quot;<strong>9.5 / 10</strong> <i>The new episodic Hitman is one of Agent 47's greatest adventures to date and is one of the best stealth games to be released in years.</i>&quot; - <strong><a href="https://steamcommunity.com/linkfilter/?url=https://www.gamingnexus.com/Article/5291/Hitman-Season-One" target="_blank" rel="noopener"  >Gaming Nexus</a></strong><br><br>&quot;<strong>9 / 10</strong> <i>A triumph in both mechanics and delivery, Hitman turns its controversial episodic release model into a true strength that's suited to IO's vast and nuanced sandboxes.</i>&quot; - <strong><a href="https://steamcommunity.com/linkfilter/?url=https://www.pcgamesn.com/hitman/hitman-pc-review" target="_blank" rel="noopener"  >PCGamesN</a></strong><br><br>&quot;<strong>9 / 10</strong> <i>The new money lives up to the Blood Money in this darkly comic, icy cool stealth/brain-teaser/drop-a-toilet-on-a-target's-head-'em-up. It's a hit, man.</i>&quot; - <strong><a href="https://steamcommunity.com/linkfilter/?url=https://www.pcinvasion.com/hitman-full-season-one-review" target="_blank" rel="noopener"  >PC Invasion</a></strong><br><br>&quot;<strong>8.5 / 10</strong> <i>I strongly recommend you buy this game</i>&quot; - <strong><a href="https://steamcommunity.com/linkfilter/?url=http://www.godisageek.com/reviews/hitman-the-complete-first-season-review/" target="_blank" rel="noopener"  >God is a Geek</a></strong><br><br><i>&quot;One of my favourite games of the year&quot;</i> - <strong><a href="http://www.pcgamer.com/dont-wait-to-jump-into-hitman-its-already-great/" target="_blank" rel="noreferrer"  >PC Gamer</a></strong><br><br><i>&quot;One level of Hitman lasts longer than most games&quot;</i> -<strong><a href="https://steamcommunity.com/linkfilter/?url=http://www.gamesradar.com/how-one-level-of-hitman-lasts-longer-than-most-games/" target="_blank" rel="noopener"  >GamesRadar+</a></strong><br><br><i>“...one of the best games of the year” </i> - <strong><a href="https://steamcommunity.com/linkfilter/?url=https://www.vg247.com/2016/11/01/hitman-episode-6-review-a-fitting-conclusion-for-one-of-the-best-games-of-2016/" target="_blank" rel="noopener"  >VG247</a></strong><br><br><i>&quot;Simply Gorgeous&quot;</i> - <strong><a href="https://steamcommunity.com/linkfilter/?url=http://www.thesixthaxis.com/2016/03/10/hitman-intro-pack-review/" target="_blank" rel="noopener"  >TheSixthAxis</a></strong></p><br><h1>About the Game</h1><img src="https://cdn.akamai.steamstatic.com/steam/apps/649780/extras/WelcomePlayground01_616.jpg?t=1550756665" /><br>Play the beginning of HITMAN for free and become the master assassin. Experiment, improvise, try things and have fun in the ultimate playground as Agent 47.<br><br>Download the first location in the game now and enter the ICA Facility as Agent 47. The free download includes absolutely everything that we’ve released for the ICA Facility location; <br><ul class="bb_ul"><li>2 Story missions, including all cut-scenes <br></li><li>2 Escalations Contracts <br></li><li>40+ Challenges </li></ul><br>Plus thousands of player-created missions in Contracts Mode – all of that is now available completely free of charge. <br><br>All of your save games and challenge progress will be carried over to the full game.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

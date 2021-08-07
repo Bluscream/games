@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Circle of Sumo: Online Rumble!</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Circle of Sumo: Online Rumble!</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-26/04/2020">26/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-17/10/2020">17/10/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-88">88</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Sports">Sports</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Strelka Games">Strelka Games</a><br/><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Yonder">Yonder</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Strelka Games">Strelka Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1181790" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1181790" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1181790/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1181790/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1181790" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1181790" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Circle of Sumo</h1><p>Buy the full version of Circle of Sumo! Includes dozens of new maps, local multiplayer and lots of extra games!<br><a href="https://store.steampowered.com/app/961850/Circle_of_Sumo/?snr=1_7_15__13" target="_blank" rel="noreferrer"  id="dynamiclink_0" >https://store.steampowered.com/app/961850/Circle_of_Sumo/?snr=1_7_15__13</a></p><br><h1>About the Game</h1><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1181790/extras/Earth-spinning_Mockup_600x338.gif?t=1622108035" /><h2 class="bb_tag"><strong>THE FUNNIEST PHYSICS-BASED SUMO ARENA EVER!</strong></h2>With Circle of Sumo: Online Rumble! you will play as a Sumotori, a sumo wrestler. After selecting your Sumotori, you will be catapulted into one of the crazy arenas of the game, but be careful; don't be fooled! They look harmless, but they hide more pitfalls than you think.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1181790/extras/Tower.gif?t=1622108035" /><br><br>Circle of Sumo: Online Rumble! is based on physics and the variety of levels creates a wide range of challenges. Magma, sand, and hatches are just some of the elements that will stand on your way to victory, besides the other huge Sumotoris, of course!<br><br><br><br>Will you try to bring down your opponents with all your strength, will you choose to use your skills to dodge at the last moment, or will you try to leave the other opponents to eliminate themselves?<h2 class="bb_tag"><strong>FEATURES:</strong></h2><ul class="bb_ul"><li><h2 class="bb_tag"><strong>ONLINE MULTIPLAYER UP TO 4 PLAYERS</strong></h2></li></ul>Challenge up to 3 more Sumotoris online, the last to stand in the circle wins the round! Whoever wins five rounds will be the champion of the match.<br><br><ul class="bb_ul"><li><h2 class="bb_tag"><strong>THE FUNNIEST SUMO ARENAS EVER</strong></h2></li></ul>Thanks to physics's importance, it will not be just a matter of power to win; in addition to hitting and dodging, you will have to do your best to survive in the arena. Use the environment to your advantage!<br><br><ul class="bb_ul"><li><h2 class="bb_tag"><strong>RANKED MODE!</strong></h2></li></ul>Challenge yourself, fight other players online, and climb the world rankings.<br>It will take some practice, but the first step of the podium could be yours!<br><br><ul class="bb_ul"><li><h2 class="bb_tag"><strong>12 ARENAS</strong></h2></li></ul>Fight in twelve different arenas, each with its pitfalls and characteristics that make them deeply different from one another. <br>Master them all, don't be unprepared!<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1181790/extras/beach.gif?t=1622108035" /><br><br><br><ul class="bb_ul"><li><h2 class="bb_tag"><strong> EIGHT DIFFERENT SUMOTORIS </strong></h2></li></ul>Choose from eight different sumotoris. They have different abilities! Everyone has a different sprint, strength, or acceleration rating.  It is not the Sumotori that chooses the arena, but the arena chooses the Sumotori!<br><br><ul class="bb_ul"><li><h2 class="bb_tag"><strong>TAKARABAKO and MONey</strong></h2></li></ul>Takarabako is the Japanese ancient name for &quot;Treasure Chest.&quot; In these chests, you can find champions, arenas, and the new emotes!<br>You can buy a chest with MON. Mon is our in-game currency; you gain this currency just playing the game!<br>The more you win, the more MON you gain.<br><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1181790/extras/Artwork_SeasonZero_Background.gif?t=1622108035" />
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

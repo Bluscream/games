@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Crossout</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Crossout</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-13/08/2020">13/08/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-26/07/2017">26/07/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-65">65</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Racing">Racing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Targem Games">Targem Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Gaijin Distribution KFT">Gaijin Distribution KFT</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Remote Play On Tablet">Remote Play On Tablet</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Remote Play On TV">Remote Play On TV</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=386180" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/386180" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/386180/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/386180/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/386180/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/386180" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=386180" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Just Updated</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/386180/extras/xo_football.gif?t=1626935758" /><br><br>Fight against opponents in fun and intense football matches and explore the brand new PvP-location in the world of Crossout — “Sinto city”! The “Steel Championship” update is already available!<br><br><strong><a href="https://steamcommunity.com/linkfilter/?url=https://crossout.net/en/patchnotes/pc/#/" target="_blank" rel="noopener"  >Find out more on the official Crossout website.</a></p><br><h1>Update Notes</h1><p><h2 class="bb_tag">How to link your Steam and <a href="https://steamcommunity.com/linkfilter/?url=http://Gaijin.net" target="_blank" rel="noopener"  >Gaijin.net</a> accounts</h2><br>If you previously played Crossout or have a <a href="https://steamcommunity.com/linkfilter/?url=http://Gaijin.net" target="_blank" rel="noopener"  >Gaijin.net</a> account, we recommend that you link your Steam and <a href="https://steamcommunity.com/linkfilter/?url=http://Gaijin.net" target="_blank" rel="noopener"  >Gaijin.net</a> accounts when you first start the game through Steam.If this is not done when you first start the game from Steam, then in the future you will not be able to link your accounts.<br>We encourage you to sign up for a <a href="https://steamcommunity.com/linkfilter/?url=http://Gaijin.net" target="_blank" rel="noopener"  >Gaijin.net</a> account if you don't have one. This will allow you to continue to use all the additional features of the game.<br> <br><strong>Here is a brief guide on how to link your Steam and <a href="https://steamcommunity.com/linkfilter/?url=http://Gaijin.net" target="_blank" rel="noopener"  >Gaijin.net</a> accounts</strong><br> <br>Two windows for linking accounts will appear on your screen.<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/386180/extras/xo-go-1.jpg?t=1626935758" /><br>To link the accounts, enter your <a href="https://steamcommunity.com/linkfilter/?url=http://Gaijin.net" target="_blank" rel="noopener"  >Gaijin.net</a> account data in the left window and confirm that you want to link your accounts.<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/386180/extras/1-04-616-en.jpg?t=1626935758" /><br>If you haven't got a <a href="https://steamcommunity.com/linkfilter/?url=http://Gaijin.net" target="_blank" rel="noopener"  >Gaijin.net</a> account or if you choose not to link accounts, you can log into the game through the right window. But you will no longer be able to link your accounts in the future.<br> <br>Attention! If you failed to link accounts by mistake and entered the game only through Steam, but still want your accounts to be linked, we recommend that you do not make any in-game actions, especially in the market, and contact support. We will try to help you.<br> <br>If you previously played ‘War Thunder’, then most likely your accounts are already linked.<br>You can learn more about linking accounts at the Technical Support website:<br><a href="https://steamcommunity.com/linkfilter/?url=https://support.gaijin.net/hc/en-us/articles/211959385-How-to-link-your-Steam-account-to-your-email-address" target="_blank" rel="noopener"  >How to link your Steam account to your email address </a><br><a href="https://steamcommunity.com/linkfilter/?url=https://support.gaijin.net/hc/en-us/articles/211958525-How-to-link-your-Steam-CrossOut-account-to-your-Gaijin-account" target="_blank" rel="noopener"  >How to link your Steam CrossOut account to your Gaijin account </a></p><br><h1>About the Game</h1><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/386180/extras/steam-19.jpg?t=1626935758" /><br><br>Join the Open Beta of Crossout, the post-apocalyptic MMO Action game! Craft your unique battle machines from dozens of interchangeable parts and destroy your enemies in explosive PvP online battles!<h2 class="bb_tag">Key Features:</h2><ul class="bb_ul"><li>Unique vehicles, crafted by the players using a wide range of available parts: From nimble buggies to heavily tracked off-road vehicles or combat platforms on antigrav fields.<br></li><li>Complete freedom of creativity and thousands of possible combinations: Create vehicles of any shape using dozens of parts, wide variety of armour and weapons as well as support systems.<br></li><li>Advanced damage model: Destroy any part of an enemy machine and it will affect the vehicle's performance immediately.<br></li><li>Huge arsenal of weapons: From chain saws, power-drills over machine guns to rocket launchers, flying drones and stealth generators.<br></li><li>Your own workshop: Create new, advanced parts and auction them at the in-game marketplace.<br></li><li>Trading options between players: Every piece that you have gathered in the battle can be sold to other players.<br></li><li>Choose your own battle strategy: The only thing that matters is the Survival and Victory!</li></ul><h2 class="bb_tag">CROSSOUT - The Road to Apocalypse</h2>In 2027 a mysterious viral epidemic known as the ‘Crossout’ swept the planet, countries and populations simultaneously began to fall at an alarming rate all over the Earth. Those who did not die in the first few days, were plagued by hallucinations and headaches, many people went mad, others and committed suicide. The source of the disease could not be detected but the cities that were once the vibrant social and economic beacons of humanity were left ravaged and deserted.<br><br>Survivors gradually began to change — after fifteen years of transformation, the changes became visible. The most noticeable metamorphosis occurred in the eyes of the affected — some began to glow, while others resembled black holes. To hide their unnatural looks and conceal the mutation, people started wearing padded clothing and sunglasses.<br><br>Twenty years have passed after ‘Crossout’. Humans still remember their life before the disaster. As always, there are groups trying to recover the old world, while others enjoy the chaos and destruction. But there are those who are not human any more. They hide their faces behind masks, and their motives are unknown.</strong>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

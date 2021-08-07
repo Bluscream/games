@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>LoveKami -Useless Goddess-</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> LoveKami -Useless Goddess-</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>4h 2m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-17/09/2018">17/09/2018</a> 13:12:22</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-15/12/2017">15/12/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-29/05/2017">29/05/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-MoeNovel">MoeNovel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-MoeNovel">MoeNovel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=626510" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/626510" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/626510/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/626510/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/626510/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/626510" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=626510" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/626510/extras/DameKami_top_store-small.png?t=1573642502" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/626510/extras/story.jpg?t=1573642502" /><br><br><strong>&quot;I took in a goddess!&quot;</strong><br><br>It was after the descent of uncountable goddesses in Japan...<br><br>Most goddesses were able to blend in with humans, living peacefully and happily together. Some of those goddesses even went on to become idols.<br>However, there were others who simply refused to follow the rules. These goddesses prefer living freely and doing as they please, inadvertently causing all sorts of trouble for humans.<br><br>Goddesses who are naughty are called Aragami.<br><br>The protagonist, Sho Narumi, stumbles upon a goddess who collapses on the street and attempts to help her. Soon enough it is revealed that she's the Aragami who had been causing frequent power outages in one small-town area of Tokyo. Sho decides to protect his beloved hometown by helping the goddess to get rehabilitated!<br><br>&quot;Rehabilitate the goddess!&quot;<br><br>Wait...aren't goddesses supposed to help humans?<br><br>With the setting moving from Akihabara to a quiet small-town area of Tokyo, the story of one naughty goddess's rehabilitation begins now!<h2 class="bb_tag">Story Backbone</h2>The story roughly remains the same, there's just something that's a little different...<br>This is the tale of an unusual goddess set in a slightly different Japan.<br><br>The Goddesses Descend!<br><br>It was a time when people had forgotten their dreams and lost faith.<br>The silhouettes of goddesses revealed themselves to the people who then could only believe in what they saw right in front of them.<br><br>The confusion surrounding the countless goddesses appearing in Japan could be explained due to Amaterasu Omikami wanting to teach the goddesses about the human world.<br>All of this brought about the implementation of the Divine Education Act.<br>Consequently, the goddesses were able to learn, familiarize, and communicate with humans.<br><br>This cross-cultural exchange between goddesses and humans helped to show the world's many colors.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/626510/extras/characters.jpg?t=1573642502" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/626510/extras/Character-Intro_akane.png?t=1573642502" /><br>An Aragami brought down to the world by the Divine Education Act.<br>She's a naughty goddess who skips school.<br><br>Although she possesses the power to manipulate electricity, since she's an Aragami, she can only make electricity go haywire.<br>She accidentally causes power outages when angry or irritated.<br><br>Since she easily gets angry, she causes power outages almost every day somewhere in town.<br><br>Though she'd like to be in control of her power, things always spiral out of control when she tries to use them.<br>This doesn't bother her, since she figures it's only natural for an Aragami, such as herself, to cause messes here and there.<br><br>She's stubborn and does what she wants, but it's not because she won't listen to instruction, she just doesn't want to do what she doesn't understand.<br>She gets a kick out of teasing Sho by trying to seduce him.<br>She also occasionally pulls pranks on Sho and seduces him in front of Maika to make her jealous.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/626510/extras/Character-Intro_inori.png?t=1573642502" /><br>An earth goddess dispatched to rehabilitate Akane who keeps causing damage to the town by not following the Divine Education Act.<br><br>This goddess is serious and focused, but innocent; she doesn't seem to know a lot about certain things.<br>Despite being the local earth goddess, she never acts arrogant, and instead talks politely to everyone.<br>She is charming and elegant, but is also fairly clumsy.<br><br>She is easy-going, with a docile personality, but brings heavy rainfall to the town when she gets angry.<br>Although she rarely gets angry, once she does, the damage she inflicts is incomparable to Akane's.<br><br>She broods over the fact that she has no prominent advantages over other goddesses, and hates to get mislabeled as a &quot;dirt goddess.&quot;<br><br>Because of her laid-back personality, she doesn't really care even if Sho sees her naked.<br>She'd even ask if he'd like to touch her chest.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/626510/extras/Character-Intro_maika.png?t=1573642502" /><br>Sho's junior, landlady, and close childhood friend.<br>She's just your average fashionable girl.<br>Her looks are stylish and she loves wearing makeup.<br><br>Contrary to her appearance, she's rather diligent and capable.<br>She has feelings for Sho, but can't find it in her to confess.<br>Although she works as the apartment landlady with her mother while attending school, she often makes comments about not caring if the old building gets demolished.<br>In actuality, she's a good kid and is serious about looking over the apartments.<br>She's tsundere, and wants to continue living there together with Sho.<br><br>Sometimes she gets jealous when Akane or Inori gets too friendly with Sho.<br>Even though she seems to know about the adult world, she blushes intensely only when Sho sees her underwear.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

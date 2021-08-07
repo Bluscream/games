@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Grand Theft Auto IV: The Complete Edition</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Grand Theft Auto IV: The Complete Edition</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>3d 3h 3m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-14/07/2021">14/07/2021</a> 23:40:55</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-02/04/2013">02/04/2013</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-24/03/2020">24/03/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-74">74</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-90">90</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Rockstar North">Rockstar North</a><br/><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Rockstar Toronto">Rockstar Toronto</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Rockstar Games">Rockstar Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Remote Play On Phone">Remote Play On Phone</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Remote Play On Tablet">Remote Play On Tablet</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=12210" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/12210" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/12210/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/12210/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/12210" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=12210" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Important Updates To Grand Theft Auto IV and Episodes from Liberty City</h1><p>We are making a number of changes to make sure players who own Grand Theft Auto IV and GTA: Episodes from Liberty City can continue to enjoy these games.<h2 class="bb_tag"><strong>New Players</strong></h2>Starting 03/19/2020, Grand Theft Auto IV: Complete Edition will replace both Grand Theft Auto IV and Grand Theft Auto: Episodes from Liberty City wherever it is currently digitally available. Grand Theft Auto IV: Complete Edition will as also be available via the Rockstar Games Launcher. <br><br>Current game save files will be compatible with Grand Theft Auto IV: Complete Edition.<br><br>As a result of this update <u>the following services will no longer be available in Grand Theft Auto IV: Complete Edition</u>:<br><ul class="bb_ul"><li>Games for Windows Live<br></li><li>Multiplayer mode<br></li><li>Leaderboards</li></ul><br>The following Radio Stations will be temporarily unavailable in Grand Theft Auto IV: Complete Edition<br><ul class="bb_ul"><li>RamJam FM, Self-Actualization FM, and Vice City FM (previously available in Grand Theft Auto: Episodes from Liberty City)</li></ul><br><strong>Note: </strong>Because Japanese is a supported language for Grand Theft Auto IV, but is not supported for Grand Theft Auto: Episodes from Liberty City, players will continue to be able to play Grand Theft Auto IV with Japanese sub-titles but will need to select another language in order to play Grand Theft Auto: Episodes from Liberty City.<h2 class="bb_tag"><strong>Current Players</strong></h2>Players who have previously installed and played Grand Theft Auto IV or Grand Theft Auto: Episodes from Liberty City will be able to update their copy to Grand Theft Auto IV: Complete Edition through the following means:<h2 class="bb_tag"><strong>Steam Users </strong></h2>Depending on the game, players on Steam will need to install or update their current game:<br><ul class="bb_ul"><li> Grand Theft Auto: Episodes from Liberty City will be removed and replaced with GTAIV: Complete Edition in the launcher library. Update file size is expected to be approximately 22GB<br></li><li> Grand Theft Auto IV owners will download content from Grand Theft Auto: Episodes from Liberty City and their game will update to GTAIV: Complete Edition. Update file size is expected to be approximately 6GB </li></ul><h2 class="bb_tag"><strong>Physical Media</strong></h2><ul class="bb_ul"><li> Games not previously activated using Games for Windows Live will be able to use the Key on the back of the game manual to activate and update to Grand Theft Auto IV: Complete Edition</li></ul><h2 class="bb_tag"><strong>Games for Windows Live Digital Store Purchases</strong></h2><ul class="bb_ul"><li> Games previously activated using Games for Windows Live will require players to create and/or link their Social Club accounts in replacement of Games for Windows Live to update to Grand Theft Auto IV: Complete Edition</li></ul><br><strong>Note:</strong> New activations from players trying to install current copies of Grand Theft Auto IV may be disrupted until Grand Theft Auto IV: Complete Edition is available. All users will need to be connected to the internet and authenticate their copy of the game.</p><br><h1>About the Game</h1>Niko Bellic, Johnny Klebitz, and Luis Lopez all have one thing in common – they live in the worst city in America. <br><br>Liberty City worships money and status, and is heaven for those who have them and a living nightmare for those who don’t. <br><br>Niko is looking to escape his past and make a new life for himself in the land of opportunity. Johnny, a veteran member of The Lost biker gang, is caught in the middle of a vicious turf war with rival gangs for control of the city. Luis, part-time hoodlum and full-time assistant to legendary nightclub impresario Tony Prince (a.k.a. “Gay Tony”), is struggling with the competing loyalties of family and friends in a world in which everyone has a price. Their lives cross paths with devastating consequences as they fight to survive in a city torn apart by violence and corruption.<br><br>The Complete Edition includes Grand Theft Auto IV and the Episodes – The Lost and Damned &amp; The Ballad of Gay Tony.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

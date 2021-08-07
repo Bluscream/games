@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Dark Eden Origin</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Dark Eden Origin</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-15/04/2020">15/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-17/08/2017">17/08/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-41">41</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-SOFTON ENTERTAINMENT">SOFTON ENTERTAINMENT</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-SOFTON ENTERTAINMENT">SOFTON ENTERTAINMENT</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=658510" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/658510" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/658510/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/658510/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/658510" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=658510" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					(Features)<br>Dark eden origin is an online MMORPG game of battle between vampires and humans in a highly developed industiral society. Two races on one path to Holy book of Blood. <br>Slayers, one who wants to stop the destruction of human race, Vampires, one who wishes for eternal life after unseal themselves, are the choices for your play. <br>Enjoy the brutal battle between two races awakend with mysterious power after the world gone to sleep with extinction of civilization. Path towards the victory is on your hand.  <br><br>[Slayer] Control the bloody orgy<br><br>Human are the god’s new creature. The group combined with human’s intelligence and technology, the slayers, were to fight against the vampires, who admires strength of the god and created a new world.<br>Slayers builds various types of weapon and strong defence power to fight against vampires. <br>Power of individuals may be weak, they can show their real worth when individuals in different professionals are combined. <br>They have prde in having a pure blood that god created and uses it to protect their field and honor themselves. <br><br>[Vampire] Another chance for eternal life <br><br>With the temptation of demon, Lylis, who once was human, got drunk with fruit of blood and gained the god’s knowledge from no-go tree of god turned demon. Captured with such desire, she created her own world, the vampire. <br>Vampires have single, non-complicated battle system, but has very strong individual strength with various abilities due to getting blood from the god.  <br>They attack slayers at the right place and right time using their special abilitiies. <br>They wish to have eternal live by conquering the holy book of blood, and raises human to use as their prey. <br><br> <br>B.	Create/Delete Character<br><br>(Create Character)<br> <br>1.	Enter [ID and PASSWORD] of the account registered and click [Login] button.<br><br> <br>2. Register [2nd password], enter the password and click confirm button for safe game play<br> <br>3. Choose world and channel for playing game<br><br> <br>4. Choose and double click place for creating character or click [Create Character] button.<br>＊ You can create 3 characters at maximum in an world.<br><br> <br>5. Set race, name and gender of character then click [Create Character] button.<br>＊ Character’s name should be within 5 and 10 worlds for Korean and English respectively.<br>＊ Ousters do not have gender.<br>(Delete character)<br> <br>1. Choose character to be deleted and click [delete character] button.<br>2. Enter registration number of the account and click confirm button to delete the character.<br>＊ The deleted character can be recovered within 15 days from the deletion. Items and game money cannot be recovered therefore carefully delete the character.<br>C.	Game Control<br><br> (How to control)<br>Use mouse and keyboard shortcuts for easier game play!<br><br> (Mouse control)<br> <br>You can get item, move character and follow subject by using mouse.<br><br>(Keyboard control)<br> <br>You can play the game faster by using various shortcuts for control therefore play the game more conveniently.<br>* You can change and use keyboard shortcuts to be your taste.<br>1. You can check shortcuts through game menu (ESC) -&gt; change option -&gt; game setting -&gt; keyboard setting.<br>2. You can modify and change shortcuts to be your taste in keyboard setting.<br><br> - Keyboard shortcuts<br>* When chatting screen is closed, you can use it as shortcut apart from [Ctrl] key.<br> <br> - Keyboard shortcuts<br>Shortcut	Usage<br>ALT + TAB	Logout window<br>Esc	Game menu<br>Ctrl + H	Help guide<br>Ctrl + Tab	Equipment screen<br>Tab	Bag (inventory)<br>Ctrl + M	Mini map<br>Ctrl + I	Character information<br>Right Ctrl + Subject for checking information	See character information<br>Ctrl + K	Skill information<br>Ctrl + S	Open skin icon screen<br>Ctrl + C	General chatting<br>Ctrl + Z	Zone chatting<br>Ctrl + A	Party chatting<br>Ctrl + G	Guild chatting<br>Ctrl + T	Channel chatting<br>Ctrl + W	Whisper<br>Ctrl + E	Chatting screen<br>Alt + Click subject for trade	Trade<br>Right Alt + Click subject for making party	Make party<br>Ctrl + P	Party screen<br>Shift + Click subject for attack	Forced attack<br>Left, right Alt	Check dropped item<br>Ctrl + ~	On/ off quick item<br>Ctrl + click subject for following	Follow the character selected<br>Ctrl + V	Change shadow display option<br>Scroll Lock, Print Screen	Screenshot<br>1	Offensive Berserk<br>2	Defensive Berserk<br>3	Multiple Berserk<br>Q	Quest<br>R	The war of Holy book<br>U	Alliance Chatting<br>P	Party Screen<br>F	Conversation with NPC<br>L	Equipment Swap<br>N	mini Map<br>M	world Map<br>/	Pet Info<br>Space	Call Pet<br>Page Up	Chatting Change<br>Page Down	Chatting Change<br><br> <br> - Chatting shortcut command<br>Enter each command on chatting screen<br>I.e.&gt;enter [/c] then enter your saying for general chatting.<br><br>Shortcut	Usage<br>/C	General chatting command<br>/Z	Zone chatting command<br>/P	Party chatting command<br>/G	Guild chatting command<br>/W	Whisper command<br>/U	Alliance chatting command<br>/BGM	BGM on / off<br>/Sound effect	Sound effect on / off<br>/Chatting guide, /?	See chatting guide<br>/Help, /help, /H, /help	See basic help guide<br>/Where, * where	Check server where certain user is logging in<br><br> - Shortcuts of each race<br>Click skill icon and put mouse point on the skill for appointing the number of skills.<br>Race	Shortcut	Usage<br>Slayer	F1 ~ F8	Belt shortcut<br>You can use the shortcut by using belt item.<br>	F9 ~ F12	Skill shortcut<br>You can appoint and use skills by using shortcut.<br>Vampire	F1	Shortcut for using serum(recovery) item<br>Items such as serum in inventory are automatically registered and you can use the item.<br>	F3 ~ F12	Skill shortcut<br>Appoint and use skills by using shortcut.<br><br> <br>	Basic interface<br> <br>Learn the whole structure of interface of Dark Eden Origin.<br>* All interfaces apart from mini map and skill screen can be moved.<br>No.	Usage	Contents<br>1	Buff screen	Status-related spells applied to the character including buff and debuff are displayed.<br>2	Chatting screen<br>(Open: Enter)	Chatting mode setting or the contents of chatting you or the other user entered.<br>※ You can check the previous contents by using mouse wheel or scroll bar on the right side of chatting screen.<br>3	belt slot screen	It displays when slayer wears belt items.<br>※ vampire race does not apply.<br>4	Information screen	It shows time and experience point in the game.<br>5	Insane gauge	A(Attack insane mode): this mode is charged by attacking, special abilities including sucking blood.<br>D(Defense insane mode): this mode is charged from attack by the others.<br>P(Party insane mode): this mode is displayed in party status only and is charged from attack by the others.<br>6	Status gauge	Character level and status are displayed.<br>Slayer : red: HP(health point), blue: MP(mana point)<br>Vampire : red: HP(health point)<br>7	Quick item slot screen	Item and skills registered in belt and arms band screen are displayed.<br>8	Quick skill screen	Currently activated skills are displayed. You can check or appoint the skills you learnt by clicking the skill.<br>9	Mini map<br>(Shortcut: M, Ctrl + M)	You can check the current location.<br>※ Green zone is safe zone and +on the map is NPC.<br>10	Game menu screen	The game menu at the bottom is displayed and opened by clicking this menu.<br>		Menu	Game information	You can open my information, skill information, quest, pet information screens<br>			Guild	You can open guild information, guild list, awaiting guild and guild member.<br>			Community	You can open friends list, party screen and letter box.<br>			Store	You can open Daden market, personal store and shopping list.<br>			Help	You can see basic help guide<br>			Etc.	You can change option, logout and finish the game.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

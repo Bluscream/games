@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Heroes of Dire</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Heroes of Dire</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-07/04/2018">07/04/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-15/03/2017">15/03/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-66">66</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Spellbook">Spellbook</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-www.Spellbook.com">www.Spellbook.com</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=509560" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/509560" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/509560/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/509560/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/509560" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=509560" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Limited Huppo Warrior Gift!</h1><p>Special limited edition Huppo Warrior fighters for new Steam players! Just win a battle to collect yours!</p><br><h1>About the Game</h1><strong>Heroes of Dire</strong> is a new massively-multiplayer tactical role-playing game from Spellbook!<br><br>You are a powerful hero with an army of fighters battling through strategic turn-based combat to win treasure, fame, and glory for your guild!<br><br>Join with friends to defeat challenging deity boss raids, take up quests for epic treasure, invade enemy guild halls, and fight in brutal gladiator arenas as crowd favorites live and die for your amusement!<br><br>Cross-platform servers bring together thousands of players on desktop and mobile devices with support for Windows, Mac, Linux, Android, and iPhone!<br><br>The New Player Guide is available at <a href="https://steamcommunity.com/linkfilter/?url=https://dire.wiki/guide" target="_blank" rel="noopener"  >https://dire.wiki/guide</a><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/HoD-Screenshot-Gif620watermark07.png?t=1541208357" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/fighters_banner.png?t=1541208357" /><br><br><strong>Heroes of Dire</strong> is all about assembling squads of fighters to make war with other guilds, monsters, and players! <br><br>Fighters come in many fantasy archetypes such as Mages, Paladins, and Healers. No two are ever the same, with unique names, races, stories, stats, titles, and equipment constructed by procedural generation with impressive and hilarious results that will always keep the game fresh.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/fighterspromo.png?t=1541208357" /><br><br>The One-Eyed Knight, Two-Fingered Pete, The Laughing Horror, Georgia the Peach, or Screaming Ethel are just a few examples of the trillions of possibilities. For a few Silvers (the in-game currency) players can randomly roll for new fighter names to discover the perfect moniker, or work with a live Dungeon Master to create the perfect name!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/weapons_and_armor_banner.png?t=1541208357" /><br><br>Fighters have four gear slots: Weapon, Offhand, Armor, and Trinket. <br><br>Different items help determine what role a fighter plays, such as holy wands and flasks for Healers, or poisoned dual-wielded daggers for Rogues to maximize backstabs. <br><br>A robust crafting system allows heroes to build the perfect gear sets, with the most skilled players able to construct ultra-rare Masterwork items!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/weaponpromo.png?t=1541208357" /><br><br>Almost all items in <strong>Heroes of Dire</strong> are procedurally generated with no two ever the same. Dungeon Masters will regularly appear in the world as traveling magicians or blacksmiths who can enhance your gear, or as merchants offering unique treasures.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/HoD-Screenshot-Gif620watermark11.png?t=1541208357" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/battle_banner.png?t=1541208357" /><br><br>When in combat, fighters take turns moving and attacking with actions having a time cost that determines round order. <br><br>More expensive actions, such as splitting an enemy archer in half with a greatsword, might push your fighter to the bottom of the action list for 14 rounds, while moving would only cost 3 or 4. This turn-based combat system creates an incredibly rich strategy simulation where each decision has a direct and immediate impact on who wins or loses. <br><br>Skilled players won't waste a single round -- One move in the wrong direction or an attack at the wrong time can immediately swing your massive lead into a crippling loss.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/HoD-Screenshot-Gif620watermark03.png?t=1541208357" /><br>Every battle is part of a greater narrative, such as a guild war or a quest chain, and players can have multiple squads involved in many fights at the same time. <br><br>Need to pause the game for a moment?<br><br>Exiting a battle puts the AI in control of your squad until you're ready to return. Utilizing this AI system you can deploy multiple squads to wage multiple battles across the world map simultaneously. This system creates a truly massive multiplayer experience as guild wars can pull in hundreds or thousands of players! <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/friends_banner.png?t=1541208357" /><br><br>Partner up with friends and follow them into combat for hours of quests, guild wars, and special Dungeon Master events! Battles can involve up to 48 fighters, with as many as 12 players in a single fight!<br><br>Make sure to flag your friends as &quot;FRIEND&quot; to enter battle on the same team and share world map vision, or simply join the same guild.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/guilds_banner.png?t=1541208357" /><br><br>Guilds play an integral role driving the story and action in <strong>Heroes of Dire</strong>! Besides social and organizational hubs, they will <strong>wage war for dominance of the world map</strong>, with members winning prizes and benefits for capturing resources, such as an ancient relic or metal ore node.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/HoD-Screenshot-Gif620watermark04.png?t=1541208357" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/quests_banner.png?t=1541208357" /><br><br><strong>Quests</strong> are a series of battles against NPC factions in the world of Dire, with <strong>powerful items</strong> and <strong>precious Silvers</strong> at stake. Loot can then be sold on the player-driven open market, or scrapped for extra Silvers.<br><br>Large-scale Community Quests are available for every hero to join, as well as Solo and Guild quests. Some quests also have<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/509560/extras/titles_banner.png?t=1541208357" /><br><br>Each player will have a custom player title. In addition to looking cool, these titles help inform us of who is who in the community. Players sporting powerful or unique titles will stand apart from the crowd, lending weight to their obviously superior opinions and impressive physiques. Everyone will have the chance to earn new titles when taking part in special Dungeon Master events, and are also randomly generated after 1,700 battle wins.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

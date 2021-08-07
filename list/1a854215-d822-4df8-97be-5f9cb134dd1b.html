@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Influent</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Influent</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-10/05/2020">10/05/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-20/03/2014">20/03/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-71">71</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Rob Howland">Rob Howland</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Three Flip Studios">Three Flip Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Captions Available">Captions Available</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=274980" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/274980" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/274980/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/274980/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/274980/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/274980" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=274980" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://media.st.dl.pinyuncloud.com/steam/apps/274980/extras/steam_intro.png?t=1600321339" crossorigin="anonymous"/><h2 class="bb_tag"></h2><br>“By immersing the player in the target language, Influent closely models the way we naturally learn our native language. I suggest giving Influent a try.”<br>-<a href="https://steamcommunity.com/linkfilter/?url=http://www.somnambulant-gamer.com/2013/11/influent-using-game-to-learn-languages.html" target="_blank" rel="noopener"  >Steve Hammond, Somnambulant-Gamer</a><br><br>Inspired by Dreamcast titles of old (namely <a href="https://steamcommunity.com/linkfilter/?url=http://en.wikipedia.org/wiki/Shenmue" target="_blank" rel="noopener"  >Shenmue</a> and <a href="https://steamcommunity.com/linkfilter/?url=http://en.wikipedia.org/wiki/Toy_Commander" target="_blank" rel="noopener"  >Toy Commander</a>) Influent immerses players in a fully interactive 3D environment where the names for absolutely every object in the game can be gleaned with a single click! In fact, even more information can be learned with a double-click! Every door, drawer, and cabinet can be opened with a right-click here and a right-click there, revealing more and more things to be learned! Packed to the brim with hundreds of native audio pronunciations (painstakingly recorded specifically for this game), Influent offers players a unique opportunity to enjoy learning both vocabulary and pronunciation in the language of their choice.<br><br>With 10 languages currently available for download, Influent combines the joys of playing a video game with the language learning process, resulting in real-life rewards and achievements that will remain with players for the rest of their lives.<br><br><a href="https://steamcommunity.com/linkfilter/?url=http://playinfluent.com/" target="_blank" rel="noopener"  >Influent: Language Learning Redefined.</a><br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/274980/extras/steam_feats.png?t=1600321339" crossorigin="anonymous"/><h2 class="bb_tag"></h2><ul class="bb_ul"><li> Audio from native speakers<br></li><li> Synonym swap functionality<br></li><li> Learn at your own pace!<br></li><li> Fully interactive modern apartment<br></li><li> Over 420 words to collect and master<br></li><li> Includes Nouns, Adjectives, and Verbs<br></li><li> 20+ Languages to choose from (more to come!)</li></ul><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/274980/extras/steam_whirl.png?t=1600321339" crossorigin="anonymous"/><h2 class="bb_tag"></h2><br><ul class="bb_ul"><li>Which languages are included in the Free Edition?</li></ul>The relatively new Free Edition includes the French, Italian, and Korean language packs right out of the box.<br><br><ul class="bb_ul"><li>What if I don't want French, Italian, or Korean?</li></ul>If you're not interested in any of those languages and want to save on some hard drive space and load time when launching the game, you can skip the Free Version by reading the following example about Mark and Patricia.<br><br>If Mark wants to learn Latin, he should purchase the &quot;Influent - Latina [Learn Latin]&quot; store item. If his wife Patricia then wants to learn Swedish, Mark should then purchase the DLC store item entitled &quot;Influent DLC - Svenska [Learn Swedish].&quot; This can also be done from Patricia's perspective and will have the exact same result with Patricia purchasing the Swedish base game and then also buying the Latin DLC for Mark, herself, or even anyone else, to use on the same computer.<br><br><ul class="bb_ul"><li>Do you have plans to release more languages? When???</li></ul>New Language Packs will be released as they are completed. A full list of languages that are coming soon can be found on the <a href="https://steamcommunity.com/linkfilter/?url=http://playinfluent.com/languages" target="_blank" rel="noopener"  >Official Website</a>.<h2 class="bb_tag"></h2><br><a href="http://steamcommunity.com/app/274980/" target="_blank" rel="noreferrer"  >Check out the Community Hub for Frequently Asked Questions and other cool stuff!</a><h2 class="bb_tag"></h2><h2 class="bb_tag">A BRIEF BACKGROUND</h2><br>Influent is a Language Learning Game focusing primarily on vocabulary acquisition and pronunciation. It was initially developed in Japan at the University of Tsukuba's <a href="https://steamcommunity.com/linkfilter/?url=http://www.entcomp.esys.tsukuba.ac.jp/en/" target="_blank" rel="noopener"  >Entertainment Computing Laboratory</a> under the <a href="https://steamcommunity.com/linkfilter/?url=http://www.mext.go.jp/a_menu/koutou/ryugaku/boshu/1333340.htm" target="_blank" rel="noopener"  >Monbukagakusho Government Research Scholarship</a>.<br><br>After research funding ran out, further funding from a wildly successful <a href="http://www.kickstarter.com/projects/1220951156/sanjiten" target="_blank" rel="noreferrer"  >Kickstarter Campaign</a> allowed for the completion of the game. A research paper on the ideas surrounding the game and its applications was published by the Information Processing Society of Japan (IPSJ), which can be viewed in its entirety <a href="https://steamcommunity.com/linkfilter/?url=http://playinfluent.com/files/CG-146-12.pdf" target="_blank" rel="noopener"  >here</a>.<br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/274980/extras/steam_story4.png?t=1600321339" crossorigin="anonymous"/><h2 class="bb_tag"></h2>Andrew Cross is infuriated!<br><br><br>For three long years, he sat confined to his work, developing a device that he firmly believed to be a technological breakthrough in the way people would interact with the world around them. A device that could scan any object in the real world and then provide its name in any language! Duly dubbing his fancy new invention the &quot;SanjigenJiten,&quot; Andrew arranged an appointment to demonstrate the device's amazing capabilities at the world's largest technology corporation, Technoglobe International.<br><br><br>But while on his visit, he fell for a girl he met in the lab, and while she stole his heart, someone else silently stepped in and stole his device! Now, Technoglobe has gone and swiftly marketed the SanjigenJiten as their own, even laying claim to the very name he had so cleverly concocted!<br><br><br>But Andrew Cross has a plan. He's made an even better version of his SanjigenJiten and launched an online campaign, swearing to learn 300 words in a foreign language to raise awareness of Technoglobe's blatant theft and prove his device really works! But does the SanjigenJiten really work? Can Andrew actually pull it off?!
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

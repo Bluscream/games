@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hunter&#39;s Trial</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Hunter&#39;s Trial</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-18/04/2020">18/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-12/12/2018">12/12/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-47">47</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Crazy Unicorn">Crazy Unicorn</a><br/><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-ESAT">ESAT</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-ESAT">ESAT</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=945850" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/945850" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/945850/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/945850/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/945850" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=945850" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<i>Surrounded by fields and an eerie forest, away from the rest of the world, lies something very unusual, a unique location most normal humans do not know about: the Dealain Academy, the school for monster hunters where humans with magical abilities are trained to face possible threats to humanity. <br><br>One day, the Academy suffers a surprise attack: a dark figure appears and petrifies all the students at the school. His minions, the Lairg, are one of the meanest enemies of the Academy. The Lairg mean to invade and destroy everything on their path, but unbeknownst to them, three young hunters have evaded the petrification (by skipping class by the way).<br><br>Seeing the attack and using their combat prowess, the three hunters face the Lairg, becoming the last and unlikely hope of the Dealain Academy.</i><br><br><strong>Hunter's Trial: The fight never ends</strong> is a turn-based tactical RPG inspired by great classics like Final Fantasy Tactics and Fire Emblem. Players take control of Shaw, Jade and Gisli, the three worst students of the magical Dealain Academy, facing the evil and mighty Lairg lizards in tactical battles. Along five game stages, players will need to prepare the decks of magic cards that the hunters will use in their battles. Each character has a different set of cards that represent their combat abilities, allowing players to customize each deck to their will. As the hunters progress in the story, new cards will be unlocked.<h2 class="bb_tag">Characters</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/945850/extras/Shaw_Heroes.png?t=1544615148" /><br><strong>Shaw</strong><br>Gender: Male<br>Age: 18<br>Traits: Bravado, overconfident, egocentric.<br><br>Shaw is quite an egotistical character, although he is ready to take a hit if the need arises. However, his huge overconfidence and rushed decisions will most likely put he and his friends in danger sooner than later.<br><br>Background:<br>Shaw was born and raised in an affluent family, but he also liked to frequent the slums. His training and education have always leaned on the individualistic side. Paired with his natural ego, Shaw's abilities are then very peculiar and dangerous. Despite being apparently an egotistical person, deep down Shaw really appreciates his companions and is willing to take a blow for them.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/945850/extras/Gisli_Cartoon.png?t=1544615148" /><br><strong>Gisli</strong><br>Gender: Male<br>Age: 17<br>Traits: Methodical, thoughtful, wise, introvert, free spirit.<br><br>Gils's strong point is that he always knows what to do and is in control of every situation. He is a very intuitive person, which keeps him safe. He normally has potions and other magical trinkets around to solve unexpected problems, since both he and his friends have a tendency to attract trouble. <br>He is also a prudent person, but needs to take his time to think about every decision. As he practices his magic, he becomes stronger and more self-confident.<br><br>Background:<br>Due to his magical condition, Gisli has always got what he wanted, one way or another. His parents always advised him to make good use of his time, since he always left all his duties for the last minute due to lack of interest. At the Academy, things were no different. He befriended the most brilliant students, but also the troublemakers. In the end he started skipping classes because the teachers did not want students to freely use their powers, and he always felt constrained because of the intensity of his magic.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/945850/extras/Jade_Heroes.png?t=1544615148" /><br><strong>Jade</strong><br>Gender: Femenine<br>Age: 19<br>Traits: Active, violent, aggressive; if there's trouble, she's most likely the cause.<br><br>Jade's strong point is that she has nerves of steel, finding quick solutions to different problems (that normally involve violence). However, she has a very short fuse and is no stranger to fights and troubles. The Academy is helping her channel that energy to more useful and productive duties.<br><br>Background:<br>Jade was born in a blue-collar family. She was the first to be able to wield magic, becoming the pride of the family. She was accepted into Dealain Academy thanks to her parents reassuring the teachers that she was indeed a good girl. She spends most classes uninterested in the matter. That doesn't necessarily mean she is a bad student though, she just likes to focus on the most aggressive and violent stuff, feeling very odd in classes about protection and shields. She also attends all the classes about traps, poisons and ambushes, which she finds extremely interesting.<br>After discovering the Lairg attack, Jade joins forces with Shaw and Gisli to defeat Zasalael and save Dealain Academy.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

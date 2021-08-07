@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Infinite Art Museum</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Infinite Art Museum</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-19/04/2020">19/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-05/04/2019">05/04/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Nigel Fogden">Nigel Fogden</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Infinite Art Museum">Infinite Art Museum</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Keyboard / Mouse">VR Keyboard / Mouse</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Room-Scale">VR Room-Scale</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Standing">VR Standing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1011000" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1011000" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1011000/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1011000/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1011000" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1011000" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Inspired by <i>The Library of Babel</i> by  Jorge Luis Borges, the Infinite Art Museum is an endless collection of art. Our mission is to create a growing and enduring home for art in VR that is accessible to everyone.<br><br>Explore paintings, illustrations, digital art and photography from creators all over the world with more joining every week. <br><br>Visit the Infinite Art Museum website to learn more about our artists or join the IAM.<h2 class="bb_tag">Number of IAM Artists:          71<br>Number of Original Works:          800+<br><br><strong>Level One</strong><br><ul class="bb_ul"><li>Sreerag Praful<br></li><li>Tim Robinson<br></li><li>Naiane Pereira<br></li><li>Chelsea Baker<br></li><li>Katarina Meglic<br></li><li>Romer Kitching<br></li><li>Frank Loria<br></li><li>Samantha Adams<br></li><li>V<br></li><li>Athina Kilimantzou<br></li><li>Richard King<br></li><li>Special Collection: Davey Jose</li></ul><br><strong>Level Two</strong><br><ul class="bb_ul"><li>Gabrielle Warr<br></li><li>K. Alagupandian<br></li><li>Galina Ivanova<br></li><li>Dinesh Rm<br></li><li>Brett Polonsky<br></li><li>Jessica Hamilton<br></li><li>Jeremy Saxton<br></li><li>Muneeswaran<br></li><li>Mario Fegan<br></li><li>Olena Vertsanova<br></li><li>Shari Russel<br></li><li>Special Collection: Utage Hanami</li></ul><br><br><strong>Level Three</strong><br><ul class="bb_ul"><li>Amy Woods<br></li><li>Victoria Shone<br></li><li>Wyatt Wurtenberger<br></li><li>Jeremie Carnes<br></li><li>Tracy Watt<br></li><li>Simone Silva<br></li><li>Rosi Galvan<br></li><li>Kyle Tristan Completo<br></li><li>Alexandr Kryushyn<br></li><li>Mari Espi<br></li><li>Bruno Charron<br></li><li>Jake Johnson<br></li><li>Irina Ideas<br></li><li>Special Collection: I.M.C</li></ul><br><br><br><strong>Level Four</strong><br><ul class="bb_ul"><li>Marina Sutter<br></li><li>Godfrey Meyer III<br></li><li>Valentine Louafi<br></li><li>Pamela O'Brien<br></li><li>Dhanashree Manjare<br></li><li>Sarah Turner<br></li><li>Fiona Donevert<br></li><li>Jeremy Hughel<br></li><li>Nataliia Orlova<br></li><li>Simon Hagberg<br></li><li>Dimitri Kozma<br></li><li>Special Collection: Ivan Balyasnikov</li></ul><br><strong>Level Five</strong><br><ul class="bb_ul"><li>Robert Parkinson<br></li><li>Victor Fitzsimons<br></li><li>Sandy Young<br></li><li>Matthew Evans<br></li><li>Jean Christian<br></li><li>Brenda Wilson<br></li><li>Arun Kumar<br></li><li>Zakaria Kziber<br></li><li>Aleta Fogden<br></li><li>Special Collection: Fabiano Speziari</li></ul><br><strong>Level Six</strong><br><ul class="bb_ul"><li>Benly Cowbe<br></li><li>Peter Bock<br></li><li>Marty Ronkyo<br></li><li>XCOPY<br></li><li>Dylan Bray<br></li><li>Ophelia Fu<br></li><li>Marcela Olivia Dorantes<br></li><li>Jim Harris<br></li><li>Joern Bielewski<br></li><li>Olaf Wischnewski<br></li><li>Special Collection: Cryptoarts</li></ul><br><br><a href="https://steamcommunity.com/linkfilter/?url=https://springboardvr.com?game_verification=da8c1c10-58cd-11e9-8bc1-e35c5bddd388" target="_blank" rel="noopener"  > Available for Arcades on SpringboardVR </a></h2>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ramayana</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Ramayana</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-13/08/2020">13/08/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-25/05/2015">25/05/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-52">52</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Rakesh Malik">Rakesh Malik</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Rakesh Malik">Rakesh Malik</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=371790" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/371790" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/371790/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/371790/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/371790/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/371790" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=371790" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag">About the Game</h2><br>This is a Realtime Strategy game on plot of great Indian epic Ramayana.<br><br>The story is about how Rama and Lakshmana gathers a monkey army to defeat demon army and finally defeat demon king Raavana to save Rama’s beloved wife Sita.<h2 class="bb_tag">Plot</h2><br>Story of Ayodhya:<br>--------------------------------<br>Dasharatha, King of Ayodhya, has three wives and four sons. Rama is the eldest. His mother is Kaushalya. Bharata is the son of his second and favorite wife, Queen Kaikeyi. The other two are twins, Lakshman and Shatrughna. Rama and Bharata are blue, perhaps indicating they were dark skinned or originally south Indian deities.<br>A sage takes the boys out to train them in archery. Rama has hit an apple hanging from a string.<br>In a neighboring city the ruler’s daughter is named Sita. When it was time for Sita to choose her bridegroom, at a ceremony called a swayamvara, the princes were asked to string a giant bow. No one else can even lift the bow, but as Rama bends it, he not only strings it but breaks it in two. Sita indicates she has chosen Rama as her husband by putting a garland around his neck. The disappointed suitors watch.<br>King Dasharatha, Rama’s father, decides it is time to give his throne to his eldest son Rama and retire to the forest to seek moksha. Everyone seems pleased. This plan fulfills the rules of dharma because an eldest son should rule and, if a son can take over one’s responsibilities, one’s last years may be spent in a search for moksha. In addition, everyone loves Rama. However Rama’s step-mother, the king’s second wife, is not pleased. She wants her son, Bharata, to rule. Because of an oath Dasharatha had made to her years before, she gets the king to agree to banish Rama for fourteen years and to crown Bharata, even though the king, on bended knee, begs her not to demand such things. Broken-hearted, the devastated king cannot face Rama with the news and Kaikeyi must tell him.<br><br>Banishment of Rama:<br>--------------------------------<br>Rama, always obedient, is as content to go into banishment in the forest as to be crowned king. Sita convinces Rama that she belongs at his side and his brother Lakshman also begs to accompany them. Rama, Sita and Lakshman set out for the forest.<br>Years pass and Rama, Sita and Lakshman are very happy in the forest. Rama and Lakshmana destroy the rakshasas (evil creatures) who disturb the sages in their meditations. One day a rakshasa princess Surpanakha tries to seduce Rama, and Lakshmana wounds her and drives her away. She returns to her brother Ravana, the ten-headed ruler of Lanka (Sri Lanka, formerly Ceylon), and tells her brother (who has a weakness for beautiful women) about lovely Sita.<br><br>Abduction of Sita:<br>--------------------------------<br>Ravana devises a plan to abduct Sita. He sends a magical golden deer which Sita desires. Rama and Lakshman go off to hunt the deer, first drawing a protective circle around Sita and warning her she will be safe as long as she does not step outside the circle. As they go off, Ravana (who can change his shape) appears as a holy man begging alms. The moment Sita steps outside the circle to give him food, Ravana grabs her and carries her off the his kingdom in Lanka.<br><br>The beginning:<br>--------------------------------<br>Rama is broken-hearted when he returns to the empty hut and cannot find Sita…<h2 class="bb_tag">Features</h2><br><ul class="bb_ul"><li>The game contains 20 campaign based on the story of the epic. First 2 campaigns are mostly tutorial.<br></li><li>The game supports skirmish with 2 factions: Vaanara and Rakshasa; maximum of 8 teams.<br></li><li>Each factions have worker units who can gather resources: food/wood/stone/metal &amp; build buildings. Buildings are of type Citadel, Barracks, Archery, Beastiary, Farm/Tree House, Lumbercamp, Mine, Outpost. Citadels and Farms can train workers. Barracks, Archery &amp; Beastiary can train military units. Military units are of type: Light/Heavy Melee/Archer/Beast. Resources are needed to train/build units/buildings. Each unit have their own hitpoint capacity, attack, armor, healrate, accuracy, stealth.<br></li><li>The characters of story are hero units having special abilities. Heroes have level. On each campaign some of the heroes gains level, which help them gain more attack/armor/healrate &amp; new special abilities are unlocked.<br></li><li>A map editor is also added to the game, with which new maps can be created and skirmishes can be played in it.<br></li><li>Skirmish/Campaign games can be saved in midway and can be loaded anytime.</li></ul><h2 class="bb_tag">Under the hood</h2><br>Development:<br>--------------------------------<br>This game was developed as one of my personal projects during my M.Sc. I had been working on OpenGL for a while. And this game was in fact my first big project on OpenGL. It was developed in 1 year in year 2012-2013, using OpenGL on C++ on its proprietary game engine. For sound and imaging SDL and OpenCV libraries are used.<br><br>Assets:<br>--------------------------------<br>The models are made with Blender 3D. One of models (Rama) used in the game is available on BlendSwap under CC-BY license. The models used in the game are mostly tweaked from this one. <br>The musics used the game are mostly downloaded from few free music websites. During the initial release of the game there was a few dispute over the used music in the game, although they were replaced later.<br><br>Release:<br>--------------------------------<br>Later in year 2013, it was submitted to the Steam Community as a Greenlight project. by 2014 it was greenlit and published on the Steam store and other stores.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

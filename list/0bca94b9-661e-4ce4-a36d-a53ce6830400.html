@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Clam Man 2 - Open Mic</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> Clam Man 2 - Open Mic</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-13/08/2020">13/08/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-19/06/2020">19/06/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-89">89</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-marafrass">marafrass</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Team Clam">Team Clam</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1278360" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1278360" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1278360/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1278360/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1278360" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1278360" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>WISHLIST THE FULL GAME HERE:</h1><p><a href="https://store.steampowered.com/app/1278380/Clam_Man_2_Headliner/" target="_blank" rel="noreferrer"  id="dynamiclink_0" >https://store.steampowered.com/app/1278380/Clam_Man_2_Headliner/</a></p><br><h1>Check out the original Clam Man here!</h1><p><a href="https://store.steampowered.com/app/1000640/Clam_Man/" target="_blank" rel="noreferrer"  id="dynamiclink_1" >https://store.steampowered.com/app/1000640/Clam_Man/</a></p><br><h1>About the Game</h1><h2 class="bb_tag">CLAM MAN 2: OPEN MIC</h2>is the prologue to the upcoming Clam Man 2, a stand-up comedy RPG adventure, and the first day in a week of jokes, quests, and saying a lot of really odd things. It's a combatless, narrative RPG that takes you on an unlikely quest in a very unlikely world. Play as the titular Clam Man and uncover a secret lurking in the basement of Snacky Bay Prime Mayonnaise that will change the course of your life! Do quests, get jokes, and do stand-up!<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1278360/extras/ezgif.com-resize_(3).gif?t=1621272846" /><br><br>If any of that sounds remotely interesting, give the game a shot! <strong>It's free! You've got nothing to lose!</strong><br>Still not convinced? Alright, let me share some of the other things you can do in this game;<br><br><ul class="bb_ul"><li><i>Faint in an attempt to get out of public speaking</i></li></ul><ul class="bb_ul"><li><i>Lie to a child</i></li></ul><ul class="bb_ul"><li><i>Talk to a prehistoric beast</i></li></ul><ul class="bb_ul"><li><i>Cause an earthquake</i></li></ul><ul class="bb_ul"><li><i>Do standup</i></li></ul><h2 class="bb_tag">THE GAME JUDGES WHO YOU ARE</h2>Four different stats dictate your abilities;<br><br><ul class="bb_ul"><li><strong>Aquadynamics</strong> - your ability to perform physical comedy, mime, act out scenarios or just remain deadpan!</li></ul><ul class="bb_ul"><li><strong>Improv</strong> - the ability to think on the spot, be strange and absurd, or come up with new takes or ideas!</li></ul><ul class="bb_ul"><li><strong>Detection</strong> - your ability to perceive the world and use logic to deduce it! The key ingredient in observation comedy!</li></ul><ul class="bb_ul"><li><strong>Self-Awareness</strong> - how much of an absolute mess you are! Taking a page from games like Fallout: New Vegas and 'dumb' playthroughs, high Self-Awareness could turn you into an empathic, nervous wreck, while Low Self-Awareness will let you be mean to children, slap people, and blurt out the most unbelievable b******t you could think of. Yay for self-deprecating comedy!</li></ul><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1278360/extras/ezgif.com-resize_(1).gif?t=1621272846" /><h2 class="bb_tag">TONS OF DIALOGUE</h2>If you're averse to lots of reading, this might get tricky - Clam Man 2 has a LOT of branching dialogue, offering tons of replayability! Dialogues also feature tons of static skill checks that only unlock with the right stats; if a conversation only has a couple of available response options, chances are that other outcomes and absurdities hide behind a different character build!<h2 class="bb_tag">GATHER MATERIALS</h2>In order to do stand-up, you need jokes! In Clam Man 2, quests are character-based with choices to be made and errands to be run, and finishing a quest rewards you with material you can use in your shows! Every quest has multiple endings, and depending on your choices, the resulting joke loot will change, and it's impossible to see even half of all the jokes in a single playthrough! <i>(Completionists beware - it could take around six fully optimized runs to see everything in the game!)</i><br><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1278360/extras/ezgif.com-resize_(2).gif?t=1621272846" /><h2 class="bb_tag">GET ON STAGE</h2>Each joke you receive from quests will measure your abilities, with classic RPG dice rolls. High stats and the right joke makes all the difference! Succeeding will give you multiple options of where you want to take the joke, and even failing will allow you to choose your destiny in a spiraling maelstrom of stuttering, awkwardness, and pure bad taste. <i>Will you land every joke, or will you bomb your way through your shows?</i><h2 class="bb_tag">NO FIGHTING</h2>Clam Man 2 is a narrative RPG, with zero combat! (Apart from a part where you can slap a guy in the face.) Furthermore, bombing jokes doesn't lead to a game over - instead, it leads to changes in how characters perceive you, with larger ramifications on the story in the full game! Oh, and you'll also be embarrassing yourself on stage.<br><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1278360/extras/ezgif.com-resize.gif?t=1621272846" /><h2 class="bb_tag">YOU ONLY GET A TASTE</h2>Clam Man 2: Open Mic is the entire first day of the full game currently in development, but even so has tons of quests, characters, and dialogue to see! The full game is currently in development, and the response to this will determine the direction, changes, and style of the final game! Every single Steam review will be read to gather feedback!<h2 class="bb_tag">WHO IS RESPONSIBLE FOR THIS</h2>Clam Man 2 is being developed by a solo developer who previously wrote and designed Clam Man, a point'n'click adventure game! You can follow the development on twitter!<br><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1278360/extras/ezgif.com-resize_(4).gif?t=1621272846" />
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>

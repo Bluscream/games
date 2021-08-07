@@ -1,0 +1,265 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>RaceRoom Racing Experience </title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+  heigth: 48px;
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+	heigth: 48px;
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, #24282f, rgba(100,100,100,0.73))">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button> RaceRoom Racing Experience </h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default%20list%20text_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default%20list%20text_added_descending_name_ascending.html#quicklink-03/02/2016">03/02/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default%20list%20text_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default%20list%20text_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default%20list%20text_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default%20list%20text_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default%20list%20text_releasedate_descending_name_ascending.html#quicklink-12/02/2013">12/02/2013</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default%20list%20text_communityscore_descending_name_ascending.html#quicklink-69">69</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default%20list%20text_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default%20list%20text_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Racing">Racing</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default%20list%20text_genre_ascending_name_ascending.html#quicklink-Sports">Sports</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default%20list%20text_developer_ascending_name_ascending.html#quicklink-Sector3 Studios">Sector3 Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-RaceRoom Entertainment AG">RaceRoom Entertainment AG</a><br/><a href="default%20list%20text_publisher_ascending_name_ascending.html#quicklink-Sector3 Studios">Sector3 Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Gamepad">VR Gamepad</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Keyboard / Mouse">VR Keyboard / Mouse</a><br/><a href="default%20list%20text_feature_ascending_name_ascending.html#quicklink-VR Seated">VR Seated</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=211500" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/211500" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/211500/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/211500/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/211500" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=211500" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					RaceRoom is the premier free-to-play racing simulation on PC and home to official race series like DTM, WTCR, the WTCC and ADAC GT Masters. Enter RaceRoom and enter the world of a professional race car driver.<br><br>A selection of free-to-play race cars and tracks are yours to drive with unlimited wheel time in multiplayer and single player games modes. Sponsored competitions and other free-to-play events allow you to enjoy premium game content at no cost.<br><br>Additional cars, tracks, and liveries can be bought individually or as packs inside the game store using an in-game currency called vRP, which is purchased using your Steam Wallet.<h2 class="bb_tag">Key Features</h2><br><ul class="bb_ul"><li><strong>Free to play - Eat, Sleep, Race, Repeat</strong><br>A premium racing simulator is yours free-to-play on the PC. Race endlessly alongside the world’s most talented drivers in online multiplayer and single player game modes. <br><br></li><li><strong>Your dream car is here - Grab your pick</strong><br>BMW, Mercedes-Benz, Audi, Chevrolet, Ford, McLaren, Pagani, RUF,  Radical, Volvo, Saleen, and more to come. These manufacturers bring the best minds in racing together to dominate the world of motorsport and the machines they create are precision instruments of power, perfection, and speed. We are proud to present them in the digital form for your enjoyment.<br><br></li><li><strong>Speed is a universal language - Hit the road</strong><br>Going fast is a worldwide pastime and many of the most beautiful points on the globe are home to miles of thrilling blacktop. Start racing and conquer these places for yourself.<br><br></li><li><strong>Up Close and Personal - Stand among the giants of racing</strong><br>No game gets you closer to professional racing and the drivers that make a racing series great. RaceRoom is home to WTCC, DTM, and ADAC GT Masters, with more to come.<br><br></li><li><strong>Realism - Every sense touched</strong> <br>You will see, hear, and feel what a race car driver does behind the wheel. You’ll grow smelly from intense focus and the resulting perspiration, and all you control is the taste at the end of the race. Will it be that of  sweet victory... or bitter defeat? The experience of racing is yours and it’s unforgettable.<br><br></li><li><strong>Accessibility - Racing is a family sport</strong><br>Novice, Amateur, and Get Real game modes cater to drivers of all ability. This game is fit for the entire family, so start driving today with your Steering wheel, keyboard, or gamepad.<br><br></li><li><strong>The pursuit of perfection - Single Player</strong><br>Refine your skills against intelligent and challenging computer driven opponents. Use the Adaptive A.I., which automatically adjusts opponent difficulty based on your performance, or customize opponent difficulty to your liking.<br><br></li><li><strong>Defeat the competition - Online Multiplayer</strong><br>Line up with a grid of twenty-four players as you battle new friends and rivals in online multiplayer races.<br><br></li><li><strong>Competitions - Capture glory</strong><br>Compete against the world’s greatest drivers in sponsored competitions from Mercedes-Benz, EURONICS, DTM, ADAC GT Masters, and more. These competitions also allow free players access to premium content throughout the duration of most events.<br><br></li><li><strong>Fast paced gameplay</strong><br>Be ready to break a sweat! Racing is the ultimate in twitch gameplay. No time for breaks, no room for mistakes. You are on point or you are into the weeds. Push harder, go faster, and reap the rewards of an adrenalin induced smile.<h2 class="bb_tag">Important Info/DLC Purchasing Policy</h2><br>R3E user accounts are associated with the user’s Steam account for security and transactions through Steam Wallet. A Steam account can use multiple R3E accounts by using the ‘switch accounts’ function in the R3E Account Settings.<br><br>Upon purchasing an R3E DLC via the Steam Store, an R3E user account will be permanently associated with that Steam account and it will no longer be possible to switch accounts. The option to switch accounts will be permanently removed from the R3E Account Settings.</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+	</body>
+</html>
