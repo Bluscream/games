@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ascendant</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('0c0999f0-92ce-4205-8f1d-55825bd130ce/02016c9d-bed2-4e7b-8ac3-b4cb6fbcb899.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="0c0999f0-92ce-4205-8f1d-55825bd130ce/740eac1d-9d6e-48f2-a349-a952b4339db5.ico"/> Ascendant</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="0c0999f0-92ce-4205-8f1d-55825bd130ce/b8072a55-6a42-4c05-89bb-ab8508224be8.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-13/08/2020">13/08/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-13/05/2014">13/05/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-73">73</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-45">45</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Hapa Games">Hapa Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Hapa Games">Hapa Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=296930" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/296930" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/296930/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/296930/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/296930/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/296930" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=296930" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<i>&quot;The ancient power struggle between demigods has begun again. The mortal realm will be ravaged in the wake of their desire, their greed, their purpose. I am curious to see who will prevail.&quot;</i><br><br><strong>Ascendant</strong> is the unforgiving beat 'em up that challenges you with a new world each time you play. It utilizes a number of modern roguelike elements such as permadeath and procedurally generated environments. You are a demigod who invades a plane controlled by your rivals. They will stop at nothing to eliminate you. Only the most impressive warriors will triumph over their armies of zealots and beasts.<br><br>By exploring the world, discovering new weapons, spells, and Blessings, and learning how to survive in this brutal realm, you may have a small chance at winning.<h2 class="bb_tag">Features</h2><ul class="bb_ul"><li><strong>A Brutal Struggle</strong> – The armies of your demigod rivals are relentless. When a foe cuts you with his sword, it hurts. If you slip into a pit of spikes, the blades leave deep wounds. If a bomb explodes nearby you will burn. Health recovery items are rare. Fight with precision, speed, and timing to survive. Dodge attacks and crush your opponent when he is off-balance to seize the advantage. <br><br></li><li><strong>Loot the Treasures of the Gods</strong> – The gods hid their ancient relics in secret caches scattered around the world. Discover unique weapons, spells, and Blessings that grant mighty powers. Double jump, choke your enemies with a poison cloud, or jolt them to ashes with lightning. Equip and customize your Blessings to determine your own fate. <br><br></li><li><strong>Agile Beat 'em Up Combat</strong> – Slam enemies into each other to deal massive damage. Pummel enemies with ground and air combos or launch a barrage of spells. Launch your opponents in the air with rapid dashing assaults making them helpless against your divine onslaught.<br><br></li><li><strong>Death is Final</strong> – When your enemies defeat you, the game is over. No respawning. No returning to the last save point. You will need all your cunning and skill to win. <br><br></li><li><strong>A New World Each Run</strong> – Each playthrough creates a new hazardous land for adventure. You will never know exactly what you will encounter in the next room, which hazards will be presented to you, what you will find in a chest, or even (in some cases) which boss you will be fighting next. Expect hours of replayability and new challenges.  </li></ul><h2 class="bb_tag"><strong>...And More</strong></h2><ul class="bb_ul"><li>Two is better than one. Conquer the world with another demigod using <strong>local co-op</strong><br></li><li><strong>Unlock new characters</strong> with distinct stats attuned for any playstyle<br></li><li><strong>Enhance your weaponry</strong> to adapt and overcome the enemy swarm   <br></li><li><strong>Special events</strong> make each run fresh and memorable</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

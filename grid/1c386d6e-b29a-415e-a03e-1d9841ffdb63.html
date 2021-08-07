@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>AFTER-H</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('1c386d6e-b29a-415e-a03e-1d9841ffdb63/c77c66d9-1d61-4498-83d5-45f2c5a87fd2.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="1c386d6e-b29a-415e-a03e-1d9841ffdb63/56470ff0-05b4-4591-864d-f170b6e22e6b.ico"/> AFTER-H</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="1c386d6e-b29a-415e-a03e-1d9841ffdb63/823dd6d4-0827-42b6-859b-84a38e3a1d26.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-21/04/2020">21/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-23/09/2019">23/09/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-56">56</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-SmartVR Studio">SmartVR Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-SmartVR Studio">SmartVR Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Keyboard / Mouse">VR Keyboard / Mouse</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Room-Scale">VR Room-Scale</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Standing">VR Standing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=854110" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/854110" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/854110/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/854110/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/854110" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=854110" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Patch notes for AFTER-H ARCADE (V1.0.5.12) (10/08/2020) (27.44 Mo*)</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/Template_Steam.001.png?t=1620034657" /><br><br><strong>GENERAL UPDATES </strong><br><br><strong><h2 class="bb_tag">VALVE INDEX FULL SUPPORT</h2></strong><br><br><ul class="bb_ul"><li>It is now possible to change weapons with the Valve Knuckles.<br></li><li>Snap-turn and movement controls have been improved on Valve Knuckles.</li></ul><br><strong><h2 class="bb_tag">BUGFIXES</h2></strong><br><br><i> The previous update included the correction of a number of bugs reported by our players and reported internally, which we summarize below: </i><br><br><strong><h2 class="bb_tag">GAME BREAKER</h2></strong><br><br><ul class="bb_ul"><li>In DOM, fixed a set of synchronization bugs concerning the state of the objectives which occured when a player joined an ongoing game.<br></li><li>In DOM, fixed a set of UI bugs which occured when a player was capturing an objective.<br></li><li>Fixed a bug that blocked players at their spawn point at the beginning of the game.</li></ul><br><strong><h2 class="bb_tag"> MISCELLANEOUS</h2></strong><br><br><ul class="bb_ul"><li>Voice-over announcements no longer play two times in TDM.<br></li><li>In VR arcades when using left-handed mode, hands are no longer reverted when returning to the lobby.</li></ul><br><strong><h2 class="bb_tag">DEVELOPERS’ NOTE</h2></strong><br>(*) The size of the file may slightly differ depending on the platform it's downloaded from.</p><br><h1>Patch notes for AFTER-H ARCADE (V1.0.5.9) (20/07/2020) (3.8 Go*)</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/updatecoverafterharcadejuillet2020.001.png?t=1620034657" /><h2 class="bb_tag"><strong>New features: </strong></h2> <br><br>- New map: <strong>CERES II</strong><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/mapceres1.png?t=1620034657" /><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/mapceres2.png?t=1620034657" /><br> <br><br> <br><br>Discover CERES’ spaceport, a strategic point in the battle to dominate the solar system. The factions confront each other in and outside of the spaceport, trying to gain control over it !<br><br> <br><br> <br>- New weapon:  <strong>Vulcan</strong><br> <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/vulcan.png?t=1620034657" /><br> <br><br>A long and medium-range assault rifle firing 3-round bursts. Its range and precision are a cut above the MX-42, with a lower fire rate.<br><br> <br>- New Specialty:  <strong>DX-3 Grenade</strong><br> <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/grenade.png?t=1620034657" /><br><br><br>A specialty (Selectable loadout in addition to two primary weapons) that is lethal for opponents that are too close to its blast radius. The damage decreases the further you are from the explosion point. Cooldown time: 45 seconds. <br><br>Only the grenade is available at the moment. Stay tuned for more specialties in future updates.<br><br> <br><br> <br>- Comfort<br>Added comfort options for people sensitive to motion sickness: <br><br><ul class="bb_ul"><li><strong>Snap Turn:</strong> It is now possible to use the joystick to move the POV (Point of view).<br> 	</li><li><strong>Movement</strong>: It is now possible to choose an element of the avatar (head, dominant hand, secondary hand) to guide the movement.<br> 	</li><li><strong>Sensitivity setting</strong>: It is now possible to adjust the level of sensitivity to motion sickness (from “not sensitive” to “very sensitive”).</li></ul> <br><br> <br>- New weapons interface <br> <br> <img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/affichearme.png?t=1620034657" /><br><br>Indicates the number of bullets remaining in the magazine, as well as the cooldown time of the grenade.<br><br> <br> - New armor skin: <strong>E GO Armor</strong><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/854110/extras/skin.png?t=1620034657" /><br> <h2 class="bb_tag"><strong>General Updates: </strong></h2> <br><br> <br><br>UI Rework of the “Spectator” mode.<br><br>Graphic rework.<br><br>Best performing player display (MVP).<br><br>Rework of the “Settings” menu.<br><br>Added comfort options.<br><br>Division of options into several parts (game, mobility, sound, video).<br><br>The Voice Chat has been adjusted. <br><br>The “Legend of Mars” shotgun is now called “T1-GAUSS”.<br><br> <br><br> <h2 class="bb_tag"><strong>Balance changes:</strong>   </h2> <br><br> <br><ul class="bb_ul"><li>MX-42</li></ul>Removal of the old radar<br>Reduced the number of bullets per magazine from 50 to 35.<br>Bullets deal maximum damage up to 15 meters, which then gradually decreases up to 100 meters, where the damage reduction is 100%.<br><br> <br><br> <br><ul class="bb_ul"><li>Needle</li></ul>Removal of the old radar<br><br> <br><br> <h2 class="bb_tag"><strong>Bugfixes:</strong></h2> <br><br>The previous update included the correction of a number of bugs reported by our players and reported internally, which we summarize below:<h2 class="bb_tag"></h2><strong>GAME BREAKER</strong><br>- It is now impossible to fire when a weapon is inside an obstacle.<br><br>- In Domination mode, the capture of a point starts as soon as a player is on it (whereas previously, you sometimes had to wait up to a second).<br><br>- Life automatically regenerates even when you’re shooting.<br><br>- Players can no longer lose their lives when they are in spawning area.<h2 class="bb_tag"></h2> <h2 class="bb_tag"><strong>Maps</strong></h2><h2 class="bb_tag"></h2><strong>THE CLIFF</strong><br>- Correction of a bug that caused death by crouching under a few spots on the map The Cliff.<br><br> <br><br><strong>COLISEUM </strong><br>- The door of the map Coliseum is now open/closed for all players.<br><br>- It’s no longer possible to get stuck inside the pillar near the stairs. <br><br>- It’s no longer possible to fall from the stairs and get stuck between pillars on the rebel side of the map.<h2 class="bb_tag"></h2><strong>RUIN’S BAY</strong><br>- It is no longer possible to crouch under the stone stairs near capture point A. <br><br> <br><strong>MISCELLANEOUS</strong><br>- It is no longer possible to get 2 weapons at the same time when you switch between shotgun and another weapon.<br><br>- Collision between player and shotgun has been removed.<br><br>- The game no longer crashes when a player commits suicide in the tutorial.<br><br> <br><br> <h2 class="bb_tag"><strong>Developers’ Note</strong></h2> <br><br><br>*The size of the file may slightly differ depending on the platform it's downloaded from.</p><br><h1>About the Game</h1><h2 class="bb_tag"><strong>fps + Esport + Vr + Free to Play</strong></h2><br>Mars, 2080. Two human factions are fighting over key strategic points in the Solar System. Join the Martian battlefields and fight as the Alliance or the Rebels in a competitive fast-paced FPS. Gather your crew in Team Deathmatch mode to overtake a space ship crash site on Mars. Play solo against other players in a FFA match or take control of ancient artifacts playing Domination mode!<h2 class="bb_tag"><strong>join the Fight Now!</strong></h2><h2 class="bb_tag"><strong><u>core Gameplay</u></strong></h2><ul class="bb_ul"><li> 100% competitive gameplay - only skill and collaboration matter.<br></li><li> Experience realistic manipulations and futurist gun fighting.<br></li><li> Fight all over the solar system, indoor and outdoor.<br></li><li> Play solo or with friends in various multiplayer modes - 2 to 8 players.<br></li><li> No ingame static HUD, all elements and information are integrated in VR.<br></li><li> Regular updates of content (maps, weapons, skins, features)<br></li><li> eSport focus: competitions and events for both steam players and VR Arcade places</li></ul>You own or know a VR place that doesn't have AFTER-H? Contact-us on After-H dot com.<h2 class="bb_tag"><strong><u>Current State</u> (ea 1.0.5.9 - July - 2020)</strong></h2><ul class="bb_ul"><li> Four Maps : The Cliff / Ruins Bay / Coliseum / CERES II<br></li><li> Four Weapons : MX42 (assault rifle), The Needle (precision rifle), T1 Gauss (shotgun), Vulcan (assault rifle)<br></li><li> One Specialty : DX-3 (grenade)<br></li><li> Three game modes : Team Deathmatch, Free-for-All and Domination<br></li><li> Character &amp; weapons skins<br></li><li> Accounts with a leveling system<br></li><li> Complete UI/UX to create/join games<br></li><li> Basic settings to change name, calibrate size, sound, motion sickness sensibility<br></li><li> Can be played with both left and right hand<br></li><li> Navigate in menus in Desktop or VR, it's up to you.<br></li><li> Multiple languages: English &amp; French<br></li><li> Complete observator system with player view, free cam, kill feed, team scores etc...<br></li><li> Complete overlay for streamers including important information of the current game, KDA, time remaining...</li></ul><br>To make the game as smooth as possible during the early access, games will be opened. You will be able to join games, even if they already started.<h2 class="bb_tag"><strong><u>what Are We Working On?</u></strong></h2><ul class="bb_ul"><li> Account system with leveling rewards and ranked games/leaderboards.<br></li><li> More gameplay/features such as abilities, tactical skills, social actions...<br></li><li> New maps on Earth, Io, in space...<br></li><li> More weapons such as pistol, long range rifle, bow...<br></li><li> New game modes</li></ul><br><a href="https://steamcommunity.com/linkfilter/?url=https://springboardvr.com?game_verification=6cf2a440-f25a-11e8-aebd-696e1f3da660" target="_blank" rel="noopener"  > Available for Arcades on SpringboardVR </a>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

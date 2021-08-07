@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>CSC | Space MMO</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('375e7aa5-4321-4869-976b-3f57a89e2a48/4e4121bf-0445-4fce-8eee-6d18debcabc8.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="375e7aa5-4321-4869-976b-3f57a89e2a48/e35e1cbe-f490-4954-8169-beee38e363e7.ico"/> CSC | Space MMO</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="375e7aa5-4321-4869-976b-3f57a89e2a48/b126a627-6111-42b4-a522-3b8b7e0d1287.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-14/08/2020">14/08/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-03/09/2020">03/09/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-61">61</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Lucid Sight, Inc.">Lucid Sight, Inc.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Lucid Sight, Inc.">Lucid Sight, Inc.</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=895040" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/895040" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/895040/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/895040/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/895040" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=895040" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/895040/extras/CSC-Alpha-7_1_2019-12_48_35-PM.gif?t=1607392568" /><br>CSC is an open-universe, sandbox-style space MMO with a player-owned economy. Command starships and earn digital items to buy, sell, or trade without limits both inside and outside of the game universe. Experience a free-market <strong>Play-to-Own Economy</strong> that provides true ownership &amp; freedom. <br><br><strong>NOTICE TO ALL MAINLAND CHINA USERS: We are aware of issues with users in Mainland China not being able to connect to the CSC servers located in the US.  CSC servers are not compatible in China at this time. Thank you for your patience!<br><br>致所有中国大陆用户的通知：我们知道中国大陆用户无法连接到位于美国的CSC服务器的问题。我们正在寻求解决该问题的方法。感谢您的耐心等待！</strong><h2 class="bb_tag">The Current Game State </h2>CSC is a <strong>game in development</strong> while in Beta with core game features implemented. As a starship Commander you can command your ship, explore <strong>40+ star systems</strong>, <strong>mine for resources</strong> that can be used in <strong>manufacturing/workshop</strong>, <strong>combat NPCs</strong> for loot and resources, and play along with other Commanders on our <strong>LIVE MMO server</strong>. Check out our roadmap below for current &amp; future gameplay details.<h2 class="bb_tag">ATTENTION PLAYERS: CSC IS IN DEVELOPMENT WHILE IN BETA</h2>CSC is a game that has been in development for over two years and is going through consistent iterations and updates. THE GAME IS IN DEVELOPMENT and while it contains CORE features, bugs and other issues may exist. Currently, we are on version 1.0 of our development cycle. This version includes several core features (listed below), but with many items in our full game description (below) are features that are pending. See below for a tentative roadmap and current features.<h2 class="bb_tag">CURRENT LIVE VERSION - 1.0</h2><br><br><strong>CSC ROADMAP</strong> <br><ul class="bb_ul"><li><i>M.E.A -  Mining Expedition Alpha, a 2D mini-game where early Commanders set their ships to autonomously explore and collect resources for future use. (Ended in 2018)  </i><br></li><li><i>Pre-Alpha -  Testing client for game mechanics, community events to test stability / find exploits, limited multiplayer support, limited modules (15), limited ships (12) and some NPCs.  </i><br></li><li><i>0.5 - MMO Servers, simple NPC spawns, mining with persistent ore (players keep ore they mine for future use), No permadeath or equipment loss,  30 playable ships, 500+ equipment modules, 10+ star systems to explore, community in-game events, Star Trek ships coming Aug 29th.</i><br></li><li><i>0.6 - Refining Game Mechanic: Users will be able to take their ore and refine it into crafting components. NPC updates and first iteration mission system.</i><br></li><li><i>0.7 - In-game Trading / Marketplace: Players will be able to buy and sell items via in-game UI for game currencies. Global mail and item trading system will be implemented. Tracking and stats API will be available for all users to track in-game economic activity.</i><br></li><li><i>0.8 - Crafting: First iteration of crafting items. Users will utilize refined components to build ships, modules, and other equipment. When crafting users will be able to discover HIGHER tech levels of items creating more powerful equipment.</i><br></li><li><i>0.9 - Guild Management, Ships Insurance / Persistence, Crafting Update: UI to support station and guild management will be implemented. Friends list, friendly fire avoidance, fleet grouping, and other social features will be implemented. Persistence will come online with insurance system in a limited fashion for testing. Crafting will get an update (Additional buffs can be added to current tech level items). </i><br></li><li><i><strong>1.0 - Full Persistence: Game will utilize full persistence rules and true loss is now possible.  </strong></i><br></li><li><i>1.1 - Workers / Colonist Game Mechanic, Fleet Control: Limit fleet command will be introduced via modules &amp; workers. Advanced missions requiring work-over-time utilizing Workers and Colonist will be implemented. Advanced research and mining systems will be deployed to use workers and colonists. </i></li></ul><h2 class="bb_tag">Universe of Opportunities</h2>As a Commander in the Galactic Federation Fleet, you will undertake missions, discover resources, and acquire skills in your quest to dominate the galactic frontier. Explore the vast expanse but be warned, the further you travel from home the greater the danger.<br><br>Your journey begins as an adventurous miner hunting rare resources in the depths of Fringe Space. Become a master crafter of high-tech modules, equipment, starships, or even a fully player-owned station. Perhaps you'll focus your attention on supporting the growth of the Galactic Federation by transporting consumer goods, resources, colonists, and workers to new outposts, earning valuable credit. Or you could armor and equip your starship to hunt for pirates and other treasures in dangerous and unsettled space. Keen on building a business empire? Then dominate the markets by buying, selling, and trading valuable goods from around the cosmos. The choice is yours... What destiny will you choose? <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/895040/extras/AvengerShip.jpg?t=1607392568" /><h2 class="bb_tag">Starships</h2>In CSC you, our Commander, can own and operate your very own starships. Starships come in all shapes and sizes and are specialized in either mining, combat, trade, or exploration. Starships in CSC can be endlessly customized with modules. Modules can add or upgrade existing ship functionality from shields and weapons to FTL drives. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/895040/extras/CSC-Alpha-7_3_2019-11_38_48-AM.gif?t=1607392568" /><h2 class="bb_tag">Economy</h2>Almost everything in the CSC universe can be crafted from resources openly available in the universe. The smallest shield module up to a universe-wide jump gate network can all be made with the right materials. Create new technology and share it freely for the good of the federation or sell it for the right price.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/895040/extras/CSC-Alpha-6_21_2019-2_23_50-PM_2_v2.gif?t=1607392568" /><br><br>The crafting system is uncapped, allowing players to continually improve on the quality of their crafted items. Specialization is encouraged by the CSC crafting mechanic, rewarding players for focusing on specific items &amp; allowing them to create truly unique and valuable starship weapons or other components. <br><img src="https://cdn.akamai.steamstatic.com/steam/apps/895040/extras/CSC-Alpha-7_1_2019-4_44_21-PM.gif?t=1607392568" /><h2 class="bb_tag">Exploration</h2>Rules are merely suggestions in some parts of space. Areas under GFI protection do exist, and are open to explore and mine to your heart’s content, but the best loot is out there in Fringes of Space. Beware, dangers of all kinds are in the fringe: creatures, pirates, rogue Commanders, and faction governments. Those brave enough to venture deep into Fringe Space however will find an abundance of rare resources, larger bounties, and more lucrative quests.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/895040/extras/CSC-Alpha-7_1_2019-4_25_27-PM.gif?t=1607392568" /><h2 class="bb_tag">Gameplay Screenshots</h2>Thanks from the CSC team goes out to Coco_Bear, Bitcoin_Pr0GB, HarleyS, Magick, &amp; SirJuggz for providing some of the above screenshots of CSC.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>NBA Playgrounds</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('0f455cd4-3e50-46f6-a62b-e33bb83117b1/cbd46fc4-a770-4ba6-bdb5-50e4bcb23929.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="0f455cd4-3e50-46f6-a62b-e33bb83117b1/68c1ed3e-bb0e-484a-92fc-cebdd03dc896.ico"/> NBA Playgrounds</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="0f455cd4-3e50-46f6-a62b-e33bb83117b1/1c00a71a-159e-487e-b104-9c0a508c3d9c.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>1m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-17/09/2018">17/09/2018</a> 13:05:38</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-10/05/2018">10/05/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-08/05/2017">08/05/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-68">68</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-67">67</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Sports">Sports</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Saber Interactive">Saber Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Mad Dog Games, LLC">Mad Dog Games, LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Full Controller Support">Full Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play On TV">Remote Play On TV</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Co-Op">Shared/Split Screen Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Pvp">Shared/Split Screen Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=545270" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/545270" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/545270/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/545270/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/545270/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/545270" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=545270" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>NBA Playgrounds Update 1.1.0</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/545270/extras/Shaq_Jerseys_-_resized.jpg?t=1538774766" /><br><br>Many thanks for the continued support! We have the best players in the world and we are privileged to serve you. <br><br>Update 1.1.0 for PC/Steam brings the heat! Challenge your friends, enemies and other players online. Game on! Friends matchmaking is here. With the new Challenge feature, you’ll be able to directly challenge another player to a game on the Playgrounds. All you have to do is agree on a code, open the online mode, switch to Challenges, enter that code and face each other. <br><br>Other additions include a new connection manager, which monitors the connection of players during ranked matches and penalizes disconnections from games that are made to avoid losing. Quitters never prosper on the Playground.<br><br>In response to great feedback, we’ve also tweaked the entire shooting system from jump shots, to threes, to dunks, layups, and everything in-between. We’ve redone the timing, added a meter, and clarified the entire system. Keep those comments coming!<br><br>As a big thank you to our rabid fans, we’ve also added 15 new players, including Isaiah Thomas and Dennis Rodman! Those two all-stars and 13 others can be unlocked regularly through player packs, earned during the tournament or when leveling up your profile.<br><br>Thanks again for all your great feedback and support. Update 1.1.0 is the beginning. We’re only days from launch and we’re already making the game better thanks to your feedback. You rock!<br><br>New Features:<br>-	Added: The Challenge Mode feature, which allows you to challenge other players to online matches<br>o	You can now switch between unranked challenges and ranked games in the online mode<br>o	To challenge another player, you must switch to the challenge mode in the online menu and define a challenge code. By default, your challenge code is your nickname, but you can change it to your own, personal code.  The person you are challenging must enter your code.<br>o	If you have been challenged, please enter your challenger’s code and press “Accept”.<br>o	All challenges are unranked and your ranking/ELO will be unaffected by the results of the challenge.<br>-	Added: Toxicity system/Disconnection Manager, which penalizes players who abandon matches in any other way than surrendering<br>-	Added: 5 new versions of Shaquille O´Neal in various teams from his career (Boston Celtics, Miami Heat, Phoenix Suns, Cleveland Cavaliers, Orlando Magic)<br>-	Added: 15 new players join the roster<br>o	The following players were added: Dennis Rodman, Isaiah Thomas, Larry Bird, Giannis Antetokoumnpo, Kenny Smith, Gary Payton, Klay Thompson, Devin Booker, Tony Parker, Kemba Walker, Seth Curry, Tiny Archibald, John Starks, Tracy McGrady, Pete Maravich<br>-	Added: A shot-meter was added to help finding the perfect timing for shots, dunks etc.<br>-	Added: Steam Cloud Save support<br>-	Added: Steam Big Picture keyboard management<br>Notable Changes:<br><br>-	Adjusted: Shots were adjusted to make the system more accessible and unified throughout all variations<br>-	Adjusted: The steal action was adjusted further to better fit the intended gameplay<br>o	It is now possible to perform a steal action when behind an opponent<br>-	Changed: 3 pointers no longer fill lottery pick bar<br>-	Increased: The difficulty of 3 pointers was increased<br>-	Reduced: The number of steals required for the Las Vegas Challenge #2 was reduced to 10 (was 15)<br>-	Reduced: The number of 3-pointers needed for the Paris Challenge #4 was reduced to 6 (was 7)<br>-	Reduced: The number of 3-pointers needed for the London Challenge #1 was reduced to 6 (was 10)<br>-	Reduced: The number of 3-pointers needed for the Las Vegas Challenge #3 was reduced to 8 (was 12)<br>-	Reduced: The inbound time was reduced to adjust it to the overall style of the game<br><br>Notable Fixes:<br><br>-	Fixed: Issues related to the strength of the force feedback effects were addressed</p><br><h1>About the Game</h1>Classic NBA arcade action is back! Take your “A” game to the playground and beat the best in high-flying 2-on-2 basketball action. Practice your skills offline, play with up to three others on your PC, or take your talents online to posterize your opponents with acrobatic jams and ridiculous displays of skill. <br> <br>•  Easy to play, challenging to master<br>•  Offline and Online Multiplayer<br>•  Massive roster of current and retired NBA superstars<br>•  All the official NBA teams<br>•  Travel to playgrounds across the globe<br>•  Hundreds of dunks and moves<br>•  Collect all your favorite players<br>•  Improve players over time<br>•  Compete against the master of the playground himself - Allen Iverson<br>•  Even more NBA superstars will be added post-launch<br> <br>“Up your game!”
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

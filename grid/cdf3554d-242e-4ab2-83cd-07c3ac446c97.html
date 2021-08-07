@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cats Make You Smarter!</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('cdf3554d-242e-4ab2-83cd-07c3ac446c97/03c12b7b-e014-4f5a-a0b3-11785318348f.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="cdf3554d-242e-4ab2-83cd-07c3ac446c97/75cb3c9f-afed-42ad-ab30-a3652cc10fd9.ico"/> Cats Make You Smarter!</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="cdf3554d-242e-4ab2-83cd-07c3ac446c97/558cda49-b7df-4d51-9c0b-5ad9f463bf49.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-16/04/2020">16/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-19/10/2017">19/10/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-83">83</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-SandorHQ">SandorHQ</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-SandorHQ">SandorHQ</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=720670" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/720670" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/720670/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/720670/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/720670/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/720670" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=720670" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Cats Make You Smarter! is a splendid memory puzzle game with cats and various twists.<br><br>The goal of the game is to find and match all identical cats on the board. The tiles are flipped over so you can only see their backs.<br><br>Depending on the difficulty level you can flip 2, 3, 4 or 5 tiles at a time.<br><br>If the revealed cats are identical, the tiles are claimed and your score increases. Otherwise, the tiles are flipped back and you can continue flipping up other tiles.<br><br>When you claim all the tiles on a board, you may get bonus points if you have been quick enough and haven’t made too many attempts while matching the tiles.<br><br>You will then move on to a larger board, so your memory is challenged even more!<br><br><i>Select flipped or claimed tiles to reveal a full screen image with the cat’s name, their favorite quote and a special information (i.e. Patience, Monster or Psychedelic Mood status.)</i><br><br>Cats Make Your Smarter! offers 5 game modes which all share basic game concepts and also have their own special variations and twists.<h2 class="bb_tag">#1: Sleepy Kitty</h2>Other than the time limit, you are free to flip the tiles as many times as you need, so this is the classic memory game you might be familiar with already.<br><br><i>This game mode is ideal for beginners, or when you are a bit tired.</i><h2 class="bb_tag">#2: Good Luck, Jerry!</h2>Here each cat has a number of Patience points. When the flipped tiles are not matched, each flipped tile loses a Patience point.<br><br>When a flipped tile has only 1 Patience point left, it gains a red border as a reminder for you to be cautious with it. Once a tile runs out of its Patience, it becomes a Trouble tile. A Trouble tile’s background is all red. If you flip such a tile, and it’s not a match, each of the flipped Trouble tiles will move randomly, pushing tiles around the board.<br><br><i>As the tiles move around it will be harder to remember each tile’s position, so try not to annoy the cats – although annoyed cats give you better score!</i><h2 class="bb_tag">#3: Jones of Nostromo</h2>In this game mode the cats have less Patience points.<br><br>Moreover, one of the cats – the Monster – starts with 0 Patience points. And, if this weren’t dangerous enough already, as a special rule, you can only match the Monster tiles last, after you have matched all others on the board.<br><br><i>A Monster tile behaves like a Trouble tile, so avoid them!</i><h2 class="bb_tag">#4: Nyan-Nyan Ninja</h2>This game mode tests your reflexes as well as your ability to recognize patterns.<br><br>The tiles are laid out on the board without being flipped, but you only have a very limited time to select the identical tiles.<br><br><i>You get some extra time after each successful match, but if you accidentally select cats which aren’t identical, your time gets halved immediately, so be very careful!</i><h2 class="bb_tag">#5: Mr. Bigglesworth Sends His Regards</h2>The cats are having a party and feeling a bit psychedelic, thus finding matches will be a lot harder in this happy chaos.<br><br>Each cat have 0 Patience points, so if you cannot match them, they will wander around just like as if they were Trouble tiles.<br><br>As cats are so impatient here but also very curious, each flipped tile’s immediate neighbors will also be flipped – for free – which allows you to memorize up to 9 tiles for each flipped tile.<br><br><i>The cats also choose a randomly picked color for themselves each time you flip them, so don’t be fooled by this trickery: try to ignore the colors and concentrate only on the cats!</i>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

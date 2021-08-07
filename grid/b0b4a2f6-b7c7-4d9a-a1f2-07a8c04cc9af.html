@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Alteil: Horizons</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('b0b4a2f6-b7c7-4d9a-a1f2-07a8c04cc9af/c29ed2a7-d0ab-4bce-8edd-5321073237a7.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="b0b4a2f6-b7c7-4d9a-a1f2-07a8c04cc9af/963a62fc-ebbc-4cb6-a5a0-a55d7737392f.ico"/> Alteil: Horizons</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="b0b4a2f6-b7c7-4d9a-a1f2-07a8c04cc9af/6bc611d9-c7e6-464d-a5a0-aaed48346d7e.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-07/04/2018">07/04/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-27/10/2016">27/10/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-49">49</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Apocoplay LLC">Apocoplay LLC</a><br/><a href="default_developer_ascending_name_ascending.html#quicklink-Coreedge Inc">Coreedge Inc</a><br/><a href="default_developer_ascending_name_ascending.html#quicklink-Ludeme Games">Ludeme Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Apocoplay LLC">Apocoplay LLC</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=379870" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/379870" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/379870/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/379870/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/379870" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=379870" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/379870/extras/32X32-icon.png?t=1482262032" /><strong>Alteil: Horizons</strong> has the structure of a CCG and the flow of a unit tactics game.<br><br><ul class="bb_ul"><li>Collectible Card Game Structure -- collect cards, build decks and duel either PvP for ELO ranking or in single player adventure mode.<br></li><li>Unit Tactics Game Flow -- Field units with resources, no randomly drawn hands. Units have HP, AT, DF, AGI, RNG and take turns, highest agility first. Pick from the unit’s Action Menu -- Attack, Move, Rest, or use special abilities!</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/379870/extras/aboutbannersmall.png?t=1482262032" /><br><ul class="bb_ul"><li>Hybrid Tactical RPG / Card Dueling Game mechanics<br></li><li>Collectible cards with full RPG-style stats, alternate art and story<br></li><li>Story and Art contributions from famous names in the Japanese game industry<br></li><li>Over 2000 pieces of gorgeous card art, with more added each month<br></li><li>PVP dueling / ELO ranking<br></li><li>Single player story mode with 20 adventures at launch -- more added every other month<br></li><li> Duel replays and spectator system<br></li><li>Core tournament-legal set ensures tight balance<br></li><li>Card crafting and player marketplace</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/379870/extras/redgirlsmalls.png?t=1482262032" /><br><br><br>With a little help from our very supportive friends in the Japanese<br>games industry, Alteil Horizons sports creative contributions from<br>some old pros and big names:<h2 class="bb_tag">Story and direction by</h2><ul class="bb_ul"><li>TAKUJI ASANUMA, director of Star Ocean and Valkyrie Profile.</li></ul><h2 class="bb_tag">Art and design by...</h2><ul class="bb_ul"><li>KATSUYA TERADA, concept artist of “The Legend of Zelda”<br></li><li>HITOSHI YONEDA, lead artist of “The Secret of Mana”<br></li><li>SHUNYA YAMASHITA, designer of “Final Fantasy X”<br></li><li>YUJI KAIDA, franchise artist for Transformers, Godzilla and Macross</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/379870/extras/lavatoworldbannersmall.png?t=1482262032" /><br><br>Four Gods sleep under the Kingdoms of Men…harness their power! <br>It is you who know the truth of this world. You are one of the chosen few who know of the four Ancient Gods – infinite beings forgotten by history. Each god’s Sphere of Influence still permeates this world -- all living things are subconsciously bound to one of them. Tapping into the Spheres of Influence, you summon and command the might of enormous monsters, epic heroes and arcane dragons to defeat your enemies!<br><br>Each duel brings new challenges, with the huge amount of cards available, you’ll always be up against strategies that push the limits of Alteil’s various gameplay mechanics – such as the day/night cycle and its effects on undead and lycanthropes, the Soul Card system that lets each player fine tune their Life Point total to better compliment rush or combo play styles, and the Revival system that turns extra copies of a unit in the deck into ‘extra lives’ for that unit on the field. Every match also yields exciting treasure drops, to help you build a vast card collection or just fine-tune and perfect your favorite decks!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/379870/extras/pressbannersmall.png?t=1482262032" /><br>In addition to completing a successful Kickstarter and presenting at the <strong>Indie Megabooth</strong> at PAX East 2014, we’ve been lucky enough to get some great press for Alteil: Horizons. Here’s what they’re saying:<br><ul class="bb_ul"><li><strong>Kotaku</strong> praised the team of artists, saying “Alteil: Horizons is actually an all-stars kind of ensemble title.”<br></li><li><strong>MMO Attack</strong> focused on the game, saying “Horizons combines what players love from their favorite trading card games with RPG elements”<br></li><li><strong>Massively.joystiq</strong> names Alteil a “contender in the ring” in the card combat genre against HEX and Hearthstone.<br></li><li>They also put Alteil at the top of their 2013 summer <strong>list of crowd-funding projects</strong> to watch!<br></li><li><strong>The Examiner</strong> noted, what “sets this game apart from its rivals is the amount and quality of the game’s art.”<br></li><li><strong>JStationX</strong> calls Alteil Horizons “the next best card-based RPG.”</li></ul>You can also read about us on:<br>Ten Ton Hammer, BioGamerGirl, ComicBuzz, Gamasutra, Gamer’s Temple, Review the Tech, 2P, AnimeNewsNetwork, MMO Site, and On RPG.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

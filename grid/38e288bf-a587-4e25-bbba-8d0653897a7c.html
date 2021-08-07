@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Multibombers</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('38e288bf-a587-4e25-bbba-8d0653897a7c/38d21d5a-0051-41ed-ac7a-40f88e1ad7d8.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="38e288bf-a587-4e25-bbba-8d0653897a7c/1187c257-c89a-4cd5-a2fe-b66851ca78d1.ico"/> Multibombers</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="38e288bf-a587-4e25-bbba-8d0653897a7c/cfc8824a-024d-4ef1-97f6-32143bf4ba47.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-18/04/2020">18/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-22/09/2018">22/09/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-65">65</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Glorified Studios">Glorified Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Glorified Studios">Glorified Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Pvp">Shared/Split Screen Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=931260" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/931260" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/931260/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/931260/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/931260/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/931260" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=931260" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Supporter Pack</h1><p><h2 class="bb_tag">Multibombers - Supporter Pack</h2><i>It is optional to donate. Any money gained from the supporter package will be used to support the Developers.</i> You may optionally purchase a Supporter package for extra perks, available under the &quot;DLC&quot; section. It includes perks such as:<br><br><ul class="bb_ul"><li>A golden name tag visible in matches.<br></li><li>A special Supporter tag in chat.<br></li><li>A golden &quot;Multibombers Supporter&quot; Discord role.<br></li><li>A special Discord channel for you to talk with other supporters and give exclusive suggestions.<br></li><li>Your name in the credits.</li></ul><br>To claim the final three perks, please contact a member of our staff team <a href="https://steamcommunity.com/linkfilter/?url=https://discord.gg/pigsindiegames" target="_blank" rel="noopener"  >on our Discord channel</a>.</p><br><h1>About the Game</h1><h2 class="bb_tag">A classic game, reborn.</h2> <br>Multibombers is a multiplayer strategy game by Pig’s Indie Games based upon the classic Bomberman series of games. Players compete based upon a first-person field of view to be the last man standing by using bombs to destroy their competition. <br><br>Power-ups scattered around the arena encourage players to move tactically throughout each match - having to decide between making a run to the center where more power-ups are located or heading straight for enemy players - a high risk, high reward decision. <br><br>Multiplayer is available for both LAN and online play, so that there is always a way for you to play with your buddies. <br><br>In the future, Multibombers will have a cosmetic system and client-side map customization, allowing for you to personalize your own experience in any way you see fit. Steam achievements will also be added to provide extra incentive to play.<h2 class="bb_tag">What do we have included?</h2> <br><ul class="bb_ul"><li> A fledged out powerup system, with an algorithm of luck, bringing more and better powerups closer to the center.<br></li><li> Multiplayer available for you to play online across the world, or locally with your buddies.<br></li><li> Satisfy all your destructive needs with our explosive system.<br></li><li> A bunch of achievements and stat-tracking to keep the game competitive, whilst still being fun.</li></ul><h2 class="bb_tag">What are we planning to add in the future?</h2><br><ul class="bb_ul"><li> We are soon going to be adding an inventory system with cosmetics.<br></li><li> Special perks for our Patrons, such as a golden nametag and tags in chat, as well as special cosmetics.<br></li><li> A singleplayer mode, featuring a dynamic tutorial.</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

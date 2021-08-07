@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>OVR Toolkit</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('64518916-dad6-4142-be2c-e3b59803ee0d/314798e9-f24d-412e-b334-3c47a0041870.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="64518916-dad6-4142-be2c-e3b59803ee0d/6e8ac65a-4daf-41ed-8044-e7ee510790ee.ico"/> OVR Toolkit</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="64518916-dad6-4142-be2c-e3b59803ee0d/4fc1795b-b87d-434a-9e81-17918b58d096.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>1d 13h 52m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-07/03/2021">07/03/2021</a> 6:04:53</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-29/01/2020">29/01/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-28/06/2019">28/06/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-85">85</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Utilities">Utilities</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Curtis English">Curtis English</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Curtis English">Curtis English</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Keyboard / Mouse">VR Keyboard / Mouse</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Room-Scale">VR Room-Scale</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Seated">VR Seated</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Standing">VR Standing</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1068820" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1068820" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1068820/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1068820/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/app/1068820/workshop/" target="_blank">Workshop</a><br/><a href="https://store.steampowered.com/app/1068820" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1068820" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>** Please read this section before purchasing! **</strong><br>- OVR Toolkit *only* supports Windows 10 and 11! Not Windows 7 or Windows 8. Windows 8.1 'may' work but is unsupported!<br>- OVR Toolkit *requires* you to have a Windows account with admin permissions and that you run Steam on this same account.<br><strong>- Oculus users may experience decreased performance as games are required to be ran through SteamVR rather than Oculus Runtime. (Read the 'Important Stuff' section!)</strong><br><br><strong>Oculus Rift/S or Oculus Quest/2 users - Read the 'Important Stuff' section before purchase!</strong><h2 class="bb_tag">Overview</h2><br>OVR Toolkit is a SteamVR Overlay utility designed to make viewing the desktop within VR easy and intuitive. OVR Toolkit allows you to display specific desktop windows, quickly select between them, use intuitive controls to navigate those windows, and use a virtual keyboard to type.<br><br>Ever wanted to reply to Discord messages without taking off your headset or looking through a nose piece? Ever wanted to pause that song you're listening to without fumbling around on your keyboard? Now you can with ease!<br><br>OVR Toolkit is compatible with all SteamVR compatible headsets. The utility is being built with the Vive/Vive Pro, Valve Index, and Oculus Rift/Rift S in mind though WMR headsets are compatible too. (Compatible controllers require a trigger and grip)<h2 class="bb_tag">Features</h2><br><ul class="bb_ul"><li> Overlays over almost all SteamVR applications: OVR Toolkit will display on top of all your favorite titles! (VRChat, Beat Saber, mostly all SteamVR titles, etc.)<br></li><li> Desktop window viewing: Allows you to select a desktop window and display it above your hand, or pin it in the world around you.<br></li><li> Multiple desktop windows: Create multiple different windows and place them in the world around you.<br></li><li> Attach windows to tracked devices: You can make windows move around with either your left or right controllers, headset, or have them stationary in the world.<br></li><li> Curved overlays: Improves readability of large windows in VR by wrapping them around you by a configurable amount? Now you can! (Or you can make the window into a wall by curving it to the max, I don't judge!)<br></li><li> Window re-centering: Optionally enable window re-centering, this will make window's re-appear in front of you when you open Edit Mode. This is useful to easily pull windows to you so you can use them.<br></li><li> Quick selection of desktop windows: OVR Toolkit contains a configuration 'hotkey' menu that allows you to bind buttons on its UI to switch between specific windows in one click.<br></li><li> Intuitive desktop input: Scroll up and down on windows by dragging, make a selection by dragging, like using your finger on a phone but with a VR controller instead! (This makes a lot more sense than it sounds like it does!)<br></li><li> Wristwatch: An overlay displayed on your hand that displays the time, date, as well as Vive/Index controller/Tracker battery percentages, as well as other values such as CPU/GPU/VRAM usage.<br></li><li> Saving/Loading configurations: Like that sweet setup you've made? Well, now you can save it, and load it again next time you launch!<br></li><li> Advanced settings for window capture: Want that 60 FPS window capture experience? Want to make a window slightly transparent so it's less in the way? Want a window to disappear when you're not looking at it? Or when it's past a set distance from you? You can do these with our advanced settings!<br></li><li> Eco Mode: When enabled, performance mode will lower the capture rate of windows you are not using, this drastically increases performance and lowers CPU usage significantly!<br></li><li> Basic media controls: Spotify currently playing song will show on your wrist, along with a play/pause, skip, and previous button. (These buttons will work in other music players too)</li></ul><h2 class="bb_tag">Customization</h2><br><ul class="bb_ul"><li> Customize the background (wallpaper) and logo on the phone-like UI.<br></li><li> Choose between several accent colors for various parts of the UI.<br></li><li> Create hotkeys on the home page that show application's icons and allow you to quickly access your commonly used applications.<br></li><li> Customize keyboard layouts! All keyboard layouts are community made within Unity and documentation is provided so you can do this yourself. (Want the keys to spell out funny things like you're in high school again? Now you can!)<br></li><li> Custom Apps allow web developers to integrate web apps into OVR Toolkit, allowing for integrated Twitch chat and games to be made.</li></ul><h2 class="bb_tag">Simulator Mode - Controller-free mode</h2><br>'Simulator Mode' is a controller-free mode available in OVR Toolkit. In this mode, you can interact with windows using head gaze, and use keyboard binds to move windows around you and change their settings. This mode is perfect for those intending to use OVR Toolkit at a desk or whilst in a sim racing/driving/piloting game!<br>(This mode is still a work in progress, provide feedback in the OVR Toolkit Discord!)<br><br><ul class="bb_ul"><li> Move windows with keyboard binds when you have no controllers connected.<br></li><li> Control your cursor position with your head using head-gaze input.<br></li><li> Pin windows around you in your play space to view whilst in games. (Race overlays, etc.)<br></li><li> Quickly toggle open windows with the 'Edit Mode' bind to show/hide some applications such as Discord, web browsers, etc. whilst in games.<br></li><li> Voice Attack ready. (All controls are easily repeatable with the same keyboard key presses to support Voice Attack)<br></li><li> Bindable voice input key using Google Speech to type out a sentence into a text box you have selected.</li></ul><h2 class="bb_tag">Important stuff you should know about</h2><br>We've tried our best to make OVR Toolkit support everything, but that just isn't how this world works!<br>Please take these compatibility notes in mind before purchasing:<br><ul class="bb_ul"><li> OVR Toolkit requires being launched as admin, this is due to the inability to capture programs that are running as admin without running OVR Toolkit as admin, so it's needless to say a Windows account with admin privileges is needed. (If you're the only user of your PC, this is probably you)<br></li><li> OVR Toolkit only supports Windows 10. (This is due to the desktop capture API we use which was only introduced in Windows 10)<br></li><li> Oculus users, don't launch OVR Toolkit through Oculus Home as it will launch the application incorrectly! Use Steam/SteamVR instead! You can set OVR Toolkit to auto-start with SteamVR by referring to our wiki!<br></li><li> Oculus' software will sometimes overlay over our overlay. (This is because Oculus' software displays separate to SteamVR, our application will always display whilst SteamVR is active or you're playing a SteamVR game, just not when you open the Oculus Dashboard)<br></li><li> Oculus users, refer to the OVR Toolkit wiki 'Oculus' page for how to make OVR Toolkit appear in your games!<br></li><li> We cannot display our application over Oculus SDK games. (Our application uses SteamVR to display, though, most Oculus games will have a SteamVR mode, we advise you use this!)<br></li><li> Running games through SteamVR on an Oculus headset may decrease performance, this is not an issue specific to OVR Toolkit. This is due to Oculus rendering the same image twice, once when SteamVR compositor renders the output, then again when Oculus Runtime renders the output. Unfortunately, this is something only Oculus/Facebook can fix!<br></li><li> Windows Mixed Reality users may experience decreased performance running SteamVR games due to double rendering. Please try performance with your games running through SteamVR before you purchase OVR Toolkit. (Most noticeable effects with Flight Simulator 2020)</li></ul> If you have any issues with the application or find other compatibility issues, don't hesitate to contact us! We'll whip up a hotfix ASAP!
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

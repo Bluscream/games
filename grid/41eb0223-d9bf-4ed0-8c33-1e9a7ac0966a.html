@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Killing Floor: Incursion</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('41eb0223-d9bf-4ed0-8c33-1e9a7ac0966a/de64dfeb-e489-4f74-b041-6c421015dadc.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="41eb0223-d9bf-4ed0-8c33-1e9a7ac0966a/b2020e3a-2834-4063-a6ff-a9cd81b53664.ico"/> Killing Floor: Incursion</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="41eb0223-d9bf-4ed0-8c33-1e9a7ac0966a/35624160-da0d-4b6b-9f8e-27e34912f2d1.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>3h 41m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-16/12/2020">16/12/2020</a> 19:16:01</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-05/03/2020">05/03/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-14/11/2017">14/11/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-54">54</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-68">68</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Tripwire Interactive">Tripwire Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Tripwire Interactive">Tripwire Interactive</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Room-Scale">VR Room-Scale</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Seated">VR Seated</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Standing">VR Standing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=690810" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/690810" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/690810/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/690810/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/690810/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/690810" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=690810" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Just Updated</h1><p><strong>Killing Floor Incursion Update 1.00.9 Is Now Live!</strong><br><br>Patch notes are here:<br><a href="https://store.steampowered.com/newshub/app/690810/view/2524779700593822280" target="_blank" rel="noreferrer"  >https://store.steampowered.com/newshub/app/690810/view/2524779700593822280</a><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/690810/extras/KFI-Logo.jpg?t=1593640540" /></p><br><h1>Espire's Control Theater and Revamped Free Move System Added!</h1><p><strong>Espire's Control Theater and Revamped Free Move System Added!</strong><br><br>For more information please visit:<br><br><a href="https://steamcommunity.com/linkfilter/?url=https://www.tripwireinteractive.com/#/community/killing-floor-incursion-update-1006-steam-and-oculus-and-105-psvr" target="_blank" rel="noopener"  >https://www.tripwireinteractive.com/#/community/killing-floor-incursion-update-1006-steam-and-oculus-and-105-psvr</a></p><br><h1>The Crucible,” and Windows Mixed Reality Support</h1><p><img src="https://cdn.akamai.steamstatic.com/steam/apps/690810/extras/KFI-Logo.jpg?t=1593640540" /><br><br><strong>Killing Floor: Incursion Content Update Introduces New Map “The Crucible,” and Windows Mixed Reality Support Today!</strong><br><br>Killing Floor: Incursion now supports Windows Mixed Reality headsets on Steam in addition to Oculus Rift and HTC Vive devices.  In addition to Windows Mixed Reality support, today’s Killing Floor: Incursion content update also introduces “The Crucible,” a brand-new Holdout Mode map for the Oculus store and Steam, which finds players defending key locations against increasingly deadly waves of enemies in a frenetic, arcade-like action experience!<br><br>First-time Windows Mixed Reality players should also expect to enjoy all of the post-launch content released for HTC VIVE and Oculus Rift platforms to date, including a “Hardcore” difficulty mode, Katana weapon, leaderboards, and more.<br><br>For the complete changelog please visit the official Steam Group here:<br><a href="https://steamcommunity.com/games/690810/announcements/detail/1718571865532557335" target="_blank" rel="noreferrer"  >https://steamcommunity.com/games/690810/announcements/detail/1718571865532557335</a></p><br><h1>About the Game</h1>From Tripwire Interactive, makers of Red Orchestra and Killing Floor franchises, comes a multi-chapter, story-driven adventure made specifically for VR. Explore this detailed and immersive world alone or with a partner while fighting for your life with pistols, shotguns, axes, and even the occasional leftover limb. Travel through diverse environments, from creepy farmhouses to mysterious catacombs, in order to uncover who or what is behind the Zed menace.   Discover what the Horzine Corporation is really up to and be careful who you trust.<br><br>When it’s all over, invite a friend to go back with you and see if you can pull them through alive.  Good luck!<br><br><strong>Key Features</strong><br><ul class="bb_ul"><li><u>Co-Op Play</u>: When the going gets tough, bring a friend!  Play co-op with a friend in both Story and Holdout modes.<br></li><li><u>Narrative Campaign</u>: Play through the five-stage, fully voiced story campaign to uncover the secrets behind Horzine and their relationship with the Zeds.  <br></li><li><u>Holdout - Endless Game Mode</u>: See how long you can last against the Zeds in this endless mode! Increasingly tough groups of Zeds are thrown at you until you finally succumb. A new weapon, special power ups, and other mechanics are available in this mode.  <br></li><li><u>Visceral Gore</u>: The Zeds you attack don’t just die; they get decapitated and dismembered as heads and limbs go flying, all covered in blood. You can even pick up these Zed bits and use them as weapons!<br></li><li><u>Immersive Environments</u>: Five different environments to explore, from high tech virtual training facilities to dilapidated trailer parks, each with its own threats and story.  <br></li><li><u>A Variety of Weapons</u>: Chop, slash, shoot, and blast your way through hordes of Zeds with weapons ranging from fire axes to sniper rifles.  Each level introduces new options for violence.  <br></li><li><u>Terrifying Zeds</u>: Some Zeds stumble, some crawl, some sprint, and some shoot at you with plasma cannons!  Each Zed has its own tactics, strengths, and weaknesses that you must learn if you want to survive.<br></li><li><u>New control options</u>: Now includes options to use Espire Control Theater as well as a new Free Move system.     </li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

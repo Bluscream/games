@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Murnatan</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('1194ea5a-6497-40f1-aa0d-0e26a4698b5a/247342d0-4fff-428d-b9b9-f496336301a4.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="1194ea5a-6497-40f1-aa0d-0e26a4698b5a/2a06bad3-ced5-4074-b087-9717b5b9b686.ico"/> Murnatan</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="1194ea5a-6497-40f1-aa0d-0e26a4698b5a/972c898f-5a96-4ec0-b57b-017e7d69a429.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-13/04/2018">13/04/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-24/03/2018">24/03/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-59">59</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-AAAGAMES">AAAGAMES</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-AAAGAMES">AAAGAMES</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=634070" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/634070" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/634070/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/634070/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/634070" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=634070" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Join Humans or Aliens in the fight for survival. Build your own, masterfully thought-out base, destroy the enemy spawns or base in organized attacks, hunt down your enemies and emerge victorious!<br><br><strong>Pro tip:</strong> Do not attack all by yourself, especially as a human!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/634070/extras/narbatucker616.png?t=1533930765" /><h2 class="bb_tag">Game mechanics</h2>This game contains numerous in-game mechanics, and therefore, for the sake of keeping it short but informational, not everything is going to be described. Both teams are <strong>COMPLETELY </strong>different from each other and thus require to field different tactics in order to defeat their enemies.<h2 class="bb_tag">Humans</h2>Humans have a stamina system. Stamina is depleted by sprinting or jumping. Every human has one medikit (bind key: F) and a new one is added to your inventory once fully healed by a Medi.<br><strong>Damage system:</strong> human body is divided into three parts: head/body/legs, with each part sustaining different damage values.<br><br>Note: Flamer can change flame to diesel style!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/634070/extras/humans616.png?t=1533930765" /><h2 class="bb_tag">Aliens</h2>Aliens do not have a stamina system, therefore they can run and jump freely to their hearts’ content. Any tissue damage inflicted to an alien is regenerated on its own. Certain aliens are capable of wall-climbing.<br><strong>Damage system:</strong> Their body is a SINGLE damage system, thus damage to the head and to its legs does not differ.<br><br>Note: Growing furs!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/634070/extras/aliens616.png?t=1533930765" /><h2 class="bb_tag">Stage</h2>Both teams begin at Stage 1. Higher Stages (2 &amp; 3) allow both teams to field more advanced weaponry/aliens and to build strong and useful structures. Higher stages are achieved by killing a certain amount of enemies – the more players present in your team, the more kills are required.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/634070/extras/fightScene616.png?t=1533930765" /><h2 class="bb_tag">Credits</h2>Humans gain credits by killing enemies (a stronger enemy killed gives you higher rewards), by destroying enemy spawns/the &quot;Overmind&quot; as well as with 2 minutes passed in-game. Credits can be used to buy weapons, armor and other equipment in the buildable structure called &quot;Armoury&quot;.<h2 class="bb_tag">Evos</h2>Aliens gain evos by killing enemies, by destroying enemy spawns/the &quot;Reactor&quot; as well as with every 2 minutes that pass. Evos are used to evolve into a &quot;higher&quot; Alien <strong>ONLY</strong>.<br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/634070/extras/poster616.png?t=1533930765" /><h2 class="bb_tag">Buildable structures</h2>Players can build structures only with spare build points (BP) to use and only prior to Sudden Death (SD makes it impossible to build anything else, the standard timelimit for the SD is 30 min).<br><br><br>With the Construction Kit, humans are able to build various technological structures. The main structure is the Reactor. Without a Reactor, the human base is powerless and dysfunctional, apart from spawns. The most important structure is the Node – a human spawn. Without Nodes, humans are unable to spawn – a sign of their possible doom. Humans are able to build structures <strong>only in the power range of the Reactor, extensible by the Repeater.</strong> Any damaged human structures must be healed by a Builder ASAP!<br><br>With the Granger/Advanced Granger, aliens build their own structures. The main structure is the Overmind. Without an Overmind, the base is left without a mind - no structures apart from spawns work and Mur is unable to fly. The most important structure is the Egg – an alien spawn. Without eggs, aliens cannot spawn and thus may soon get exterminated. Aliens can build structures <strong>only in the range of the Overmind or Eggs. Eggs can be built anywhere and have their own range.</strong> Any damaged alien structures are regenerated on their own! A structure that loses the range of an Overmind or an Egg self-destructs after a while!<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/634070/extras/tenura616.png?t=1533930765" /><h2 class="bb_tag">Debuffs</h2>Most debuffs are intended for humans only. Please, check the bottom left corner of your screen when anything &quot;odd&quot; happens to your character. You may find yourself paralyzed, on fire, slowed down, poisoned, webbed etc. In order to get rid of them, sometimes you just have to wait for the debuffs to disappear. Sometimes,<br>you will have to jump into the water, or you will have to jump. But no worries, you will probably die sooner than you’ll figure it out. :)<h2 class="bb_tag">Controlls</h2><strong>BOTH TEAMS</strong><br><ul class="bb_ul"><li> WASD = Move<br></li><li> LEFT MOUSE BUTTON = Primary attack/Build<br></li><li> RIGHT MOUSE BUTTON = Secondary attack/Cancel a possible construction<br></li><li> SPACE = Jump<br></li><li> E = Deconstruct a structure (Builders only)<br></li><li> *********************************************************<br></li><li> V = Taunt<br></li><li> HOLD X = Walk<br></li><li> HOLD C = Fly/Swim down<br></li><li> HOLD SPACE = Fly/Swim up<br></li><li> F1 = Vote &quot;Yes&quot;<br></li><li> F2 = Vote &quot;No&quot;<br></li><li> F3 = Vote &quot;Don't care&quot;<br></li><li> F12 = Take a screenshot<br></li><li> SHIFT F12 = Take a 4K screenshot<br></li><li> TAB = Scoreboard<br></li><li> LEFT ALT = Toggle stacking of structures (Builders only)<br></li><li> ENTER = Public chat<br></li><li> T = Team chat<br></li><li> ESC = Open menu/Close menu or any window<br></li><li> H = Turn hints on/off</li></ul><br><strong>ONLY HUMAN TEAM</strong><br><ul class="bb_ul"><li> R = Reload<br></li><li> F = Use Medikit<br></li><li> Q = Use a structure<br></li><li> LEFT CTRL = Primary/Secondary weapon switch<br></li><li> *********************************************************<br></li><li> HOLD SHIFT = Sprint<br></li><li> C = Crough<br></li><li> B = Buy ammo (when close to Armory)<br></li><li> MIDDLE MOUSE BUTTON = Tertiary attack/Activate selected pocket item<br></li><li> MOUSE WHEEL UP/DOWN = Scroll between pocket items</li></ul><br><strong>ONLY ALIEN TEAM</strong><br><ul class="bb_ul"><li> Q = Evolve/Use Hovel<br></li><li> C = Wallwalk Toggle<br></li><li> *********************************************************<br></li><li> Z = Sniffing<br></li><li> F = Flying with Mur/Adv Mur Toggle</li></ul><br><strong>DEBUG</strong><br><ul class="bb_ul"><li> SHIFT ESC = Close all windows (Armoury menu, Build menu...)</li></ul><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/634070/extras/boxfield616.png?t=1533930765" />
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

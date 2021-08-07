@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ahlman Mansion 2020</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('981f31ff-dbe8-4401-b16d-4bda0cbd934b/60fee134-109f-4b33-8fdc-3ffa43cf5629.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="981f31ff-dbe8-4401-b16d-4bda0cbd934b/c9df0fdf-f392-4d23-a52d-d5a656409eb3.ico"/> Ahlman Mansion 2020</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="981f31ff-dbe8-4401-b16d-4bda0cbd934b/36c3fdaf-3ab0-45e9-8e79-73a635721a0d.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-18/05/2020">18/05/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-18/05/2020">18/05/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-67">67</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Ahlman Mansion Team">Ahlman Mansion Team</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Ahlman Game Studio">Ahlman Game Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Co-Op">Shared/Split Screen Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Pvp">Shared/Split Screen Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1252020" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1252020" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1252020/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1252020/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1252020" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1252020" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>Ahlman Mansion 2020</strong> is a large collection of games made by the game industry students at Ahlman Institute.<br><br>All games were made during our short ten-month long school year as a joint effort between the programmers and graphic designers as well as project mentors. The time spent developing each game varied, with some being made in a week or two, and one taking five weeks to develop. Other students from Ahlman Art, Music and Literature study fields have also created content on the Mansion.<br><br>Our games have a diverse selection of different genres, ranging from colorful platformers, endless runners and collect-exploding-cats to adventures, horror mysteries, racing games and annoyingly controllable grape escape.<br><br>They can be found on the main Arcade projector. There are also 3D objects, Literature student texts and Art student works scattered about inside the Ahlman Mansion itself, so try to <strong><i>find them all!</i></strong><h2 class="bb_tag"><strong><u>FEATURES</u></strong></h2><br>In the <strong>Ahlman Mansion</strong> you can…<br><br><ul class="bb_ul"><li>Behold the <u>Main Arcade Room</u>, where we’ve placed our most valued and treasured game projects (in the projector)<br></li><li>Take in the nostalgia in the <u><u>Music Room</u></u> or the <u>Reading Hall</u>, and listen to music made by our Music / Game Development students or read texts made by our Literature students.<br></li><li>Visit the <u>Cabinets of Graphics</u>, and have a look at the artwork our Graphic Designers have made.<br></li><li>Find the <u>Gallery</u>, and see what interesting real-life artworks made by our Art students wait for you…</li></ul><h2 class="bb_tag"><strong><u>CREDITS</u></strong></h2><br>Thanks to our mentor <u>Risto Koskenkorva</u>, who helped us in everything (programming, implementation, bug fixing, Blender and so forth) and <u>Antton Teräs</u>, who finished the visuals for Ahlman Mansion 2020.<h2 class="bb_tag"><u><strong>PROGRAMMERS</strong></u></h2><br><ul class="bb_ul"><li><strong><u>Risto Koskenkorva</u></strong> - Game Technology mentor / teacher, Lead implementer, Coder and All-around-fixer (<i><strong>Ahlman Mansion 2020</strong> and all games included</i>)<br></li><li><u>Aki Autio</u> - Coder (<i>Crystal Cave, Spell Plague, The Cartographer</i>)<br></li><li><u>Aleksi Haapasalo</u> - Coder (<i>Hop Hop Robot!, Lost in the Forest</i>)<br></li><li><u>Halil Kara</u> - Coder (<i>Lost Boy</i>)<br></li><li><strong><u>Heikki Äijälä</u></strong> - Coder (<i><strong>Ahlman Mansion 2020</strong>, Attention Seeker</i>)<br></li><li><u>Joonas Aro</u> - Coder (<i>Glitch, Super Dash</i>)<br></li><li><u>Jukka Palomäki</u> - Coder, Sound &amp; Music (<i>Glitch, Velvet Loop</i>)<br></li><li><u>Miro Mäkinen</u> - Coder (<i>Gloom Grove, Tomb of the Jungle Queen</i>)<br></li><li><u>Pauli Kiuru</u> - Coder, Level Design, Sound &amp; Music (<i>Donnie &amp; Pat: The Ultimate Hangover</i>)<br></li><li><u>Sami Sairiala</u> - Coder (<i>Exploding Cats</i>)<br></li><li><strong><u>Santeri Pyylampi</u></strong> - Coder (<i><strong>Ahlman Mansion 2020</strong>, Attention Seeker, Spell Plague, UFO Defender, Velvet Loop</i>)<br></li><li><u>Santeri Suomi</u> - Coder (<i>Assault of the Very Bad Robots, Kupperikarhu (Somersaultbear), Spell Plague</i>)<br></li><li><strong><u>Tapio Kemppainen</u></strong> - Code Lead, Coder, Implementer, Lead importer (<i><strong>Ahlman Mansion 2020</strong> and all games included, Fox Match 3</i>)<br></li><li><u>Teemu Ikäheimo</u> - Coder (<i>DeltaNova</i>)<br></li><li><u>Timo Rautiainen</u> - Coder (<i>Dream Biker, AsteroidXL</i>)<br></li><li><u>Tomi Kankaanpää</u> - Game design, Programming (<i>Space Demise, Donnie &amp; Pat: The Ultimate Hangover, The Keeper of the Light, Fish Outta Watta, Spell Plague</i>)<br></li><li><u>Tomi Sepänmaa</u> - Coder, Artist (<i>The Grape Escape, SNEK, Dream Biker</i>)<br></li><li><u>Veikko Ruopio</u> - Project Lead (Lost Boy TeamLeader), Implementer, Coder, Sound &amp; Music Producer (<i>Lost Boy, Outer World Attackers, Delta Nova</i>)<br></li><li><u>Viljo Mustalahti</u> - Programmer, Bug fixer (<i>The Hunter Becomes the Hunted, The Diamond Collector</i>)</li></ul><h2 class="bb_tag"><u><strong>GRAPHIC DESIGNERS</strong></u></h2><br><ul class="bb_ul"><li><u>Antti Leinonen</u> - Visual Game Design teacher, Graphics,...(3d modeler, animator,...) (<i>Ahlman Mansion 2020</i>)<br></li><li><u>Aleksi Hassinen</u> - 2D artist, 3D modeler (<i>Hopo Hop Robot!</i> )<br></li><li><strong><u>Antton Teräs</u></strong> - 2D artist, 3D modeler (<i><strong>Ahlman, Mansion 2020</strong>, Outer World Attacks, Velvet loop, Fish Outta Watta</i>)<br></li><li><strong><u>Aura Solja</u></strong> - 2D artist, 3D modeler (<i><strong>Ahlman Mansion 2020</strong>, Lost Boy, Spell Plague, The Keeper of the Light</i>)<br></li><li><u>Emilia Kilpelä</u> - 2D artist, 3D modeler (<i>Gloom Grove, Octodive</i>)<br></li><li><u>Hekla Hoimu</u> - 2D artist, 3D modeler (<i>Exploding Cats, Spell Plague, The Cartographer</i> )<br></li><li><u>Iiris Lähdemäki</u> - 2D artist, 3D modeler (<i>Exploding Cats, Spell Plague, </i> )<br></li><li><u>Jesper Hillberg</u> - 2D artist, 3D modeler (<i></i>)<br></li><li><u>Katariina Martikainen</u> - 2D artist, 3D modeler (<i>DeltaNova, Fox Match 3, The Grape Escape, Tomb of the Jungle Queen</i>)<br></li><li><u>Kati Paavilainen</u> - Art Lead, 2D artist, 3D modeler (<i>The Diamond Collector, Lost in the Forest</i>)<br></li><li><u>Lina Railio</u> - 2D artist, 3D modeler (<i>Attention Seeker, Space Demise</i> )<br></li><li><u>Max Männikkö</u> - 2D artist, 3D modeler (<i>Attention Seeker, Super Dash</i> )<br></li><li><u>Mira Salokatve</u> - 2D artist (<i>Kupperikarhu</i>)<br></li><li><u>Roope Lehkonen</u> - 2D artist, 3D modeler (<i>Donnie &amp; Pat: The Ultimate Hangover</i> )<br></li><li><strong><u>Saku Remahl</u></strong> - 2D artist, 3D modeler (<i><strong>Ahlman Mansion 2020</strong>, Donnie &amp; Pat: The Ultimate Hangover, UFO Defender</i>)<br></li><li><u>Siiri Syvänen</u> - 2D artist, 3D modeler (<i>DeltaNova, Attack Of The Very Bad Robots, Crystal Cave</i>)<br></li><li><u>Tatu Hyvärinen</u> - 2D artist, 3D modeler (<i>Asteroid XL</i>)<br></li><li><u>Venja Vitikka</u> - 2D artist, 3D modeler (<i>Spell Plague, The Cartographer, The Hunter Becomes the Hunted</i>)</li></ul><h2 class="bb_tag"><u><strong>EXTERNAL PRODUCTION - ART (PICTURES)</strong></u></h2> <br><ul class="bb_ul"><li><u>Sampsa Virkajärvi</u> - Art teacher / Organizer <br></li><li><u>Anne Lehtelä</u> - Art teacher / Organizer<br></li><li><u>Ellamaari Riitijoki</u> - Artist - Painter / Photographer (<i>Art piece in Gallery</i>)<br></li><li><u>Marlena Pulkkanen</u> - Artist - Painter (<i>Art piece in Gallery</i>)<br></li><li><u>Milan Braun</u> - Artist - Painter (<i>Art piece in Gallery</i>)<br></li><li><u>Niina Juntunen</u> - Artist - Painter / Creator (<i>Art piece in Gallery</i>)<br></li><li><u>Piia Muurinaho</u> - Artist - Sculptor / Creator (<i>Art piece in Gallery</i>)<br></li><li><u>Pinja Marienberg</u> - Artist - Painter / Sculptor / Creator (<i>Art piece in Gallery</i>)<br></li><li><u>Saara Kankare</u> - Artist - Painter (<i>Art piece in Gallery</i>)<br></li><li><u>Sini-Janika Koivumäki</u> - Artist - Painter / Creator (<i>Art piece in Gallery</i>)<br></li><li><u>Topi Tolvanen</u> - Artist - Painter / Sculptor / Creator (<i>Art piece in Gallery</i>)</li></ul><h2 class="bb_tag"><u><strong>EXTERNAL PRODUCTION - MUSIC</strong></u></h2>  <br><ul class="bb_ul"><li><u>Sami Kainulainen</u> - Music supervisor, Coordinator <br></li><li><u>Hanna Lahtinen</u> - Music supervisor, Composer, Arranger, Executive Producer (<i>Main music track</i>)<br></li><li><u>Aino Kriikula</u> - Co-arranger (<i>Main music track</i>)<br></li><li><u>Allu Tanskanen</u> - Musician, Co-arranger (<i>Main music track</i>)<br></li><li><u>Elli-Noora Janhonen</u> - Musician, Co-arranger (<i>Main music track</i>)<br></li><li><u>Hermes Tuomisto</u> - Musician, Co-arranger (<i>Main music track</i>)<br></li><li><u>Jenna Säkkinen</u> - Musician, Co-arranger (<i>Main music track</i>)<br></li><li><u>Jenna Kosunen</u> - Musician, Co-arranger (<i>Main music track</i>)<br></li><li><u>Tanja Töyrynen</u> - Musician, Co-arranger (<i>Main music track</i>)<br></li><li><u>Wictoria Ruohomäki</u> - Musician, Co-arranger (<i>Main music track</i>)</li></ul><br>Main music track was recorded and mixed on Soundtrap, <a href="https://steamcommunity.com/linkfilter/?url=http://Soundtrap.com" target="_blank" rel="noopener"  >http://Soundtrap.com</a><h2 class="bb_tag"><u><strong>EXTERNAL PRODUCTION - LITERATURE</strong></u></h2><br><ul class="bb_ul"><li><u>Helena Murtonen-Leppä</u> - Literature teacher / organizer <br></li><li><u>Iki Horros</u> - Writer (<i>Text in Reading Hall</i>)<br></li><li><u>Milka Liikala</u> - Writer (<i>Text in Reading Hall</i>)<br></li><li><u>Reetta Vuokko-Syrjänen</u> - Writer (<i>Text in Reading Hall</i>)<br></li><li><u>Riikka Friman</u> - Writer (<i>Text in Reading Hall</i>)</li></ul><h2 class="bb_tag"><strong><u>TOOLS USED BY THE PROGRAMMERS</u></strong></h2><br><ul class="bb_ul"><li>C#<br></li><li>Visual Studio<br></li><li>Unity and Unity API<br></li><li>WinMerge<br></li><li>TeamViewer / DiscordApp</li></ul><h2 class="bb_tag"><strong><u>TOOLS USED BY THE GRAPHIC DESIGNERS</u></strong></h2><br><ul class="bb_ul"><li>Unity<br></li><li>Blender<br></li><li>Adobe Photoshop<br></li><li>Gimp<br></li><li>Substance Designer<br></li><li>Substance Painter</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

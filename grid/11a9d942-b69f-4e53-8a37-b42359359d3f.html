@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>CaesarIA</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('11a9d942-b69f-4e53-8a37-b42359359d3f/98ea7536-39d7-4ec7-97ad-c954f1a4b202.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="11a9d942-b69f-4e53-8a37-b42359359d3f/11904790-4617-48df-996b-efccb38832d6.ico"/> CaesarIA</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="11a9d942-b69f-4e53-8a37-b42359359d3f/0066ab7f-b676-46b3-a838-26a8d4f25db7.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>1m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-13/05/2019">13/05/2019</a> 3:30:06</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-03/02/2016">03/02/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-20/01/2015">20/01/2015</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-59">59</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-rdt.32">rdt.32</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-rdt.32">rdt.32</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=327640" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/327640" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/327640/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/327640/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/327640/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/327640" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=327640" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					CaesarIA is inspired by an old-school economic strategy game, Caesar III which is a masterpiece among the games of this genre in our opinion. There are different economic strategy games and they can be broken down to subtypes but from our viewpoint Caesar encompasses planning, constructing, diplomacy and military campaigns.<br><br><strong>Economy and Trade</strong><br><br>Miniature model of an economy leaves the ruler no room for mistakes, under his leadership there are extractive industry (mines, sawmills, outcrop mines and farms) and production (factories, armories, wineries and brandy kitchens). And if some resource is scarce or not available, then trade with the neighbors can be a solution for the difficult situation. Mini-economy is complicated and takes into account a variety of facts: taxes, import/export, population of the town, healthcare, unemployment. In order to stay in the black it is necessary to develop houses with high income level but that can lead to a rise in unemployment which consequently results in big problems such as an embezzlement of municipal purse. <br><br><strong>Construction</strong><br><br>Construction is defined by the needs of the town, healthcare, procurement, buildings security provision. The main idea of construction is bringing workers to the area, there actors entertain the public, engineer provides service for shabby houses, vigils fight criminals.  Moreover, city folk prefer to occupy quiet picturesque location such as gardens farther from dirty barns and noisy barracks.<br><br><strong>Diplomacy</strong> <br><br>The emperor will not leave the town alone, Caesar himself will demand goods for his personal use, sometimes in huge amounts and with bad timing. If the player has enough nerve he/she can just turn a blind eye to Caesar which unfortunately results in game over. Therefore, it is important to stay friends with Caesar and send him presents such as modest donations or exotic animals. Towns in the neighborhood will also take part in common trade network of the Empire and compete in the deals with the town. <br><br><strong>Religion</strong><br><br>Romans were superstitions people and created the whole hierarchy of gods. 5 gods are in the game: <br>- Earth goddess, Ceres, when worshiped in the right way doubles the yield capacity. <br>- Restive Neptune can help the merchants have a successful voyage. <br>- Sly Mercurius can fill all barns and storage houses up to the roof. <br>- Spirit of Mars protects the town from foes brave enough to attack the town. <br>- Venus can brighten up the mood of city folk for a long time. <br><br><strong>Attitude of the City Folk</strong><br><br>The attitude of the city folk to you will be very important, if the reputation of the ruler is bad it can start the emigration, then criminal rate increases - riots, fires and many other problems occur. Therefore, it is necessary to take care of the people and analyse current deficiency. Healthcare is provided by hospitals and bath houses. Entertainment is fence play and chariot-riding. Food comes from farms and the sea. Religion and security are at control of the regular army. <br><br><strong>Military Set-up</strong><br><br>The city has to be protected from invasions of barbarians, the creation of bastille lies ahead, soldiers and barracks can be situated there as well as recruit depot. However, this is a way to recruit only varmint velites and reckless equites. Roman army is its legionnaires and they are heavily armored with helmets and shields that means a demand for ore and iron which are not so easy to excavate. But even if you have 2 cohorts of legionnaires nobody is free of fear therefore there is a need in a military academy where soldiers can have additional training in survival and ethics. <br><br><strong>Specific Features:</strong><br>+ Upload of the map from the original Caesar III game;<br>+ Construction\demolition of buildings and edifices;<br>+ Migration of population;<br>+ Farming and product distribution; <br>+ Entertainment, healthcare, religion, education;<br>+ Empire trade network with computer towns;<br>+ Extraction of raw materials and manufacturing;<br>+ Prefects, engineers, apprentices, soldiers, etc.;<br>+ Advisers;<br>+ Dynamic town modeling;<br>+ Changing the level of the houses according to the environment; <br>+ Healthcare and water facilities;<br>+ Military buildings.<br><br><strong>Future Plans</strong><br>- Real-life financial system (salary, goods purchase, hiring);<br>- Specialization of city folk, setting up personal relations and families;<br>- Class system in the town (slaves, plebs, clients and patricians);<br>- Various climate conditions;<br>- Map editor;<br>- Computer towns and empires modeling;<br>- Network play.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

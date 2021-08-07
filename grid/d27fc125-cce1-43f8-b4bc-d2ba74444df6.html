@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Neos VR</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('d27fc125-cce1-43f8-b4bc-d2ba74444df6/094b320f-b35c-4acc-83f6-731fcdcf5305.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="d27fc125-cce1-43f8-b4bc-d2ba74444df6/7ee4bf27-f4ab-4c28-be8b-fbc9e9b71eef.ico"/> Neos VR</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="d27fc125-cce1-43f8-b4bc-d2ba74444df6/a1f97cda-eb5a-416d-9be5-4bddd4a99304.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>58m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-12/06/2020">12/06/2020</a> 23:07:56</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-23/10/2018">23/10/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-04/05/2018">04/05/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-83">83</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Animation & Modeling">Animation & Modeling</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Design & Illustration">Design & Illustration</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Education">Education</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Software Training">Software Training</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Utilities">Utilities</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Web Publishing">Web Publishing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Frooxius">Frooxius</a><br/><a href="default_developer_ascending_name_ascending.html#quicklink-Solirax">Solirax</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Solirax">Solirax</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-LAN Co-Op">LAN Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-LAN Pvp">LAN Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR">VR</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Keyboard / Mouse">VR Keyboard / Mouse</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Motion Controllers">VR Motion Controllers</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Room-Scale">VR Room-Scale</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Seated">VR Seated</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-VR Standing">VR Standing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=740250" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/740250" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/740250/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/740250/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/740250" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=740250" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					Neos VR is a metaverse engineered for the unknown! It’s one of the most versatile and feature rich metaverses for virtual reality, designed so everybody can find something interesting or useful to do in a social setting.<br><br>It serves as a casual hangout experience with multimedia and games, creator, builder and developer sandbox, professional work tool, educational experience and much more!<br><br>We believe that social VR should be part of everyone’s life, no matter what they do and it should enhance how they communicate and share their ideas and lives with others. We have built Neos to give your mind superpowers.<br><br>Come join our diverse and creative community and bring your own uniqueness to the shared universe! Here are some of the major features that Neos VR offers:<h2 class="bb_tag">State of the art avatar system</h2><br><ul class="bb_ul"><li>Import, build and <strong>setup your avatar completely in-game</strong><br></li><li>Fully configurable <strong>full body IK with up to 11 tracking points</strong> (head, hands, hips, feet, chest, elbows and knees)<br></li><li><strong>Blendshape</strong> support with automatic viseme setup<br></li><li><strong>Interactive dynamic bones</strong> with collisions and grabbing<br></li><li>Quickly <strong>add accessories</strong> or modify in-game - adding a hat is as simple as putting it on your head<br></li><li><strong>Visual scripting</strong> to add unique customizations and behaviors</li></ul><h2 class="bb_tag">Social Features</h2><br><ul class="bb_ul"><li><strong>Virtual camera<strong> - captures photos, stereo, 360 or even object cutouts, with configurable resolution<br></strong></strong></li><li>Easy media sharing - <strong>copy and paste video files<strong> (including YouTube links), music, pictures and 3D models instantly into any world for free. Everything is fully synchronized<br></strong></strong></li><li><strong>Friend system<strong> - see when your friends are online and which worlds are they in<br></strong></strong></li><li>Messaging system - <strong>send messages, invites and even arbitrary objects<strong> in-game<br></strong></strong></li><li><strong>Twitch integration</strong> for next level interaction with audience - chat with custom emote support and visual scripting access for interactive worlds</li></ul><h2 class="bb_tag">Fully featured Desktop mode - play without VR!</h2><ul class="bb_ul"><li><strong>First person mode<strong> - interact from the viewpoint of your character! Any tools, gadgets and guns are automatically posed and fully usable<br></strong></strong></li><li><strong>Third person mode<strong> - want to see your avatar when you socialize or build? This mode is ideal for you and all the interactions still work!<br></strong></strong></li><li><strong>Freeform Camera mode<strong> - decouple the view from your character completely and move it freely around - ideal for building worlds in desktop<br></strong></strong></li><li><strong>UI Aligned Camera mode<strong> - click on any in-world UI to align it with your screen and free your mouse cursor to make the interaction much easier<br></strong></strong></li><li><strong>Toggle between Desktop and VR<strong> - no restart needed! If you play both in VR and desktop, you can toggle between each with a press of a key[/list]<h2 class="bb_tag">Advanced locomotion system</h2><br><ul class="bb_ul"><li><strong>Walking, sliding, zero-G</strong>, spherical gravity and more<br></li><li><strong>Climbing</strong> both environment and other players<br></li><li><strong>Teleporters, force fields, springs, portals</strong> and custom coordinate spaces<br></li><li>Quick in-game scaling - <strong>shrink or grow to any scale!</strong><br></li><li><strong>Highly configurable and scriptable</strong> - build jet packs, swinging ropes, gravity lifts and more completely in-game</li></ul><h2 class="bb_tag">Dynamic &amp; unique experience every day</h2><br><ul class="bb_ul"><li><strong>Inventory system</strong> - save and spawn anything anywhere! You’re not limited by what the creator of the world has included with it<br></li><li><strong>Everything is editable!</strong> Unless the world owner has locked things down, any world and item can be modified, remixed and extended<br></li><li>Multi-instancing - you can be connected <strong>in multiple worlds at the same time</strong> and instantly switch between them like tabs in a web-browser<br></li><li><strong>Fixes and edits</strong> can be done <strong>within seconds/minutes in-game</strong> - no complex and time consuming upload process to go through</li></ul><h2 class="bb_tag">Creator’s playground</h2><br><ul class="bb_ul"><li><strong>Build everything collaboratively in real time</strong> with your friends without taking your headset off<br></li><li><strong>Simple creative tools</strong> - brushes, material guns, shape tools<br></li><li><strong>Advanced building tools</strong> - scene / component inspector, editing gizmos<br></li><li><strong>Powerful visual scripting language</strong> (LogiX) capable of easily adding custom interactions to literally anything, to building complex systems, games and simulations<br></li><li><strong>Import game assets</strong> as you work - over 40 3D model formats (including FBX, Blend, OBJ), textures/images, audio</li></ul><h2 class="bb_tag">Powerful work tool</h2><br><ul class="bb_ul"><li><strong>Slice any imported 3D model</strong> to aid with visualization<br></li><li><strong>Volumetric data visualization</strong> (e.g. CT or MRI) with slicing and filtering<br></li><li><strong>Export anything you’ve created</strong> or modified as 3D model and make Neos part of your pipeline<br></li><li><strong>Basic in-game texture &amp; mesh processing</strong> for common modifications<br></li><li><strong>Advanced in-game camera with control panel</strong>, anchors allows to easily get good shots for video clips or live streams</li></ul><h2 class="bb_tag">You are in control of your own experience</h2><br><ul class="bb_ul"><li><strong>Permission system</strong> to restrict what others can do in your worlds<br></li><li><strong>Private sessions</strong> - with P2P hosting and secure authentication<br></li><li>Effortless self hosted sessions <br></li><li><strong>Headless server</strong> for setting up custom <strong>dedicated servers</strong> (currently in private beta)</li></ul><h2 class="bb_tag">Wide hardware support</h2><br><ul class="bb_ul"><li><strong>PCVR &amp; Mobile VR</strong> with crossplay<br></li><li>Full Index Controller support with <strong>finger tracking</strong><br></li><li><strong>Leap Motion support</strong> with full body avatars<br></li><li><strong>Eye tracking support</strong> (Vive Pro Eye) - look direction, eye closing, pupil dilation<br></li><li><strong>Lip tracking support</strong> (HTC Vive Facial Tracker) - track your mouth, cheeks and tongue on  your avatar or utilize the raw data</li></ul></strong></strong></li><li><strong>Haptics feedback support</strong> (bHaptics, OWO Game Suit) with avatar to avatar interactions as well as environment interactions<h2 class="bb_tag">Rapid Development</h2><br><ul class="bb_ul"><li>The <strong>fastest growing social VR platform</strong><br></li><li><strong>New major features every month</strong><br></li><li><strong>Updates and bug fixes (usually) every day</strong> - many minor issues are fixed within a day<br></li><li><strong>Community driven</strong> - your feedback and support shapes the development of this project!</li></ul><br>Neos VR is a labour of love for us and our goal is to build a metaverse the way we imagine it should be, without influences of large corporations. We’re a very small and nimble team, but we have gotten this far thanks to our amazing community and Patreon supporters, who keep this project going.<br><br>If you enjoy what we do, please enjoy supporting the development. Here are some of the things you’d be contributing to:<h2 class="bb_tag">What’s coming in the future?</h2><br><ul class="bb_ul"><li>UI/UX redesign <br></li><li>Full rigidbody physics<br></li><li>Terrain system<br></li><li>Timeline animation system<br></li><li>Screenshare<br></li><li>Advanced optimizations<br></li><li>New building tools<br></li><li>AR support<br></li><li>And more!</li></ul></li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

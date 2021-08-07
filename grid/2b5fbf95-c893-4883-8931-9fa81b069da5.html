@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>LoveKami -Divinity Stage-</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2b5fbf95-c893-4883-8931-9fa81b069da5/51bf5ce1-d19d-44b3-9e94-37ccd3428b4e.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="2b5fbf95-c893-4883-8931-9fa81b069da5/d4508d4f-d158-4949-907d-7f2800201182.ico"/> LoveKami -Divinity Stage-</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="2b5fbf95-c893-4883-8931-9fa81b069da5/9b49f9dc-13e9-4d37-bb2b-38a36986a2d2.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>4h 7m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-17/09/2018">17/09/2018</a> 13:06:06</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-15/12/2017">15/12/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-15/12/2016">15/12/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-77">77</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-MoeNovel">MoeNovel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-MoeNovel">MoeNovel</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=547340" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/547340" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/547340/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/547340/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/547340/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/547340" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=547340" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://media.st.dl.pinyuncloud.com/steam/apps/547340/extras/LKLogo.jpg?t=1573642394" crossorigin="anonymous"/><br><br>From the creators of If My Heart Had Wings, comes MoeNovel's exciting new original title, LoveKami, debuting on Steam in English, bringing a fun and energetic tale filled with magic, love and music! <br>Join L☆SEVEN as they aim to be the best Divine Idols in the lively world of Akihabara!<br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/547340/extras/Titles_1.jpg?t=1573642394" crossorigin="anonymous"/><br><br>In a time when dreams had been forgotten and faith was lost, when people only believed what they could see with their own eyes, one day visions of goddesses appeared...<br><br>It soon comes to light that the Japanese sun deity, Amaterasu, wished to teach the goddesses about the human world. All of this leads to the implementation of the Divine Education Act.<br>Now, a year has passed and numerous goddesses and humans have had the chance to learn about each other, get to know one another, and come to a mutual understanding.<br><br>In Akihabara, the very heart of the Divine Idol culture and home to various subcultures, seven lucky goddesses dominate as the idol group L☆SEVEN.<br><br><strong><h2 class="bb_tag">Next-Generation Goddess Auditions!</h2></strong><br>Divine Idols, spread your wings and take flight!<br>A glamorous contest, containing everything that goddess’ dreams are made of, is being held!<br>Laugh, grow, and even cry together with goddesses who descended from the sky and are aiming to become top-level idols.<br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/547340/extras/Titles_3.jpg?t=1573642394" crossorigin="anonymous"/><br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/547340/extras/Shuri_plus.jpg?t=1573642394" crossorigin="anonymous"/><br><br>The younger sister of Bishamonten, who is a member of the top idol group comprised of the seven lucky goddesses, L☆SEVEN.<br><br>Shuri has always looked up to her older sister, performing on the streets with the aim to become an idol as well.<br><br>Bubbly and while seemingly full of confidence, there are times when she ends up comparing herself to her more-successful sister and doesn’t give herself enough credit. She’s down-to-earth and usually hardworking, but can quickly lose interest in things and isn’t afraid to show it.<br><br>Kisshouten represents prosperity and good luck, along with happiness, beauty, and wealth. She is worshipped in hopes of gaining respect and sometimes in the hope for bountiful harvests.<br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/547340/extras/Kagura_plus.jpg?t=1573642394" crossorigin="anonymous"/><br><br>Ame no Uzume is a deity found originally in Shinto mythology. She appears in some of the oldest legends, such as the tale of the missing sun deity, when Amaterasu Omikami hid herself away at Amano-Iwato. She's said to be Japan's oldest performance artist.<br><br>She works part-time in a Divine Idol-themed cafe while building up her career from the grassroots level.<br><br>Kagura likes to have fun, but that doesn't mean she's a slacker. Her unique sense of rhythm and expressionism when she dances are both hers alone; no one else can duplicate them.<br>In true ‘Ame no Uzume’ spirit, she usually ends up giving the audience a little more of a risque performance as she easily gets worked up. But there are also times when she relaxes and can stay calm. Her personality is carefree and playful, which easily comes across in how she interacts with others.<br><br>As one of the more naturally seductive goddesses, she is not opposed to wearing more revealing costumes when she performs.<br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/547340/extras/Sara_plus.jpg?t=1573642394" crossorigin="anonymous"/><br><br>Benzaiten's blessings are plentiful; she is the goddess of music, good fortune, the arts, victory, and even water. She holds the center position in L☆SEVEN.<br><br>She loves singing, but since she hasn't fallen in love yet, and with the abundance of love songs in the idol music genre, she often becomes doubtful of her ability to sing love songs convincingly.<br>She tends to play acoustic guitar when singing casually.<br>Even though she's always at the center, at heart she's just a regular girl.<br><br>She can always be found smiling, which matches her cheerful personality.<br>Her manner of speaking is calm and collected, but she sometimes lets her playful side show during conversations.<br><br><img src="https://media.st.dl.pinyuncloud.com/steam/apps/547340/extras/Titles_2.jpg?t=1573642394" crossorigin="anonymous"/><br><ul class="bb_ul"><li>Japanese Animated Novel / Visual Novel HD<br></li><li>Three character routes to play through <br></li><li>Fully Voiced characters (only the protagonist isn't voiced)<br></li><li>Animated Sprites</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

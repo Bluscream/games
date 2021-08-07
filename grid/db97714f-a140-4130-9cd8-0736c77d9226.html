@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Ahlman Arcade 2018</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('db97714f-a140-4130-9cd8-0736c77d9226/03f8993e-3e72-449e-8e84-64c565d6f7c2.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="db97714f-a140-4130-9cd8-0736c77d9226/af92ced5-7f5b-44b4-b1cf-18fd83f5d9f2.ico"/> Ahlman Arcade 2018</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="db97714f-a140-4130-9cd8-0736c77d9226/8d31aeed-b3b5-473e-af4d-e36b0ec2a147.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-17/04/2020">17/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-11/08/2018">11/08/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-62">62</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Racing">Racing</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Sports">Sports</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Team in Time">Team in Time</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Ahlman Game Studio">Ahlman Game Studio</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen">Shared/Split Screen</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Shared/Split Screen Pvp">Shared/Split Screen Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=855580" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/855580" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/855580/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/855580/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/855580" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=855580" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<img src="https://cdn.akamai.steamstatic.com/steam/apps/855580/extras/steamlogo.png?t=1558798022" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/855580/extras/ahlmanarcade.png?t=1558798022" /><br><strong>Ahlman Arcade 2018</strong> is a collection of games made by the game industry students at Ahlman Institute.<br><br>All games were made during our ten month long school year as a joint effort between the programmers and graphic designers. The time spent developing each game varied, with some being made in a week or so and others taking over ten weeks to develop.<br><br>Our games have a diverse selection of different genres, ranging from colorful platformers and collect-a-thons to sport games, horror mysteries, racing games and bullet hell manias.<br><br>They can be found on the consoles and cabinets scattered about inside the Ahlman Arcade itself, so try to <strong><i>find and play them all!</i></strong><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/855580/extras/features.png?t=1558798022" /><br>In the <strong>Ahlman Arcade</strong> you can…<br><br><ul class="bb_ul"><li>Behold the <u>Main Project Room</u>, where we’ve placed our most valued and treasured game projects<br></li><li>Take in the nostalgia in the <u><u>Gamer Room</u></u> or the <u>Arcade Hall</u>, and play games on old-school consoles and cabinets<br></li><li>Visit the <u>Museum of Graphics</u>, and have a look at the artwork our graphic designers have made<br></li><li>Find the <u>hidden basement</u>, and see what horrors await within…</li></ul>[/list]<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/855580/extras/listofgames.png?t=1558798022" /><br>In the <strong>Main Project Room</strong> you can…<br><br><ul class="bb_ul"><li>Race against the clock or your friends in <u>Deadline</u> (<i>local split-screen multiplayer only</i>)<br></li><li>Look out for birds and boulders in the 3D bullet hell adventure <u>Dragon’s Fodder</u><br></li><li>Delve deep into the gruesome horror story of <u>Going Home</u>…</li></ul><br>In the <strong>Gamer Room</strong> you can…<br><br><ul class="bb_ul"><li>Help Doctor Nestor save or destroy the last of animal-kind in the post-apocalyptic world of <u>Dr. Nestor’s Ark</u><br></li><li>Enjoy a baseball-themed, classic 2D platformer with <u>BallCat’s Homerun</u><br></li><li>Jump on leaves and stars, and see how high you can go in <u>Corgi Jumper</u><br></li><li>Collect all the berries in the low-poly scenery of <u>Fox’s Berry Adventure</u><br></li><li>Escape your fate as a child’s toy and sneak around the patrolling robots in <u>Ungifted Bunny</u></li></ul><br>In the <strong>Arcade Hall</strong> you can…<br><br><ul class="bb_ul"><li>Have a <u>Disc Golf Experience</u> unlike ever before (<i>VR version published separately</i>)<br></li><li>Join the grumpy Mr. Potato in the quest to save your spuds in <u>Mr. Potato Runner</u><br></li><li>Play a nerve-wracking game of cat-and-mouse in the bullet hell mania <u>Top Hat Cat</u><br></li><li>Avoid barrels, trees, tables and bears as you run in <u>Ms Woman Runner</u><br></li><li>Test your dodging skills in the spooky bullet hell <u>Shadow Glider</u></li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/855580/extras/credits.png?t=1558798022" /><br>Thanks to our mentor <u>Risto Koskenkorva</u>, who helped us in everything (programming, implementation, bug fixing, Blender and so forth) and <u>Jani Rajahalme</u>, who carried Ahlman Arcade 2018 to the end.<br><br><strong>Programmers</strong><br><br><ul class="bb_ul"><li><u>Antti Terva</u> - lead programming, project management and level editing<br>(<i>Ahlman Arcade 2018, Dr Nestor’s Ark, Dragon’s Fodder, Fox’s Berry Adventure, Shadow Glider, Top Hat Cat and Ungifted Bunny</i>)<br></li><li><u>Jaakko Palm</u> - programming<br>(<i>Ahlman Arcade 2018, Dr Nestor’s Ark and Going Home</i>)<br></li><li><u>Jani Rajahalme</u> - lead programming and project management/leading<br>(<i>Ahlman Arcade 2018, BallCat’s Homerun, Deadline and Disc Golf Experience</i>)<br></li><li><u>Janne Happonen</u> - programming<br>(<i>Ahlman Arcade 2018, Corgi Jumper and Dragon’s Fodder</i>)<br></li><li><u>Joel Keskinen</u> - programming<br>(<i>Ahlman Arcade 2018 and Deadline</i>)<br></li><li><u>Laura Halsinaho</u> - programming<br>(<i>Ahlman Arcade 2018, Going Home, Jasan Päiväuni and Ms Woman Runner</i>)<br></li><li><u>Marko Salo</u> - lead programming, project management and level editing<br>(<i>Ahlman Arcade 2018, Corgi Jumper, Dr Nestor’s Ark, Dragon’s Fodder, Jasan Päiväuni and Ungifted Bunny</i>)<br></li><li><u>Mikael And</u> - programming<br>(<i>Ahlman Arcade 2018 and Deadline</i>)<br></li><li><u>Sebastian Johansson</u> - programming<br>(<i>Ahlman Arcade 2018, Corgi Jumper, Dr Nestor’s Ark, Dragon’s Fodder, Fox’s Berry Adventure and Top Hat Cat</i>)<br></li><li><u>Vili Itä</u> - lead programming and level editing<br>(<i>Ahlman Arcade 2018, Going Home and Mr. Potato Runner</i>)</li></ul><br><strong>Graphic designers</strong><br><br><ul class="bb_ul"><li><u>Aki Immonen</u> - 3D and 2D art, level editing and voice acting<br>(<i>Ahlman Arcade 2018, Disc Golf Experience, Dr Nestor’s Ark, Going Home, Top Hat Cat and Ungifted Bunny</i>)<br></li><li><u>Eeva Vallin</u> - 3D art<br>(<i>Ahlman Arcade 2018, Dr Nestor’s Ark, Going Home and Top Hat Cat</i>)<br></li><li><u>Essi Pärssinen</u> - UI design, 2D art and voice acting<br>(<i>Ahlman Arcade 2018, Deadline, Disc Golf Experience and Going Home</i>)<br></li><li><u>Jasa Paavolainen</u> - lead graphic design, project management/leading, 3D art and voice acting<br>(<i>Ahlman Arcade 2018, Deadline, Going Home and Jasan Päiväuni</i>)<br></li><li><u>Jenna Virtala</u> - 3D art<br>(<i>Ahlman Arcade 2018, BallCat’s Homerun, Dr Nestor’s Ark, Dragon’s Fodder and Top Hat Cat</i>)<br></li><li><u>Juho Mustonen</u> - 3D art<br>(<i>Ahlman Arcade 2018, Going Home and Ms Woman Runner</i>)<br></li><li><u>Juho Väänänen</u> - 3D art and texturing<br>(<i>Ahlman Arcade 2018, Deadline and Disc Golf Experience</i>)<br></li><li><u>Lotta Karvonen</u> - 3D and 2D art<br>(<i>Ahlman Arcade 2018, Corgi Jumper, Disc Golf Experience, Dr Nestor’s Ark, Dragon’s Fodder, Fox’s Berry Adventure and Ungifted Bunny</i>)<br></li><li><u>Oona Liukkonen</u> - 3D art<br>(<i>Ahlman Arcade 2018, Going Home, Jasan Päiväuni and Mr. Potato Runner</i>) <br></li><li><u>Otto Kylänlahti</u> - 3D art<br>(<i>Ahlman Arcade 2018, Corgi Jumper, Deadline, Disc Golf Experience and Shadow Glider</i>)<br></li><li><u>Petro Haukkovaara</u> - game testing and concept design<br>(<i>Deadline, Jasan Päiväuni and Ungifted Bunn</i>y)</li></ul><br>A very special thanks to graphics teacher <u>Lassi Rinne</u> and the <u>Ahlman Institute</u> as well!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/855580/extras/toolsused.png?t=1558798022" /><br>By the programmers…<br><br><ul class="bb_ul"><li>C#<br></li><li>MonoDevelop<br></li><li>Unity API<br></li><li>Visual Studio</li></ul><br>By the graphic designers…<br><br><ul class="bb_ul"><li>Adobe Illustrator<br></li><li>Adobe Photoshop<br></li><li>Blender<br></li><li>Gimp<br></li><li>Substance Designer<br></li><li>Substance Painter</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

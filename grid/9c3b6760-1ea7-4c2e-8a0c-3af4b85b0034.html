@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Legendary DXP</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('9c3b6760-1ea7-4c2e-8a0c-3af4b85b0034/ef9eab6a-40cf-4df7-91c5-de734c22314c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="9c3b6760-1ea7-4c2e-8a0c-3af4b85b0034/28219996-cd8f-4255-b834-34ef41dca210.ico"/> Legendary DXP</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="9c3b6760-1ea7-4c2e-8a0c-3af4b85b0034/9247f43d-bff0-43e2-b3eb-f7aeb7b674c7.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-18/04/2020">18/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-23/01/2018">23/01/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-54">54</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-SkyReacher Entertainment">SkyReacher Entertainment</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-The Upper Deck Company">The Upper Deck Company</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=734020" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/734020" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/734020/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/734020/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/734020" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=734020" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Update Notes</h1><p><strong><u>New Update:</u></strong> 7/15/2021<br>-Removed the need for energy for all modes once you buy the Starter bundle.<br>-All new spectator mode!<br>-New campaign scoring and leaderboard reset.<br>-Tutorial has been updated.<br>-Global chat has been added to talk in game and out!<br>-New Power Ups! Add attack, recruit and more.<br>-New bot logic.<br>-Gauntlet seat bonus added for 2nd and 3rd seat.<br>-Collection now has a new toggle to view items<br>-Various bug fixes<br>-Various UI updates</p><br><h1>Update Notes</h1><p><strong><u>New Update:</u></strong> 7/2/2020<br><br>-New Epic Campaign and rewards.<br>-Epic leaderboard and rewards have been added.<br>-In-game chat has been added to multiplayer games.<br>-Epic Masterminds will be found in games if owned.<br>-Added new Epic Mastermind music.<br>-Added Curse of Kharkhiraa Henchmen.<br>-Report a player has been added.<br>-Updated various links.<br>-Fixed various bugs.</p><br><h1>Update Notes</h1><p><strong><u>Bug Fixes:</u></strong>1/28/2020 <br>-Various desync and disconnect issues<br>-Bugs related to slow internet connection<br>-Card art stretching<br>-Missing card in Guild Hall<br>-Optimized game code for better speed and memory usage<br>-Added connection bar to show when reconnecting<br>-Add logs to better track bugs<br>-Tides of time with master shapeshifter and Focus ability</p><br><h1>Update Notes</h1><p><strong><u>New Content:</u></strong> 12/19/19<br>- New Holiday item deal! Grab it before it's gone!<br>- New Disaray chest! Let his arrows fly with the new attack animation!<br>- Client logs to track bugs<br>- Removed past holiday content<br>- other bug fixes</p><br><h1>Update Notes</h1><p><strong><u>New Content:</u></strong> 10/17/19<br>-Mal Chest<br>-Limited time Halloween Deal<br>-Silver Shop items<br>-Event Chest items<br>-Item preview in Silver Shop<br><br><strong><u>Bug Fixes:</u></strong><br><br>-Auto refreshing during games<br>-New henchmen not in deck (solo)<br>-Special villagers not showing in VS Friends<br>-Minus 1 recruit counter<br>-Prestige white texture when maxed<br>-Feast animation <br>-Vetra Master Strike animation<br>-Raid results show correctly<br>-Queen’s Decree<br>-War of Attrition <br>-Toxic Cloud effect <br>-Lost in the Fog effect <br>-Sudden Gust no longer captures villagers</p><br><h1>Update Notes</h1><p><strong><u>New Expansion! - The Curse Of Kharkhiraa</u></strong> 07/29/2019<br>2 new Heroes!<br>·         Armando the Bold – A rogue set to defend the people of Kharkhiraa. Scourge to Kelila, ruler of the Sentori.<br>·         Tempest – Wife of Armando, transformed into an Air Elemental, resides in an amulet in Armando’s possession.<br>5 new Special Villagers!<br>·         These villagers have a great appreciation for being saved by granting special abilities.<br>2 new Henchmen!<br>·         Tattie-Bogles – Scarecrows possessed by dark forces.<br>·         Cobra Lilies – Carnivorous plants that lure you in with treats.<br>New Teleport ability!<br>·         Save a hero to fight another day!<br>New Hero Levels!<br>·         Help Armando and Tempest defeat evil masterminds.<br>New Player Avatars!<br>·         Show your support to the newest members of Alamyth.<br> <br>Bug Fixes:<br>Queen’s Decree<br>War Of Attrition</p><br><h1>Update Notes</h1><p><strong><u>New!:</u></strong> 02/27/2019<br>-New in game music and SFX<br>-Updated attack and recruit animations<br>-Animation speed control<br>-Optimized attack and recruit flow<br>-Updated view of attack values when altered<br><br>-Various bug fixes</p><br><h1>Update Notes</h1><p><strong><u>New!:</u></strong> 01/03/2019<br>- All new Menu UI<br>- Prestige levels and rewards<br>- Raids, work together to take down the Mastermind<br>- New Avatar Frames <br>- New Mastermind Zohar<br>- Chests and Scotty's Silver shop<br><br>-Various bug fixes</p><br><h1>Update Notes</h1><p><strong><u>New Features:</u></strong> 10/30/18<br>-New Daily Challenges<br>-New Achievements<br>-New Vigilant Expansion<br>-Various Bug fixes<br>-Card Text updates</p><br><h1>Update Notes</h1><p><strong><u>What's new:</u></strong>  9/13/18<br>Dimples has arrived to the Campaign!<br>New Campaign leaderboard Tiers and Rewards.<br>New Tutorial episodes<br>Campaign map UI<br>Bug Fixes:<br>Fixed Villain deck drawing<br>Various other game logic bugs</p><br><h1>Update Notes</h1><p><strong><u>What's new:</u></strong> 7/30/18<br>-Game is now Free to play! <br>-Updated Tutorial for new players<br>-Stay updated! Added Push / Email Notifications.<br><br>Bug Fixes:<br>-Networking bug fixes</p><br><h1>Update Notes</h1><p><strong><u>Announcement:</u></strong><br>We have heard you! Starting next week Legendary DXP will go Free-To-Play on all platform. If you have already purchased the game, never fear! We have created a bonus bundle pack for you that includes a custom gameboard, avatars and more. Also, current game purchasers will now be able to play the first 24 levels of the campaign energy-free! That’s right, no more spending gold or waiting for energy to refresh. Climb those campaign leaderboards with no restrictions. Thanks again for all your support as we aim to make Legendary DXP the best it can be!</p><br><h1>Update Notes</h1><p><strong><u>New Features:</u></strong> 6/19/18<br>- All new Campaign mode! Complete 24 levels to save Alamyth.<br>- Campaign Leaderboard<br>- Energy system to allow for more Gauntlets per day<br>- Loot drops on Campaign map<br>- Newsfeed to stay up to date <br>- Items in collection<br>- Added item odds for packs<br>- Updated gameboard art<br>- Save game for Training and Campaign<br><br><strong><u>Updated UI:</u></strong><br>- Home Screen<br>- Menus<br>- Game end Screen<br>- New tip screen in game<br>- Tap on player avatars in game to view profiles<br><br>Various bug fixes</p><br><h1>Update Notes</h1><p><strong><u>New Features:</u></strong><br>- Added evil twin icon to cards that have escaped to warn the player<br>- Timer now pauses during prompts<br>- &quot;Burn all&quot; button in collections has been added<br><strong><u>Bug Fixes:</u></strong><br>- &quot;Growing tide&quot;, &quot;Cedric&quot;, &quot;Strength in Numbers&quot; now resolve when played, doesn't stack after<br>- &quot;Indiscriminate Greed&quot; bypasses fight restrictions<br>- Flying has a prompt asking to put on top of your deck<br>- &quot;Of the Fallen&quot; counts VP correctly now<br>- “Around every corner” No longer gives VP when it goes back to Alamyth<br>- Prompt to reveal a card to avoid a wound for the following:<br>- Gator Bait<br>    - Smell of Ozone<br>    - Winged Death<br>    - Irresistible Darkness<br>    - Terriski Mastermind strike<br>    - Nax Mastermind Strike<br>    - Overpowering Stench<br>    - Durissa Mastermind strike <br>    - Bleed em white scheme twist<br>    - Dark Pact should ask you if you want to return it to your hand after selecting it<br>    - Blade of the Fallen <br>    - Ambush trigger for &quot;Death has Wings&quot;, &quot;Focused Fighter&quot;, and &quot;Growing Dread&quot;<br>- &quot;To the Death&quot; typo fixed.<br>- Master Shapeshifter should be played first before the discarded cards now<br>- Mayor should go to the top of the deck &quot;Fly to Arms&quot; <br>- Mayor now has a green outline when recruiting<br>- Rescue Mission and Mental Misstep works with &quot;Fly to Arms&quot;<br>- &quot;Safety in the trees&quot; will be noticed as an intelligence type now<br>- Gauntlet all schemes and masterminds should not show a white card<br>- Attack button should no longer not respond<br>- Issue where players who previously owned a mobile version and bought steam the game would be locked<br>- Villagers should not disappear under the mastermind now<br>- Android/Steam card stats effected now show updated stats <br>- Waiting for other players in solo should no longer happen<br>- Match making issue when you would search Skycrest but get core</p><br><h1>About the Game</h1>Welcome to the fantastical world of Alamyth where you can recruit all new legendary heroes and fight the terrifying forces of evil. Visit all new landscapes of Alamyth such as the Firelands and fight the likes of The Leprechaun Henchmen and the evil villain, Ernak The Lethal. Just beware, if the Mastermind, Terriskai: Terror Of The Skies completes his evil scheme, everyone loses.<br><br>The bestselling Legendary® Deck Building Game is here. Experience Legendary with your friends like never before; same great game, a brand new fantasy. Over the course of the game, players will recruit powerful hero cards to add to their deck in order to build a stronger and more resourceful deck. Players need to build both their recruitment powers (to enlist more heroes) and their fighting ability (to combat the villains who keep popping up to cause trouble). Players recruit heroes from an array of six cards, with empty slots refilled as needed. At the start of a player's turn a villain card is revealed and added to the row of villains. This row has a limited number of spaces, and if it fills up, villains start to escape. The villain deck also contains &quot;master strike&quot; cards, and whenever one of these shows up, the mastermind villain (controlled by the game) takes a bonus action. As players fight and defeat villains, they collect those cards, which will be worth points at game's end. Players can also fight the mastermind; if a player has enough fighting power, he claims one of the attack cards beneath the mastermind, which has a particular effect on the game. If all of these cards are claimed, the game ends and players tally their victory points to see who wins. If the mastermind completes his scheme, however – having a certain number of villains escape, for example, or imposing a certain number of wounds on the heroes – then the players all lose.You will never play the same game twice as the game changes each time you play. Team up with other players and fight to the end but make sure you have collected enough victory points along the way to be victorious.<br><br><br>Features:<br><ul class="bb_ul"><li>Multiple Game Modes - Solo, Quick Match, VS Friends, Gauntlet, Raids<br></li><li>Collections - Rare Cards, Gameplay Mats, Avatars and Emotes (Collect them all!)<br></li><li>Gauntlet - Tournament style competitive play<br></li><li>Cross-Platform Play</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

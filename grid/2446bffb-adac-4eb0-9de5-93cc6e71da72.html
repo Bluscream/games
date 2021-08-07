@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cabals: Card Blitz</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2446bffb-adac-4eb0-9de5-93cc6e71da72/28b01f40-c4fa-4445-b5fd-fac02d80281c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="2446bffb-adac-4eb0-9de5-93cc6e71da72/312d64f3-e824-4ebe-8009-0a4aa1776000.ico"/> Cabals: Card Blitz</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="2446bffb-adac-4eb0-9de5-93cc6e71da72/f8ee00bf-138b-4899-a6af-50dd9fe5b6cf.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-09/04/2018">09/04/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-08/02/2017">08/02/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-50">50</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Kyy Games">Kyy Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-BISBOG SA">BISBOG SA</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=562540" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/562540" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/562540/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/562540/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/562540" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=562540" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>BUILD THE PERFECT DECK TO WIN FAST, AUTOMATED CARD BATTLES</strong><br><br><strong>Cabals: Card Blitz</strong> is a free-to-play deck-building collectible card game in which you:<br><br>• Focus on pure, pristine deck-building<br>• Fight super fast 30-second auto-battles<br>• Choose your own path through a non-linear PvE map<br>• Fight in PvP matches without ever waiting for enemies<br>• Fuse existing cards to entirely new ones that can’t be bought<br>• Conquer strongholds and defend them against attackers<br><br>In <strong>Cabals: Card Blitz</strong> you pass an inter-dimensional portal to the world of Aea, a strange land of occult magic and steampunk-inspired technology. Your task is to discover powerful cards, build your deck and enter battle with the sinister creatures of Aea.<br><br>During your adventure, you will engage in a challenging loop of battling new enemies, developing fresh tactics, evolving your cards and re-tuning your decks to achieve victory.<br><br><strong>DECK BUILDING AND BATTLES</strong><br><br>Skillful deck building is crucial in <strong>Cabals: Card Blitz</strong>. The game features a wide array of stunning, HAND PAINTED CARDS to collect, each with their own unique powers and abilities. You’ll need to choose the right combination of cards to defeat different opponents, who all have their own battle strategies. <br><br>In battle, your cards are drawn automatically and face off against the enemy cards, introducing an exciting chance factor into a skill-based game. After a first battle, you’ll know your enemy’s deck. What’s the probability you should beat it with the correct combination of cards? How many battles should it take you to win?<br><br>Thanks to the speed slider in battle, you’re in control of how quickly the action happens. Crank it up to maximum for SUPER-FAST 30 SECOND BATTLES, or take it slower to focus on the abilities of your opponent. If you lose a battle, it’s back to the Deck Editor to re-tune your deck for a different strategy, and then leap back into the action.<br><br>As you collect more cards you’ll use the Anvil to evolve them, creating more powerful versions of your cards. And once you’ve unlocked CARD FUSION, your options expand dramatically, with super powerful new cards to be forged.<br><br><strong>SINGLE PLAYER AND MULTIPLAYER MODES</strong><br><br><strong>Cabals: Card Blitz</strong> features a rich, single-player adventure mode alongside an instant multiplayer mode. Whether you want to focus on exploring Aea and discovering new cards or on taking on other players in PvP battles is entirely up to you.<br><br>In the single player mode, you will explore a map of the alternate world of Aea, a vast realm of scorching deserts, icy plains and lethal rain forests. You choose your own path through this world, unlocking new regions by completing battles. You can also conquer strongholds, which will generate daily rewards for you in the form of gold, new cards, and valuable gems. As you proceed through Aea the battles become progressively tougher, ensuring you always have a challenge to face. <br><br>The player versus player mode sits right alongside single player, so your deck and characters can be used in both. PvP mode in <strong>Cabals: Card Blitz</strong> is designed to guarantee you always have opponents to face, as you can play against offline rivals. This means NO WAITING around in lobbies for invitations to be accepted, or disappointment if other players drop out of battle halfway through. PvP mode is a great way to test out your deck, earn gold, and climb the leaderboard. And, if another player challenges your deck and you win, you pick up rewards as well!<br><br><strong>WHO IS THE GAME FOR?</strong><br><br>• CCG PLAYERS who enjoy the challenge of learning about card abilities and building powerful decks<br>• RPG PLAYERS who relish levelling up their characters and fighting weird creatures<br>• ADVENTURE GAMERS who love exploring unique universes and appreciate beautiful artwork<br>• MULTITASKERS! The fastest CCG in the world is the perfect filler/side game for busy players.<br>• YOUR DOG. Everyone knows dogs <i>love</i> CCGs.<br><br><strong>THE FUTURE OF CABALS: CARD BLITZ</strong><br><br><strong>Cabals: Card Blitz</strong> is the latest game from Finnish developers <strong>Kyy Games</strong> and is a follow-up to their critically-acclaimed 2009 release <strong>Cabals: Magic &amp; Battle Cards</strong>, which earned a hardcore following of CCG fans. Although set in the same universe, the gameplay is very different, with <strong>Cabals: Card Blitz</strong> leaning far more into deck building strategy and exploration.<br><br>As a well-established games developer, Kyy are committed to the long-term future of <strong>Cabals: Card Blitz</strong> and will regularly add new cards, heroes, map regions, events and other features. We’re excited about welcoming the Steam Community into the world of <strong>Cabals: Card Blitz</strong>. We hope you enjoy this fresh and entirely new take on CCG gaming!
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

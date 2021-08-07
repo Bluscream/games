@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Minds of Nations</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('2d5278a8-832a-4cb9-b53f-393728ffe763/b719d193-4126-4336-b4c2-e30ea80da3f8.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="2d5278a8-832a-4cb9-b53f-393728ffe763/84df2024-75a3-4732-a71c-a89f065c1829.ico"/> Minds of Nations</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="2d5278a8-832a-4cb9-b53f-393728ffe763/692e41c8-0920-4285-b1f5-a8bab95dde8d.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-24/04/2020">24/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-14/02/2020">14/02/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-71">71</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-CyberSports">CyberSports</a><br/><a href="default_developer_ascending_name_ascending.html#quicklink-Ohm">Ohm</a><br/><a href="default_developer_ascending_name_ascending.html#quicklink-Omnem">Omnem</a><br/><a href="default_developer_ascending_name_ascending.html#quicklink-Soul Playing Games">Soul Playing Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Soul Playing Games">Soul Playing Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1117160" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1117160" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1117160/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1117160/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/1117160/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/1117160" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1117160" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					MMO. 100% free to play continents with limited capacity are available.<h2 class="bb_tag"><strong>STORY</strong></h2> <br>After a number of incarnations on Earth and unhappy with the opportunities nations offer souls to grow, our hero, Kanli (you) is offered a chance to .. do better.<br>He will try, over a number of simulations, to build states that survive the hardships of time and scarcity whilst helping as many souls as possible evolve beyond the taints.<h2 class="bb_tag"><strong>13 ideas that we explore in Minds of Nations </strong>  </h2><strong><h2 class="bb_tag">1 The Nation as a school for souls</h2> </strong><br><br>    You play the custodian of a state through millennia. The nation is both a state in the classical sense, <br>    but also a school for souls that are interested in overcoming this plane.<br><br>    You have to consider strength, the material needs of a community and the evolutionary needs the souls that take birth in your realm have. A sluggish state will have them stuck for centuries into the same thoughts, fears and vices. While a weak state may not provide enough bodies or opportunities in life.<br><br><strong><h2 class="bb_tag">2  Religion as the development of methods, not a popularity contest</h2></strong><br><br>    Incarnated or not, souls generate ideas for you. Ideas are of three types:<br><br>    The first is the spiritual path that your nation discovers.<br>    Ascetics tired of the endless cycle of birth-rebirth and desire-aversion, are developing methods for transcending this plane of existence.<br><br>    So they develop the stages of concentration, reflections, prayers, mantras, breathing and other techniques for purifying consciousness.<br><br>    It does not matter how many people adhere to the path your ascetics uncover. It is NOT about having many provinces declaring themselves Catholic, but rather, having a path that frees more persons from the chains of desire, hatred. Having more methods that incorporate different mindsets, that free one from all attachments and bonds<br><br>.<img src="https://cdn.akamai.steamstatic.com/steam/apps/1117160/extras/desc-1-methods.PNG?t=1620675666" /><br><br><strong><h2 class="bb_tag">3  Governance as a collection of answers to society's questions</h2></strong><br><br>    Instead of having broad systems like Communism, Monarchy, or Democracy, you use ideas to answer each individual governance questions like:<br><br>    &quot;Who leads our nation ?&quot;<br>        - It can be 1 person, it can be three, it can be a couple, it can be a council..<br>    &quot;How is that person chosen ?&quot;<br>       - Leadership can be inherited, elected by others and then you'd have to choose who can elect your leader. Only landowners ? Everyone older than 14 ? <br><br>       -Or, your leaders can also be selected in more unorthodox ways:<br>              - You can go the Athenian way and choose them by sortition, randomly.<br>              - You can go the Tang Dynasty way and have examinations.<br>                         - Then, you select the exam subjects. <br>                              - Moralism ?<br>                              - Science ?<br>                              - Archery ?<br><br>     Alternatively, if none of these options fit your vision, you can create really custom systems. Maybe you believe that the leader should be selected after a death match or some other way. You can add this custom option.<br>     <br>     We approach every issue of community management in the same way, from economics to the justice system.<br>     <br>     And many other options giving you complete control.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1117160/extras/desc-2.jpg?t=1620675666" /><br><br><strong><h2 class="bb_tag">4   Effects that change over time</h2></strong><br><br>     If you switch to an authoritarian regime, in the short run, changing government policies will be cheaper. But, in the long run, after the first generation of rulers die, corruption and nepotism will increase significantly.<br><br>     Or, if you grant women access to office. You'll have a gradual increase in ideas, but a gradual decrease in natality. Less children per woman.<br><br><strong><h2 class="bb_tag">5  Effects that change based ON your production of their associated resources. </h2></strong><br>     For example: you can get a one time bonus equal to 10 times your yearly food production. That way it is has value to you both in the early game and in the late game.<br><br><strong><h2 class="bb_tag">6   Algorithms that try to incorporate a bit of realism</h2></strong><br><br>     The algorithm for food is divided into 3 parts. Food produced - food consumed - food wasted.<br><br>     Each working person: based on tech, knowledge of the technology throughout your state, and other datapoints - produce a number of kilograms of food per acre. Soil quality is also involved as &quot;province fertility&quot;.<br><br>     Consumption and food wasted, are based on the diet your economy and govt. encourage plus other options. A vegetarian diet will mean less food is consumed but more is wasted. A carnivorous diet will also give you a slight military bonus. etc.<br><br>     Everything matters.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1117160/extras/desc-6-algos.jpg?t=1620675666" /><br><br><strong><h2 class="bb_tag">7  Technology as a number of general subjects and not as a tech tree</h2></strong><br>     <br>     We take a more general approach to technology, instead of individual discoveries, technologies are grouped into their parent subjects:<br>     <br>          - Biology &amp; medical, chemistry &amp; materials, math &amp; economy, physics and engineering.<br><br><strong><h2 class="bb_tag">8   Armies have to carry food and soldiers are recruited from the labor force</h2></strong><br>     <br>     You need to carefuly watch your armies' food supplies, as they may disband before reaching their destination. Also, when an army goes to war, it takes with it a significant part of the labour force - decreasing the food production at home.<br><br>     You can set your nation back centuries by taking an ill-advised opponent to war and having most of your working men die of starvation in enemy territory.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1117160/extras/desc-7-food.PNG?t=1620675666" /><br><br><strong><h2 class="bb_tag">9  War, lies &amp; propaganda</h2></strong><br><br>     We explore the way politics has been poisoning our mindstream for millennia. Spinning half truths into rigid dogma and encouraging us and our ancestors to commit various atrocities.<br><br>     In preparation of a war, you can claim the opponent's territories on the global stage. Then, to declare war, you have to choose an exterior cassus belli - what other global actors will be told about this conflict - the &quot;just cause&quot;.<br><br>     You can claim that your &quot;holy&quot; traditions will liberate the pagan world, that you're bringing freedom to their people tired of the tyrant's yoke, that your ethnic minorities are oppressed and you're just trying to protect them, that your ancestral lands are being occupied, that you have the mandate of heaven for the unification of the world.<br>     Each cassus belli limits the demands that you can have after the war.<br><br>     You also have to choose an interior propaganda - what you tell your own people. You can tell them that the other nation's soldiers are barbarians, cannibals, that they have infiltrated our government and are running our nation from the shadows, that their traditions are a threat to our freedoms or.. you can be honest and just explain that we need more territory.<br><br>     The more hatred your lies inspire, the bigger the military bonus. However, a lie will have a negative effect on your nation's production of ideas and other karmic effects. Millions of minds repeating a lie for ages: that's not profitable. Or is it ?<br><br><strong><h2 class="bb_tag">10  Karmic years &amp; soul cycles</h2></strong><br> <br>     We try to incorporate the idea of karma into wars. A nation that attacks will get years added to the time needed for its souls to pass through each independent evolutionary stage. This means that fewer new ideas will appear in your state due to the emotional traumas caused in the conflict.<br><br>     We have 3 evolutionary stages:<br>     1. Common souls - only interested in themselves and only contribute ideas to the day-to-day category.<br>     2. Noble souls – which are common souls that have gone through multiple experiences and have now turned their minds towards science, community and government. They now contribute ideas to the governance category too.<br>     3. Ascetics – after noble souls give all they can to the scientific fields and community, they turn their minds to more, to trasncendence. And then uncover the spiritual methods that free us all.<br><br>     Once their interior work is completed ascetics are freed and leave our world.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1117160/extras/desc-5-karmic.jpg?t=1620675666" /><br><br>    <br><strong><h2 class="bb_tag">11  Astral plane management</h2></strong><br><br>     You can limit incarnations in the astral plane tab. You can forbid beings ridden with vices and desires from being born into ruling families. This will improve the way in which the nation is ran but will decrease the common soul's evolution speed because you're denying them leadership experiences. But imagine someone only being interested in themselves being given the keys to the world.. They might use the entire national treasury for their own personal gain while the many suffer. Is this a risk you are willing to take ?<br><br>     You can also allow Artificial Intelligence incarnations. <br>     This will essentially permit an A.I. to incarnate as one of your citizens and perform tasks or serve purposes that most souls would outright refuse. Endless possibilities.<br><br><strong><h2 class="bb_tag">12 Free-to-play continents, custom wonders, heraldry and more</h2></strong><br> <br>You can fly a banner with custom heraldic elements that are not found in Europe in the Middle Ages.<br><br>You can also build new wonders - enough with the eiffel tower.<br><br>Every simulation includes continents that have no microtransactions. 100% free. However, their total capacity is limited. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1117160/extras/desc-3-iap.jpg?t=1620675666" /><br><br><strong><h2 class="bb_tag">13 Climate change</h2></strong><br><br>The game simulates the effect that large, monocultural, agrarian societies have had on the environment.<br>Just as some ancient civilizations had fallen on Terra due to bad soil management, your state will be at risk if you ignore the issue. <br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1117160/extras/desc-13-climate-change.PNG?t=1620675666" /><br><br>In a nutshell, these are the key ideas and features we explore in Minds of Nations.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

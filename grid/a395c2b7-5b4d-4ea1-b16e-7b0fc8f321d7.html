@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hereafter</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('a395c2b7-5b4d-4ea1-b16e-7b0fc8f321d7/72063510-27f2-4700-8ee4-ca4746817567.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="a395c2b7-5b4d-4ea1-b16e-7b0fc8f321d7/837bc770-9866-4775-84ca-3c5fa28a2106.ico"/> Hereafter</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="a395c2b7-5b4d-4ea1-b16e-7b0fc8f321d7/e33c0d3a-7fde-42c8-a5e5-7c49f0fc9f16.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-15/04/2020">15/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-26/10/2017">26/10/2017</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-70">70</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Brown Studios">Brown Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Brown Studios">Brown Studios</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=652330" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/652330" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/652330/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/652330/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/652330" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=652330" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					A robotic experiment considered to be a failure by its creator suddenly reboots from its forced sleep by some unknown means to discover that not only did it have no memory of who it was or why it was there, but that its creator had long since abandoned his laboratory and left it to ruin. As the experiment embarks on a mission to seek out its missing creator in a search for answers to its existence, will it find the light of redemption that it longs for, or will it find a dark and terrible truth?<h2 class="bb_tag">Story Summary and Game-play Synopsis</h2><br><ul class="bb_ul"><li> Deep in an old forgotten laboratory, a failed experiment reboots from its sleep. With no memories, it now must explore the many different areas of the extensive complex to hopefully find some answers concerning its origins and the disappearance of its creator.</li></ul><br><ul class="bb_ul"><li> With the help of MUSE, an intelligent AI created by and also abandoned by the same creator to monitor and manage various extensive experiments, the player will explore diverse environments filled with a myriad of unique enemies in the forms of other failed experiments which have been left to roam the abandoned facility as they please creating all kinds of havoc and especially making problems for the poor AI, MUSE, who wants nothing more than a well-organized system of experimental inventiveness.</li></ul><br><ul class="bb_ul"><li> Make use of the Data File system to slowly uncover the larger story as you find various Data Files around the facility and bring them back to MUSE for decoding.</li></ul><br><ul class="bb_ul"><li> Interact with a host of intelligent characters, both friends and foes, to make your way through the long abandoned complex on your search for answers!</li></ul><br><ul class="bb_ul"><li> Equip a multitude of diverse weapons and armors found throughout the complex to arm yourself against the hoard of unruly experiments. Using a combination of both melee as well as ranged weapons to customize your play-style!</li></ul><br><ul class="bb_ul"><li> Solve puzzles and traverse challenging environments on your journey to discover the truth of your origins and the reason behind your creator's disappearance!</li></ul><br><ul class="bb_ul"><li> Take advantage of a generous save terminals system as you make your way deeper into the dangerous laboratory, it's no fun to fight through the same areas again and again upon defeat, or skip them all and attempt to beat the game with a single life! If you think you're skilled enough to do so!</li></ul><br><ul class="bb_ul"><li> Play around with a rocket boots jump boost system that actually takes some skill to fully master! Players who can master the timing of this physics propelled force will find it easier to traverse the levels of the game than those who don't!</li></ul><br><ul class="bb_ul"><li> Take advantage of the odd currency system involving metal, medals, which has somehow developed among the more intelligent experiments in the facility to provide some means of payment for goods and services which have sprung up in their creator's absence and buy useful items and upgrades from the shop to help you in your journey.</li></ul><br><ul class="bb_ul"><li> And of course....Challenging Boss Fights! Fight a number of challenging bosses, as well as regular enemies which may be considered to be mini-bosses by some, that block your path to the answers you seek!</li></ul><h2 class="bb_tag">About the Game's Development and Development Team</h2><br><ul class="bb_ul"><li> This is the first attempt at making a video game by our 3 person development team of brothers. One person uses the pixel software &quot;Aesprite&quot; to create the sprites and pixel art and also composes the unique music while the second uses &quot;Unity 2D&quot; to bring it all together with the programing. The third offers encouragement, testing, criticisms, manages the store page, keeps track of discussions on the discussions page, and other support when needed.</li></ul><br><ul class="bb_ul"><li> As this is our first attempt at making a video game, we are of course very eager to see what the Steam Community thinks about our work and gladly accept any input and constructive criticism as well as any helpful info on how to make our game better!</li></ul><br><ul class="bb_ul"><li> The Art Style and Music Style are intended to be reminiscent of older 2D pixel games such as &quot;Castlevania&quot; and &quot;Megaman&quot;.</li></ul><br><ul class="bb_ul"><li> It has been decided to place the game in Early Access as it may take some time to fully complete it as both developers have many other life obligations such as work and school though both also greatly desire to get the full game finished as soon as possible! </li></ul><br><ul class="bb_ul"><li>The demo includes 2 levels. The goal for the finished game is currently 10 levels though more may be added as the development team is always thinking of more content to add to the game!</li></ul><br><ul class="bb_ul"><li>The demo is controller compatible, with keyboard also being an option.</li></ul><br><ul class="bb_ul"><li>This game is a work of love so try it out and let us know what you think! Helpful suggestions to improve it are always welcome! We are especially interested in any tips and tricks that fellow players may have in the ways of coding the game to make it work better and function more efficiently! </li></ul><br><ul class="bb_ul"><li>Players in the community are free to send their thoughts to us via posting in the discussions section of the store community page or by sending a message to our support email which can be found either by going through the Steam support process online or by viewing the discussion post in the discussions section of the store community page which will show it.</li></ul><br><ul class="bb_ul"><li>Only Constructive Criticism though please!</li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Racecraft</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('9bdfff2e-8dc2-449c-8aeb-8e1d06c04846/8b7c1cb1-8726-4e51-a921-c4f31cee55f4.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="9bdfff2e-8dc2-449c-8aeb-8e1d06c04846/c32d6be5-b705-4220-8a45-40443867daf2.ico"/> Racecraft</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="9bdfff2e-8dc2-449c-8aeb-8e1d06c04846/d8944409-b87b-476c-831f-2ec7f22a9c81.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-15/04/2020">15/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-04/03/2016">04/03/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-34">34</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Racing">Racing</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Sports">Sports</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Sandbox Games">Sandbox Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Sandbox Games">Sandbox Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Leaderboards">Leaderboards</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Turn Notifications">Turn Notifications</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=346610" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/346610" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/346610/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/346610/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/346610" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=346610" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h2 class="bb_tag"><a href="https://store.steampowered.com/app/346610/Racecraft/" target="_blank" rel="noreferrer"  ><strong>Racecraft eSport</strong> Free</a></h2><br>Racecraft is the first eSport racing game based on <strong>PROCEDURAL</strong> technology.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Steam_Store_Banner.jpg?t=1572342098" /><br><br>Everyday new challenges await you on completely new racetracks generated with our Procedural Engine &quot;<i>Camilla</i>&quot;. You can compete monthly in a state of the art Asynchronous eMotorsport Environment, with Championships, Tournaments and Special Events to earn Season Points and climb the leaderboard throughout the Season. Improve your Performance Index <strong><i>(ASPEI)</i></strong> to obtain higher <i>Licenses</i>(¹) and gain access to prestigious events with the possibility of winning <i>exclusive prizes</i>(²).<h2 class="bb_tag"><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/notes.png?t=1572342098" /></h2><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Esport_Banner.jpg?t=1572342098" /><br><br>You’ll have all the informations you need to evaluate your performance on the track with metrics and statistics, which will help you understand your strengths and weaknesses. Racecraft supports advanced FFB steering wheels to please the pro players, but it is also perfectly enjoyable with a keyboard or a joypad, thanks to a meticulous gameplay balance. Competitions are regulated by the Racing Authority, the governing body of Racecraft, which was established to keep competitions fair and fun for everyone.<h2 class="bb_tag"><strong>Coming Soon for Free Users</strong></h2><strong>• Synchronous Multiplayer with Real-Time Collisions</strong><br><strong>• Full VR Support</strong><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Separe.png?t=1572342098" /><h2 class="bb_tag"><a href="https://store.steampowered.com/app/898600/Racecraft_Premium/" target="_blank" rel="noreferrer"  ><strong>Racecraft Premium</strong> DLC</a></h2><br>In the <strong>RACE</strong> section you can challenge AI drivers in various game modes.<br><br><strong>• Time Attack</strong>, where you can freely set lap times trying to beat your own or your friends best laps<br><strong>• Bot Challenge</strong>, where you have to win a race versus a single opponent, to then meet a progressively stronger one<br><strong>• Quick Race</strong>, where you race versus a number of randomly generated opponents.<br><br><a href="https://store.steampowered.com/app/898600/Racecraft_Premium/" target="_blank" rel="noreferrer"  ><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Race_Banner.jpg?t=1572342098" /></a><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Separe.png?t=1572342098" /><br><br>In the <strong>CRAFT</strong> section you can customize your car and generate, test and save an endless number of tracks.<br><br><strong>• Customize your car</strong> and make it unique.<br><strong>• Create an endless number of very realistic racetracks, randomly generated on customizable settings</strong>. Then share them with the community. This procedural technology for generating tracks is called <i><strong>Camilla</strong></i> and is unique in the racing game genre.<br><br><a href="https://store.steampowered.com/app/898600/Racecraft_Premium/" target="_blank" rel="noreferrer"  ><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Craft_Banner.jpg?t=1572342098" /></a><h2 class="bb_tag"><strong>Coming Soon for Premium DLC</strong></h2><strong>• Single Player Championship</strong><br><strong>• Single Player Campaign</strong><br><strong>• Bot Crafting</strong><br><strong>• Helmet Crafting</strong><br><strong>• Car Parts Crafting</strong><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Separe.png?t=1572342098" /><h2 class="bb_tag"><strong>Website and Social Network</strong></h2><strong>• Official Website <a href="https://steamcommunity.com/linkfilter/?url=http://playracecraft.com" target="_blank" rel="noopener"  >http://playracecraft.com</a></strong><br><strong>• <a href="https://steamcommunity.com/linkfilter/?url=https://www.facebook.com/PlayRacecraft" target="_blank" rel="noopener"  >Like us on Facebook</a> for the latest news and updates on Racecraft</strong><br><br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/346610/extras/RC_Separe.png?t=1572342098" />
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

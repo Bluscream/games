@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Endless World Idle RPG</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('6cfa5d6f-c9e9-4f3d-89fd-6448f81933d7/c07b9c15-7d2f-4240-869b-a9c71fe2657a.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="6cfa5d6f-c9e9-4f3d-89fd-6448f81933d7/3a353b05-81a3-4708-a58d-37bfc429736d.ico"/> Endless World Idle RPG</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="6cfa5d6f-c9e9-4f3d-89fd-6448f81933d7/ad16ee91-1d9c-4c3f-b707-cd8ebdff2edd.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-21/04/2020">21/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-05/12/2019">05/12/2019</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-77">77</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Racing">Racing</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Radiance Games">Radiance Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Radiance Games">Radiance Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play On Phone">Remote Play On Phone</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play On Tablet">Remote Play On Tablet</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=840260" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/840260" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/840260/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/840260/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/840260/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/840260" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=840260" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>JOIN US ON DISCORD</h1><p><a href="https://steamcommunity.com/linkfilter/?url=https://discord.gg/bRmQBa7" target="_blank" rel="noopener"  ><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840260/extras/discord.jpg?t=1627527239" /></a></p><br><h1>The expansion has been updated</h1><p><strong>New Contents:</strong><br><br>- Leagues: Players can join leagues of three different types. Join a league of goldseekers to get plenty of resources. Join a league of hunters to challenge powerful monsters and get skill books. Join a league of duelists to fight with players in enemy leagues.<br><br>- Direct Switch: Players can switch a mercenary to any other mercenary they want now.<br><br>- Skill/Quality Upgrade: Players can now level up the skills of the main character and mercenaries. And mercenaries’ quality can be upgraded now.<br><br>- Elemental Damage/Resistance: Players can add elemental damage and resistance to main character and mercenaries for PVP battles.<br><br>- Rune System: Players can unlock and equip runes to artifacts to improve their skill effects.<br><br>- Zero Waiting Time for Dungeons: Players can join any dungeon without waiting.<br><br>- Improvement for Existing Contents: New Arena Ladder, New Speed Run, New Character Appearance, and New User-Interface<br><br>- Other New Contents: Mercenaries Skins and New Levels (Up to level 5133 now)</p><br><h1>About the Game</h1><strong>Endless World</strong> is a massive RPG Idle Clicker in glorious 3D that offers a wealth of gameplay modes - sit back and let the game play out in front of you or get busy micromanaging every aspect of the game! <br><br>In a world where evil lurks behind every blade of grass and grain of sand, one hero has been chosen to fight the good fight and save the entire Universe from chaos and destruction! As the Chosen One, lead a diverse team of characters across the Endless World, fighting every step of the way, as you search for the truth and uncover the master villain behind your world's corruption. <br><br>Step into the Arena and battle other players in PvP combat.<br><br>Battle your way through an epic story mode, increase your team’s strength, customize their powers, take control of their special abilities or set them on auto and watch them tear through their enemies!<br><br>Explore sinister Dungeons and reap the rewards!<br><br>Enter the Time Tunnel and leave your mark on history for all to see!<br><br>Lay waste to the competition in Speed Run challenges!<br><br>Seek out and capture Mines rich in resources, defend them against attack or lose them to stronger foe!<br><br>And just when you think the game is too hard and the enemies are getting the better of you, rewind time and start afresh, only this time you're stronger, wiser and ready for them. <br><br>In an Endless World, death is just the beginning...<br><br><u><strong>HEROES &amp; STRATEGY</strong></u><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840260/extras/佣兵_(1).gif?t=1627527239" /><br><br>Create a team from over 40+ characters (character pool swells each month with new Mercs!) from a range of 6 classes, each with their own unique skill set and Elemental Damage abilities. Recruit from:<br><br><strong>Warriors</strong><br><strong>Assassins<br>Support<br>Tanks<br>Archers<br>Mages</strong><br><br>Each class brings unique talents to compliment your play style, though only through careful planning and management will you ascend through the levels and challenge for the top slots in all game modes!<br><br><u><strong>20+ DIVERSE LOCATIONS</strong></u><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840260/extras/20190730-无尽世界-steam动图=场景.gif?t=1627527239" /><br><br>With a wealth of locations and rich graphics and game art, enjoy exploring wild forests, sulfurous fire pits, snowy mountains, dusty plains, fantastical candy lands, the mysterious abyss, even alien worlds! But beware, the inhabitants are never friendly and the bosses are positively hostile!<br><br><br><u><strong>GEARS &amp; ARTIFACTS</strong></u><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840260/extras/战斗.gif?t=1627527239" /><br><br>Various artifacts offer flexible combat strategies.  Discover which artifacts will deal special types of damage to particular bosses.  Customize your character’s armor set with different grades and appearances.  Master the forge to further enhance your armor’s properties and rarity.<br><br><br><u><strong>INTERACTIVE &amp; DESTRUCTIBLE ENVIRONMENT</strong></u><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840260/extras/20190730-无尽世界-steam动图=场景互动.gif?t=1627527239" /><br><br>In Endless World, players will be able to destroy almost everything by pointing and clicking, all the while with loot dropping everywhere! <br><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/840260/extras/20190730-无尽世界-steam动图=PVP.gif?t=1627527239" /><br><br>For business <a href="mailto:enqury：wangcaijiao@rodgm.com">enqury：wangcaijiao@rodgm.com</a>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

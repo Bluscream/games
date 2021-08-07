@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Driver Fusion</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('fe75dc83-22f0-4995-924f-16a975fdb004/260ca85c-0c9d-44e6-ae44-8b211e5f766c.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="fe75dc83-22f0-4995-924f-16a975fdb004/59160009-f97b-4e39-ae32-7e3b5120c252.ico"/> Driver Fusion</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="fe75dc83-22f0-4995-924f-16a975fdb004/b17b193e-0205-48b6-ad34-61edd883611c.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-17/04/2020">17/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-06/05/2013">06/05/2013</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-66">66</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Education">Education</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Game Development">Game Development</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Software Training">Software Training</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Utilities">Utilities</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Web Publishing">Web Publishing</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Treexy">Treexy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Treexy">Treexy</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Stats">Stats</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=234820" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/234820" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/234820/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/234820/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/234820/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/234820" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=234820" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Just Updated</h1><p>We've just updated Driver Fusion! You can find more information about this update in the <a href="http://steamcommunity.com/app/234820/allnews/" target="_blank" rel="noreferrer"  >announcement</a>. You can also follow Driver Fusion on Steam to get notified of updates.</p><br><h1>About the Software</h1><h2 class="bb_tag">THE BEST SOLUTION TO UPDATE, BACKUP, CLEAN AND MONITOR THE DRIVERS &amp; DEVICES OF YOUR PC</h2><br><br>You can download it for free and try some of the features.<h2 class="bb_tag">FEATURES</h2><h2 class="bb_tag"><strong></strong></h2><ul class="bb_ul"><li><strong>Health check</strong><br> Health check analyzes your computer and helps you to keep it reliable and up to date by fixing the detected issues. Update your computer with its automatic driver updater, which is constantly updated to ensure you receive the latest drivers. New drivers can improve the stability and performance of your system, fix problems and introduce new features. Health check can also uninstall disconnected devices, which can affect your boot time, and is able to backup your drivers and delete unused third-party drivers.<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/freelimited.png?t=1620143687" /> <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Scheduler</strong><br>The scheduler is convenient and gives you peace of mind, as all you ever have to do is fix an issue once it has been detected. A check is performed in the background every two weeks by default, but you can choose from four different intervals in the settings. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Driver backup &amp; restore</strong><br>With driver update &amp; restore you can automatically update, restore or install the drivers that you choose. You can download drivers from our extensive driver database, which contains more than ten million drivers, or use your own driver backups. We give you access to all driver versions that we have for a device, so you are free to decide which version you want to install. This unique feature is incredibly helpful if you encounter computer, device or driver problems. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Driver cleaner</strong><br>Driver cleaner enables you to completely clean the software and driver entries that were at any time installed for a device. It can help you prevent startup, stability and performance issues and is invaluable when you install a new driver, change the hardware of your computer, or want to clean up old drivers. All essential devices are supported, such as your mouse, graphic card, and network adapter. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/free.png?t=1620143687" /> <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Advanced protection</strong><br>Advanced protection automatically creates a backup of your computer's system files, settings and desktop, right before important changes are made to your computer. You can restore almost anything you can do from its history, or even restore your entire computer to an earlier point in time using system restore. All backups are safely stored away to ensure a worry-free experience. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Device monitor</strong><br>Device monitor gives you insight into the sensors from the devices installed in your computer, such as the power usage, temperature and clock speed. You can monitor the current performance of your processor, graphic card, motherboard, memory, hard drive and fans, along with the past performance. Information that is essential to know about a device, like the number of reallocated sectors of a hard disk, is also available. <br><i>Most devices are supported but some devices cannot be monitored or have no sensors.</i><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Device control</strong><br>With device control you can view and manage the devices and drivers installed in your computer. You can check if your devices and drivers are working correctly and troubleshoot their problems with all information and options that you can possibly need, such as the used resources, files, problem code and location. It can also be used to backup, download or uninstall drivers, to disable or restart devices, and to scan for hardware changes. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Device identifier</strong><br>With device identifier you can determine the type, name and manufacturer of your devices. It can assist you in identifying unknown devices, usually visualized with a yellow question mark, and examining devices for which you are unable to locate more information or don't know the origin. With over one million devices supported, device identifier can always help you troubleshoot and search for information. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Computer report</strong><br>Computer report gives you extensive information on every device and driver installed in your computer, including a summary of its essential parts. It's easy to read and an excellent addition to help you diagnose computer issues, or simply for sharing computer specifications with friends or tech support. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Desktop</strong><br>Desktop helps you to backup and restore the desktop icon positions and resolution of each screen. You can finally keep your icons sorted and your preferred screen resolution after you install new graphic card drivers or temporarily change your monitor resolution. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/free.png?t=1620143687" /> <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Manufacturer compatibility</strong><br>Every device manufacturer and driver is supported. This includes all well-known OEM device manufacturers such as AMD, NVIDIA, Intel, Realtek, Logitech, Creative, Razer, Marvell, ASUS, Acer, Dell, HP and Lenovo. Together with other manufacturers, they make a variety of drivers for their network, graphic, chipset, wireless, controller, Ethernet, WLAN, LAN, HD Audio, HD Graphics, Rapid Storage Technology and USB 3.0 ​​devices. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/free.png?t=1620143687" /> <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /><br></li><li><strong>Premium support</strong><br>Problems with your computer or software can be frustrating. With our premium support you can count on unlimited top priority and real person support. We do our best to get you hassle-free help and a comprehensible response. <br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/234820/extras/premium.png?t=1620143687" /></li></ul>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

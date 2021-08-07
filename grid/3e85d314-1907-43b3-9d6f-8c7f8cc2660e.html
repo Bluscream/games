@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Curiosity</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('3e85d314-1907-43b3-9d6f-8c7f8cc2660e/cc216d4d-994e-4069-9569-ab5a7451a287.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="3e85d314-1907-43b3-9d6f-8c7f8cc2660e/b03fe9eb-edc6-4323-957b-a2337fe31cf1.ico"/> Curiosity</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="3e85d314-1907-43b3-9d6f-8c7f8cc2660e/4b513550-03fc-4ae2-847a-935c3f65b541.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-18/04/2020">18/04/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-10/08/2018">10/08/2018</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-72">72</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Nicholas Pellegrino">Nicholas Pellegrino</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Nicholas Pellegrino">Nicholas Pellegrino</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=918170" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/918170" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/918170/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/918170/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/918170" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=918170" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					A simple world where the player is able to change things that are not supposed to be changed. Welcome to Curiosity, the game where you can hack. Try out different hacks, get creative, entertain yourself! And hey, maybe you'll find a secret or two along the way!<br><br>This is an infinite platformer with horizontal player movement. When the game is started, two tabs open: one with the platformer itself, and one that appears to be a command prompt. A narrator starts speaking, and quickly notes that the platformer seems to be dull and uninteresting. He then tutorials the player on how to &quot;hack&quot;. &quot;Hacking&quot; gives the ability to change important variables in the code and to enable things that affect the environment.<br><br>As the narrator will explain, to &quot;hack&quot;, the player must press the &quot;h&quot; key while the platformer tab is selected. The platformer will then freeze as it waits for input from the hacking tab (the one that looks like a command prompt). The player then must switch to the command prompt, type in a &quot;hack&quot;, and press enter. They will then be prompted to enter an integer (numbers), string (words), or boolean (true/false) to complete the hack. After completing the hack, the player can go back to the platformer to see what changed.<br><br>Here's an example of what happens in the hacking tab with a player doubling their speed:<br>-------------------<br>Enter Hack: <strong>speed</strong><br>-------------------<br>Speed Hack:<br>-------------------<br>Variable Type: Integer<br>Default State: 6<br>Current State: 6<br>-------------------<br>Enter new speed: <strong>12</strong><br>Hack Successful!<br>-------------------<br>Hacking process complete<br>Go back to the game<br>-------------------<br><br>The game encourages using trial and error to see what each hack does (and using the hack &quot;list&quot; to see which hacks exist), but here's what they do if you don't want to test them out for yourself:<br><br>&quot;ascend&quot; - Enter a boolean. When enabled, platforms rise into the sky whenever the player steps on them.<br>&quot;birdNumber&quot; - Enter an integer. Affects the maximum amount of birds the player can spawn.<br>&quot;birdPoop&quot; - Enter a boolean. When enabled, birds will occasionally drop bird poop.<br>&quot;birdPoopRate&quot; - Enter an integer. Affects the rate at which birds can drop poop (&quot;birdPoop&quot; must be enabled to see this change).<br>&quot;birdSpeed&quot; - Enter an integer. Affects the speed at which the birds fly.<br>&quot;blackhole&quot; - Enter a boolean. Enables a blackhole that sucks in all sprites and the player's mouse. The game warns you to have caution, since it will take control of your mouse while this hack is enabled.<br>&quot;clearScreen&quot; - Enter a boolean. When enabled, the command prompt is cleared.<br>&quot;clone&quot; - Enter a boolean. When enabled, clones of the player can be created by pressing the space bar.<br>&quot;color&quot; - Enter three integers, as instructed. Affects the background color of the sky.<br>&quot;deathTouch&quot; - Enter a boolean. When enabled, the player destroys whatever they touch.<br>&quot;fly&quot; - Enter a boolean. When enabled, the player can fly.<br>&quot;gravity&quot; - Enter an integer. Affects the strength of the game's gravity.<br>&quot;jump&quot; - Enter an integer. Affects the player's jump height.<br>&quot;language&quot; - Enter a string as prompted. Changes the language of the words &quot;Dull Platformer&quot; at the top of the tab, and of the &quot;Ouch&quot; said by sprites when they crash their heads into platforms.<br>&quot;list&quot; - Shows this list of hacks. Does not show the hack &quot;secret&quot;.<br>&quot;morph&quot; - Enter a string as prompted. Changes the player into other sprites in the game. Your hit-box and abilities are updated accordingly.<br>&quot;mousePlay&quot; - Enter a boolean. When enabled, the player becomes your mouse, and the game attempts to give your mouse collision detection. As with the hack &quot;blackhole&quot;, the game cautions you that this hack will take control of your mouse.<br>&quot;multiplayer&quot; - Enter a boolean. When enabled, a second player can join by playing on the same keyboard as instructed.<br>&quot;music&quot; - Enter a string as prompted. Allows players to change the sounds of the game to a song, silence, or the tutorial again.<br>&quot;secret&quot; - Enter a boolean. When enabled, the birds and flowers get sunglasses.<br>&quot;speed&quot; - Enter an integer. Affects the speed of the player.<br>&quot;weather&quot; - Enter a string as prompted. Changes the weather of the platformer.<br><br>As players experiment with different hacks, 5 pieces of a key can be found. When the player finds all 5 pieces, the narrator comes back to speak to you and the ending is unlocked.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

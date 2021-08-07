@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Black Mesa</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('62fd9fc5-d69a-4648-9fe7-10227f58232d/d0240add-e81d-4dd1-adbb-cc6c72ec64fa.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="62fd9fc5-d69a-4648-9fe7-10227f58232d/22669aab-375d-4f2a-bde7-3ca1ec983e80.ico"/> Black Mesa</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="62fd9fc5-d69a-4648-9fe7-10227f58232d/307442ed-7ad5-49d6-9aff-06181deb9eb9.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>19h 38m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-15/12/2020">15/12/2020</a> 15:44:32</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-27/06/2016">27/06/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-06/03/2020">06/03/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-94">94</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-84">84</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Crowbar Collective">Crowbar Collective</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Crowbar Collective">Crowbar Collective</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Captions Available">Captions Available</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Includes Source SDK">Includes Source SDK</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Nexus Mods">Nexus Mods</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play On Phone">Remote Play On Phone</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play On Tablet">Remote Play On Tablet</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://nexusmods.com/blackmesa" target="_blank">Nexus Mods</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=362890" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/362890" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/362890/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/362890/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/app/362890/workshop/" target="_blank">Workshop</a><br/><a href="https://steamcommunity.com/stats/362890/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/362890" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=362890" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Join Our Community</h1><p><a href="https://steamcommunity.com/linkfilter/?url=http://Discord.gg/CrowbarCollective" target="_blank" rel="noopener"  ><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/Black_Mesa_Discord.png?t=1624050368" /></a></p><br><h1>About the Game</h1><h2 class="bb_tag">Relive Half-Life</h2><strong>Black Mesa</strong> is the fan-made reimagining of Valve Software’s <strong>Half-Life</strong>.<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/hev.gif?t=1624050368" /><h2 class="bb_tag">Black Mesa: Definitive Edition</h2>Update 1.5 brings together all the improvements to graphics and gameplay across 15 years of development to create the final version of Black Mesa. There has never been a better time to pick up the crowbar and play!<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/bp.gif?t=1624050368" /><h2 class="bb_tag">Single Player Campaign</h2>You are Gordon Freeman, a theoretical physicist at the Black Mesa Research Facility. When a routine experiment goes horribly wrong, you must fight your way through an interdimensional alien invasion, and a bloodthirsty military clean-up crew in order to save the science team... and the world!<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/osprey.gif?t=1624050368" /><h2 class="bb_tag">Features</h2><ul class="bb_ul"><li><strong>A completely reimagined and refined single player campaign, including all new and expanded Xen levels</strong><br></li><li>19 chapters of fighting through top-secret labs, running atop harsh desert landscapes, sneaking into abandoned railways, and leaping across dimensions<br></li><li>Mind-Blowing graphics and effects, never before seen on the Source Engine<br></li><li>Face off against an army of classic enemies, updated with new features and engaging AI<br></li><li>Wield an arsenal of military hardware, scientific prototypes, and the iconic crowbar through incredibly detailed environments<br></li><li>The all-new soundtrack and voice acting create a more immersive experience than ever before<br></li><li>50 Fun and challenging achievements</li></ul><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/xen.gif?t=1624050368" /><h2 class="bb_tag">Multiplayer</h2>Frag your friends across <strong>10</strong> iconic maps from the Half-Life universe, including:<br><ul class="bb_ul"><li>Bounce<br></li><li>Gasworks<br></li><li>Stalkyard<br></li><li>Undertow<br></li><li>Crossfire</li></ul><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/gasworks.gif?t=1624050368" /><h2 class="bb_tag">Workshop</h2>Create your own mods, models, and maps with the <strong>Black Mesa</strong> Source SDK, then share it with the community on the Steam Workshop.<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/v22_2.gif?t=1624050368" /><h2 class="bb_tag">Steamworks</h2>Collect the full set of trading cards, backgrounds, emoticons, and achievements! Featuring Steam Cloud, Steam Workshop, closed captions in multiple languages and full controller support.<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/interloper.gif?t=1624050368" /><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/362890/extras/rtss.jpg?t=1624050368" />
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

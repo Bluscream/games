@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Counter-Strike Nexon: Studio</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('7b5bb149-f7b4-4bc1-8132-3ab630e19c13/08df593e-c265-4a81-8427-79eb3f32e8c7.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="7b5bb149-f7b4-4bc1-8132-3ab630e19c13/61c5e144-d075-486e-b522-7597d615a568.ico"/> Counter-Strike Nexon: Studio</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="7b5bb149-f7b4-4bc1-8132-3ab630e19c13/ce51dc38-bfb8-4539-95c3-b073bf2ce0dc.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>24m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-13/05/2019">13/05/2019</a> 5:21:47</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-21/10/2014">21/10/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-07/10/2014">07/10/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-65">65</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Valve Corporation, Nexon Korea Corporation">Valve Corporation, Nexon Korea Corporation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Nexon Korea Corporation">Nexon Korea Corporation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Captions Available">Captions Available</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=273110" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/273110" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/273110/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/273110/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/273110/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/273110" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=273110" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<strong>About Counter-Strike</strong><br><br>One of the most influential FPS franchises, Counter-Strike is one of the most popular online games to date. Pitting Terrorists VS Counter-Terrorists, players face off to complete their objective in round-based combat. Fast paced action blends with precise, tactical strategy to make for a warzone that anyone can pick up and lets the pros rise to the top. <br><br><strong>About Counter-Strike Nexon: Studio</strong><br><br>For the first time on Steam, Nexon is making a slice of Counter-Strike history available to everyone! Classic Counter-Strike action, new modes, new guns, new characters, Free to Play—what else are we missing? That’s right, ZOMBIES! We welcome you to do your part in cutting down the undead masses. You’ll find plenty of Zombies there in both PvP and PvE flavors.<br><br><strong>About Counter-Strike</strong><br><br>One of the most influential FPS franchises, Counter-Strike is one of the most popular online games to date. Pitting Terrorists VS Counter-Terrorists, players face off to complete their objective in round-based combat. Fast paced action blends with precise, tactical strategy to make for a warzone that anyone can pick up and lets the pros rise to the top. <br><br><strong>About Counter-Strike Nexon: Studio</strong><br><br>For the first time on Steam, Nexon is making a slice of Counter-Strike history available to everyone! Classic Counter-Strike action, new modes, new guns, new characters, Free to Play—what else are we missing? That’s right, ZOMBIES! We welcome you to do your part in cutting down the undead masses. You’ll find plenty of Zombies there in both PvP and PvE flavors.<h2 class="bb_tag"><strong>Key Features:</strong></h2><br><br><strong>▪ Free to Play:</strong> Counter-Strike Nexon: Studio has no cost to purchase or any subscription fees, just download and load up to get started.<br><br><strong>▪ Unrestricted Map Creation:</strong> Studio Mode provides tons of features that allow you to customize the maps as much as you want. Create a map that other players love to earn yourself some Cheer Cubes!<br><br><strong>▪ Loads of Modes: </strong>Zombies is right in the name, and you’ll find both PvP and PvE gameplay featuring all sorts of undead to kill. Advance through intense Zombie Scenarios that include boss fights, take charge with unique abilities and characters in Zombie Hero, or lead a team of survivors building and defending your base against continuous zombie waves in Shelter Mode. There’s much more than just Zombies, over 20 different modes to explore such as Beast Mode, Bazooka Mode, and Football. For veterans of the series, enjoy offerings from the original Counter-Strike including Bomb Defusal and Hostage Rescue. <br><br><strong>▪ Maps: </strong>Discover the history of regions and lives torn to shreds by the Zombie menace in the maps of Zombie Scenario. Each Scenario offers multiple maps to unlock if you can survive its challenges to reveal the conspiracies behind the undead! There’re over 60 Zombie filled maps to play and master in Counter-Strike Nexon: Studio. We know what you’re thinking. It wouldn’t be Counter-Strike without de_dust! The classic maps of Counter-Strike are all included from both the original release and previous Counter-Strike Series.<br><br><strong>▪ More Guns:</strong> The arsenal is much larger and more diverse in Counter-Strike Nexon: Studio, because you’re going to need all the firepower you can get to stay one step ahead of those walking corpses. Twelve-gauge staples of putting Zombies down for good can be had, such as the Double Barrel shotgun or the KSG-12 combat shotgun, but maybe you’re looking to keep some distance from the dead. Grab an Skull-5 and pop some skulls or the Dual Infinity to slay Zombies with style! <br><br><strong>▪ New Female and Male Characters:</strong> The living dead are both numerous and diverse in Counter-Strike Nexon: Studio. Most importantly, you can play as these vicious creatures when you turn to the other side! You’ll find unique skills and attacks in each of the Zombie characters available all to help you be the best undead you can be. For the living, choose from a variety of exclusive characters for both Terrorists and Counter-Terrorists, including female characters! <br><br><strong>▪ Crafting to Create and Enhance: </strong>An exclusive Crafting system lets you improve the weapons you own, or make new guns to score some of the best armaments in the game. Whether changing the skin, upgrading stats, or seeking a new firearm just play matches to get the materials you need. <br><br><strong>▪ All in the Family:</strong> Unite and fight together! The Family system lets you partner up with friends to earn rewards faster and obtain special gear by playing together in Counter-Strike Nexon: Studio. In addition, use the Family system to share equipment you own with others in the same Family. <br><br><strong>▪ Continually Updated with New Content: </strong>We want you in the game! Who else is going to keep these Zombies at bay?! We are going to be hard at work bringing you more Zombie Modes, more maps, more guns, and more of everything to fulfill all those corpse killing needs. Make sure to hop into our Steam Community Hub to speak up about the game you want to play and keep playing.<h2 class="bb_tag"></h2><br>Please contact Nexon Customer Support for issues related to the game at <a href="https://steamcommunity.com/linkfilter/?url=https://support-counterstrike.nexon.net" target="_blank" rel="noopener"  >https://support-counterstrike.nexon.net</a><br><br>Additionally, you can check our privacy policy <a href="https://steamcommunity.com/linkfilter/?url=http://m.nexon.com/terms/305" target="_blank" rel="noopener"  >HERE.</a><br><br>You will need to create a Nexon account to use this page, and to submit a ticket.&quot;
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

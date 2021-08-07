@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>DF-41 Simulator</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('4216a290-d149-49dc-b488-4e972231235d/c45d9946-24ae-41f4-9150-c80aa72eb325.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="4216a290-d149-49dc-b488-4e972231235d/99da37b8-362d-405b-af7d-e58ba581cf00.ico"/> DF-41 Simulator</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="4216a290-d149-49dc-b488-4e972231235d/5ce2bb42-1949-463e-95b7-8331ebd83952.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>Not Played</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-13/08/2020">13/08/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-07/07/2020">07/07/2020</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-55">55</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Bo Chen">Bo Chen</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Bo Chen">Bo Chen</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1352740" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1352740" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1352740/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1352740/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1352740" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1352740" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					This is a free 3D visualizer and simulator of the Dongfeng-41 (DF-41) road-mobile intercontinental ballistic missile. The DF-41 launcher itself is fully drive-able with mechanics to launch the nuclear warhead in-game. <br><strong>这是东风41（DF-41）公路机动洲际弹道导弹的免费3D可视化工具和模拟器。 DF-41发射器本身可以由机械师完全驱动，以在游戏中发射核弹头。</strong><br><br>=====<br><br>免费下载，整个游戏项目<br>Chinese download:<br>Full project file, assets, source code <br><a href="https://steamcommunity.com/linkfilter/?url=https://pastebin.com/6tLaJQuw" target="_blank" rel="noopener"  >https://pastebin.com/6tLaJQuw</a><br><br>=====<br><br>This is a small-map open-world sandbox setting where the user is located in undisclosed location in the deserts of China and is given the task to roam around in first-person walking mode and/or drive around in driving mode to any arbitrary location reachable by the mobile launcher on wheels and then given the latitude to launch and release the nuclear missile upon successful nuclear code authentication process. <br><br>=====<br><strong><u>### Quick Start ###:</u></strong><br><strong>＃＃＃ 快速开始 ＃＃＃</strong><br><br>1) <strong>Press <u>&quot;E&quot;</u> to ENTER</strong>/(also exits) vehicle to drive the DF-41 in WASD mode (must be standing very close to the front door of the cabin of the truck to activate Entering)<br><strong>按“ E”进入DF-41，一旦进入DF-41，就可以使用WASD键驱动它。 （当您按下“ E”键时，必须非常靠近机舱的前门站立）</strong><br><br>2) <strong>Press <u>&quot;R&quot;</u> to raise the missile tubes</strong> in preparation for launch (vehicle must already be at complete stop first, hit spacebar for brakes) and this only works when you are in drive mode instead of fps walking mode (see step #1 above) <br><strong>按 “ R” 键将导弹管升起以准备发射（车辆必须首先已经完全停止，按下空格键才能刹车），并且仅在处于驾驶模式而不是（第一人称）行走模式时才有效（请参见步骤 以上＃1）</strong><br><br>3) <strong>Press <u>&quot;U&quot;</u> on keyboard</strong> at any time in any mode to cycle between showing the different layers of the missile tip. (optional and just for visualization purposes) <br><br>4) <strong>Press <u>&quot;J&quot;</u> to jettison/eject the dome/cap</strong> (this only works when you are in drive mode instead of fps walking mode)<br><br>5) <strong>Press <u>&quot;T&quot;</u> to trigger the countdown</strong> timer and invoke the authentication process for nuclear missile launch (this only works when you are in drive mode instead of fps walking mode)<br><strong>按 “ T” 触发倒数计时器并调用核导弹发射的身份验证过程（仅在处于驱动模式而不是fps步行模式时有效）</strong><br><br>Search for free <strong>&quot;<u>DF-41 Authenticator</u>&quot;</strong> (put in quotes) app on Google Play to download the authentication app that generates the authentication/activation code from the challenge code presented in-game. (OPTIONAL) <br><strong>在 Google Play 上搜索免费的 “DF-41 Authenticator” （引号） 应用程序，以下载身份验证应用程序，该应用程序可通过游戏中显示的质询代码生成身份验证/激活码。 （可选的）</strong><br><br>*or use <strong>HUAWEI</strong> as the passcode... (see update above)<br><br>=====<br><br><strong><u>ALT+F2</u></strong> while in-game to start Nvidia Ansel to take high resolution screenshots from any angle or perspective... <br><strong>在游戏中按 ALT + F2 键即可启动 Nvidia Ansel，以便从任何角度或角度拍摄高分辨率屏幕截图... </strong> <br><br><strong><u>SHIFT</u> enables RUN</strong> while walking, superspeed enabled to roam map<br><strong><u>SPACEBAR</u></strong> jumps while in fps walk mode, superjumping enabled to see more vantage points <br><strong><u>ALT+F4 </u></strong>to <strong>EXIT game</strong>, there is no game menu/UI for now, I will add in August updates. <br><br>=====<br><br>The game loads directly into first-person mode, enabling the gamer to walk around using WASD on the keyboard and mouse cursor to turn and to look up and down. You may explore the entire map. To enter the DF-41 mobile launcher vehicle you should walk to the front cabin on the left-hand driver-side and approach very closely to the front set of doors and then hit &quot;E&quot; key to Enter the vehicle. Once in vehicle the drive mode takes over and the WASD keys now control the driving mechanics and the mouse cursor can be used to pan the camera around the DF-41 truck. To exit the vehicle in drive mode simply press &quot;E&quot; again to exit back to first-person walking mode. <br><br>To raise the missile tubes in preparation for launch, the DF-41 must already be at a full stop (spacebar for brakes) and then press &quot;R&quot; to raise the missile tube. Once the missile tube is raised vertically at 90 degrees upright, you may then press the &quot;T&quot; key to start the countdown to launch. At any time during this entire process you may choose to press the &quot;J&quot; key to eject the missile tube dome. If you forget to eject the dome prior to missile launch it will automatically jettison and eject before final countdown begins.  <br><br>Although not required to play the game, there will be optionally the ability for the user to emulate a pseudo authentication process prior to nuclear launch via means of using a free standalone <strong><u>DF-41 Authenticator app</u></strong> (Android and later iOS) in conjunction with the DF-41 Simulator. More details on this can be found in the user manual.<br><br>*** A more comprehensive PDF user manual will be followed up and released shortly *** <br><br>During gameplay you can press the &quot;U&quot; key to make hidden the missile tube dome to directly expose the nuclear missile inside the tube, and pressing U once more time will hide the missile cap and expose the individual MIRVs (of which there are up to 10 configured on the DF-41) inside the missile. Pressing U a third time will cycle it back to original configuration of displaying everything and un-hiding all.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>Elsword</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('5cc45e71-710b-444c-975e-3e32cc9625c1/a0ffbdc1-7f47-4fdd-b9d3-9e6b33285fff.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="5cc45e71-710b-444c-975e-3e32cc9625c1/6a9d902a-4305-44de-bfa5-0e15adafa4cc.ico"/> Elsword</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="5cc45e71-710b-444c-975e-3e32cc9625c1/290103ca-2d52-48c3-93c6-4c4290087c66.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>1m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-22/07/2017">22/07/2017</a> 20:49:08</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-03/02/2016">03/02/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Played">Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-02/07/2014">02/07/2014</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-74">74</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-60">60</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-KOG">KOG</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-KOG Games">KOG Games</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=237310" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/237310" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/237310/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/237310/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/237310" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=237310" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Open Another Powerful Path! Elsword 4TH Path Release</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/_KOG_Games__Elsword_4th_Path_PR_Image.jpg?t=1628101287" /><br><br>KOG Games, a leading developer and publisher of popular free-to-play action MMORPG Elsword, will be releasing Elsword 4th path, featuring the Root Knight, Sacred Templar, and Genesis.<br><br>Check out Elsword’s 4th Path Trailer here: <a href="https://www.youtube.com/watch?v=qy36jnSmYpg" target="_blank" rel="noreferrer"  >https://www.youtube.com/watch?v=qy36jnSmYpg</a><br><br>With 14 characters to play, Elsword takes a step further with each class having multiple paths with different gameplay styles to choose from. For Elsword character, he has Knight Emperor, focusing around using his sword, Rune Master, combining the magical power of Runes with swordplay, and Immortal, utilizing a second sword to maximize the power!<br> <br>Now with his 4th path, Elsword uses the power of the El to strike down his enemies with El Resonance system. Combined with his Way of the Sword system to boost the damage and reduce the mana cost of his skill, he can activate different effects based on the skill he uses. These effects include reducing enemies speed and defense to reducing the amount of damage take.<br><br>During the event, players will receive a Character Slot Expansion Card to make their own 4th Path Elsword, and will be rewarded with numerous rewards such as Sage’s Magic Stones to add more stats to their equipment, or the Ultimate Secret Manual to obtain the Hyperactive skill Sanctuary for their Genesis for free! On Saturday August 7th, players will be able to receive Magic Wardrobe Tickets, allowing them to choose costume pieces from the Magic Wardrobe to customize their characters.<br><br>Check out all the Elsword 4th Path Events here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/elsword-4th-path/" target="_blank" rel="noopener"  >https://elsword.koggames.com/elsword-4th-path/</a><br>To learn more about Elsword please visit <a href="https://steamcommunity.com/linkfilter/?url=http://www.elsword.com" target="_blank" rel="noopener"  >www.elsword.com</a> and keep watching the official Facebook page here <a href="https://steamcommunity.com/linkfilter/?url=https://www.facebook.com/Elsword/" target="_blank" rel="noopener"  >https://www.facebook.com/Elsword/</a>.</p><br><h1>Elsword Celebrates Biggest Milestone with Its 10th Anniversary!</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/616x232_PR_10th-Anniversary.jpg?t=1628101287" /><br><br>KOG Games, a leading developer and publisher of popular free-to-play action MMORPG Elsword, is celebrating its 10th anniversary of the game. The Anniversary runs through May 1st to May 4th and features special events and prizes to celebrate this significant milestone.<br> <br>Check out all the 10th Anniversary events &amp; rewards video here: <a href="https://youtu.be/QYwWgy-hJ1k" target="_blank" rel="noreferrer"  >https://youtu.be/QYwWgy-hJ1k</a><br> <br>On May 1st, players can choose between acquiring a total of 100 Sage’s Magic Stones or Spectral Amethyst and they can be acquired every 10 minutes by simply playing Elsword.<br><br>Players will also be able to acquire a full set of Elpheus Ice Burner costumes on May 4th for the character of their choice by playing Elsword. From Elsword through Laby, players can obtain the full Elpheus Ice Burner set, while Noah players will acquire the full Archangel Ice Burner set.<br><br>Along with full set of Ice Burner, players can enjoy 3x EXP, 2x Drop Rate, and Unlimited Stamina for the entire day, and +10 Weapon Enhancement Buff to make players strong in their leveling. Players will also be able to enjoy a weekend burning event this weekend with 2x EXP on Saturday and 2x Drop Rate on Sunday.<br> <br>Check out all the 10 Anniversary Celebration Events in more detail here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/anniversary-10th/in-game-events.php" target="_blank" rel="noopener"  >https://elsword.koggames.com/anniversary-10th/in-game-events.php</a><br><br>  <br>10 years is a big achievement for MMOs, so congratulations to not only Elsword but its fans and players for making it to be as successful as it is. Don’t miss out on these wondrous events as Elsword will be celebrating its anniversary on May 4th, 2021!<br><br>To learn more about Elsword please visit <a href="https://steamcommunity.com/linkfilter/?url=http://www.elsword.com" target="_blank" rel="noopener"  >www.elsword.com</a> and keep watching the official Facebook page here <a href="https://steamcommunity.com/linkfilter/?url=https://www.facebook.com/Elsword/" target="_blank" rel="noopener"  >https://www.facebook.com/Elsword/</a>.</p><br><h1>Receive the Full Moon’s Blessings through Noah’s 3rd Path!</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/Media_Banner.jpg?t=1628101287" /><br><br>KOG Games, a leading developer and publisher of popular free-to-play action MMORPG Elsword, is releasing the 3rd and Final Noah Job Path - Nyx Pieta! This class utilizes the power of the Full Moon to simultaneously protect and buff your allies while raining damage upon enemies. <br> <br>Check out the Noah 3rd Path Teaser Trailer Video here: <a href="https://youtu.be/UDSW851TjyM" target="_blank" rel="noreferrer"  >https://youtu.be/UDSW851TjyM</a><br> <br>After suffering the impact of many lost loved ones, Noah decides to solely dedicate his life to healing and protecting the lives of others. This causes him to become the Pilgrim of the Silver Moon, Nyx Pieta. This path of Noah utilizes the power of Relics to both support and heal allies and unleash the full power of the moon against any who tries to do harm.<br> <br>Nyx Pieta channels the power of the Moon into his playstyle with both the Blessing of Moonlight System and the Relics of Confession and Rest. The Blessing of Moonlight System buffs certain skills depending on the Moon Phases, which changes every time a skill is cast. <br><br>The Relics of Confession and Rest provides Nyx Pieta with the power of destruction and protection. Utilize the Relic of Confession to gain additional damage buffs while Relic of Rest provides your allies peace of mind with healing and other supporting buffs. <br> <br>During the period of Nyx Pieta’s Launch, Elsword will be celebrating the Noah 3rd Path Update Event which is specifically designed to help jumpstart your Nyx Pieta with rewards like a 50% EXP Boost Medal, Consumable Potions, Mounts and more! Furthermore, once you finish the event, you can claim a [Luriel] Saint’s Crown which is an exclusive Nyx Pieta-based accessory created for this event!<br> <br>In addition, login during the weekend for the Noah 3rd Path Update Special Weekend Event! On Saturdays during his release celebration (March 13th and 20th), we’ll give 100 Spectral Amethyst for players that log in for 60 minutes. These Spectral Amethyst will be used to both craft and upgrade the most powerful armor set currently available - the Amethystine Prophecy set. <br>On Sundays, we’ll provide a Sunday Burning Event with 2x EXP on March 14th 2021 and 2x Drop Rate on March 21st 2021. This will allow players to rapidly level up while gaining valuable drops from dungeons on Sundays!<br> <br>Furthermore, you’re invited to the Moonlight Gala (Full Moon), a special board game event where players win rewards as they complete daily quests and progress through the board. Finish the board game and players will be rewarded with the Legendary Moon Rabbit Costume Suit. This will be a unique opportunity to obtain a costume suit that suitably represents Nyx Pieta.<br> <br>Check out all the Noah 3rd Path Celebration Events in more detail here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/noah-3rd-path-release/" target="_blank" rel="noopener"  >https://elsword.koggames.com/noah-3rd-path-release/</a><br> <br>The Full Moon’s light shines upon all players with the Third Path, Nyx Pieta’s Release. Don’t miss out on your final chance to try out the newest character Noah while gaining all the Noah Release Celebration rewards and more. Login and create your Nyx Pieta during the event duration from March 10th 2021 to April 2th 2021!<br><br>To learn more about Elsword please visit <a href="https://steamcommunity.com/linkfilter/?url=http://www.elsword.com" target="_blank" rel="noopener"  >http://www.elsword.com</a> and keep watching the official Facebook page here <a href="https://steamcommunity.com/linkfilter/?url=https://www.facebook.com/Elsword/" target="_blank" rel="noopener"  >https://www.facebook.com/Elsword/</a>.</p><br><h1>Revel in the Power of the Stars with Noah’s 2nd Path Update!</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/Untitled-6.png?t=1628101287" /><br><br>KOG Games, a leading developer and publisher of popular free-to-play action MMORPG Elsword, is unveiling Noah’s Second Path - Celestia. This Second Path has complete mastery over the celestial power of the stars to both lend aid to his allies and devastation to his enemies.<br> <br>Check out the Noah Second Path Teaser Trailer Video here: <a href="https://youtu.be/qi7newoJpik" target="_blank" rel="noreferrer"  >https://youtu.be/qi7newoJpik</a><br> <br>As Celestia, Noah overcomes his desire for revenge and accepts the tutelage of Clamor, a former elven scholar who is Noah’s close friend. Through his increasing knowledge of Magic, Noah concentrates his studies on the great flow of the sun, moon, celestial bodies and the power of time within himself. He becomes the “Observer of the Constellations” travelling between the memories of the cosmos and the present. <br> <br>Celestia wields both the Sickle and Magical Cards as his primary weapons, which allows him to harness the power of constellations. As he draws his power from Space itself, Celestia’s options are just as vast and powerful. This allows Celestia to support his allies through healing and buffs, while also allowing him to rain down meteorites, stars and even planets upon his enemies. But be cautious as the entropic nature of Space may be difficult to control leading to side-effects - both good and bad. <br> <br>During the period of Celestia’s Launch, Elsword will be celebrating the Noah 2nd Path Update Event which is specially designed to help jumpstart your Celestia with rewards like 50% EXP Boost Medal, Consumable Potions, Mounts and more! Furthermore, once you finish the event, you can claim a [Luriel] Mark of Bonding which is an exclusive Celestia-based accessory created for this event!<br> <br>In addition, login during the weekend for the Noah 2nd Path Update Special Weekend Event! From February 13th to 14th, we begin with the “Weekend Burning!” Event which awards players with up to 100 Sage Stones or 160 Spectral Amethyst which can be used to socket or reforge their gear to be stronger. And from February 20th to 21st, players can enjoy a “Hot Burning Event!” with 2x EXP on Saturday February 20th and 2x Drop Rate on Sunday February 21st.<br><br>Check out all the Noah 2nd Path Celebration Events in more detail here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/noah-2nd-path-release/" target="_blank" rel="noopener"  >https://elsword.koggames.com/noah-2nd-path-release/</a><br><br>The highly-anticipated Treasure Hunt Event will also make a return featuring a newly recolored version of one of the most-liked Ice Burner Set - the Black Dragon Servius. Any K-Ching spent during the event period will reward players with Keys which can open Treasure Chests awarding coins to trade for the set pieces of this prized set. This will come alongside an Enhancement Event, Premium Ice Burner Event and special exclusive packages to power up your Noah!<br> <br>Check out all these Treasure Hunt Event in more detail here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/winter-events-galore/treasure-hunt-event.php#menu" target="_blank" rel="noopener"  >https://elsword.koggames.com/winter-events-galore/treasure-hunt-event.php#menu</a><br> <br>The Stars are aligned for all players with the Second Path, Celestia’s Release. So don’t miss out on the best chance to try out the newest character Noah, and his newest path. Login and create your Celestia before the third and final path arrives at a future date! These Events will run from February 10th 2021 to February 24th 2021 so do not miss out.</p><br><h1>Elsword’s Noah Arrives Bringing the Power of the Moon and Darkness!</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/Untitled-1.png?t=1628101287" /><br><br>KOG Games, a leading developer, and publisher of popular free-to-play action MMORPG Elsword, has just released its newest character Noah and his First Path - Liberator. To celebrate Noah’s release, Elsword will be holding multiple events to shower players with rewards starting on his release date of January 13th, 2021 to January 26th, 2021.<br><br>Check out the Noah First Path Teaser Trailer Video here: <a href="https://www.youtube.com/watch?v=PhtRrSVCOMc&amp;ab_channel=Elsword" target="_blank" rel="noreferrer"  >https://www.youtube.com/watch?v=PhtRrSVCOMc&amp;ab_channel=Elsword</a><br><br>Noah was born over 500 years ago, into the prominent Ebalon family which produced notable members such as Harque Ebalon, Noah’s brother, and one of the legendary El Masters. However, Noah’s brother was brutally murdered and Noah, himself was sealed into a temple for unknown reasons. As he awakens, he suffers from survivor’s guilt and realizes there’s only one path he can follow. Revenge.<br> <br>Noah wields a sickle as his main weapon and can harness both the power of the Moon and Darkness in battle. This allows him to utilize a battle style involving light and stealthy movement to exploit enemies’ weaknesses and cut them down in seconds.<br><br>Simply logging into Elsword and playing Noah will grant you rewards in the “Boy Who Walks on Moonlight” Event granting an exclusive “Noah Diorama Light” and “Harque Ebalon Voice Speaker” for your character. These provide tailor-made exclusive accessories to add to your Noah’s Wardrobe to ensure you look the part of a Revenger. <br><br>Get a Bonus while logging in during Saturdays for the “Noah Weekend Support Event” (January 16th, 2021 and January 23rd, 2021) and earn rewards such as [Cobo] Noah Special Support Cube, multiple valuable Event Recovery Potions to streamline your Noah’s adventures.<br><br>Furthermore, as you play Noah, you’ll complete Quests in the “Noah 1st Path Update Event” allowing you to acquire highly coveted items like Inventory Expansion Cubes, EXP Boost Medals, and another Event exclusive accessory to set up your Noah and prepare for your upcoming adventures. <br><br>Finally, join in the “Invitation to the Moonlight Gala” event, a unique event where players jump into a board game as player tokens and complete daily quests to move up the board. As you progress through the game, acquire rewards such as all sorts of Potion Consumables, Dungeon Entry Tickets, a Hedgehog Adventure Costume Suit for any of your characters, and more!<br><br>Check out all these Noah Release Celebration Events in more detail here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/noah-event/" target="_blank" rel="noopener"  >https://elsword.koggames.com/noah-event/</a><br><br>With all these events and a brand new character, it’s the best chance to try out the newest character, Noah, to gain rewards that you wouldn’t be able to gain at any other time. Log in and create your Noah Character as we continue to reveal the other Job Paths for our newest character! These events will run from January 13th, 2021 to January 26th, 2021 so do not miss out.</p><br><h1>Pre-Register for Elsword’s Newest Character, Noah!</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/SteamImage1.png?t=1628101287" /><br><br>Noah will be the newest character in Elsword after 2 years, and he features an assassin playstyle and utilizes a combination of fast mobility and the power of the shadows for swift, smooth and flashy gameplay. In addition, he will be the first character to feature a unique system allowing players to choose their Awakening Effect allowing players to change their Awakening to fit their situation.<br><br>Check out the Noah Teaser Trailer Here: <a href="https://www.youtube.com/watch?v=RWnqIaAZ8HQ" target="_blank" rel="noreferrer"  >https://www.youtube.com/watch?v=RWnqIaAZ8HQ</a><br><br>Join Noah's Pre-Registration Event which is specially designed to help players prepare for Noah with the “Gift From the Moon - Full Moon” item which will be a specially designed package that will be delivered to new Noah Characters that have successfully pre-registered. This package will include rewards such as an EXP 100% Boost Medal, Refined Recovery Potions and Accessories (like Magic Necklace and special rings that boost Skill damage) to help Noah players power through dungeons and level up faster than before. <br><br>Furthermore, participate in the Noah Pre-Registration Share Events for a chance at exclusive Noah Merchandise through pre-registering and creating their Noah characters or simply sharing the Noah Pre-Registration Video. The Noah Merchandise Pack will include a specially designed Noah Mousepad and Noah Facemask.  <br><br>Check out the details of the Noah Pre-Registration and all the events here!: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/noah-pre-registration-event/" target="_blank" rel="noopener"  >https://elsword.koggames.com/noah-pre-registration-event/</a><br><br>Play Your Manga!! Play to Win!!</p><br><h1>Elsword Gets Cozier with the El Housing Update!</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/El_housing_PR.png?t=1628101287" /><br><br>There's no place like home and so it's time get a home of your very own with the new El Housing System! The new feature will come alongside a special event that runs through May 20th to June 2nd to help players get their house started.<br> <br>See the new El Housing rundown video here: <a href="https://www.youtube.com/watch?v=Dd-heQfTYsg" target="_blank" rel="noreferrer"  >https://www.youtube.com/watch?v=Dd-heQfTYsg</a><br> <br>The new El Housing update will allow players to create, customize and have fun in their own unique player-owned houses. Players will be able to freely customize their home, add furniture that can give buffs to your adventures and even invite friends over to PARTY (or sip on some tea). <br> <br>There will also be a Housing Celebration Event starting May 20th that sends Butler Phorus all around Elrios. Find the Butler Phorus in dungeons within your level range to collect Furniture Exchange Tickets to gain a head-start on the competition with a variety of Furniture to start decorate your home.<br> <br>Check out the details of the El Housing System and all the events here!: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/el-house/" target="_blank" rel="noopener"  >https://elsword.koggames.com/el-house/</a><br> <br>Play Your Manga!! Play to Win!!</p><br><h1>ELSWORD - Master Class | Elsword, Raven and Ain</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/616x232.png?t=1628101287" /><br><br>Every Character, Every Path, Elsword‘s biggest update series is concluding with Elsword, Raven and Ain's Master Class!<br><br>Elsword, Raven and Ain have received new looks and new skills for all 3 Paths! In addition, all three characters will be able to summon a new Master Artifact that grows with your character with separate leveling and experience systems!<br><br>View all the Master Class Upgrades for Elsword, Raven and Ain here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/master-class-elsword-raven-ain/" target="_blank" rel="noopener"  >https://elsword.koggames.com/master-class-elsword-raven-ain/</a><br><br>To achieve Master Class, Elsword and Raven players will need to complete Solace's Master Class Quest held in one of the two newest dungeons - Gate of the Setting Sun! Enter this epic dungeon and face-off against the El Master of the Sun, Solace in an epic duel for the ages!<br><br>Ain players will be set on a different path to achieve their Master Class by meeting Hernia in the second new dungeon - Anguish of the Wavering Servant! Battle a mysterious entity who seems eerily familiar and receive rewards from beyond time, itself!<br><br>Learn more about the newest Master Road Dungeon here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/master-class-elsword-raven-ain/master-road.php" target="_blank" rel="noopener"  >https://elsword.koggames.com/master-class-elsword-raven-ain/master-road.php</a><br><br>Be sure to log in for the next two weekends to receive extra experience, unlimited stamina, and double the drop rate! <br><br>Read about all the rewards and limited time events planned for next month here: <br><a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/master-class-elsword-raven-ain/events.php#menu" target="_blank" rel="noopener"  >https://elsword.koggames.com/master-class-elsword-raven-ain/events.php#menu</a><br><br>Play Your Manga!! Play to Win!!</p><br><h1>ELSWORD - Master Class | Add and Eve</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/Untitled-1.png?t=1628101287" /><br><br>Every Character, Every Path, Elsword‘s biggest update series is continuing with Add and Eve's Master Class!<br><br>Add and Eve have received new looks and new skills for all 3 Paths! In addition, Add and Eve will be able to summon a new Master Artifact that grows with your character with separate leveling and experience systems!<br><br>View all the Master Class Upgrades for Add and Eve here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/master-class-eve-add/" target="_blank" rel="noopener"  >https://elsword.koggames.com/master-class-eve-add/</a><br><br>To achieve Master Class, players must complete Adrian's Master Class Quest held in the newest dungeon - The Nasod Testing Chamber! Enter this epic dungeon and face-off against Herbaon and Durenda and be rewarded generously!<br><br>Learn more about the newest Master Road Dungeon here: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/master-class-eve-add/master-road.php" target="_blank" rel="noopener"  >https://elsword.koggames.com/master-class-eve-add/master-road.php</a><br><br>Be sure to log in for the next two weekends to receive extra experience, unlimited stamina, and double the drop rate! <br><br>Read about all the rewards and limited time events planned for next month here: <br><a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/master-class-eve-add/events.php#menu" target="_blank" rel="noopener"  >https://elsword.koggames.com/master-class-eve-add/events.php#menu</a><br><br>Play Your Manga!! Play to Win!!</p><br><h1>Elsword Lights Up the Holiday Season with the Master Class Pre-Event and Christmas Event</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/2019_Master_class_teaser_616x232.jpg?t=1628101287" /><br><br><i>The Master Class is Coming In January 15th ! Every Character, Every Path—Elsword’s Biggest Update Series Ever Will Ring in The New Year in 2020!</i><br><br>Here’s the announcement of the Master Class Update and the kick off the Christmas season in Elsword with the Master Class pre-event and limited time Christmas Event. <br><br>Every Character, Every Path, Elsword's biggest update series, is about to hit, and every member of the El Search Party is about to go to the next level with the Master Class. Starting January 15th, Elsword characters will start their Master Class evolution beginning with Ara and Laby! Now is the best time to prepare for the upcoming winter updates. Stay ahead of the curve and prepare before the new year rolls in! <br><br>Watch the Master Class teaser: <a href="https://www.youtube.com/watch?v=IKPlaUywCn4" target="_blank" rel="noreferrer"  >https://www.youtube.com/watch?v=IKPlaUywCn4</a><br><br>Starting today through January 15, 2020 receive limited time quests, rewards, and boosts through the Master Class Pre-Event, FORWARD.  Login to Elsword for just 10 minutes and players will receive Full Costume Sets for 2 whole weeks. Play during the Event period and receive a power up for the duration of the event; +11 Weapon Enhancement Buff and a +10% Physical &amp; Magical Attack Power! New daily and weekly Quests, Rewards and Boosts; from double the experience to twice the Drop Rates for different dungeons and so much more!<br><br>Don’t miss out on any of the rewards by visiting the event page: <a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/forward-winter-update-pre-event-1/" target="_blank" rel="noopener"  >https://elsword.koggames.com/forward-winter-update-pre-event-1/</a><br>Celebrate Christmas in game from December 20 through December 25; log in and receive permanent Christmas-themed gifts! <br>For more info, dates and details about the Elsword Christmas Events, check out the website: <a href="https://steamcommunity.com/linkfilter/?url=http://www.elsword.koggames.com" target="_blank" rel="noopener"  ><a href="https://steamcommunity.com/linkfilter/?url=http://www.elsword.koggames.com!" target="_blank" rel="noopener"  >www.elsword.koggames.com!</a></a></p><br><h1>ELSWORD – RE:BOOT VOLUME 2</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/Adrotator_Storefront.jpg?t=1628101287" /><br><br>Elsword Launches Second Round of Character Re:Boot!<br><br>KOG Games, announced the reboots of Elesis, Ara, and Ain. <br>As the Reboot content schedule rolls out, all 13 Characters and their staggering, combined 40 Job Paths (Classes) will all be affected. These adjustments will impact both PvE and PvP content; adding, revamping, and streamlining attack types, evasion, skills and traits across all Characters and Job Paths, featuring new, dazzling animations.<br><br>To start off, the base Attack and Defense attributes for all characters will be normalized. Then, the attack types of these characters will be adjusted to focus on their designated specialty (i.e. Physical/Magic). <br>All skill slots and skill traits of the respective, rebooted characters will be reset. New skills will be added for all Character Paths. <br>Attack commands and the priority of these commands will be readjusted for rebooted Characters.<br><br>View all the powerful changes for Elesis, Ara, and Ain here:<br><a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/2nd-character-reboot/" target="_blank" rel="noopener"  >https://elsword.koggames.com/2nd-character-reboot/</a><br><br>Players can test out their new skills and prepare their brand-new characters for Endgame content by partaking in the Character Growth Support Event from July 31 to August 27. Log in daily to clear Quests from each village and receive tons of Epic Rewards.<br><br>Be sure to log in this weekend (Aug 3 – Aug 4) to receive extra experience, unlimited stamina, and double the drop rate! <br><br>Read about all the rewards and limited time events planned for next month here: <br><a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/2nd-character-reboot/event.php#menu" target="_blank" rel="noopener"  >https://elsword.koggames.com/2nd-character-reboot/event.php#menu</a><br><br>Play Your Manga!! Play to Win!!</p><br><h1>ELSWORD – RE:BOOT VOLUME 1</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/616x232_Reboot.jpg?t=1628101287" /><br><br>The colossal Elsword RE:BOOT is here, and kicks off with the first round of 3 characters. <br><br>As the colossal Reboot content schedule rolls out, all 13 Characters and their staggering, combined 40 Job Paths (Classes) will all be effected. These adjustments will impact both PvE and PvP content; adding, revamping, and streamlining attack types, evasion, skills and traits across all Characters and Job Paths, featuring new, dazzling animations.<br> <br>To start off, the base Attack and Defense attributes for all characters will be normalized. Then, the attack types of these characters will be adjusted to focus on their designated specialty (i.e. Physical/Magic). All skill slots and skill traits of the respective, rebooted characters will be reset. New skills will be added for all Character Paths. Attack commands and the priority of these commands will be readjusted for rebooted Characters.<br> <br>View all the powerful changes for Elsword, Rena, and Eve here:<br><a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/1st-character-reboot/index.php#menu" target="_blank" rel="noopener"  >https://elsword.koggames.com/1st-character-reboot/index.php#menu</a><br><br>Players level 10 and up can test out their new skills, pick up daily and weekly quests, and earn awesome rewards during the Character Reboot Event lasting until July 30. Do not miss out on these limited time events this weekend! Level 10 and up players will receive 3x the experience and unlimited stamina on July 20. Drop rates will be doubled and stamina will be unlimited on July 21. <br><br>Check out the many ways to participate in this month’s reboot event here: <br><a href="https://steamcommunity.com/linkfilter/?url=https://elsword.koggames.com/1st-character-reboot/event.php#menu" target="_blank" rel="noopener"  >https://elsword.koggames.com/1st-character-reboot/event.php#menu</a><br><br>To learn more about Elsword please visit <a href="https://steamcommunity.com/linkfilter/?url=http://www.elsword.com" target="_blank" rel="noopener"  >www.elsword.com</a> and keep watching the official Facebook page <a href="https://steamcommunity.com/linkfilter/?url=https://www.facebook.com/Elsword/" target="_blank" rel="noopener"  >here</a>.</p><br><h1>Elsword's Laby Gets Her 3rd Job Path</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/237310/extras/storefront_Laby3rdpath.jpg?t=1628101287" /><br><br>The Eternal Night Takes Over the Adorable Brawler<br><br>Irvine, Calif., March 6, 2019 – KOG Games, a leading developer and publisher of popular free-to-play action MMORPGs, today released the 3rd Job Path, Rusty Child, for their newest, playable character, Laby (pronounced lab-ee). <a href="https://youtu.be/A5b9OsAhnAw" target="_blank" rel="noreferrer"  >Check out the new trailer here</a>.<br><br>Laby's excitement from entering a new world soon faded and was replaced by a feeling of discomfort. She could not shake the feeling, eventually leading her to make a mistake in the battlefield. Despite this, she was able to defeat the enemies with Nisha’s help. Bellonde, however, was injured in the process and his wounds were not healing immediately like hers. She finally realized where her feelings of discomfort were coming from. <br><br>Trusting Nisha to take care of her, Laby gives all of her emotions to Nisha allowing her to become corporeal while Laby slowly fades away. To prevent Laby from disappearing, Nisha turned her into a mirror and promised to make this world a place just for Laby - where she can be happy like before. <br><br>Rusty Child, Daydreamer, and Nisha Labyrinth; come to realize the nature of their existence... together. Until the day all light fades to nothing.<br><br>Dark path stans and Laby lovers unite! Today is the day you’ve all been waiting for! The gloom and doom of Nisha is upon us! An Exciting New Adventure and special rewards are available today, including:<br><ul class="bb_ul"><li>Every 10 levels plus accomplishing specific tasks will give Laby plenty of rewards to keep her afloat as she explores her new world! Fill your inventories with rewards like: Accessories, Expansion Cubes, Potions, Mounts, a Mini Poco, and so much more!<br></li><li>Plus, get more consumable rewards daily like Sage’s Magic Stones, Elixirs, and Potions when you clear dungeons within her level range!</li></ul><br>The Laby 3rd Job Path Event begins today and concludes on March 19 at 11:59 PDT.</p><br><h1>About the Game</h1>Elsword is a free-to-play, online action RPG that uses classic side-scrolling beat ‘em up gameplay mechanics and deep customization to bring a unique manga experience to life. <br><br>In Elsword, you star in your own comic book while experiencing all the excitement of a massively multiplayer online game. Get ready for fast-paced gameplay, stunning animation, and epic bosses. Whether conquering hordes of enemies in dungeon runs or showing off your skills in the PvP arena, Elsword is the most intense free-to-play action RPG to date.<h2 class="bb_tag">Key Features</h2><strong>•Co-Op Gameplay</strong> - Party-up with friends to explore over 50 unique and beautifully rendered dungeons, towns, and secret levels. <br><strong>•Unique Characters, Unique Stories</strong>- Players can choose from thirteen customizable characters, each their own unique story, play style and special skills to develop. <br><strong>•Skill-Based PVP Combat-</strong> Elsword offers intense and strategic PvP with matchmaking and multiple competitive modes. Challenge your friends in matches of up to 8 players at a time. <br><strong>•Customize like Crazy-</strong> Each character features multiple job changes, dozens of skills and endless opportunities for customization. Create or discover your personal look. <br><strong>•Community Support-</strong> Constant game updates, item and content expansions, and special events including GM Livestream play sessions, community contests and PVP Tournaments are all a part of the Elsword experience.
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>

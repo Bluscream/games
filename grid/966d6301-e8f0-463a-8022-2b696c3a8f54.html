@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>American Truck Simulator</title>
+		<style>
+body {
+  background: #24282f;                                /* main background color in case of no image */
+  font-family: 'Arial';                               /* font arial which should be readable */
+  Height:100%;                                        /* set width to 100% also needed for background */
+  margin:0px;                                         /* hide any margins */
+  background-size: cover;                             /* size background image without distortion along width and height */
+  background-repeat: no-repeat;                       /* no background repeat */
+  Background-attachment:fixed;                        /* needed to make background image behave properly */
+  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+}
+ 
+html {
+  height:100%;                                        /* need to set this to 100% to make the background behave propertly */
+}
+
+.title h2 {
+  padding-left: 25px;                                 /* left padding */
+  color: #ccc;                                        /* text color */
+  margin: 0;                                          /* no margins */
+  background-color: black;                            /* black background */
+  vertical-align: middle;                             /* align vertical middle */
+}
+
+.title img {
+	vertical-align: middle;                           /* images in title aligned vertical middle */
+}
+
+.title {
+	width: 100%;                                      /* title container width 100% */
+	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
+    grid-row: 1;                                      /* row 1 */
+
+}
+.cards {                                              /* empty not used here */
+}
+
+.card {
+	display: grid;                                    /* container which is the grid */
+	grid-template-columns: min-content;               /* size columns to minimum content */
+	grid-template-rows: min-content min-content;      /* size rows to minimum content */
+	height: 100vh;                                    /* 100% viewport height */
+}
+
+.detailstitle{
+  grid-column: 1;                                     /* 1st column */
+  grid-row: 2;                                        /* 2nd row */
+  width: 350px;                                       /* fixed width set to same size as details */
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+}
+
+.details {
+  padding-left: 10px;                                 /* some padding left */
+  padding-right: 10px;                                /* some padding right */
+  color: #ccc;
+  grid-column: 1;                                      /* 1st column */
+  grid-row: 3;                                         /* 3rd row of grid */
+  width: 350px;                                        /* fixed width of details */
+  overflow-y: auto;                                     /* add vertical scrollbar if needed */
+  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
+ }
+ 
+.detailstitle h3,
+.descriptiontitle h3 {
+	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
+	padding: 5px;                                      /* add some padding */
+	color: #ccc;                                       /* text color of the titles */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+}
+
+.detailstable td {
+  text-align: left;                                    /* align text left */
+  vertical-align: top;                                 /* align top */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+}
+
+.details img {
+	max-width: 100%;                                   /* make sure images don't overflow in width on details */
+}
+
+.descriptiontitle {
+	grid-column: 2;                                    /* column 2 of grid */
+	grid-row: 2;                                       /* row 2 of grid */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+
+.description {
+	color: #ccc;                                       /* text color */
+	grid-column: 2;                                    /* 2nd column of grid */
+	grid-row: 3;                                       /* 3rd row of grid */
+	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
+	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
+	padding-left: 10px;                                /* some padding left */
+	padding-right: 10px;                               /* some padding right */
+}
+
+.description img {
+	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
+}
+
+.footer {
+	grid-column:1;                                     /* 1st column of grid */
+	grid-row:3;                                        /* 3rd row of grid */
+}
+
+.MenuButton {
+  border: none;                                        /* Remove borders */
+  outline: none;                                       /* Remove outline */
+  background-color: #888;                              /* Set a background color */
+  color: #000;                                         /* Text color */
+  padding: 5px;                                        /* Some padding */
+  border-radius: 4px;                                  /* Rounded corners, border */
+  font-size: 20px;                                     /* Increase font size */
+  cursor:pointer;                                         /* Add a mouse pointer on hover */
+  margin-right: 20px;                                  /* to have some space on right side before next element */
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #777;                              /* Add a dark-grey background on hover */
+  color: #CCC;                                         /* Text color */
+}
+
+a {
+ text-decoration: none;                                /* no text underline in links */
+}
+a:link {
+  color: #B1B1B1;                                      /* unvisited link color */
+}
+a:visited {
+  color: #B1B1B1;                                      /* visited link color */
+}
+a:hover {
+  color: #D1D1D1;                                      /* mouse over link color */
+  text-decoration: underline;                          /* add text underline in links when mouse over */
+}
+a:active {
+  color: #B1B1B1;                                      /* selected link color */
+}
+
+                                                       /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+		</style>
+	</head>
+	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('966d6301-e8f0-463a-8022-2b696c3a8f54/696b72aa-c766-49da-867a-bae7ee65c760.jpg');">
+		<div class="cards">
+			<div class="card">
+				<div class="title">
+					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="966d6301-e8f0-463a-8022-2b696c3a8f54/d9a34704-2b49-4104-a1df-f2506d2e00c7.ico"/> American Truck Simulator</h2>
+				</div>
+				<div class="detailstitle">
+				<H3>Details</H3>
+				</div>
+				<div class="details">
+					<div style="overflow: auto;">
+						<TABLE class="detailstable">
+							<col style="width:50%" />
+							<col style="width:50%" />
+							<TR>
+								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="966d6301-e8f0-463a-8022-2b696c3a8f54/0033e053-967b-4550-bb71-e349d16ec7e3.jpg"/></TD>
+							</TR>
+							<TR>
+								<TD>Playtime</TD>
+								<TD>6h 43m 0s</TD>
+							</TR>
+							<TR>
+								<TD>Last Activity</TD>
+								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-13/05/2019">13/05/2019</a> 4:34:43</TD>
+							</TR>
+							<TR>
+								<TD>Added</TD>
+								<TD><a href="default_added_descending_name_ascending.html#quicklink-05/06/2016">05/06/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Modified</TD>
+								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
+							</TR>
+							<TR>
+								<TD>Completion Status</TD>
+								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
+							</TR>
+							<TR>
+								<TD>Source</TD>
+								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
+							</TR>
+							<TR>
+								<TD>Platform</TD>
+								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
+							</TR>
+							<TR>
+								<TD>Release Date</TD>
+								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-02/02/2016">02/02/2016</a> </TD>
+							</TR>
+							<TR>
+								<TD>Community Score</TD>
+								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-95">95</a></TD>
+							</TR>
+							<TR>
+								<TD>Critic Score</TD>
+								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-76">76</a></TD>
+							</TR>
+							<TR>
+								<TD>User Score</TD>
+								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
+							</TR>
+							<TR>
+								<TD>Genre</TD>
+								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Developer</TD>
+								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-SCS Software">SCS Software</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Publisher</TD>
+								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-SCS Software">SCS Software</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Feature</TD>
+								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Co-op">Co-op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Includes Level Editor">Includes Level Editor</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Nexus Mods">Nexus Mods</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Co-Op">Online Co-Op</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Remote Play Together">Remote Play Together</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Trading Cards">Trading Cards</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Workshop">Workshop</a><br/></TD>
+							</TR>
+							<TR>
+								<TD>Links</TD>
+								<TD><a href="https://nexusmods.com/americantrucksimulator" target="_blank">Nexus Mods</a><br/><a href="https://pcgamingwiki.com/api/appid.php?appid=270880" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/270880" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/270880/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/270880/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/app/270880/workshop/" target="_blank">Workshop</a><br/><a href="https://steamcommunity.com/stats/270880/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/270880" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=270880" target="_blank">News</a><br/></TD>
+							</TR>
+						</TABLE>
+					</div>
+				</div>
+				<div class="descriptiontitle">
+					<H3>Description</H3>
+				</div>
+				<div class="description">
+					<h1>Just Updated</h1><p>Join your friends and keep on truckin' together in 8 player Convoy multiplayer mode, now available!</p><br><h1>New in-game event</h1><p>Join the Idaho Spuds event. Celebrate <a href="https://store.steampowered.com/app/1209470/American_Truck_Simulator__Idaho/?utm_source=steam&amp;utm_campaign=idaho_spuds&amp;utm_content=ats_store_page" target="_blank" rel="noreferrer"  >Idaho</a>’s famous potato industry, for the 1st year anniversary of its release. <a href="https://store.steampowered.com/news/app/270880/view/4694423802169762726" target="_blank" rel="noreferrer"  >Read the rules</a> and haul spuds!<br><br><a href="https://store.steampowered.com/news/app/270880/view/4694423802169762726" target="_blank" rel="noreferrer"  ><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/270880/extras/steam_idaho_spuds_event.jpg?t=1627378708" /></a></p><br><h1>Give Euro Truck Simulator 2 a test drive</h1><p>Start your new truck empire in Europe! <a href="steam://install/231120"  >Try the demo</a> of Euro Truck Simulator 2 and <a href="https://store.steampowered.com/app/227300/Euro_Truck_Simulator_2/" target="_blank" rel="noreferrer"  >visit the Steam store page</a>.<br><br><a href="https://store.steampowered.com/app/227300/Euro_Truck_Simulator_2/" target="_blank" rel="noreferrer"  id="dynamiclink_0" >https://store.steampowered.com/app/227300/Euro_Truck_Simulator_2/</a></p><br><h1>About the Game</h1><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/270880/extras/ats_banner.jpg?t=1627378708" /><br><br>Experience legendary American trucks and deliver various cargoes across sunny California, sandy Nevada, and the Grand Canyon State of Arizona. American Truck Simulator takes you on a journey through the breathtaking landscapes and widely recognized landmarks around the States.<br><br>Game mechanics are based on the highly successful model from Euro Truck Simulator 2 and have been expanded with new features, creating the most captivating game experience from SCS Software.<br><br>American Truck Simulator puts you in the seat of a driver for hire entering the local freight market, making you work your way up to become an owner-operator, and go on to create one of the largest transportation companies in the United States.<h2 class="bb_tag">Features</h2><br><ul class="bb_ul"><li> Drive highly detailed truck models officially licensed from iconic truck manufacturers.<br></li><li> Your truck is your new home. Make it yours by changing cabins, chassis, paintjobs, adding tuning accessories or more powerful engines.<br></li><li> Lots of different cargoes to choose: From food to machinery to hazard cargoes.<br></li><li> Multiple types of trailers – from reefers to flatbeds, from dumpers to lowboys and goosenecks.<br></li><li> The longest trailers (up to 53 ft) will challenge your skills and patience while hauling and during parking.<br></li><li> Deliver your cargoes to a rich variety of companies and locations like refineries, oil storage, gas stations, car factories, or roadworks.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/270880/extras/locations.png?t=1627378708" /><br></li><li> Various simulation settings for trucking enthusiasts: Air brake simulation; different types of brakes: retarder, Jake brake, trailer brake; multiple types of transmissions straight from real trucks, brake intensity, and more.<br></li><li> Get the feel of being inside a real cabin: Adjust your seat, mirrors and position your head to get the best view of the road.<br></li><li> Drive safely, follow the rules and speed limits – police will fine you if you aren't careful!<br></li><li> Ensure that you are not delivering overweight cargo – you may be checked at the weigh scales.<br></li><li> Use the route adviser as your personal assistant during the travels.<br></li><li> Try the life of a truck driver for hire. By delivering the cargoes safely and improving your skills, become the owner of your own, successful company!<br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/270880/extras/trucker.png?t=1627378708" /><br></li><li> Build your own fleet of trucks, buy garages, hire drivers, manage your company for maximum profits.<br></li><li> Make your trucking time better by listening to your favorite songs via built-in music player or streaming your favorite radio stations.<br></li><li> Capture your favorite moments with a photo mode offering rich set of editing options.<br></li><li> Great support for steering wheels, gamepads and other input devices.<br></li><li> Long-time support of the game, including new features.<br></li><li> Obtain challenging Steam achievements and collect all hand-painted Steam trading cards.</li></ul><h2 class="bb_tag">World of Trucks</h2><br>Take advantage of additional features of American Truck Simulator by joining our online community on <a href="https://steamcommunity.com/linkfilter/?url=https://worldoftrucks.com/" target="_blank" rel="noopener"  >World of Trucks</a>, our center for virtual truckers all around the world interested in Euro Truck Simulator 2, American Truck Simulator and future SCS Software's truck simulators. <br><br><ul class="bb_ul"><li>Use in-game Photo Mode to capture the best moments and share them with thousands of people who love trucks.<br></li><li>Favorite the images you like the most and return to them anytime in the future.<br></li><li>Discuss the screenshots with everyone using World of Trucks.<br></li><li>See the best images hand-picked by the game creators in Editor's Pick updated almost every day. Try to get your own screenshot on this list!<br></li><li>Upload and use your custom avatar and license plate in the game.<br></li><li>More features coming soon!</li></ul><br>To join <a href="https://steamcommunity.com/linkfilter/?url=http://worldoftrucks.com/" target="_blank" rel="noopener"  >World of Trucks</a>, simply sign up with your Steam account <a href="https://steamcommunity.com/linkfilter/?url=https://worldoftrucks.com/en/join.php" target="_blank" rel="noopener"  >on the join page</a>. You will need to own <a href="https://store.steampowered.com/app/270880" target="_blank" rel="noreferrer"  >American Truck Simulator</a> or <a href="https://store.steampowered.com/app/227300" target="_blank" rel="noreferrer"  >Euro Truck Simulator 2</a> to join World of Trucks.<br><br><strong>World of Trucks is an optional service, registration on World of Trucks isn't required to play the game.</strong>
+				</div>
+				<div class="footer"> </div>
+			</div>
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+		<script>
+			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+			observer.observe();
+		</script>
+	</body>	
+</html>
