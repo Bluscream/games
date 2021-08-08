@@ -1,316 +1,1106 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<title>Heroes of Fantasia</title>
-		<style>
-body {
-  background: #24282f;                                /* main background color in case of no image */
-  font-family: 'Arial';                               /* font arial which should be readable */
-  Height:100%;                                        /* set width to 100% also needed for background */
-  margin:0px;                                         /* hide any margins */
-  background-size: cover;                             /* size background image without distortion along width and height */
-  background-repeat: no-repeat;                       /* no background repeat */
-  Background-attachment:fixed;                        /* needed to make background image behave properly */
-  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+  <head>
+    <title>Heroes of Fantasia</title>
+    <style>
+      body {
+        background: #24282f; /* main background color in case of no image */
+        font-family: "Arial"; /* font arial which should be readable */
+        height: 100%; /* set width to 100% also needed for background */
+        margin: 0px; /* hide any margins */
+        background-size: cover; /* size background image without distortion along width and height */
+        background-repeat: no-repeat; /* no background repeat */
+        background-attachment: fixed; /* needed to make background image behave properly */
+        overflow-y: hidden; /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
 }
  
 html {
   height:100%;                                        /* need to set this to 100% to make the background behave propertly */
-}
+      }
 
-.title h2 {
-  padding-left: 25px;                                 /* left padding */
-  color: #ccc;                                        /* text color */
-  margin: 0;                                          /* no margins */
-  background-color: black;                            /* black background */
-  vertical-align: middle;                             /* align vertical middle */
-}
+      .title h2 {
+        padding-left: 25px; /* left padding */
+        color: #ccc; /* text color */
+        margin: 0; /* no margins */
+        background-color: black; /* black background */
+        vertical-align: middle; /* align vertical middle */
+      }
 
-.title img {
-	vertical-align: middle;                           /* images in title aligned vertical middle */
-}
+      .title img {
+        vertical-align: middle; /* images in title aligned vertical middle */
+      }
 
-.title {
-	width: 100%;                                      /* title container width 100% */
-	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
-    grid-row: 1;                                      /* row 1 */
+      .title {
+        width: 100%; /* title container width 100% */
+        grid-column: 1 / span 3; /* column 1 but spans 3 */
+        grid-row: 1; /* row 1 */
+      }
+      .cards {
+        /* empty not used here */
+      }
 
-}
-.cards {                                              /* empty not used here */
-}
+      .card {
+        display: grid; /* container which is the grid */
+        grid-template-columns: min-content; /* size columns to minimum content */
+        grid-template-rows: min-content min-content; /* size rows to minimum content */
+        height: 100vh; /* 100% viewport height */
+      }
 
-.card {
-	display: grid;                                    /* container which is the grid */
-	grid-template-columns: min-content;               /* size columns to minimum content */
-	grid-template-rows: min-content min-content;      /* size rows to minimum content */
-	height: 100vh;                                    /* 100% viewport height */
-}
+      .detailstitle {
+        grid-column: 1; /* 1st column */
+        grid-row: 2; /* 2nd row */
+        width: 350px; /* fixed width set to same size as details */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.detailstitle{
-  grid-column: 1;                                     /* 1st column */
-  grid-row: 2;                                        /* 2nd row */
-  width: 350px;                                       /* fixed width set to same size as details */
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-}
+      .details {
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+        color: #ccc;
+        grid-column: 1; /* 1st column */
+        grid-row: 3; /* 3rd row of grid */
+        width: 350px; /* fixed width of details */
+        overflow-y: auto; /* add vertical scrollbar if needed */
+        overflow-x: hidden; /* don't overflow on x axis (no horz scrollbar) */
+      }
 
-.details {
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-  color: #ccc;
-  grid-column: 1;                                      /* 1st column */
-  grid-row: 3;                                         /* 3rd row of grid */
-  width: 350px;                                        /* fixed width of details */
-  overflow-y: auto;                                     /* add vertical scrollbar if needed */
-  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
- }
- 
-.detailstitle h3,
-.descriptiontitle h3 {
-	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
-	padding: 5px;                                      /* add some padding */
-	color: #ccc;                                       /* text color of the titles */
-}
+      .detailstitle h3,
+      .descriptiontitle h3 {
+        border-bottom: 1px solid #ccc; /* titles of description details should have line under it */
+        padding: 5px; /* add some padding */
+        color: #ccc; /* text color of the titles */
+      }
 
-.detailstable th, td {
-  border: 0px;                                         /* no borders on td, th elements */
-  color: #ccc;                                         /* details table text color */
-}
+      .detailstable th,
+      td {
+        border: 0px; /* no borders on td, th elements */
+        color: #ccc; /* details table text color */
+      }
 
-.detailstable td {
-  text-align: left;                                    /* align text left */
-  vertical-align: top;                                 /* align top */
-}
+      .detailstable td {
+        text-align: left; /* align text left */
+        vertical-align: top; /* align top */
+      }
 
-.detailstable {
-  width: 100%;                                         /* set to full width of details */
-  padding: 5px;                                        /* add some padding */
-}
+      .detailstable {
+        width: 100%; /* set to full width of details */
+        padding: 5px; /* add some padding */
+      }
 
-.details img {
-	max-width: 100%;                                   /* make sure images don't overflow in width on details */
-}
+      .details img {
+        max-width: 100%; /* make sure images don't overflow in width on details */
+      }
 
-.descriptiontitle {
-	grid-column: 2;                                    /* column 2 of grid */
-	grid-row: 2;                                       /* row 2 of grid */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .descriptiontitle {
+        grid-column: 2; /* column 2 of grid */
+        grid-row: 2; /* row 2 of grid */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
+      .description {
+        color: #ccc; /* text color */
+        grid-column: 2; /* 2nd column of grid */
+        grid-row: 3; /* 3rd row of grid */
+        overflow-y: auto; /* overflow-y automatic (for adding scrollbar) */
+        overflow-x: hidden; /* prevent horizontal scrollbar */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.description {
-	color: #ccc;                                       /* text color */
-	grid-column: 2;                                    /* 2nd column of grid */
-	grid-row: 3;                                       /* 3rd row of grid */
-	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
-	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .description img {
+        max-width: 100%; /* make sure images don't overflow in width to prevent scrollbars */
+      }
 
-.description img {
-	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
-}
+      .footer {
+        grid-column: 1; /* 1st column of grid */
+        grid-row: 3; /* 3rd row of grid */
+      }
 
-.footer {
-	grid-column:1;                                     /* 1st column of grid */
-	grid-row:3;                                        /* 3rd row of grid */
-}
+      .MenuButton {
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #888; /* Set a background color */
+        color: #000; /* Text color */
+        padding: 5px; /* Some padding */
+        border-radius: 4px; /* Rounded corners, border */
+        font-size: 20px; /* Increase font size */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        margin-right: 20px; /* to have some space on right side before next element */
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        text-decoration: none;
+      }
 
-.MenuButton {
-  border: none;                                        /* Remove borders */
-  outline: none;                                       /* Remove outline */
-  background-color: #888;                              /* Set a background color */
-  color: #000;                                         /* Text color */
-  padding: 5px;                                        /* Some padding */
-  border-radius: 4px;                                  /* Rounded corners, border */
-  font-size: 20px;                                     /* Increase font size */
-  cursor:pointer;                                         /* Add a mouse pointer on hover */
-  margin-right: 20px;                                  /* to have some space on right side before next element */
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  text-decoration: none;
-}
+      .MenuButton:hover {
+        background-color: #777; /* Add a dark-grey background on hover */
+        color: #ccc; /* Text color */
+      }
 
-.MenuButton:hover {
-  background-color: #777;                              /* Add a dark-grey background on hover */
-  color: #CCC;                                         /* Text color */
-}
+      a {
+        text-decoration: none; /* no text underline in links */
+      }
+      a:link {
+        color: #b1b1b1; /* unvisited link color */
+      }
+      a:visited {
+        color: #b1b1b1; /* visited link color */
+      }
+      a:hover {
+        color: #d1d1d1; /* mouse over link color */
+        text-decoration: underline; /* add text underline in links when mouse over */
+      }
+      a:active {
+        color: #b1b1b1; /* selected link color */
+      }
 
-a {
- text-decoration: none;                                /* no text underline in links */
-}
-a:link {
-  color: #B1B1B1;                                      /* unvisited link color */
-}
-a:visited {
-  color: #B1B1B1;                                      /* visited link color */
-}
-a:hover {
-  color: #D1D1D1;                                      /* mouse over link color */
-  text-decoration: underline;                          /* add text underline in links when mouse over */
-}
-a:active {
-  color: #B1B1B1;                                      /* selected link color */
-}
+      /* scrollbars W3C standard that is currently Firefox-only */
+      * {
+        scrollbar-width: thin; /* small width */
+        scrollbar-color: #888 transparent; /* trackbar color + transparant background */
+      }
 
-                                                       /* scrollbars W3C standard that is currently Firefox-only */
-* {
-  scrollbar-width: thin;                               /* small width */
-  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
-}
+      /* scrollbars on Chrome/Edge/Safari */
+      *::-webkit-scrollbar {
+        width: 12px; /* small width */
+      }
 
-                                                       /* scrollbars on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 12px;                                         /* small width */
-}
+      *::-webkit-scrollbar-track {
+        background: transparent; /* background color track */
+      }
 
-*::-webkit-scrollbar-track {
-  background: transparent;                             /* background color track */
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #AAA;                              /* background */
-  border-radius: 20px;                                 /* rounded corner, border */
-  border: 3px solid #888;                              /* add the border */
-}
-
-		</style>
-	</head>
-	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('0d67378d-97ed-4eba-ac86-b9227f290b06/c33e9360-a9a6-466d-a59c-cb5e550658fd.jpg');">
-		<div class="cards">
-			<div class="card">
-				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="0d67378d-97ed-4eba-ac86-b9227f290b06/2fcd661c-0ec3-4c51-9899-609a1e08ce63.ico"/> Heroes of Fantasia</h2>
-				</div>
-				<div class="detailstitle">
-				<H3>Details</H3>
-				</div>
-				<div class="details">
-					<div style="overflow: auto;">
-						<TABLE class="detailstable">
-							<col style="width:50%" />
-							<col style="width:50%" />
-							<TR>
-								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="0d67378d-97ed-4eba-ac86-b9227f290b06/cee9fcf9-8e48-45e4-b51b-496a5b0d2894.jpg"/></TD>
-							</TR>
-							<TR>
-								<TD>Playtime</TD>
-								<TD>Not Played</TD>
-							</TR>
-							<TR>
-								<TD>Last Activity</TD>
-								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Added</TD>
-								<TD><a href="default_added_descending_name_ascending.html#quicklink-13/08/2020">13/08/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Modified</TD>
-								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Completion Status</TD>
-								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
-							</TR>
-							<TR>
-								<TD>Source</TD>
-								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
-							</TR>
-							<TR>
-								<TD>Platform</TD>
-								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
-							</TR>
-							<TR>
-								<TD>Release Date</TD>
-								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-11/06/2020">11/06/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Community Score</TD>
-								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-57">57</a></TD>
-							</TR>
-							<TR>
-								<TD>Critic Score</TD>
-								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>User Score</TD>
-								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>Genre</TD>
-								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Developer</TD>
-								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-yingying yuan">yingying yuan</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Publisher</TD>
-								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Xi'an Xiexing  information Technology CO,ltd">Xi'an Xiexing  information Technology CO,ltd</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Feature</TD>
-								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Links</TD>
-								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1329310" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1329310" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1329310/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1329310/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1329310" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1329310" target="_blank">News</a><br/></TD>
-							</TR>
-						</TABLE>
-					</div>
-				</div>
-				<div class="descriptiontitle">
-					<H3>Description</H3>
-				</div>
-				<div class="description">
-					Introduction<br />
-&quot;Heroes of Fantasia&quot; is a roguelike adventure game. There are many different scenes and maps to explore. In the ARENA, you can release your anger. In the SKYCLOUD, you can be the top of the list. In the world boss battle, you can be the brightest star in the night sky! Do you want to know who the demon hunter is? How other players’ performance in the cross server boss war? Who is the king of warriors? In the cross server segment match, let the world know who will be the top list.<br />
-<br />
-Random maps and Monsters:<br />
-Hundreds of levels, hundreds of monsters and elite monsters, and dozens of boss. More scenery to see. If you die in the adventure, there is basically no punishment.<br />
-<br />
-Adventure system:<br />
-You may encounter a variety of adventure systems and surprises on the way to explore<br />
-<br />
-Characteristic skills:<br />
-Once the super powerful active skills and passive skills play their power, they will be unstoppable. Only reasonable combination can give full play to your combat ability.<br />
-<br />
-Equipment:<br />
-A set of equipment is changed every 20 levels in the game, and the attributes of equipment are totally different every. More equipment is waiting for you.<br />
-<br />
-Strong suit:<br />
-If you don't think the common dropped equipment can bring you strong combat power, you can try to accumulate a suit. It will bring you a totally different experience.<br />
-<br />
-Spirit guide:<br />
-By eliminating more demons, you can get their seals. You will be surprised to find that there are some special fetters between them. If you collect them, you will get the fighting skills of demons.<br />
-<br />
-Rune:<br />
-The Magic Runes have strong magic power, you need to compete fairly with other warriors to get it. The power of artifact is only available to warriors who challenge.<br />
-<br />
-Four elves:<br />
-The four elves of water, fire, light and dark have their own strengths. They are not only the protagonists, but also powerful fighting partners. There are nine different abilities waiting for you to unlock.<br />
-<br />
-Friendship recommendation:<br />
-War Thunder,Planet Zoo,Tower of time,Monster Train,Torchlight II,The Witcher® 3: Wild Hunt,Total War: WARHAMMER II,Counter-Strike: Global Offensive,Tom Clancy's Rainbow Six® Siege,Sid Meier’s Civilization® VI,PLAYERUNKNOWN'S BATTLEGROUNDS,Red Dead Redemption 2,Warframe,Deep Rock Galactic,MONSTER HUNTER: WORLD,Fallout 76,NBA 2K20,Mount &amp; Blade II: Bannerlord,Yu-Gi-Oh! Duel Links,Dead by Daylight,FINAL FANTASY XIV Online,Two Point Hospital,Human: Fall Flat,Euro Truck Simulator 2,Monster Hunter World: Iceborne,Age of Empires II: Definitive Edition,Destiny 2,Cities: Skylines,World of Warships,Dota 2,DOOM Eternal,PAYDAY 2,Granado Espada，Firestone Idle RPG,Russian Fishing 4,Endless World Idle RPG,Crusader Kings II,Game of Thrones Winter is Coming,Gems of War - Puzzle RPG,Albion Online,Dark Deception,Digimon Masters Online,Trove,Mighty Party,Ragnarok Online,Fallout Shelter,Will To Live Online,The Lord of the Rings Online,Neverwinter,Star Trek Online,Wasteland Survival,Peekaboo,Stay Out,Dead Frontier 2,Realm of the Mad God,La Tale - Evolved,Infestation: The New Z,Shakes and Fidget,Dungeon Defenders II,Wizard101,Pixel Starships,Rakion Chaos Force,Knight Online,Idle Champions of the Forgotten Realms,Clicker Heroes,NGU IDLE,Realm Grinder,March of Empires,Tactical Monsters Rumble Arena,Creativerse - Pro,MARVEL Puzzle Quest,DC Universe™ Online,Bit Heroes,Onigiri,Red Stone Online,Braveland Heroes,Aura Kingdom,Elsword,NosTale,Spiral Knights,RIFT,Stronghold Kingdoms,Animation Throwdown: The Quest for Cards,Dragon Saga,AdventureQuest 3D,Ragnarok Online 2,Star Trek Timelines,Grim Clicker,RPG MO,Secret World Legends,DayBreak Online,Enderal: Forgotten Stories,CRUSADER KINGS II: DYNASTY STARTER PACK,Warspear Online,POLYGON,EverQuest II,Champions Online,ENDLESS WORLD - DELUXE EDITION,Villagers and Heroes,Creativerse - Welcome Bundle,PARADOX GRAND STRATEGY COLLECTION,CRUSADER KINGS II: ROYAL COLLECTION,Clicker Heroes: Zombie Auto Clicker,CRUSADER KINGS II: IMPERIAL COLLECTION,Insanity Clicker,Neglected,Tabletopia,Cyberpunk 2077  Final Fantasy 7  Resident Evil 3-Nemesis  BIOHAZARD RE:2  Monster Hunter：World   Animal Crossing  Nioh2  Persona 5  war3  Destiny  Sands of Salzaar   Free games  ARK:SURVIVAL EVOLVED SAMURAI SHODOWN NEOGEO COLLECTION Dauntless Pathway The Escapists 2  Beyond Blue Maneater Borderlands 3 Red Dead Redemption 2 Control SnowRunner Satisfactory DEATH STRANDING CIVILIZATION VI Grand Theft Auto V The Witcher 3:Wild Hunt World War Z Amnesia:The Dark Descent Crashlands Levelhead Dread Nautical SnowRunner Just Cause 4 Reloaded For The King Sherlock Holmes:Crimes and Punishments Zombie Army 4 The Telltale Batman Shadows Edition   Death Coming <br />
-Star Wars Jedi: Fallen Order ,Midas Gold Plus,Trove - Sweet Sixteen Pack,Robocraft - Premium for Life Pack,Tank Royale,Wild Terra Online,Dungeons &amp; Dragons Online® Catacombs Starter Pack,Life is Feudal: MMO. Pagan Starter Pack,World Seed,Florensia,Without A Voice,Heroes Tactics,Anarchy Online,Pox Nora,Ultimate Select Hero,Dungeon Hunter Champions,God Awe-full Clicker,DC Universe Online™ - Ultimate Edition (2016),MINDNIGHT,Royal Quest,Merchant,King’s Bounty: Legions,Fighting Fantasy Classics,Kokurase Episode 1,New Frontier,At Home Alone,Steam Starter Pack,Dungeon Hunter 5,Never Split the Party: Fellowship Unlock,Among Trees, Pathway, ARK:SURVIVAL EVOLVED, SAMURAI SHODOWN, SAMURAI SHODOWN NEOGEO COLLECTION, Beyond Blue, Disco Elysium, Poly Bridge 2, <br />
-Borderlands: The Handsome Collection, Sludge Life, Missile Command:Recharged, Maneater, <br />
-Saints Row®: The Third™ Remastered, Sid Meier's Civilization VI,MAFIA III, Grand Theft Auto V, The Witcher 3:Wild Hunt, Huntdown, Delores:A Thimbleweed Park mini-adventure, Before We Leave, Death Coming, Old World, World War Z GOTY, Amnesia:The Dark Descent, Crashlands, Levelhead, Dread Nautical, SnowRunner, Just Cause 4 Reloaded, For The King, Wheels of Aurelia,Industries of Titan, Sherlock Holmes:Crimes and Punishments,Hob,Gone Home, Totally Reliable Delivery Service, Genesis Alpha One, Tormentor X Punisher, Figment, The Stanley Parable, Dauntless, State of Decay 2:Juggernaut Edition, A Short Hike, Mutazione, Bloodroots, Anodyne 2: Return to Dust, GoNNER, OVERPASS™,Offworld Trading Company, Faeria, Corruption 2029, Cyberpunk 2077, Aztez, Carcassonne, Zombie Army 4,Dead War, Journey to the Savage Planet, Journey to the Savage Planet, Journey to the Savage Planet, Farming Simulator 19, TowerFall Ascension, Hello Neighbor Mod Kit,Wattam, The Telltale Batman Shadows Edition, Foregone, The Escapists, SuperMash, MechWarrior 5:Mercenaries, Hades, Jotun: Valhalla Edition, Surviving the Aftermath, Phoenix Point, Arise: A Simple Story, <br />
-The Wolf Among Us, Shenmue 3, The Messenger, Bee Simulator, Star Wars Jedi: Fallen Order, Rune II, Yaga, Superliminal, Nuclear Throne, Red Dead Redemption 2, Afterparty, The Outer Worlds, Manifold Garden, Kine, Jackbox Party Pack 6, Spellbreak, A Knights Quest, John Wick Hex, Ghostbusters:The Video Game Remastered, What the Golf?, Untitled Goose Game, The Sojourn, Cardpocalypse, Borderlands 3, The Walking Dead : The Telltale Definitive Series, <br />
-Falcon Age, Atomicrops, WRC 8 FIA World Rally Championship, Control, Ancestors: The Humankind Odyssey, Auto Chess, Rebel Galaxy Outlaw, Tetris® Effect,,Horace, Griftlands, The Sinking City, Omen Of Sorrow, Journey, Trover Saves the Universe, Outer Wilds, Observation, Shakedown – Hawaii, Close To The Sun, Dangerous Driving, Totally Accurate Battle Simulator, Outward, Satisfactory, Operencia, Helium Rain, APE OUT, Metro Exodus, Flower, Subnautica Below Zero, Oxenfree, My Time At Portia, Hello Neighbor, Hello Neighbor: Hide and Seek, Ashen, Shadow Tactics, Mutant Year Zero: Road to Eden, RollerCoaster Tycoon Adventures, Darksiders III, Bad North, Jackbox Party Pack 3, Donut County, 7 Billion Humans, The Walking Dead:Final Season, Overcooked, GNOG, Vampyr, Moonlighte,, City of Brass, Minit, Q.U.B.E. 2, <br />
-Surviving Mars, Into The Breach, Kingdom Come:Deliverance, Subnautica, InnerSpace, Celeste, <br />
-Gorogoa, Jackbox Party Pack 4, Jackbox Party Pack 5, RUINER, Last Day of June, &gt;observer_, Slime Rancher, Sundered：Eldritch, The End is Nigh, Conarium, RiME, What Remains of Edith Finch, Everything, Yooka-Laylee and the Impossible Lair, Thimbleweed Park, Stories Untold, The Walking Dead:A New Frontier, Darksiders, VR Funhouse Editor, ABZU, Inside, Drawful 2, Sherlock Holmes: The Devil's Daughter, Enter the Gungeon, Hyper Light Drifter, SUPERHOT, Fennel, Alan Wake, Layers of Fear: Masterpiece Edition, The Witness, Darksiders II, Kingdom: New Lands, Rebel Galaxy, Human Resource Machine, Jackbox Party Pack 2, SOMA, ARK:SURVIVAL EVOLVED, Batman Arkham Knight, Metro:Last Light Redux, Axiom Verge, The Talos Principle, Jackbox Party Pack 1, This War of Mine, LEGO® Batman™ 3: Beyond Gotham, Faster Than Light, Transistor, Fez, The Walking Dead:Season Two, The Bridge, Little Inferno, Batman Arkham City Game of the Year Edition, LEGO® Batman™ 2: DC Super Heroes, Ticket to Ride,Alan Wake's American Nightmare, The Walking Dead:Season One, Super Meat Boy, Costume Quest, Limbo, Batman Arkham Asylum Game of the Year Edition, Metro:2033 Redux, Torchlight, Shadow Complex, World of Goo, LEGO® Batman™: The Videogame, VELUCITY, Racing Juke, Griftlands, Thomas Scott, Persona 4 Golden, Torchlight III, Operation Sniff, Unfortunate Spacemen, The Forever Moon, Missing Children, Falsemen2:Upstream, Star Sonata 2, Space Scavenger, Swarm, Animal Revolt Battle Simulator, Seek Girl:Fog Ⅰ, NewCity, WARBORN, Baldi's Basics Plus, P.A.I.N.T., XIII – Classic, SKYE, Evan's Remains STAR WARS™ Battlefield™ Hardline, Mass Effect™：Andromeda, Battlefield™ V, Battlefield 3™, Mass Effect™3, Main Assembly, Pluviophile, Escape from Kyoto House, Holy Sisters, Whateverland: Prologue, Frog Bath, Deck of Ashes, Mars Power Industries: First Job, Cyber Agent, Ironsmith Medieval Simulator: Prologue, Edge of Dreams, Satisfactory, Fear of Dark, Shoot. Push. Repeat., Bhop PRO, Fragsurf, shapez.io, Quickscoper Doge: The Dank Illuminati Memes, LesLove.Club: Emily and Sarah, Mountain of Faith., Muse Dash, Subterranean Animism., Undefined Fantastic Object., Evil Democracy: 1932, Castle Kong, The Raintime, Gachi Revenge, Burning Knight, A Game of Humans, Carrier Battles 4 Guadalcanal, Kharon's Crypt - Even Death May Die, Apollon 88, Legend of Towercraft, The Spike, AshenForest, Sentimental K, My Hidden Things, Dragon Age II, Crysis® 3, Need for Speed™ Heat, Plants vs. Zombies, Need for Speed™ Rivals, Unravel, Sea of Solitude,Fe, Dragon Age™ Inquisition – Game of the Year Edition, Burnout™ Paradise Remastered, Mirror's Edge™ Catalyst, Falcon City, The Light Remake, Pro Cycling Manager 2020, Crafting Idle Clicker, Fareo Shadowlands, Prophecy, Lotion samurai, MARDEK,Sea of Thieves, Power Of Seasons, Spirit Oath, DriftZ, Hell Wedding, Gedonia, Drox Operative 2, The Walking Fish 2: Final Frontier, Survivalist: Invisible Strain, Bomb Bots Arena, Schwarzerblitz, The Sorrowvirus: A Faceless Short Story, Guardians of the Ashes, Sweet F. Cake, Electro Ride Prologue, Dear Devere, Dear Devere, Escape from Life Inc, Sweet Story Neko, The Deed II, FM, House of Detention, Titan Chaser, COVID: The Outbreak, Pixel Strike 3D, Kairos'Light, The Beasts Of 9500, Summer in Mara Prologue, Masters of Puzzle, ManaRocks, STRIKERS 1945 II, The House of Da Vinci 2, Burn Me Twice, ANIME WAR — Modern Campaign, Retrograde Arena, Pilots Of Darsalon, KingSim, Dungeon Defenders: Awakened, Rugby League Team Manager 3, Fly Punch Boom!, Resolutiion, Shantae and the Seven Sirens, Ever Forward Prologue, Virtual Exhibition, Speed Swing, Mists of Noyah, Golden Moon, Missile Command: Recharged, Into The Flames, Noise Hunters, RogueJack: Roguelike Blackjack, HaberDashers, Tyrania - A Kinetic Visual Novel, Infected Maze, RaidLand, Depanneur Nocturne, Sockventure: Prologue, The Elder Scrolls Online – Greymoor, MORTAL KOMBAT 11 AFTERMATH KOLLECTION, Summer Paws, Agent-00, Zamboni Simulator 2019, Quantum League, In a search of a new home, Dread X Collection, Tank Battle, Wildfire, Video Editor Tycoon, YOU and ME and HER: A Love Story, Thermo Sudoku, Elasto Mania, Red Planet Farming, Way To Yaatra, Hopebringers, Each Sale I Drink a Glass of Water : The Game, Azure, Hot And Lovely 3, SUPER RECOILFIGHT, RUN OR FIGHT, Lord of Dwarves, Estranged: Act II, I, Dracula: Genesis, Inexistence Rebirth, ShellShock Live, Stayhome Simulator, Family Man, Concept Destruction, High Strategy: Urukon, Song of Yellow River, BOSSGARD, Monster Train, Underworld Ascendant, DARK SOULS™ III, NARUTO SHIPPUDEN: Ultimate Ninja STORM 4, DRAGON BALL FighterZ, SD GUNDAM G GENERATION CROSS RAYS, ACE COMBAT™ 7: SKIES UNKNOWN, Sword Art Online: Fatal Bullet, DARK SOULS™: REMASTERED, TEKKEN 7, CODE VEIN, DRAGON BALL XENOVERSE 2, SOULCALIBUR VI, GOD EATER 3, DARK SOULS™ III - The Ringed City™, Space Haven, Observation,Sea of Thieves, Beyond: Two Souls, Shadow of the Tomb Raider: Definitive Edition, Red Dead Redemption 2, Assassin’s Creed® Odyssey, Detroit: Become Human, Rise of the Tomb Raider, Heavy Rain, Sekiro™: Shadows Die Twice, Monster Hunter: World, Destiny 2,The Witcher® 3: Wild Hunt, Grand Theft Auto V, Need for Speed™ Heat, The Dungeon Of Naheulbeuk: The Amulet Of Chaos, NosTale, The Elder Scrolls® Online, Hellpoint, Destiny 2, Terraria, Grand Theft Auto V, Monster Hunter: World, ARK: Survival Evolved, Rust, The Elder Scrolls V: Skyrim Special Edition, Don't Starve Together, Red Dead Redemption 2, Human Fall Flat, Euro Truck Simulator 2,7 Days to Die, Fallout 4, DARK SOULS™ III, The Forest, Mount &amp; Blade II: Bannerlord, Assassin's Creed® Odyssey, Unturned, VRChat, Satisfactory, Aim Lab, theHunter: Call of the Wild™, Dying Light, Raft, Hollow Knight, Sekiro™: Shadows Die Twice, No Man's Sky, Conan Exiles, Tomb Raider, Far Cry® 5, Need for Speed™ Heat, Grim Dawn, Mount &amp; Blade: Warband, Helltaker, American Truck Simulator, Elite Dangerous, Fallout: New Vegas, Rise of the Tomb Raider™, Shadow of the Tomb Raider: Definitive , Edition, Scrap Mechanic, Assassin's Creed® Origins， Don't Starve, Subnautica, Green Hell, ASTRONEER, Borderlands 2, Getting Over It with Bennett Foddy, Remnant: From the Ashes, The Isle, Middle-earth™: Shadow of War™, Totally Accurate Battle Simulator, STAR WARS™ II, Metro Exodus, DARK SOULS™ II: Scholar of the First Sin, Slime Rancher, Trove, Castle Crashers®, Kingdom Come: Deliverance, The Long Dark, Grand Theft Auto IV: The Complete Edition, Fallout Shelter, Watch_Dogs® 2, Project Winter, NARUTO SHIPPUDEN: Ultimate Ninja STORM 4, Just Cause™ 3, Sniper Elite 4, Starbound, Detroit: Become Human, BattleBlock Theater®, Tom Clancy's Ghost Recon® Wildlands, ATLAS, Empyrion - Galactic Survival, Half-Life 2, Russian Fishing 4, Kenshi, My Time At Portia,  Ori and the Will of the Wisps, Grand Theft Auto: San Andreas, The Elder Scrolls IV: Oblivion® Game of the Year Edition, Shakes and Fidget, Outer Wilds, Batman™: Arkham Knight, Microsoft Flight Simulator X: Steam Edition, Project:surviving, DARK SOULS™: REMASTERED, Assassin’s Creed® IV Black Flag™, Half-Life, Outlast, Yakuza 0,Mortificatio, Neverwinter, Existentia, X-Plane 11, Deadside, Black Mesa, Noita, Pathfinder: Kingmaker - Enhanced Edition, Outward, The Descendant, Dishonored 2, Clicker Heroes, Sonic Generations Collection, Star Trek Online, Pacify, Gems of War - Puzzle RPG, BATTLETECH, SCUM, NGU IDLE, Life is Strange - Episode 1, SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated, The Witcher 2: Assassins of Kings Enhanced Edition, Blade and Sorcery, FINAL FANTASY XV WINDOWS EDITION, The Witcher: Enhanced Edition Director's Cut, Subnautica: Below Zero, Celeste, Left 4 Dead,Skul: The Hero Slayer, The Bizarre Creations of Keith the Magnificent, Transformice, Forager, Dishonored, Lost Castle, Skater XL - The Ultimate Skateboarding Game,DRAGON BALL XENOVERSE 2, Resident Evil 7 Biohazard, Graveyard Keeper, Idle Champions of the Forgotten Realms, Titan Quest Anniversary Edition, Stormworks: Build and Rescue, AdVenture Capitalist, Divinity: Original Sin - Enhanced Edition, Disco Elysium, Magma Chamber, For The King, Impossible Geometry, SPORE™, The Scroll Of Taiwu, Creative Destruction, NEO-NOW!, Onmyoji, N0-EXITSea of Thieves, Beyond: Two Souls, Shadow of the Tomb Raider: Definitive Edition, Red Dead Redemption 2, Assassin’s Creed® Odyssey, Detroit: Become Human, Rise of the Tomb Raider, Heavy Rain, Sekiro™: Shadows Die Twice, Monster Hunter: World, Destiny 2,The Witcher® 3: Wild Hunt, Grand Theft Auto V, Need for Speed™ Heat, The Dungeon Of Naheulbeuk: The Amulet Of Chaos, NosTale, The Elder Scrolls® Online, Hellpoint, Destiny 2, Terraria, Grand Theft Auto V, Monster Hunter: World, ARK: Survival Evolved, Rust, The Elder Scrolls V: Skyrim Special Edition, Don't Starve Together, Red Dead Redemption 2, Human Fall Flat, Euro Truck Simulator 2,7 Days to Die, Fallout 4, DARK SOULS™ III, The Forest, Mount &amp; Blade II: Bannerlord, Assassin's Creed® Odyssey, Unturned, VRChat, Satisfactory, Aim Lab, theHunter: Call of the Wild™, Dying Light, Raft, Hollow Knight, Sekiro™: Shadows Die Twice, No Man's Sky, Conan Exiles, Tomb Raider, Far Cry® 5, Need for Speed™ Heat, Grim Dawn, Mount &amp; Blade: Warband, Helltaker, American Truck Simulator, Elite Dangerous, Fallout: New Vegas, Rise of the Tomb Raider™, Shadow of the Tomb Raider: Definitive , Edition, Scrap Mechanic, Assassin's Creed® Origins， Don't Starve, Subnautica, Green Hell, ASTRONEER, Borderlands 2, Getting Over It with Bennett Foddy, Remnant: From the Ashes, The Isle, Middle-earth™: Shadow of War™, Totally Accurate Battle Simulator, STAR WARS™ II, Metro Exodus, DARK SOULS™ II: Scholar of the First Sin, Slime Rancher, Trove, Castle Crashers®, Kingdom Come: Deliverance, The Long Dark, Grand Theft Auto IV: The Complete Edition, Fallout Shelter, Watch_Dogs® 2, Project Winter, NARUTO SHIPPUDEN: Ultimate Ninja STORM 4, Just Cause™ 3, Sniper Elite 4, Starbound, Detroit: Become Human, BattleBlock Theater®, Tom Clancy's Ghost Recon® Wildlands, ATLAS, Empyrion - Galactic Survival, Half-Life 2, Russian Fishing 4, Kenshi, My Time At Portia,  Ori and the Will of the Wisps, Grand Theft Auto: San Andreas, The Elder Scrolls IV: Oblivion® Game of the Year Edition, Shakes and Fidget, Outer Wilds, Batman™: Arkham Knight, Microsoft Flight Simulator X: Steam Edition, Project:surviving, DARK SOULS™: REMASTERED, Assassin’s Creed® IV Black Flag™, Half-Life, Outlast, Yakuza 0,Mortificatio, Neverwinter, Existentia, X-Plane 11, Deadside, Black Mesa, Noita, Pathfinder: Kingmaker - Enhanced Edition, Outward, The Descendant, Dishonored 2, Clicker Heroes, Sonic Generations Collection, Star Trek Online, Pacify, Gems of War - Puzzle RPG, BATTLETECH, SCUM, NGU IDLE, Life is Strange - Episode 1, SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated, The Witcher 2: Assassins of Kings Enhanced Edition, Blade and Sorcery, FINAL FANTASY XV WINDOWS EDITION, The Witcher: Enhanced Edition Director's Cut, Subnautica: Below Zero, Celeste, Left 4 Dead,Skul: The Hero Slayer, The Bizarre Creations of Keith the Magnificent, Transformice, Forager, Dishonored, Lost Castle, Skater XL - The Ultimate Skateboarding Game,DRAGON BALL XENOVERSE 2, Resident Evil 7 Biohazard, Graveyard Keeper, Idle Champions of the Forgotten Realms, Titan Quest Anniversary Edition, Stormworks: Build and Rescue, AdVenture Capitalist, Divinity: Original Sin - Enhanced Edition, Disco Elysium, Magma Chamber, For The King, Impossible Geometry, SPORE™, The Scroll Of Taiwu, Creative Destruction, NEO-NOW!, Onmyoji, N0-EXIT,Wallpaper Engine, Stardew Valley, Bloons TD 6, NBA 2K20, VRChat, Cities: Skylines, Pummel Party Tabletop Simulator, Aim Lab, Dota Underlords, Soda Dungeon 2, Overcooked! 2, Plants vs. Zombies GOTY Edition, Stick Fight: The Game, DEAD OR ALIVE Xtreme Venus Vacation, Among Us, RISK: Global Domination, Totally Accurate Battle Simulator, UNO, Golf With Your Friends, Muse Dash, Crush Crush, Business Tour - Board Game with Online Multiplayer, Fallout Shelter, The Sims™ 4, King of Crabs, Getting Over It with Bennett Foddy, PIGMENTUM, Russian Fishing 4, People Playground, Catan Universe, Shakes and Fidget, DJMAX RESPECT V, Slime Rancher, My Time At Portia, Project Winter, Townscaper, The Jackbox Party Pack 3, Town of Salem, Repulsanoid, Farm Together, Clicker Heroes, Golf It!, Stickmageddon, Pirates Deck, Ultimate Chicken Horse, Cell to Singularity - Evolution Never Ends, ShellShock Live, TWIN BROS, Project:surviving, Castle Crashers®, The Jackbox Party Pack 6, Gems of War - Puzzle RPG, AdVenture Capitalist, Rocksmith® 2014 Edition - Remastered, Train Simulator 2020, The Scroll Of Taiwu, PC Building Simulator, KARDS - The WWII Card Game, BattleBlock Theater®, The Jackbox Party Pack 4, Transformice, Gang Beasts, Two Point Hospital, The Sims™ 3, Governor of Poker 3, Ninja Kiwi Archive, RichMan 10, Blush Blush, Magma Chamber, SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated, Pacify, Quaver, Bloons TD Battles, Creative Destruction, NGU IDLE, The Jackbox Party Pack 5, Ticket to Ride, Idle Champions of the Forgotten Realms, OMSI 2: Steam Edition, Impossible Geometry, The Jackbox Party Pack 2, Idle Big Devil, Dawn of Man, Drawful 2, Spyro™ Reignited Trilogy, 60 Seconds! Reatomized, Witch It, Are You Ready?, Move or Die, Baba Is You, Tricky Towers, Firestone Idle RPG, Overcooked, 100% Orange Juice, Rec Room, Worms W.M.D, Unrailed!, Sven Co-op, Bejeweled® 3, Train Sim World® 2020, Legend Creatures, The Jackbox Party Pack, Tower Unite, Epic Mayhem, Aim Hero, MONOPOLY® PLUS, Dungeon Defenders II, Electric Circuit, Realm Grinder, Danny's War, Eternal Card Game, Puyo Puyo™Tetris®, CPUCores :: Maximize Your FPS, Universe Sandbox, Shop Heroes, Endless World Idle RPG, Super Animal Royale, Bloons TD 5, VA-11 Hall-A: Cyberpunk Bartender Action, Zuma Deluxe, Turmoil, Game Dev Tycoon, Demon Horde Master, Pro Cycling, Manager 2020, Viridi, Clicker Heroes 2, Marbles on Stream, Sonic Mania, Pro Cycling Manager 2019, JUMP FORCE, GRID, Kingdoms and Castles, Journey, The Lab, shapez.io, Digimon Masters Online, Peggle Deluxe, Dead Bits, Football Manager 2020, NBA 2K20, F1® 2020, theHunter: Call of the Wild™, Assetto Corsa, F1® 2019, TEKKEN 7, DEAD OR ALIVE Xtreme Venus Vacation, Beat Saber, NBA 2K19, Need for Speed™ Heat, Golf With Your Friends, DiRT Rally 2.0, Project CARS 2, Russian Fishing 4, Assetto Corsa Competizione, Wreckfest, Fishing Planet, DJMAX RESPECT V, Golf It!, Skater XL - The Ultimate Skateboarding Game, Motorsport Manager, DiRT Rally, Blood Bowl 2, RaceRoom Racing Experience, SpeedRunners, Football Manager 2020 Touch, TrackMania Nations Forever, F1 2018, Pro Cycling Manager 2020, rFactor 2, The Golf Club™ 2019 featuring PGA TOUR, CarX Drift Racing Online, DiRT 4, theHunter Classic, Rec Room, Out of the Park , Baseball 21, NBA 2K18, Epic Mayhem, WWE 2K20, Soccer Manager 2020, TrackMania² Stadium, Pro Cycling Manager 2019, Session: Skateboarding Sim Game, MotoGP™20, Steep™, RIDE 3, Descenders, GRID, Need For Speed: Hot Pursuit, iRacing, WGT Golf, Automobilista 2, F1™ 2017, Drunken Wrestlers 2, WRC 7 FIA World Rally Championship, Sonic &amp; All-Stars Racing Transformed Collection, WWE 2K19, NBA 2K17, Super Mega Baseball 3, POLYGON, Poolians, F1 2015, Out of the Park Baseball 20, Liftoff: FPV Drone Racing, PIPE by BMX Streets, Project CARS, Fire Pro Wrestling World, Slapshot, NASCAR Heat 5, Cricket 19, MadOut2 BigCityOnline, Automobilista, Need for Speed™ Payback, NASCAR Heat 4, Horizon Chase Turbo, Lethal , League Blaze, F1 2016, F1 2012™, NBA 2K Playgrounds 2, Superflight, Pro Cycling Manager 2018, Punch Club, BOXVR, Rival Stars Horse Racing: Desktop Edition, Paunch, Ball 3D: Soccer &amp; Sports Online, Mount Your Friends, F1 2014, Monster ,Energy Supercross - The Official Videogame 3, SNOW, The Thrill of the Fight - VR Boxing, Fruit Ninja VR, Franchise Hockey Manager 6, Lonely Mountains: Downhill, High Octane Drift, The Catch: Carp &amp; Coarse, The Fisherman - Fishing Planet, R.B.I. Baseball 20, Supraball, AO Tennis 2, Kopanito All-Stars Soccer, MotoGP™19, Eleven: Table Tennis VR, Tennis World Tour, Chess Ultra, MX Bikes, The Fishing Club 3D, Pyre, Super Mega Baseball 2, Pro Cycling Manager 2017, Pixel , Puzzles Ultimate Jigsaw, Cricket Captain 2020, Tennis Elbow 2013, Virtual Pool 4, Pool Nation FX Lite, Fishing Sim World®: Pro Tour, The Drone Racing League Simulator, Ride 2, Blood Bowl: Chaos Edition, KartKraft™, Just Fishing, TT Isle of Man Ride on the Edge 2, Football, Tactics &amp; Glory, MXGP 2019 - The Official Motocross Videogame, TrackMania² Canyon, Need for Speed™ Rivals, MX vs. ATV Reflex, DCL - The Game, Trials® Rising, FIM Speedway Grand Prix 15, Zaccaria , inball, Pro 11 - Football Manager Game, MX vs ATV All Out, Perfect Golf, Robot Roller-Derby Disco Dodgeball, Riding Club Championships, Don Bradman Cricket 14, Lethal League, IOSoccer, Russian Life Simulator, 90 Minute Fever - Football, (Soccer) Manager MMO, Pro Cycling Manager 2016, Sailaway - The Sailing Simulator, Trophy Fishing 2, WWE 2K17, Atari Vault, Monster Hunter: World, Grand Theft Auto V, Counter-Strike: Global Offensive, Tom Clancy's Rainbow Six® Siege, Destiny 2, PLAYERUNKNOWN'S BATTLEGROUNDS, Dota 2, Warframe, Dead by Daylight, PAYDAY 2, Brawlhalla, Sea of Thieves, ARK: Survival Evolved, Counter-Strike, Rust, Terraria, Left 4 Dead 2, Team Fortress 2, Garry's Mod, War Thunder, SMITE®, Total War: WARHAMMER II, Red Dead Redemption 2, The Witcher® 3: Wild Hunt, Devolverland Expo, The Elder Scrolls V: Skyrim Special Edition, 7 Days to Die, DARK SOULS™ III, Fallout 4, Unturned, Arma 3, Mount &amp; Blade II: Bannerlord, The Elder Scrolls® Online, Assassin's Creed® Odyssey, Halo: The Master Chief Collection, DayZ, Bloons TD 6, Aim Lab, Titanfall® 2, Sekiro™: Shadows Die Twice, The Forest, Dying Light, Counter-Strike: Source, Pummel Party, TEKKEN 7, Deep Rock Galactic, Risk of Rain 2, theHunter: Call of the Wild™, Hunt: Showdown, Portal 2, Killing Floor 2, KovaaK 2.0, DOOM Eternal, ollow Knight, Geometry Dash, MORDHAU, SCP, Insurgency: Sandstorm, FOR HONOR™, Warhammer: Vermintide 2, Far Cry® 5, Total War: THREE KINGDOMS, Borderlands 2, Conan Exiles, Mount &amp; Blade: Warband, Dead Cells, Overcooked! 2, DEAD OR ALIVE Xtreme Venus Vacation, Company of Heroes 2, Tomb Raider, Crim Dawn, Stick Fight: The Game, Hades, Fallout: New egas, Elite Dangerous, Watch_Dogs® 2, Assassin's Creed® Origins, Mortal Kombat 11, DOOM, Squad, Black Squad, Totally Accurate Battle Simulator, Beat Saber, DRAGON BALL FighterZ, Shadow of the Tomb Raider: Definitive Edition, Deceit, The Crew™ 2, HITMAN™ 2, Heroes &amp; Generals, Rise of the Tomb Raider™, Middle-earth™: Shadow of War™, Remnant: From the Ashes, PlanetSide 2, Metro Exodus, Shadow Warrior 2, DARK SOULS™ II: Scholar of the First Sin, Street Fighter V, The Isle, Muse Dash, Grand Theft Auto IV: The Complete Edition, STAR WARS™ II, Warface, Sniper Elite 4, Devil May Cry 5, Kingdom Come: Deliverance, Tom Clancy's Ghost Recon® Wildlands, Project of the Developer, Enter the Gungeon, Just Cause™ 3, Half-Life: Alyx, DARK SOULS™: REMASTERED, Ring of Elysium, Cuphead, Hell Let Loose, Realm Royale, Getting Over It with Bennett Foddy, King of Crabs, The Wind Road, Half-Life 2, Men of War: Assault Squad 2, NARUTO SHIPPUDEN: Ultimate Ninja STORM 4, State of Decay 2: Juggernaut Edition, Starbound, Trove, Rising Storm 2: Vietnam, Skul: The Hero Slayer, Insurgency, Wreckfest, Grand Theft Auto: San Andreas, Ori and the Will of the Wisps, Cyber Hunter, Project CARS 2, Castle Crashers®, Ultimate Custom Night, Cuisine Royale, Company of Heroes, Batman™: Arkham Knight, Resident Evil 2, Pavlov VR, Project Winter, DJMAX RESPECT V, ATLAS, ARK: Survival Evolved, Warframe, War Thunder, The Elder, Scrolls® Online, SMITE®, VRChat, Sea of Thieves, NBA 2K20, DayZ, World of Warships, Conan Exiles, Albion Online, Elite Dangerous, PlanetSide 2, The Crew™ 2, The Isle, Heroes &amp; Generals, Black Squad, Ring of Elysium, Business Tour - Board Game with Online Multiplayer, Russian Fishing 4, Trove, ATLAS, Warface, Realm of the Mad God, Cyber Hunter, Cuisine Royale, Shakes and Fidget, Star Trek Online, Realm Royale, Fishing Planet, Neverwinter, Microsoft Flight Simulator X: ,Steam Edition, OneScreen Wagons, ShellShock Live, SCUM, Deadside, Town of Salem, Transformice, Post Scriptum, Governor of Poker 3, Creative Destruction, DRAGON BALL XENOVERSE 2, The Lord of the Rings Online™, Notes of Soul, TrackMania Nations Forever, Pixel Strike 3D, Bloons TD Battles, War Robots, Battlefield™ 1, Tom Clancy’s The Division™, VEGA Conflict, Last Oasis, War Selection, Stay Out, Robocraft, Z1 Battle Royale, Holdfast: Nations At War, RaceRoom Racing Experience, CarX Drift Racing Online, NARUTO TO BORUTO: SHINOBI STRIKER, Bombergrounds: Battle Royale, Rec Room, Will To Live Online, Dead Frontier 2, Infestation: The New Z, Game of Thrones Winter is Coming, Demon Horde Master, Tower Unite, Knight Online, Pixel Worlds: MMO Sandbox, Naval Action, Modern Combat 5, APB Reloaded, Battlerite Royale, BLOCKADE, Eternal Card Game, Beasts of Bermuda, Creativerse, Super Animal Royale, AdventureQuest 3D, POLYGON, Digimon Masters Online, DC Universe™ Online, Hades' Star, Dungeons &amp; Dragons Online®, Shop Heroes, Granado Espada, Marbles on Stream, Life is Feudal: MMO, NosTale, iRacing, Wizard101, Spiral Knights, MechWarrior Online™ Solaris 7, Legends of Aria, Endless World Idle RPG, Miscreated, Fistful of Frags, Prominence Poker, WRC 7 FIA World Rally Championship, PROP AND SEEK®, Aura Kingdom, Elsword, Star Conflict, Survarium, Dirty Bomb®, LoveBeat, Stronghold Kingdoms, Foxhole, Secret World Legends, Poolians, Hand Simulator: Survival, RIFT, BLOCKPOST, HD Poker: Texas Hold'em, Pixel Starships, Dreadnought, PixARK, Animal Jam, Combat Arms: Reloaded, Astellia, Skyforge, World of Warplanes, GUNS UP!, BRAIN / OUT,ARK: Survival Of The Fittest, Call of War: World War 2, EverQuest, Bit Heroes, theFisher Online, Modern Combat Versus, Hired Ops, Life is Feudal: Your Own, Audition Online, Evolvation, Dark and Light, Supremacy 1914: World War 1, Tannenberg, Warspear Online, EverQuest II, Enemy On Board, Champions Online, Dead Maze, Euro Truck Simulator 2, Football Manager 2020, War Thunder, Stardew Valley, Garry's Mod, F1® 2020, Sid Meier’s Civilization® VI, Cities: Skylines, Farming Simulator 19, Europa Universalis IV, Tabletop Simulator, Arma 3, Stellaris, Mount &amp; Blade II: Bannerlord, Aim Lab, RimWorld, Satisfactory, American Truck Simulator, theHunter: Call of the Wild™, Tropico 6, Assetto Corsa, The Forest, DayZ, BeamNG.drive, Crusader Kings II, KovaaK 2.0, Oxygen Not Included, Raft, F1® 2019, Kerbal Space Program, Soda Dungeon 2, Elite Dangerous, Totally Accurate Battle Simulator, Factorio, Space Engineers, Green Hell, Scrap , Mechanic, Squad, The Isle, Project CARS 2, Transport Fever 2, X-Plane 11, The Crew™ 2, DiRT Rally 2.0, Fallout Shelter, Prison Architect, Microsoft Flight Simulator X: Steam Edition, Russian Fishing 4, Heroes &amp; Generals, Assetto Corsa Competizione, Don't Starve, ASTRONEER, Age of Empires® III: Complete Collection, Train Simulator 2020, NBA 2K19, The Sims™ 4, People Playground, Men of War: Assault Squad 2, State of Decay 2: Juggernaut Edition, Wreckfest, Kenshi, Age of Mythology: Extended Edition, Car Mechanic Simulator 2018, The Long Dark, Fishing Planet, Hell Let Loose, Golf With Your Friends, Rising Storm 2: Vietnam, My Time At Portia, Slime Rancher, Frostpunk, Empyrion - Galactic Survival, Two Point Hospital, Poly Bridge, DCS World Steam Edition, Farm Together, Rocksmith® 2014 Edition - Remastered, Cell to Singularity - Evolution Never Ends, Northgard, Townscaper, PC Building Simulator, Project:surviving, The Sims™ 3, Skater XL - The Ultimate Skateboarding Game, Golf It!, The Escapists 2, Blade and Sorcery, FTL: Faster Than Light, Stormworks: Build and Rescue, The Scroll Of Taiwu, OMSI 2: Steam Edition, DiRT Rally, FaceRig, MudRunner, ACE COMBAT™ 7: SKIES UNKNOWN, AdVenture Capitalist, Farming Simulator 17, Motorsport Manager, NGU IDLE, Clicker Heroes, Graveyard Keeper, Project Zomboid, Banished, SPORE™, This War of Mine, Dawn of Man, Governor of Poker 3, Hand Simulator, Surviving Mars, Total War: NAPOLEON – Definitive Edition, Library Of Ruina, Brick Rigs, RaceRoom Racing Experience, TrackMania Nations Forever, My Summer Car, Blush Blush, Wargame: Red Dragon, Besiege, Papers, Please, Lobotomy Corporation | , Monster Management Simulation, rFactor 2, F1 2018, Football Manager 2020 Touch, Victoria II, Stronghold Crusader HD, Cooking Simulator, theHunter Classic, City Car Driving, World of Guns: Gun Disassembly, Hot Dogs, Horseshoes &amp; Hand, Grenades, DiRT 4, Spintires®, Pro Cycling Manager 2020, BONEWORKS, Barotrauma, Age of Civilizations II, Terraria, Brawlhalla, tardew Valley, Euro Truck Simulator 2, Don't Starve Together, Devolverland Expo, Human Fall Flat, The Binding of Isaac: Rebirth, Satisfactory, Aim Lab, Pummel Party, Tabletop Simulator, Slay the Spire, RimWorld, Hollow Knight, Geometry Dash, Soda Dungeon 2, No Man's Sky, KovaaK 2.0, Risk of Rain 2, Oxygen Not Included, Beat Saber, Overcooked! 2, Helltaker, Dead Cells, Assetto Corsa, Hades, Plants vs. Zombies GOTY Edition, Kerbal Space Program, Space Engineers, Darkest Dungeon®, Stick Fight: The Game, Green Hell, Don't Starve, Totally Accurate Battle Simulator, Among Us,Muse Dash, RISK: Global Domination, Golf With Your Friends, Enter the Gungeon, Undertale, The Isle, Getting Over It with Bennett Foddy, Cuphead, Kenshi, Business Tour - Board Game with Online Multiplayer, Repulsanoid, The Wind Road, Starbound, A Dance of Fire and Ice, Ultimate Custom Night, Skul: The Hero Slayer, People Playground, Shadow Tactics: Blades of the Shogun, The Long Dark, Satanist, FTL: Faster Than Light, Project Winter, Pirates Deck, Town of Salem, Wreckfest, Hell Let Loose, Slime Rancher, Rising, Townscaper, Castle Crashers®, Project of the Developer, My Time At Portia, Northgard, Insurgency, Poly Bridg, Realm of the Mad God, Shakes and Fidget, The Jackbox Party Pack 3, Pavlov VR, Ultimate Chicken Horse, Project:surviving, Noita, SUPERHOT, OneScreen Wagons, The Escapists 2, ShellShock Live, The Scroll Of Taiwu, BattleBlock Theater®,Stickmageddon, Clicker Heroes, Skater XL - The Ultimate Skateboarding Game, Blade and Sorcery, Two Point Hospital, NGU IDLE, Ravenfield, The Jackbox Party Pack 6, Deadside, ,Outer Wilds, Celeste, Disco Elysium, KARDS - The WWII Card Game, Doki Doki Literature Club!, WIN BROS, SCUM, AdVenture Capitalist, Gang Beasts, Post Scriptum, Library Of Ruina, Project Zomboid, Rivals of Aether, Little Witch Nobeta, PIGMENTUM, Baba Is You, Graveyard Keeper, N0-EXIT, The Jackbox Party Pack 4, U-Boats, Transformice, Papers, Please, Outlast, Pacify, This War of Mine, Quaver, Forager, SpeedRunners, Lost Castle, Magma Chamber, The Bizarre Creations of Keith the Magnificent, Banished, NEO-NOW!, FaceRig, Idle Champions of the Forgotten Realms, Desperados III, Gems of War - Puzzle RPG, Blush Blush, Pixel Strike 3D, Dawn of Man, ,SYNTHETIK: Legion Rising ,Life is Strange - Episode 1 ,Impossible Geometry , For The King, Torchlight II, Besiege, Lobotomy Corporation | Monster Management Simulation, A Hat in Time, Ticket to Ride, Firestone Idle RPG, Grand Theft Auto V, F1® 2020, Assetto Corsa, F1® 2019, BeamNG.drive, The Crew™ 2, Project CARS 2, DiRT Rally 2.0, Wreckfest, Assetto Corsa Competizione, Car Mechanic Simulator 2018, TrackMania Nations Forever, DiRT Rally, RaceRoom Racing Experience, Motorsport Manager, SpeedRunners, Transformice, F1 2018, DiRT 4, CarX Drift Racing Online, MudRunner, rFactor 2, Brick Rigs, Sleeping Dogs: Definitive Edition, Mad Max, My Summer Car, Epic Mayhem, TrackMania² Stadium, City Car Driving, Sonic &amp; All-Stars Racing Transformed Collection, Need for Speed Undercover, Need for Speed™, RIDE 3, iRacing, Spintires®, F1 2015, WRC 7 FIA World Rally Championship, GRID, MotoGP™20, Adrenaline Adventure, F1™ 2017, NASCAR Heat 4, Descenders, Tower Unite, Need For Speed: Hot Pursuit, Automation - The Car Company Tycoon Game, Marbles on Stream, Automobilista 2, Project CARS, Need for Speed™ Most Wanted, Endless World Idle RPG, Road Redemption, Trailmakers, FlatOut 2™, Liftoff: FPV Drone Racing, Automobilista, F1 2016, MadOut2 BigCityOnline, Steep™, LEGO® City Undercover, Burnout™ Paradise Remastered, Horizon Chase Turbo, POLYGON, Trackmania United Forever, F1 2012™, High Octane Drift, GRIP: Combat Racing, Need for Speed™ Payback, NASCAR Heat 5, Stream Racer, F1 2014, Sonic &amp; SEGA All-Stars Racing, Redout: Enhanced Edition, Distance, Trials® Rising, Need for Speed: Shift, MX vs. ATV Reflex, The Crew™, Team Sonic Racing™, Car Mechanic Simulator 2015, TrackMania² Canyon, Trials Fusion™, Hot Lava, ,Superflight, Rival Stars Horse Racing: Desktop Edition, Copa Petrobras de Marcas, Ball 3D: Soccer &amp; Sports Online, FlatOut: Ultimate Carnage, Kao the Kangaroo: Round 2, Retrowave, Monster Energy Supercross - The Official Videogame 3, Rock of Ages 2: Bigger &amp; Boulder™, Ride 2, Shift 2 Unleashed, Lonely Mountains: Downhill, Trackmania® Turbo, INVAXION, Toybox Turbos, Project Torque - Free 2 Play MMO Racing Game, KartKraft™, MotoGP™19, Razortron 2000, Victory: The Age of Racing, RACE 07, Crazy Taxi, FlatOut, Cube Racer, MX Bikes, RAGE, Crash Drive 2, Need for Speed™ Rivals, MXGP - The Official Motocross Videogame, Street Legal Racing: Redline v2.3.1, Garfield Kart - Furious Racing, The Drone Racing League Simulator, TT Isle of Man Ride on the Edge 2, NASCAR '15 Victory Edition, Idle Racing GO: Clicker Tycoon, Audiosurf 2, EmergeNYC, Sailaway - The Sailing Simulator, MXGP 2019 - The Official Motocross Videogame, rFactor, armageddon: Max Damage, MX vs ATV All Out, DCL - The Game, Garfield Kart, FIM Speedway Grand Prix 15, Atari Vault, Biker Garage: Mechanic Simulator, Wrench, MXGP PRO, War Machines: Free to Play, Riding Club Championships, SEUM: Speedrunners from Hell, Teddy Floppy Ear - The Race, VRC PRO, BlazeRush, DashPanel, RDS - The Official Drift Videogame, AccuRC 2, Kart Racing Pro, Dream Car Builder, Horse Riding Tales, Bus Driver Simulator 2019, Tracks, Sid Meier’s Civilization® VI, Dota 2, Age of Empires II: Definitive Edition, Total War: WARHAMMER II, Counter-Strike: Global Offensive, Tom Clancy's Rainbow Six® Siege, PLAYERUNKNOWN'S BATTLEGROUNDS, Bloons TD 6, Sid Meier's Civilization® V, War Thunder, Cities: Skylines, Company of Heroes 2, Mount &amp; Blade II: Bannerlord, SMITE®, Europa Universalis IV, Football Manager 2020, Age of Empires II(2013), RimWorld, Stellaris, Total War: THREE KINGDOMS, Satisfactory, Arma 3, Tropico 6, Slay the Spire, Tabletop Simulator, Counter-Strike, Dota Underlords, World of Warships, Total War™: ROME II - Emperor Edition, Crusader Kings II, Plants vs. Zombies GOTY Edition, Factorio, Oxygen Not Included, Mount &amp; Blade: Warband, Counter-Strike: Source, Totally Accurate Battle Simulator, XCOM® 2, FOR HONOR™, Darkest Dungeon®, RISK: Global Domination, Monster Train, Age of Empires® III: Complete Collection, Squad, Age of Mythology: Extended Edition, Total War: MEDIEVAL II – Definitive Edition, Total War: EMPIRE – Definitive Edition, Total War: SHOGUN 2, Deceit, Men of War: Assault Squad 2, They Are Billions, HITMAN™ 2, Heroes &amp; Generals, Transport Fever 2, Prison Architect, Fallout Shelter, Business Tour - Board Game with Online Multiplayer, Company of Heroes, Total War: ATTILA, Shadow Tactics: Blades of the Shogun, Northgard, Kenshi, Frostpunk, UNO, Town of Salem, Ultimate Custom Night, STAR WARS™ Empire at War - Gold Pack, Total War: NAPOLEON – Definitive Edition, Golf With Your Friends, Hell Let Loose, Catan Universe, Project Winter, BATTLETECH, FTL: Faster Than Light, ShellShock Live, Shakes and Fidget, Insurgency, The Escapists 2, Desperados III, Total War: WARHAMMER, Pirates Deck, The Jackbox Party Pack 3, The Scroll Of Taiwu, ,Endless Space® 2 - Digital Deluxe Edition,Warhammer® 40,000: Dawn of War® - Soulstorm, Pathfinder: Kingmaker - Enhanced Edition, Gems of War - Puzzle RPG, Wargame: Red Dragon, Ravenfield, Heroes® of Might &amp; Magic® III - HD Edition, Two Point Hospital, KARDS - The WWII Card Game, Age of Empires: Definitive Edition, Stronghold Crusader HD, Bloons TD Battles, Rome: Total War™ - Collection, Surviving Mars, Post Scriptum, Library Of Ruina, Dawn of Man, Clicker Heroes, Motorsport Manager, Banished, This War of Mine, SD GUNDAM G GENERATION CROSS RAYS, Divinity: Original Sin - Enhanced Edition, Transformice, N0-EXIT, Idle Champions of the Forgotten Realms, The Jackbox Party Pack 4, Rise of Nations: Extended Edition, Ninja Kiwi Archive, AdVenture Capitalist, Onmyoji, Pacify, Age of Civilizations II, Magma Chamber, Victoria II, Sid Meier's Civilization® III Complete, Blood Bowl 2, Worms W.M.D, NEO-NOW!, RichMan 10, Ticket to Ride, For The King, War Selection, SPORE™, Notes of Soul, Counter-Strike: Condition Zero, XCOM: Enemy Unknown, Besiege, Supreme Commander: Forged Alliance, Call to Arms, VEGA Conflict, Steel Division 2, Total War Saga: THRONES OF BRITANNIA, Idle Big Devil, Monster Hunter: World, The Witcher® 3: Wild Hunt,  The Elder Scrolls V: Skyrim Special Edition, Stardew Valley, Dota 2, The Elder Scrolls® Online, DARK SOULS™ III, Fallout 4, Divinity: Original Sin 2 - Definitive Edition, Mount &amp; Blade II: Bannerlord, Assassin's Creed® Odyssey, SMITE®, Fallout 76, Persona 4 Golden, Tabletop Simulator, Slay the Spire, Mount &amp; Blade: Warband, Grim Dawn, Crusader Kings II, Soda Dungeon 2, Fallout: New Vegas, Conan Exiles, Darkest Dungeon®, Borderlands 2, Hades, Albion Online, Assassin's Creed® Origins, DARK SOULS™ II: Scholar of the First Sin, Kingdom Come: Deliverance, Monster Train, Middle-earth™: Shadow of War™, Remnant: From the Ashes, Undertale, Kenshi, XCOM® 2, Fallout Shelter, DARK SOULS™: EMASTERED, The Elder Scrolls IV: Oblivion® Game of the Year Edition, DEAD OR ALIVE Xtreme Venus Vacation, Pathfinder: Kingmaker - Enhanced Edition, Russian Fishing 4, Gujian3, State of Decay 2: Juggernaut Edition, Trove, Pool of Death, Shakes and Fidget, Realm of the Mad God, My Time At Portia, Disco Elysium, Outward, Town of Salem, Mirror, Star Trek Online, Neverwinter, The Witcher: Enhanced Edition Director's Cut, The Witcher 2: Assassins of Kings Enhanced Edition, Castle Crashers®, Divinity: Original Sin - Enhanced Edition, FINAL FANTASY XV WINDOWS EDITION, Titan Quest Anniversary Edition, CODE VEIN, Yakuza 0, Gems of War - Puzzle RPG, Pillars of Eternity II: Deadfire, Blade and Sorcery, Dragon's Dogma: Dark Arisen, BATTLETECH, Noita, Clicker Heroes, Graveyard Keeper, Torchlight II, NieR:Automata™, For The King, SD GUNDAM G GENERATION CROSS RAYS, Project Zomboid, Lost Castle, Bloodstained: Ritual of the Night, Pillars of Eternity, Onmyoji, The Sims™ 3, Deus Ex: Mankind Divided, NGU IDLE, Heroes® of Might &amp; Magic® III - HD Edition, Fallout 3: Game of the Year Edition, Warhammer 40,000: Inquisitor - Martyr, Dishonored, The Lord of the Rings Online™, Library Of Ruina, Nioh: Complete Edition /  Complete Edition, DRAGON BALL XENOVERSE 2, The Elder Scrolls III: Morrowind® Game of the Year Edition, Wolcen: Lords of Mayhem, Tom Clancy’s The Division™, Neverwinter Nights: Enhanced Edition, Baldur's Gate: Enhanced Edition, Digimon Story Cyber Sleuth: Complete Edition, Sword Art Online: Fatal Bullet, Firestone Idle RPG, Torchlight III, Idle Champions of the Forgotten Realms, GreedFall, FINAL FANTASY X/X-2 HD ,Remaster, RPG Maker MV, Far Cry® New Dawn, Last Oasis, Stay Out, Borderlands: The Pre-Sequel, Heroes of Hammerwatch, Streets of Rogue, Battle Brothers, Mass Effect, STAR WARS™ Knights of the Old Republic™ II - The Sith Lords™, NARUTO TO BORUTO: SHINOBI STRIKER, Into the Breach, Armello, DARK SOULS™: Prepare To Die™ Edition, Mass Effect™：Andromeda, Baldur's Gate II: Enhanced Edition, Middle-earth™: Shadow of Mordor™, The Invisible Guardian, STAR WARS™ - Knights of the Old Republic™, The Elder Scrolls V: Skyrim VR, Temtem, Deus Ex: Human Revolution - Director's Cut, Ni no Kuni™ II: Revenant Kingdom, South Park™: The Stick of Truth™,  Will To Live Online, Rakion Chaos Force
-				</div>
-				<div class="footer"> </div>
-			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-		<script>
-			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-			observer.observe();
-		</script>
-	</body>	
+      *::-webkit-scrollbar-thumb {
+        background-color: #aaa; /* background */
+        border-radius: 20px; /* rounded corner, border */
+        border: 3px solid #888; /* add the border */
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0.73)
+        ),
+        url('0d67378d-97ed-4eba-ac86-b9227f290b06/c33e9360-a9a6-466d-a59c-cb5e550658fd.jpg');
+    "
+  >
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <h2>
+            <button onclick="window.history.back()" class="MenuButton">
+              Back</button
+            ><img
+              alt="icon"
+              height="48"
+              class="lozad"
+              data-src="0d67378d-97ed-4eba-ac86-b9227f290b06/2fcd661c-0ec3-4c51-9899-609a1e08ce63.ico"
+            />
+            Heroes of Fantasia
+          </h2>
+        </div>
+        <div class="detailstitle">
+          <h3>Details</h3>
+        </div>
+        <div class="details">
+          <div style="overflow: auto">
+            <table class="detailstable">
+              <col style="width: 50%" />
+              <col style="width: 50%" />
+              <tr>
+                <td style="text-align: center" colspan="2">
+                  <img
+                    alt="cover"
+                    height="175"
+                    class="lozad"
+                    data-src="0d67378d-97ed-4eba-ac86-b9227f290b06/cee9fcf9-8e48-45e4-b51b-496a5b0d2894.jpg"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Playtime</td>
+                <td>Not Played</td>
+              </tr>
+              <tr>
+                <td>Last Activity</td>
+                <td>
+                  <a
+                    href="default_lastactivity_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Added</td>
+                <td>
+                  <a
+                    href="default_added_descending_name_ascending.html#quicklink-13/08/2020"
+                    >13/08/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Modified</td>
+                <td>
+                  <a
+                    href="default_modified_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Completion Status</td>
+                <td>
+                  <a
+                    href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played"
+                    >Not Played</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Source</td>
+                <td>
+                  <a
+                    href="default_source_ascending_name_ascending.html#quicklink-Steam"
+                    >Steam</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Platform</td>
+                <td>
+                  <a
+                    href="default_platform_ascending_name_ascending.html#quicklink-PC"
+                    >PC</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Release Date</td>
+                <td>
+                  <a
+                    href="default_releasedate_descending_name_ascending.html#quicklink-11/06/2020"
+                    >11/06/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Community Score</td>
+                <td>
+                  <a
+                    href="default_communityscore_descending_name_ascending.html#quicklink-57"
+                    >57</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Critic Score</td>
+                <td>
+                  <a
+                    href="default_criticscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>User Score</td>
+                <td>
+                  <a
+                    href="default_userscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>Genre</td>
+                <td>
+                  <a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Adventure"
+                    >Adventure</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Casual"
+                    >Casual</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Free to Play"
+                    >Free to Play</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-RPG"
+                    >RPG</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Strategy"
+                    >Strategy</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Developer</td>
+                <td>
+                  <a
+                    href="default_developer_ascending_name_ascending.html#quicklink-yingying yuan"
+                    >yingying yuan</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Publisher</td>
+                <td>
+                  <a
+                    href="default_publisher_ascending_name_ascending.html#quicklink-Xi'an Xiexing  information Technology CO,ltd"
+                    >Xi'an Xiexing information Technology CO,ltd</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Feature</td>
+                <td>
+                  <a
+                    href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases"
+                    >In-App Purchases</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer"
+                    >Multiplayer</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp"
+                    >Online Pvp</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Pvp"
+                    >Pvp</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Single Player"
+                    >Single Player</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Links</td>
+                <td>
+                  <a
+                    href="https://pcgamingwiki.com/api/appid.php?appid=1329310"
+                    target="_blank"
+                    >PCGamingWiki</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1329310"
+                    target="_blank"
+                    >Community Hub</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1329310/discussions/"
+                    target="_blank"
+                    >Discussions</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1329310/guides/"
+                    target="_blank"
+                    >Guides</a
+                  ><br /><a
+                    href="https://store.steampowered.com/app/1329310"
+                    target="_blank"
+                    >Store Page</a
+                  ><br /><a
+                    href="https://store.steampowered.com/news/?appids=1329310"
+                    target="_blank"
+                    >News</a
+                  ><br />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="descriptiontitle">
+          <h3>Description</h3>
+        </div>
+        <div class="description">
+          Introduction<br />
+          &quot;Heroes of Fantasia&quot; is a roguelike adventure game. There
+          are many different scenes and maps to explore. In the ARENA, you can
+          release your anger. In the SKYCLOUD, you can be the top of the list.
+          In the world boss battle, you can be the brightest star in the night
+          sky! Do you want to know who the demon hunter is? How other players’
+          performance in the cross server boss war? Who is the king of warriors?
+          In the cross server segment match, let the world know who will be the
+          top list.<br />
+          <br />
+          Random maps and Monsters:<br />
+          Hundreds of levels, hundreds of monsters and elite monsters, and
+          dozens of boss. More scenery to see. If you die in the adventure,
+          there is basically no punishment.<br />
+          <br />
+          Adventure system:<br />
+          You may encounter a variety of adventure systems and surprises on the
+          way to explore<br />
+          <br />
+          Characteristic skills:<br />
+          Once the super powerful active skills and passive skills play their
+          power, they will be unstoppable. Only reasonable combination can give
+          full play to your combat ability.<br />
+          <br />
+          Equipment:<br />
+          A set of equipment is changed every 20 levels in the game, and the
+          attributes of equipment are totally different every. More equipment is
+          waiting for you.<br />
+          <br />
+          Strong suit:<br />
+          If you don't think the common dropped equipment can bring you strong
+          combat power, you can try to accumulate a suit. It will bring you a
+          totally different experience.<br />
+          <br />
+          Spirit guide:<br />
+          By eliminating more demons, you can get their seals. You will be
+          surprised to find that there are some special fetters between them. If
+          you collect them, you will get the fighting skills of demons.<br />
+          <br />
+          Rune:<br />
+          The Magic Runes have strong magic power, you need to compete fairly
+          with other warriors to get it. The power of artifact is only available
+          to warriors who challenge.<br />
+          <br />
+          Four elves:<br />
+          The four elves of water, fire, light and dark have their own
+          strengths. They are not only the protagonists, but also powerful
+          fighting partners. There are nine different abilities waiting for you
+          to unlock.<br />
+          <br />
+          Friendship recommendation:<br />
+          War Thunder,Planet Zoo,Tower of time,Monster Train,Torchlight II,The
+          Witcher® 3: Wild Hunt,Total War: WARHAMMER II,Counter-Strike: Global
+          Offensive,Tom Clancy's Rainbow Six® Siege,Sid Meier’s Civilization®
+          VI,PLAYERUNKNOWN'S BATTLEGROUNDS,Red Dead Redemption 2,Warframe,Deep
+          Rock Galactic,MONSTER HUNTER: WORLD,Fallout 76,NBA 2K20,Mount &amp;
+          Blade II: Bannerlord,Yu-Gi-Oh! Duel Links,Dead by Daylight,FINAL
+          FANTASY XIV Online,Two Point Hospital,Human: Fall Flat,Euro Truck
+          Simulator 2,Monster Hunter World: Iceborne,Age of Empires II:
+          Definitive Edition,Destiny 2,Cities: Skylines,World of Warships,Dota
+          2,DOOM Eternal,PAYDAY 2,Granado Espada，Firestone Idle RPG,Russian
+          Fishing 4,Endless World Idle RPG,Crusader Kings II,Game of Thrones
+          Winter is Coming,Gems of War - Puzzle RPG,Albion Online,Dark
+          Deception,Digimon Masters Online,Trove,Mighty Party,Ragnarok
+          Online,Fallout Shelter,Will To Live Online,The Lord of the Rings
+          Online,Neverwinter,Star Trek Online,Wasteland Survival,Peekaboo,Stay
+          Out,Dead Frontier 2,Realm of the Mad God,La Tale -
+          Evolved,Infestation: The New Z,Shakes and Fidget,Dungeon Defenders
+          II,Wizard101,Pixel Starships,Rakion Chaos Force,Knight Online,Idle
+          Champions of the Forgotten Realms,Clicker Heroes,NGU IDLE,Realm
+          Grinder,March of Empires,Tactical Monsters Rumble Arena,Creativerse -
+          Pro,MARVEL Puzzle Quest,DC Universe™ Online,Bit Heroes,Onigiri,Red
+          Stone Online,Braveland Heroes,Aura Kingdom,Elsword,NosTale,Spiral
+          Knights,RIFT,Stronghold Kingdoms,Animation Throwdown: The Quest for
+          Cards,Dragon Saga,AdventureQuest 3D,Ragnarok Online 2,Star Trek
+          Timelines,Grim Clicker,RPG MO,Secret World Legends,DayBreak
+          Online,Enderal: Forgotten Stories,CRUSADER KINGS II: DYNASTY STARTER
+          PACK,Warspear Online,POLYGON,EverQuest II,Champions Online,ENDLESS
+          WORLD - DELUXE EDITION,Villagers and Heroes,Creativerse - Welcome
+          Bundle,PARADOX GRAND STRATEGY COLLECTION,CRUSADER KINGS II: ROYAL
+          COLLECTION,Clicker Heroes: Zombie Auto Clicker,CRUSADER KINGS II:
+          IMPERIAL COLLECTION,Insanity Clicker,Neglected,Tabletopia,Cyberpunk
+          2077 Final Fantasy 7 Resident Evil 3-Nemesis BIOHAZARD RE:2 Monster
+          Hunter：World Animal Crossing Nioh2 Persona 5 war3 Destiny Sands of
+          Salzaar Free games ARK:SURVIVAL EVOLVED SAMURAI SHODOWN NEOGEO
+          COLLECTION Dauntless Pathway The Escapists 2 Beyond Blue Maneater
+          Borderlands 3 Red Dead Redemption 2 Control SnowRunner Satisfactory
+          DEATH STRANDING CIVILIZATION VI Grand Theft Auto V The Witcher 3:Wild
+          Hunt World War Z Amnesia:The Dark Descent Crashlands Levelhead Dread
+          Nautical SnowRunner Just Cause 4 Reloaded For The King Sherlock
+          Holmes:Crimes and Punishments Zombie Army 4 The Telltale Batman
+          Shadows Edition Death Coming <br />
+          Star Wars Jedi: Fallen Order ,Midas Gold Plus,Trove - Sweet Sixteen
+          Pack,Robocraft - Premium for Life Pack,Tank Royale,Wild Terra
+          Online,Dungeons &amp; Dragons Online® Catacombs Starter Pack,Life is
+          Feudal: MMO. Pagan Starter Pack,World Seed,Florensia,Without A
+          Voice,Heroes Tactics,Anarchy Online,Pox Nora,Ultimate Select
+          Hero,Dungeon Hunter Champions,God Awe-full Clicker,DC Universe Online™
+          - Ultimate Edition (2016),MINDNIGHT,Royal Quest,Merchant,King’s
+          Bounty: Legions,Fighting Fantasy Classics,Kokurase Episode 1,New
+          Frontier,At Home Alone,Steam Starter Pack,Dungeon Hunter 5,Never Split
+          the Party: Fellowship Unlock,Among Trees, Pathway, ARK:SURVIVAL
+          EVOLVED, SAMURAI SHODOWN, SAMURAI SHODOWN NEOGEO COLLECTION, Beyond
+          Blue, Disco Elysium, Poly Bridge 2, <br />
+          Borderlands: The Handsome Collection, Sludge Life, Missile
+          Command:Recharged, Maneater, <br />
+          Saints Row®: The Third™ Remastered, Sid Meier's Civilization VI,MAFIA
+          III, Grand Theft Auto V, The Witcher 3:Wild Hunt, Huntdown, Delores:A
+          Thimbleweed Park mini-adventure, Before We Leave, Death Coming, Old
+          World, World War Z GOTY, Amnesia:The Dark Descent, Crashlands,
+          Levelhead, Dread Nautical, SnowRunner, Just Cause 4 Reloaded, For The
+          King, Wheels of Aurelia,Industries of Titan, Sherlock Holmes:Crimes
+          and Punishments,Hob,Gone Home, Totally Reliable Delivery Service,
+          Genesis Alpha One, Tormentor X Punisher, Figment, The Stanley Parable,
+          Dauntless, State of Decay 2:Juggernaut Edition, A Short Hike,
+          Mutazione, Bloodroots, Anodyne 2: Return to Dust, GoNNER,
+          OVERPASS™,Offworld Trading Company, Faeria, Corruption 2029, Cyberpunk
+          2077, Aztez, Carcassonne, Zombie Army 4,Dead War, Journey to the
+          Savage Planet, Journey to the Savage Planet, Journey to the Savage
+          Planet, Farming Simulator 19, TowerFall Ascension, Hello Neighbor Mod
+          Kit,Wattam, The Telltale Batman Shadows Edition, Foregone, The
+          Escapists, SuperMash, MechWarrior 5:Mercenaries, Hades, Jotun:
+          Valhalla Edition, Surviving the Aftermath, Phoenix Point, Arise: A
+          Simple Story, <br />
+          The Wolf Among Us, Shenmue 3, The Messenger, Bee Simulator, Star Wars
+          Jedi: Fallen Order, Rune II, Yaga, Superliminal, Nuclear Throne, Red
+          Dead Redemption 2, Afterparty, The Outer Worlds, Manifold Garden,
+          Kine, Jackbox Party Pack 6, Spellbreak, A Knights Quest, John Wick
+          Hex, Ghostbusters:The Video Game Remastered, What the Golf?, Untitled
+          Goose Game, The Sojourn, Cardpocalypse, Borderlands 3, The Walking
+          Dead : The Telltale Definitive Series, <br />
+          Falcon Age, Atomicrops, WRC 8 FIA World Rally Championship, Control,
+          Ancestors: The Humankind Odyssey, Auto Chess, Rebel Galaxy Outlaw,
+          Tetris® Effect,,Horace, Griftlands, The Sinking City, Omen Of Sorrow,
+          Journey, Trover Saves the Universe, Outer Wilds, Observation,
+          Shakedown – Hawaii, Close To The Sun, Dangerous Driving, Totally
+          Accurate Battle Simulator, Outward, Satisfactory, Operencia, Helium
+          Rain, APE OUT, Metro Exodus, Flower, Subnautica Below Zero, Oxenfree,
+          My Time At Portia, Hello Neighbor, Hello Neighbor: Hide and Seek,
+          Ashen, Shadow Tactics, Mutant Year Zero: Road to Eden, RollerCoaster
+          Tycoon Adventures, Darksiders III, Bad North, Jackbox Party Pack 3,
+          Donut County, 7 Billion Humans, The Walking Dead:Final Season,
+          Overcooked, GNOG, Vampyr, Moonlighte,, City of Brass, Minit, Q.U.B.E.
+          2, <br />
+          Surviving Mars, Into The Breach, Kingdom Come:Deliverance, Subnautica,
+          InnerSpace, Celeste, <br />
+          Gorogoa, Jackbox Party Pack 4, Jackbox Party Pack 5, RUINER, Last Day
+          of June, &gt;observer_, Slime Rancher, Sundered：Eldritch, The End is
+          Nigh, Conarium, RiME, What Remains of Edith Finch, Everything,
+          Yooka-Laylee and the Impossible Lair, Thimbleweed Park, Stories
+          Untold, The Walking Dead:A New Frontier, Darksiders, VR Funhouse
+          Editor, ABZU, Inside, Drawful 2, Sherlock Holmes: The Devil's
+          Daughter, Enter the Gungeon, Hyper Light Drifter, SUPERHOT, Fennel,
+          Alan Wake, Layers of Fear: Masterpiece Edition, The Witness,
+          Darksiders II, Kingdom: New Lands, Rebel Galaxy, Human Resource
+          Machine, Jackbox Party Pack 2, SOMA, ARK:SURVIVAL EVOLVED, Batman
+          Arkham Knight, Metro:Last Light Redux, Axiom Verge, The Talos
+          Principle, Jackbox Party Pack 1, This War of Mine, LEGO® Batman™ 3:
+          Beyond Gotham, Faster Than Light, Transistor, Fez, The Walking
+          Dead:Season Two, The Bridge, Little Inferno, Batman Arkham City Game
+          of the Year Edition, LEGO® Batman™ 2: DC Super Heroes, Ticket to
+          Ride,Alan Wake's American Nightmare, The Walking Dead:Season One,
+          Super Meat Boy, Costume Quest, Limbo, Batman Arkham Asylum Game of the
+          Year Edition, Metro:2033 Redux, Torchlight, Shadow Complex, World of
+          Goo, LEGO® Batman™: The Videogame, VELUCITY, Racing Juke, Griftlands,
+          Thomas Scott, Persona 4 Golden, Torchlight III, Operation Sniff,
+          Unfortunate Spacemen, The Forever Moon, Missing Children,
+          Falsemen2:Upstream, Star Sonata 2, Space Scavenger, Swarm, Animal
+          Revolt Battle Simulator, Seek Girl:Fog Ⅰ, NewCity, WARBORN, Baldi's
+          Basics Plus, P.A.I.N.T., XIII – Classic, SKYE, Evan's Remains STAR
+          WARS™ Battlefield™ Hardline, Mass Effect™：Andromeda, Battlefield™ V,
+          Battlefield 3™, Mass Effect™3, Main Assembly, Pluviophile, Escape from
+          Kyoto House, Holy Sisters, Whateverland: Prologue, Frog Bath, Deck of
+          Ashes, Mars Power Industries: First Job, Cyber Agent, Ironsmith
+          Medieval Simulator: Prologue, Edge of Dreams, Satisfactory, Fear of
+          Dark, Shoot. Push. Repeat., Bhop PRO, Fragsurf, shapez.io, Quickscoper
+          Doge: The Dank Illuminati Memes, LesLove.Club: Emily and Sarah,
+          Mountain of Faith., Muse Dash, Subterranean Animism., Undefined
+          Fantastic Object., Evil Democracy: 1932, Castle Kong, The Raintime,
+          Gachi Revenge, Burning Knight, A Game of Humans, Carrier Battles 4
+          Guadalcanal, Kharon's Crypt - Even Death May Die, Apollon 88, Legend
+          of Towercraft, The Spike, AshenForest, Sentimental K, My Hidden
+          Things, Dragon Age II, Crysis® 3, Need for Speed™ Heat, Plants vs.
+          Zombies, Need for Speed™ Rivals, Unravel, Sea of Solitude,Fe, Dragon
+          Age™ Inquisition – Game of the Year Edition, Burnout™ Paradise
+          Remastered, Mirror's Edge™ Catalyst, Falcon City, The Light Remake,
+          Pro Cycling Manager 2020, Crafting Idle Clicker, Fareo Shadowlands,
+          Prophecy, Lotion samurai, MARDEK,Sea of Thieves, Power Of Seasons,
+          Spirit Oath, DriftZ, Hell Wedding, Gedonia, Drox Operative 2, The
+          Walking Fish 2: Final Frontier, Survivalist: Invisible Strain, Bomb
+          Bots Arena, Schwarzerblitz, The Sorrowvirus: A Faceless Short Story,
+          Guardians of the Ashes, Sweet F. Cake, Electro Ride Prologue, Dear
+          Devere, Dear Devere, Escape from Life Inc, Sweet Story Neko, The Deed
+          II, FM, House of Detention, Titan Chaser, COVID: The Outbreak, Pixel
+          Strike 3D, Kairos'Light, The Beasts Of 9500, Summer in Mara Prologue,
+          Masters of Puzzle, ManaRocks, STRIKERS 1945 II, The House of Da Vinci
+          2, Burn Me Twice, ANIME WAR — Modern Campaign, Retrograde Arena,
+          Pilots Of Darsalon, KingSim, Dungeon Defenders: Awakened, Rugby League
+          Team Manager 3, Fly Punch Boom!, Resolutiion, Shantae and the Seven
+          Sirens, Ever Forward Prologue, Virtual Exhibition, Speed Swing, Mists
+          of Noyah, Golden Moon, Missile Command: Recharged, Into The Flames,
+          Noise Hunters, RogueJack: Roguelike Blackjack, HaberDashers, Tyrania -
+          A Kinetic Visual Novel, Infected Maze, RaidLand, Depanneur Nocturne,
+          Sockventure: Prologue, The Elder Scrolls Online – Greymoor, MORTAL
+          KOMBAT 11 AFTERMATH KOLLECTION, Summer Paws, Agent-00, Zamboni
+          Simulator 2019, Quantum League, In a search of a new home, Dread X
+          Collection, Tank Battle, Wildfire, Video Editor Tycoon, YOU and ME and
+          HER: A Love Story, Thermo Sudoku, Elasto Mania, Red Planet Farming,
+          Way To Yaatra, Hopebringers, Each Sale I Drink a Glass of Water : The
+          Game, Azure, Hot And Lovely 3, SUPER RECOILFIGHT, RUN OR FIGHT, Lord
+          of Dwarves, Estranged: Act II, I, Dracula: Genesis, Inexistence
+          Rebirth, ShellShock Live, Stayhome Simulator, Family Man, Concept
+          Destruction, High Strategy: Urukon, Song of Yellow River, BOSSGARD,
+          Monster Train, Underworld Ascendant, DARK SOULS™ III, NARUTO
+          SHIPPUDEN: Ultimate Ninja STORM 4, DRAGON BALL FighterZ, SD GUNDAM G
+          GENERATION CROSS RAYS, ACE COMBAT™ 7: SKIES UNKNOWN, Sword Art Online:
+          Fatal Bullet, DARK SOULS™: REMASTERED, TEKKEN 7, CODE VEIN, DRAGON
+          BALL XENOVERSE 2, SOULCALIBUR VI, GOD EATER 3, DARK SOULS™ III - The
+          Ringed City™, Space Haven, Observation,Sea of Thieves, Beyond: Two
+          Souls, Shadow of the Tomb Raider: Definitive Edition, Red Dead
+          Redemption 2, Assassin’s Creed® Odyssey, Detroit: Become Human, Rise
+          of the Tomb Raider, Heavy Rain, Sekiro™: Shadows Die Twice, Monster
+          Hunter: World, Destiny 2,The Witcher® 3: Wild Hunt, Grand Theft Auto
+          V, Need for Speed™ Heat, The Dungeon Of Naheulbeuk: The Amulet Of
+          Chaos, NosTale, The Elder Scrolls® Online, Hellpoint, Destiny 2,
+          Terraria, Grand Theft Auto V, Monster Hunter: World, ARK: Survival
+          Evolved, Rust, The Elder Scrolls V: Skyrim Special Edition, Don't
+          Starve Together, Red Dead Redemption 2, Human Fall Flat, Euro Truck
+          Simulator 2,7 Days to Die, Fallout 4, DARK SOULS™ III, The Forest,
+          Mount &amp; Blade II: Bannerlord, Assassin's Creed® Odyssey, Unturned,
+          VRChat, Satisfactory, Aim Lab, theHunter: Call of the Wild™, Dying
+          Light, Raft, Hollow Knight, Sekiro™: Shadows Die Twice, No Man's Sky,
+          Conan Exiles, Tomb Raider, Far Cry® 5, Need for Speed™ Heat, Grim
+          Dawn, Mount &amp; Blade: Warband, Helltaker, American Truck Simulator,
+          Elite Dangerous, Fallout: New Vegas, Rise of the Tomb Raider™, Shadow
+          of the Tomb Raider: Definitive , Edition, Scrap Mechanic, Assassin's
+          Creed® Origins， Don't Starve, Subnautica, Green Hell, ASTRONEER,
+          Borderlands 2, Getting Over It with Bennett Foddy, Remnant: From the
+          Ashes, The Isle, Middle-earth™: Shadow of War™, Totally Accurate
+          Battle Simulator, STAR WARS™ II, Metro Exodus, DARK SOULS™ II: Scholar
+          of the First Sin, Slime Rancher, Trove, Castle Crashers®, Kingdom
+          Come: Deliverance, The Long Dark, Grand Theft Auto IV: The Complete
+          Edition, Fallout Shelter, Watch_Dogs® 2, Project Winter, NARUTO
+          SHIPPUDEN: Ultimate Ninja STORM 4, Just Cause™ 3, Sniper Elite 4,
+          Starbound, Detroit: Become Human, BattleBlock Theater®, Tom Clancy's
+          Ghost Recon® Wildlands, ATLAS, Empyrion - Galactic Survival, Half-Life
+          2, Russian Fishing 4, Kenshi, My Time At Portia, Ori and the Will of
+          the Wisps, Grand Theft Auto: San Andreas, The Elder Scrolls IV:
+          Oblivion® Game of the Year Edition, Shakes and Fidget, Outer Wilds,
+          Batman™: Arkham Knight, Microsoft Flight Simulator X: Steam Edition,
+          Project:surviving, DARK SOULS™: REMASTERED, Assassin’s Creed® IV Black
+          Flag™, Half-Life, Outlast, Yakuza 0,Mortificatio, Neverwinter,
+          Existentia, X-Plane 11, Deadside, Black Mesa, Noita, Pathfinder:
+          Kingmaker - Enhanced Edition, Outward, The Descendant, Dishonored 2,
+          Clicker Heroes, Sonic Generations Collection, Star Trek Online,
+          Pacify, Gems of War - Puzzle RPG, BATTLETECH, SCUM, NGU IDLE, Life is
+          Strange - Episode 1, SpongeBob SquarePants: Battle for Bikini Bottom -
+          Rehydrated, The Witcher 2: Assassins of Kings Enhanced Edition, Blade
+          and Sorcery, FINAL FANTASY XV WINDOWS EDITION, The Witcher: Enhanced
+          Edition Director's Cut, Subnautica: Below Zero, Celeste, Left 4
+          Dead,Skul: The Hero Slayer, The Bizarre Creations of Keith the
+          Magnificent, Transformice, Forager, Dishonored, Lost Castle, Skater XL
+          - The Ultimate Skateboarding Game,DRAGON BALL XENOVERSE 2, Resident
+          Evil 7 Biohazard, Graveyard Keeper, Idle Champions of the Forgotten
+          Realms, Titan Quest Anniversary Edition, Stormworks: Build and Rescue,
+          AdVenture Capitalist, Divinity: Original Sin - Enhanced Edition, Disco
+          Elysium, Magma Chamber, For The King, Impossible Geometry, SPORE™, The
+          Scroll Of Taiwu, Creative Destruction, NEO-NOW!, Onmyoji, N0-EXITSea
+          of Thieves, Beyond: Two Souls, Shadow of the Tomb Raider: Definitive
+          Edition, Red Dead Redemption 2, Assassin’s Creed® Odyssey, Detroit:
+          Become Human, Rise of the Tomb Raider, Heavy Rain, Sekiro™: Shadows
+          Die Twice, Monster Hunter: World, Destiny 2,The Witcher® 3: Wild Hunt,
+          Grand Theft Auto V, Need for Speed™ Heat, The Dungeon Of Naheulbeuk:
+          The Amulet Of Chaos, NosTale, The Elder Scrolls® Online, Hellpoint,
+          Destiny 2, Terraria, Grand Theft Auto V, Monster Hunter: World, ARK:
+          Survival Evolved, Rust, The Elder Scrolls V: Skyrim Special Edition,
+          Don't Starve Together, Red Dead Redemption 2, Human Fall Flat, Euro
+          Truck Simulator 2,7 Days to Die, Fallout 4, DARK SOULS™ III, The
+          Forest, Mount &amp; Blade II: Bannerlord, Assassin's Creed® Odyssey,
+          Unturned, VRChat, Satisfactory, Aim Lab, theHunter: Call of the Wild™,
+          Dying Light, Raft, Hollow Knight, Sekiro™: Shadows Die Twice, No Man's
+          Sky, Conan Exiles, Tomb Raider, Far Cry® 5, Need for Speed™ Heat, Grim
+          Dawn, Mount &amp; Blade: Warband, Helltaker, American Truck Simulator,
+          Elite Dangerous, Fallout: New Vegas, Rise of the Tomb Raider™, Shadow
+          of the Tomb Raider: Definitive , Edition, Scrap Mechanic, Assassin's
+          Creed® Origins， Don't Starve, Subnautica, Green Hell, ASTRONEER,
+          Borderlands 2, Getting Over It with Bennett Foddy, Remnant: From the
+          Ashes, The Isle, Middle-earth™: Shadow of War™, Totally Accurate
+          Battle Simulator, STAR WARS™ II, Metro Exodus, DARK SOULS™ II: Scholar
+          of the First Sin, Slime Rancher, Trove, Castle Crashers®, Kingdom
+          Come: Deliverance, The Long Dark, Grand Theft Auto IV: The Complete
+          Edition, Fallout Shelter, Watch_Dogs® 2, Project Winter, NARUTO
+          SHIPPUDEN: Ultimate Ninja STORM 4, Just Cause™ 3, Sniper Elite 4,
+          Starbound, Detroit: Become Human, BattleBlock Theater®, Tom Clancy's
+          Ghost Recon® Wildlands, ATLAS, Empyrion - Galactic Survival, Half-Life
+          2, Russian Fishing 4, Kenshi, My Time At Portia, Ori and the Will of
+          the Wisps, Grand Theft Auto: San Andreas, The Elder Scrolls IV:
+          Oblivion® Game of the Year Edition, Shakes and Fidget, Outer Wilds,
+          Batman™: Arkham Knight, Microsoft Flight Simulator X: Steam Edition,
+          Project:surviving, DARK SOULS™: REMASTERED, Assassin’s Creed® IV Black
+          Flag™, Half-Life, Outlast, Yakuza 0,Mortificatio, Neverwinter,
+          Existentia, X-Plane 11, Deadside, Black Mesa, Noita, Pathfinder:
+          Kingmaker - Enhanced Edition, Outward, The Descendant, Dishonored 2,
+          Clicker Heroes, Sonic Generations Collection, Star Trek Online,
+          Pacify, Gems of War - Puzzle RPG, BATTLETECH, SCUM, NGU IDLE, Life is
+          Strange - Episode 1, SpongeBob SquarePants: Battle for Bikini Bottom -
+          Rehydrated, The Witcher 2: Assassins of Kings Enhanced Edition, Blade
+          and Sorcery, FINAL FANTASY XV WINDOWS EDITION, The Witcher: Enhanced
+          Edition Director's Cut, Subnautica: Below Zero, Celeste, Left 4
+          Dead,Skul: The Hero Slayer, The Bizarre Creations of Keith the
+          Magnificent, Transformice, Forager, Dishonored, Lost Castle, Skater XL
+          - The Ultimate Skateboarding Game,DRAGON BALL XENOVERSE 2, Resident
+          Evil 7 Biohazard, Graveyard Keeper, Idle Champions of the Forgotten
+          Realms, Titan Quest Anniversary Edition, Stormworks: Build and Rescue,
+          AdVenture Capitalist, Divinity: Original Sin - Enhanced Edition, Disco
+          Elysium, Magma Chamber, For The King, Impossible Geometry, SPORE™, The
+          Scroll Of Taiwu, Creative Destruction, NEO-NOW!, Onmyoji,
+          N0-EXIT,Wallpaper Engine, Stardew Valley, Bloons TD 6, NBA 2K20,
+          VRChat, Cities: Skylines, Pummel Party Tabletop Simulator, Aim Lab,
+          Dota Underlords, Soda Dungeon 2, Overcooked! 2, Plants vs. Zombies
+          GOTY Edition, Stick Fight: The Game, DEAD OR ALIVE Xtreme Venus
+          Vacation, Among Us, RISK: Global Domination, Totally Accurate Battle
+          Simulator, UNO, Golf With Your Friends, Muse Dash, Crush Crush,
+          Business Tour - Board Game with Online Multiplayer, Fallout Shelter,
+          The Sims™ 4, King of Crabs, Getting Over It with Bennett Foddy,
+          PIGMENTUM, Russian Fishing 4, People Playground, Catan Universe,
+          Shakes and Fidget, DJMAX RESPECT V, Slime Rancher, My Time At Portia,
+          Project Winter, Townscaper, The Jackbox Party Pack 3, Town of Salem,
+          Repulsanoid, Farm Together, Clicker Heroes, Golf It!, Stickmageddon,
+          Pirates Deck, Ultimate Chicken Horse, Cell to Singularity - Evolution
+          Never Ends, ShellShock Live, TWIN BROS, Project:surviving, Castle
+          Crashers®, The Jackbox Party Pack 6, Gems of War - Puzzle RPG,
+          AdVenture Capitalist, Rocksmith® 2014 Edition - Remastered, Train
+          Simulator 2020, The Scroll Of Taiwu, PC Building Simulator, KARDS -
+          The WWII Card Game, BattleBlock Theater®, The Jackbox Party Pack 4,
+          Transformice, Gang Beasts, Two Point Hospital, The Sims™ 3, Governor
+          of Poker 3, Ninja Kiwi Archive, RichMan 10, Blush Blush, Magma
+          Chamber, SpongeBob SquarePants: Battle for Bikini Bottom - Rehydrated,
+          Pacify, Quaver, Bloons TD Battles, Creative Destruction, NGU IDLE, The
+          Jackbox Party Pack 5, Ticket to Ride, Idle Champions of the Forgotten
+          Realms, OMSI 2: Steam Edition, Impossible Geometry, The Jackbox Party
+          Pack 2, Idle Big Devil, Dawn of Man, Drawful 2, Spyro™ Reignited
+          Trilogy, 60 Seconds! Reatomized, Witch It, Are You Ready?, Move or
+          Die, Baba Is You, Tricky Towers, Firestone Idle RPG, Overcooked, 100%
+          Orange Juice, Rec Room, Worms W.M.D, Unrailed!, Sven Co-op, Bejeweled®
+          3, Train Sim World® 2020, Legend Creatures, The Jackbox Party Pack,
+          Tower Unite, Epic Mayhem, Aim Hero, MONOPOLY® PLUS, Dungeon Defenders
+          II, Electric Circuit, Realm Grinder, Danny's War, Eternal Card Game,
+          Puyo Puyo™Tetris®, CPUCores :: Maximize Your FPS, Universe Sandbox,
+          Shop Heroes, Endless World Idle RPG, Super Animal Royale, Bloons TD 5,
+          VA-11 Hall-A: Cyberpunk Bartender Action, Zuma Deluxe, Turmoil, Game
+          Dev Tycoon, Demon Horde Master, Pro Cycling, Manager 2020, Viridi,
+          Clicker Heroes 2, Marbles on Stream, Sonic Mania, Pro Cycling Manager
+          2019, JUMP FORCE, GRID, Kingdoms and Castles, Journey, The Lab,
+          shapez.io, Digimon Masters Online, Peggle Deluxe, Dead Bits, Football
+          Manager 2020, NBA 2K20, F1® 2020, theHunter: Call of the Wild™,
+          Assetto Corsa, F1® 2019, TEKKEN 7, DEAD OR ALIVE Xtreme Venus
+          Vacation, Beat Saber, NBA 2K19, Need for Speed™ Heat, Golf With Your
+          Friends, DiRT Rally 2.0, Project CARS 2, Russian Fishing 4, Assetto
+          Corsa Competizione, Wreckfest, Fishing Planet, DJMAX RESPECT V, Golf
+          It!, Skater XL - The Ultimate Skateboarding Game, Motorsport Manager,
+          DiRT Rally, Blood Bowl 2, RaceRoom Racing Experience, SpeedRunners,
+          Football Manager 2020 Touch, TrackMania Nations Forever, F1 2018, Pro
+          Cycling Manager 2020, rFactor 2, The Golf Club™ 2019 featuring PGA
+          TOUR, CarX Drift Racing Online, DiRT 4, theHunter Classic, Rec Room,
+          Out of the Park , Baseball 21, NBA 2K18, Epic Mayhem, WWE 2K20, Soccer
+          Manager 2020, TrackMania² Stadium, Pro Cycling Manager 2019, Session:
+          Skateboarding Sim Game, MotoGP™20, Steep™, RIDE 3, Descenders, GRID,
+          Need For Speed: Hot Pursuit, iRacing, WGT Golf, Automobilista 2, F1™
+          2017, Drunken Wrestlers 2, WRC 7 FIA World Rally Championship, Sonic
+          &amp; All-Stars Racing Transformed Collection, WWE 2K19, NBA 2K17,
+          Super Mega Baseball 3, POLYGON, Poolians, F1 2015, Out of the Park
+          Baseball 20, Liftoff: FPV Drone Racing, PIPE by BMX Streets, Project
+          CARS, Fire Pro Wrestling World, Slapshot, NASCAR Heat 5, Cricket 19,
+          MadOut2 BigCityOnline, Automobilista, Need for Speed™ Payback, NASCAR
+          Heat 4, Horizon Chase Turbo, Lethal , League Blaze, F1 2016, F1 2012™,
+          NBA 2K Playgrounds 2, Superflight, Pro Cycling Manager 2018, Punch
+          Club, BOXVR, Rival Stars Horse Racing: Desktop Edition, Paunch, Ball
+          3D: Soccer &amp; Sports Online, Mount Your Friends, F1 2014, Monster
+          ,Energy Supercross - The Official Videogame 3, SNOW, The Thrill of the
+          Fight - VR Boxing, Fruit Ninja VR, Franchise Hockey Manager 6, Lonely
+          Mountains: Downhill, High Octane Drift, The Catch: Carp &amp; Coarse,
+          The Fisherman - Fishing Planet, R.B.I. Baseball 20, Supraball, AO
+          Tennis 2, Kopanito All-Stars Soccer, MotoGP™19, Eleven: Table Tennis
+          VR, Tennis World Tour, Chess Ultra, MX Bikes, The Fishing Club 3D,
+          Pyre, Super Mega Baseball 2, Pro Cycling Manager 2017, Pixel , Puzzles
+          Ultimate Jigsaw, Cricket Captain 2020, Tennis Elbow 2013, Virtual Pool
+          4, Pool Nation FX Lite, Fishing Sim World®: Pro Tour, The Drone Racing
+          League Simulator, Ride 2, Blood Bowl: Chaos Edition, KartKraft™, Just
+          Fishing, TT Isle of Man Ride on the Edge 2, Football, Tactics &amp;
+          Glory, MXGP 2019 - The Official Motocross Videogame, TrackMania²
+          Canyon, Need for Speed™ Rivals, MX vs. ATV Reflex, DCL - The Game,
+          Trials® Rising, FIM Speedway Grand Prix 15, Zaccaria , inball, Pro 11
+          - Football Manager Game, MX vs ATV All Out, Perfect Golf, Robot
+          Roller-Derby Disco Dodgeball, Riding Club Championships, Don Bradman
+          Cricket 14, Lethal League, IOSoccer, Russian Life Simulator, 90 Minute
+          Fever - Football, (Soccer) Manager MMO, Pro Cycling Manager 2016,
+          Sailaway - The Sailing Simulator, Trophy Fishing 2, WWE 2K17, Atari
+          Vault, Monster Hunter: World, Grand Theft Auto V, Counter-Strike:
+          Global Offensive, Tom Clancy's Rainbow Six® Siege, Destiny 2,
+          PLAYERUNKNOWN'S BATTLEGROUNDS, Dota 2, Warframe, Dead by Daylight,
+          PAYDAY 2, Brawlhalla, Sea of Thieves, ARK: Survival Evolved,
+          Counter-Strike, Rust, Terraria, Left 4 Dead 2, Team Fortress 2,
+          Garry's Mod, War Thunder, SMITE®, Total War: WARHAMMER II, Red Dead
+          Redemption 2, The Witcher® 3: Wild Hunt, Devolverland Expo, The Elder
+          Scrolls V: Skyrim Special Edition, 7 Days to Die, DARK SOULS™ III,
+          Fallout 4, Unturned, Arma 3, Mount &amp; Blade II: Bannerlord, The
+          Elder Scrolls® Online, Assassin's Creed® Odyssey, Halo: The Master
+          Chief Collection, DayZ, Bloons TD 6, Aim Lab, Titanfall® 2, Sekiro™:
+          Shadows Die Twice, The Forest, Dying Light, Counter-Strike: Source,
+          Pummel Party, TEKKEN 7, Deep Rock Galactic, Risk of Rain 2, theHunter:
+          Call of the Wild™, Hunt: Showdown, Portal 2, Killing Floor 2, KovaaK
+          2.0, DOOM Eternal, ollow Knight, Geometry Dash, MORDHAU, SCP,
+          Insurgency: Sandstorm, FOR HONOR™, Warhammer: Vermintide 2, Far Cry®
+          5, Total War: THREE KINGDOMS, Borderlands 2, Conan Exiles, Mount &amp;
+          Blade: Warband, Dead Cells, Overcooked! 2, DEAD OR ALIVE Xtreme Venus
+          Vacation, Company of Heroes 2, Tomb Raider, Crim Dawn, Stick Fight:
+          The Game, Hades, Fallout: New egas, Elite Dangerous, Watch_Dogs® 2,
+          Assassin's Creed® Origins, Mortal Kombat 11, DOOM, Squad, Black Squad,
+          Totally Accurate Battle Simulator, Beat Saber, DRAGON BALL FighterZ,
+          Shadow of the Tomb Raider: Definitive Edition, Deceit, The Crew™ 2,
+          HITMAN™ 2, Heroes &amp; Generals, Rise of the Tomb Raider™,
+          Middle-earth™: Shadow of War™, Remnant: From the Ashes, PlanetSide 2,
+          Metro Exodus, Shadow Warrior 2, DARK SOULS™ II: Scholar of the First
+          Sin, Street Fighter V, The Isle, Muse Dash, Grand Theft Auto IV: The
+          Complete Edition, STAR WARS™ II, Warface, Sniper Elite 4, Devil May
+          Cry 5, Kingdom Come: Deliverance, Tom Clancy's Ghost Recon® Wildlands,
+          Project of the Developer, Enter the Gungeon, Just Cause™ 3, Half-Life:
+          Alyx, DARK SOULS™: REMASTERED, Ring of Elysium, Cuphead, Hell Let
+          Loose, Realm Royale, Getting Over It with Bennett Foddy, King of
+          Crabs, The Wind Road, Half-Life 2, Men of War: Assault Squad 2, NARUTO
+          SHIPPUDEN: Ultimate Ninja STORM 4, State of Decay 2: Juggernaut
+          Edition, Starbound, Trove, Rising Storm 2: Vietnam, Skul: The Hero
+          Slayer, Insurgency, Wreckfest, Grand Theft Auto: San Andreas, Ori and
+          the Will of the Wisps, Cyber Hunter, Project CARS 2, Castle Crashers®,
+          Ultimate Custom Night, Cuisine Royale, Company of Heroes, Batman™:
+          Arkham Knight, Resident Evil 2, Pavlov VR, Project Winter, DJMAX
+          RESPECT V, ATLAS, ARK: Survival Evolved, Warframe, War Thunder, The
+          Elder, Scrolls® Online, SMITE®, VRChat, Sea of Thieves, NBA 2K20,
+          DayZ, World of Warships, Conan Exiles, Albion Online, Elite Dangerous,
+          PlanetSide 2, The Crew™ 2, The Isle, Heroes &amp; Generals, Black
+          Squad, Ring of Elysium, Business Tour - Board Game with Online
+          Multiplayer, Russian Fishing 4, Trove, ATLAS, Warface, Realm of the
+          Mad God, Cyber Hunter, Cuisine Royale, Shakes and Fidget, Star Trek
+          Online, Realm Royale, Fishing Planet, Neverwinter, Microsoft Flight
+          Simulator X: ,Steam Edition, OneScreen Wagons, ShellShock Live, SCUM,
+          Deadside, Town of Salem, Transformice, Post Scriptum, Governor of
+          Poker 3, Creative Destruction, DRAGON BALL XENOVERSE 2, The Lord of
+          the Rings Online™, Notes of Soul, TrackMania Nations Forever, Pixel
+          Strike 3D, Bloons TD Battles, War Robots, Battlefield™ 1, Tom Clancy’s
+          The Division™, VEGA Conflict, Last Oasis, War Selection, Stay Out,
+          Robocraft, Z1 Battle Royale, Holdfast: Nations At War, RaceRoom Racing
+          Experience, CarX Drift Racing Online, NARUTO TO BORUTO: SHINOBI
+          STRIKER, Bombergrounds: Battle Royale, Rec Room, Will To Live Online,
+          Dead Frontier 2, Infestation: The New Z, Game of Thrones Winter is
+          Coming, Demon Horde Master, Tower Unite, Knight Online, Pixel Worlds:
+          MMO Sandbox, Naval Action, Modern Combat 5, APB Reloaded, Battlerite
+          Royale, BLOCKADE, Eternal Card Game, Beasts of Bermuda, Creativerse,
+          Super Animal Royale, AdventureQuest 3D, POLYGON, Digimon Masters
+          Online, DC Universe™ Online, Hades' Star, Dungeons &amp; Dragons
+          Online®, Shop Heroes, Granado Espada, Marbles on Stream, Life is
+          Feudal: MMO, NosTale, iRacing, Wizard101, Spiral Knights, MechWarrior
+          Online™ Solaris 7, Legends of Aria, Endless World Idle RPG,
+          Miscreated, Fistful of Frags, Prominence Poker, WRC 7 FIA World Rally
+          Championship, PROP AND SEEK®, Aura Kingdom, Elsword, Star Conflict,
+          Survarium, Dirty Bomb®, LoveBeat, Stronghold Kingdoms, Foxhole, Secret
+          World Legends, Poolians, Hand Simulator: Survival, RIFT, BLOCKPOST, HD
+          Poker: Texas Hold'em, Pixel Starships, Dreadnought, PixARK, Animal
+          Jam, Combat Arms: Reloaded, Astellia, Skyforge, World of Warplanes,
+          GUNS UP!, BRAIN / OUT,ARK: Survival Of The Fittest, Call of War: World
+          War 2, EverQuest, Bit Heroes, theFisher Online, Modern Combat Versus,
+          Hired Ops, Life is Feudal: Your Own, Audition Online, Evolvation, Dark
+          and Light, Supremacy 1914: World War 1, Tannenberg, Warspear Online,
+          EverQuest II, Enemy On Board, Champions Online, Dead Maze, Euro Truck
+          Simulator 2, Football Manager 2020, War Thunder, Stardew Valley,
+          Garry's Mod, F1® 2020, Sid Meier’s Civilization® VI, Cities: Skylines,
+          Farming Simulator 19, Europa Universalis IV, Tabletop Simulator, Arma
+          3, Stellaris, Mount &amp; Blade II: Bannerlord, Aim Lab, RimWorld,
+          Satisfactory, American Truck Simulator, theHunter: Call of the Wild™,
+          Tropico 6, Assetto Corsa, The Forest, DayZ, BeamNG.drive, Crusader
+          Kings II, KovaaK 2.0, Oxygen Not Included, Raft, F1® 2019, Kerbal
+          Space Program, Soda Dungeon 2, Elite Dangerous, Totally Accurate
+          Battle Simulator, Factorio, Space Engineers, Green Hell, Scrap ,
+          Mechanic, Squad, The Isle, Project CARS 2, Transport Fever 2, X-Plane
+          11, The Crew™ 2, DiRT Rally 2.0, Fallout Shelter, Prison Architect,
+          Microsoft Flight Simulator X: Steam Edition, Russian Fishing 4, Heroes
+          &amp; Generals, Assetto Corsa Competizione, Don't Starve, ASTRONEER,
+          Age of Empires® III: Complete Collection, Train Simulator 2020, NBA
+          2K19, The Sims™ 4, People Playground, Men of War: Assault Squad 2,
+          State of Decay 2: Juggernaut Edition, Wreckfest, Kenshi, Age of
+          Mythology: Extended Edition, Car Mechanic Simulator 2018, The Long
+          Dark, Fishing Planet, Hell Let Loose, Golf With Your Friends, Rising
+          Storm 2: Vietnam, My Time At Portia, Slime Rancher, Frostpunk,
+          Empyrion - Galactic Survival, Two Point Hospital, Poly Bridge, DCS
+          World Steam Edition, Farm Together, Rocksmith® 2014 Edition -
+          Remastered, Cell to Singularity - Evolution Never Ends, Northgard,
+          Townscaper, PC Building Simulator, Project:surviving, The Sims™ 3,
+          Skater XL - The Ultimate Skateboarding Game, Golf It!, The Escapists
+          2, Blade and Sorcery, FTL: Faster Than Light, Stormworks: Build and
+          Rescue, The Scroll Of Taiwu, OMSI 2: Steam Edition, DiRT Rally,
+          FaceRig, MudRunner, ACE COMBAT™ 7: SKIES UNKNOWN, AdVenture
+          Capitalist, Farming Simulator 17, Motorsport Manager, NGU IDLE,
+          Clicker Heroes, Graveyard Keeper, Project Zomboid, Banished, SPORE™,
+          This War of Mine, Dawn of Man, Governor of Poker 3, Hand Simulator,
+          Surviving Mars, Total War: NAPOLEON – Definitive Edition, Library Of
+          Ruina, Brick Rigs, RaceRoom Racing Experience, TrackMania Nations
+          Forever, My Summer Car, Blush Blush, Wargame: Red Dragon, Besiege,
+          Papers, Please, Lobotomy Corporation | , Monster Management
+          Simulation, rFactor 2, F1 2018, Football Manager 2020 Touch, Victoria
+          II, Stronghold Crusader HD, Cooking Simulator, theHunter Classic, City
+          Car Driving, World of Guns: Gun Disassembly, Hot Dogs, Horseshoes
+          &amp; Hand, Grenades, DiRT 4, Spintires®, Pro Cycling Manager 2020,
+          BONEWORKS, Barotrauma, Age of Civilizations II, Terraria, Brawlhalla,
+          tardew Valley, Euro Truck Simulator 2, Don't Starve Together,
+          Devolverland Expo, Human Fall Flat, The Binding of Isaac: Rebirth,
+          Satisfactory, Aim Lab, Pummel Party, Tabletop Simulator, Slay the
+          Spire, RimWorld, Hollow Knight, Geometry Dash, Soda Dungeon 2, No
+          Man's Sky, KovaaK 2.0, Risk of Rain 2, Oxygen Not Included, Beat
+          Saber, Overcooked! 2, Helltaker, Dead Cells, Assetto Corsa, Hades,
+          Plants vs. Zombies GOTY Edition, Kerbal Space Program, Space
+          Engineers, Darkest Dungeon®, Stick Fight: The Game, Green Hell, Don't
+          Starve, Totally Accurate Battle Simulator, Among Us,Muse Dash, RISK:
+          Global Domination, Golf With Your Friends, Enter the Gungeon,
+          Undertale, The Isle, Getting Over It with Bennett Foddy, Cuphead,
+          Kenshi, Business Tour - Board Game with Online Multiplayer,
+          Repulsanoid, The Wind Road, Starbound, A Dance of Fire and Ice,
+          Ultimate Custom Night, Skul: The Hero Slayer, People Playground,
+          Shadow Tactics: Blades of the Shogun, The Long Dark, Satanist, FTL:
+          Faster Than Light, Project Winter, Pirates Deck, Town of Salem,
+          Wreckfest, Hell Let Loose, Slime Rancher, Rising, Townscaper, Castle
+          Crashers®, Project of the Developer, My Time At Portia, Northgard,
+          Insurgency, Poly Bridg, Realm of the Mad God, Shakes and Fidget, The
+          Jackbox Party Pack 3, Pavlov VR, Ultimate Chicken Horse,
+          Project:surviving, Noita, SUPERHOT, OneScreen Wagons, The Escapists 2,
+          ShellShock Live, The Scroll Of Taiwu, BattleBlock
+          Theater®,Stickmageddon, Clicker Heroes, Skater XL - The Ultimate
+          Skateboarding Game, Blade and Sorcery, Two Point Hospital, NGU IDLE,
+          Ravenfield, The Jackbox Party Pack 6, Deadside, ,Outer Wilds, Celeste,
+          Disco Elysium, KARDS - The WWII Card Game, Doki Doki Literature Club!,
+          WIN BROS, SCUM, AdVenture Capitalist, Gang Beasts, Post Scriptum,
+          Library Of Ruina, Project Zomboid, Rivals of Aether, Little Witch
+          Nobeta, PIGMENTUM, Baba Is You, Graveyard Keeper, N0-EXIT, The Jackbox
+          Party Pack 4, U-Boats, Transformice, Papers, Please, Outlast, Pacify,
+          This War of Mine, Quaver, Forager, SpeedRunners, Lost Castle, Magma
+          Chamber, The Bizarre Creations of Keith the Magnificent, Banished,
+          NEO-NOW!, FaceRig, Idle Champions of the Forgotten Realms, Desperados
+          III, Gems of War - Puzzle RPG, Blush Blush, Pixel Strike 3D, Dawn of
+          Man, ,SYNTHETIK: Legion Rising ,Life is Strange - Episode 1
+          ,Impossible Geometry , For The King, Torchlight II, Besiege, Lobotomy
+          Corporation | Monster Management Simulation, A Hat in Time, Ticket to
+          Ride, Firestone Idle RPG, Grand Theft Auto V, F1® 2020, Assetto Corsa,
+          F1® 2019, BeamNG.drive, The Crew™ 2, Project CARS 2, DiRT Rally 2.0,
+          Wreckfest, Assetto Corsa Competizione, Car Mechanic Simulator 2018,
+          TrackMania Nations Forever, DiRT Rally, RaceRoom Racing Experience,
+          Motorsport Manager, SpeedRunners, Transformice, F1 2018, DiRT 4, CarX
+          Drift Racing Online, MudRunner, rFactor 2, Brick Rigs, Sleeping Dogs:
+          Definitive Edition, Mad Max, My Summer Car, Epic Mayhem, TrackMania²
+          Stadium, City Car Driving, Sonic &amp; All-Stars Racing Transformed
+          Collection, Need for Speed Undercover, Need for Speed™, RIDE 3,
+          iRacing, Spintires®, F1 2015, WRC 7 FIA World Rally Championship,
+          GRID, MotoGP™20, Adrenaline Adventure, F1™ 2017, NASCAR Heat 4,
+          Descenders, Tower Unite, Need For Speed: Hot Pursuit, Automation - The
+          Car Company Tycoon Game, Marbles on Stream, Automobilista 2, Project
+          CARS, Need for Speed™ Most Wanted, Endless World Idle RPG, Road
+          Redemption, Trailmakers, FlatOut 2™, Liftoff: FPV Drone Racing,
+          Automobilista, F1 2016, MadOut2 BigCityOnline, Steep™, LEGO® City
+          Undercover, Burnout™ Paradise Remastered, Horizon Chase Turbo,
+          POLYGON, Trackmania United Forever, F1 2012™, High Octane Drift, GRIP:
+          Combat Racing, Need for Speed™ Payback, NASCAR Heat 5, Stream Racer,
+          F1 2014, Sonic &amp; SEGA All-Stars Racing, Redout: Enhanced Edition,
+          Distance, Trials® Rising, Need for Speed: Shift, MX vs. ATV Reflex,
+          The Crew™, Team Sonic Racing™, Car Mechanic Simulator 2015,
+          TrackMania² Canyon, Trials Fusion™, Hot Lava, ,Superflight, Rival
+          Stars Horse Racing: Desktop Edition, Copa Petrobras de Marcas, Ball
+          3D: Soccer &amp; Sports Online, FlatOut: Ultimate Carnage, Kao the
+          Kangaroo: Round 2, Retrowave, Monster Energy Supercross - The Official
+          Videogame 3, Rock of Ages 2: Bigger &amp; Boulder™, Ride 2, Shift 2
+          Unleashed, Lonely Mountains: Downhill, Trackmania® Turbo, INVAXION,
+          Toybox Turbos, Project Torque - Free 2 Play MMO Racing Game,
+          KartKraft™, MotoGP™19, Razortron 2000, Victory: The Age of Racing,
+          RACE 07, Crazy Taxi, FlatOut, Cube Racer, MX Bikes, RAGE, Crash Drive
+          2, Need for Speed™ Rivals, MXGP - The Official Motocross Videogame,
+          Street Legal Racing: Redline v2.3.1, Garfield Kart - Furious Racing,
+          The Drone Racing League Simulator, TT Isle of Man Ride on the Edge 2,
+          NASCAR '15 Victory Edition, Idle Racing GO: Clicker Tycoon, Audiosurf
+          2, EmergeNYC, Sailaway - The Sailing Simulator, MXGP 2019 - The
+          Official Motocross Videogame, rFactor, armageddon: Max Damage, MX vs
+          ATV All Out, DCL - The Game, Garfield Kart, FIM Speedway Grand Prix
+          15, Atari Vault, Biker Garage: Mechanic Simulator, Wrench, MXGP PRO,
+          War Machines: Free to Play, Riding Club Championships, SEUM:
+          Speedrunners from Hell, Teddy Floppy Ear - The Race, VRC PRO,
+          BlazeRush, DashPanel, RDS - The Official Drift Videogame, AccuRC 2,
+          Kart Racing Pro, Dream Car Builder, Horse Riding Tales, Bus Driver
+          Simulator 2019, Tracks, Sid Meier’s Civilization® VI, Dota 2, Age of
+          Empires II: Definitive Edition, Total War: WARHAMMER II,
+          Counter-Strike: Global Offensive, Tom Clancy's Rainbow Six® Siege,
+          PLAYERUNKNOWN'S BATTLEGROUNDS, Bloons TD 6, Sid Meier's Civilization®
+          V, War Thunder, Cities: Skylines, Company of Heroes 2, Mount &amp;
+          Blade II: Bannerlord, SMITE®, Europa Universalis IV, Football Manager
+          2020, Age of Empires II(2013), RimWorld, Stellaris, Total War: THREE
+          KINGDOMS, Satisfactory, Arma 3, Tropico 6, Slay the Spire, Tabletop
+          Simulator, Counter-Strike, Dota Underlords, World of Warships, Total
+          War™: ROME II - Emperor Edition, Crusader Kings II, Plants vs. Zombies
+          GOTY Edition, Factorio, Oxygen Not Included, Mount &amp; Blade:
+          Warband, Counter-Strike: Source, Totally Accurate Battle Simulator,
+          XCOM® 2, FOR HONOR™, Darkest Dungeon®, RISK: Global Domination,
+          Monster Train, Age of Empires® III: Complete Collection, Squad, Age of
+          Mythology: Extended Edition, Total War: MEDIEVAL II – Definitive
+          Edition, Total War: EMPIRE – Definitive Edition, Total War: SHOGUN 2,
+          Deceit, Men of War: Assault Squad 2, They Are Billions, HITMAN™ 2,
+          Heroes &amp; Generals, Transport Fever 2, Prison Architect, Fallout
+          Shelter, Business Tour - Board Game with Online Multiplayer, Company
+          of Heroes, Total War: ATTILA, Shadow Tactics: Blades of the Shogun,
+          Northgard, Kenshi, Frostpunk, UNO, Town of Salem, Ultimate Custom
+          Night, STAR WARS™ Empire at War - Gold Pack, Total War: NAPOLEON –
+          Definitive Edition, Golf With Your Friends, Hell Let Loose, Catan
+          Universe, Project Winter, BATTLETECH, FTL: Faster Than Light,
+          ShellShock Live, Shakes and Fidget, Insurgency, The Escapists 2,
+          Desperados III, Total War: WARHAMMER, Pirates Deck, The Jackbox Party
+          Pack 3, The Scroll Of Taiwu, ,Endless Space® 2 - Digital Deluxe
+          Edition,Warhammer® 40,000: Dawn of War® - Soulstorm, Pathfinder:
+          Kingmaker - Enhanced Edition, Gems of War - Puzzle RPG, Wargame: Red
+          Dragon, Ravenfield, Heroes® of Might &amp; Magic® III - HD Edition,
+          Two Point Hospital, KARDS - The WWII Card Game, Age of Empires:
+          Definitive Edition, Stronghold Crusader HD, Bloons TD Battles, Rome:
+          Total War™ - Collection, Surviving Mars, Post Scriptum, Library Of
+          Ruina, Dawn of Man, Clicker Heroes, Motorsport Manager, Banished, This
+          War of Mine, SD GUNDAM G GENERATION CROSS RAYS, Divinity: Original Sin
+          - Enhanced Edition, Transformice, N0-EXIT, Idle Champions of the
+          Forgotten Realms, The Jackbox Party Pack 4, Rise of Nations: Extended
+          Edition, Ninja Kiwi Archive, AdVenture Capitalist, Onmyoji, Pacify,
+          Age of Civilizations II, Magma Chamber, Victoria II, Sid Meier's
+          Civilization® III Complete, Blood Bowl 2, Worms W.M.D, NEO-NOW!,
+          RichMan 10, Ticket to Ride, For The King, War Selection, SPORE™, Notes
+          of Soul, Counter-Strike: Condition Zero, XCOM: Enemy Unknown, Besiege,
+          Supreme Commander: Forged Alliance, Call to Arms, VEGA Conflict, Steel
+          Division 2, Total War Saga: THRONES OF BRITANNIA, Idle Big Devil,
+          Monster Hunter: World, The Witcher® 3: Wild Hunt, The Elder Scrolls V:
+          Skyrim Special Edition, Stardew Valley, Dota 2, The Elder Scrolls®
+          Online, DARK SOULS™ III, Fallout 4, Divinity: Original Sin 2 -
+          Definitive Edition, Mount &amp; Blade II: Bannerlord, Assassin's
+          Creed® Odyssey, SMITE®, Fallout 76, Persona 4 Golden, Tabletop
+          Simulator, Slay the Spire, Mount &amp; Blade: Warband, Grim Dawn,
+          Crusader Kings II, Soda Dungeon 2, Fallout: New Vegas, Conan Exiles,
+          Darkest Dungeon®, Borderlands 2, Hades, Albion Online, Assassin's
+          Creed® Origins, DARK SOULS™ II: Scholar of the First Sin, Kingdom
+          Come: Deliverance, Monster Train, Middle-earth™: Shadow of War™,
+          Remnant: From the Ashes, Undertale, Kenshi, XCOM® 2, Fallout Shelter,
+          DARK SOULS™: EMASTERED, The Elder Scrolls IV: Oblivion® Game of the
+          Year Edition, DEAD OR ALIVE Xtreme Venus Vacation, Pathfinder:
+          Kingmaker - Enhanced Edition, Russian Fishing 4, Gujian3, State of
+          Decay 2: Juggernaut Edition, Trove, Pool of Death, Shakes and Fidget,
+          Realm of the Mad God, My Time At Portia, Disco Elysium, Outward, Town
+          of Salem, Mirror, Star Trek Online, Neverwinter, The Witcher: Enhanced
+          Edition Director's Cut, The Witcher 2: Assassins of Kings Enhanced
+          Edition, Castle Crashers®, Divinity: Original Sin - Enhanced Edition,
+          FINAL FANTASY XV WINDOWS EDITION, Titan Quest Anniversary Edition,
+          CODE VEIN, Yakuza 0, Gems of War - Puzzle RPG, Pillars of Eternity II:
+          Deadfire, Blade and Sorcery, Dragon's Dogma: Dark Arisen, BATTLETECH,
+          Noita, Clicker Heroes, Graveyard Keeper, Torchlight II,
+          NieR:Automata™, For The King, SD GUNDAM G GENERATION CROSS RAYS,
+          Project Zomboid, Lost Castle, Bloodstained: Ritual of the Night,
+          Pillars of Eternity, Onmyoji, The Sims™ 3, Deus Ex: Mankind Divided,
+          NGU IDLE, Heroes® of Might &amp; Magic® III - HD Edition, Fallout 3:
+          Game of the Year Edition, Warhammer 40,000: Inquisitor - Martyr,
+          Dishonored, The Lord of the Rings Online™, Library Of Ruina, Nioh:
+          Complete Edition / Complete Edition, DRAGON BALL XENOVERSE 2, The
+          Elder Scrolls III: Morrowind® Game of the Year Edition, Wolcen: Lords
+          of Mayhem, Tom Clancy’s The Division™, Neverwinter Nights: Enhanced
+          Edition, Baldur's Gate: Enhanced Edition, Digimon Story Cyber Sleuth:
+          Complete Edition, Sword Art Online: Fatal Bullet, Firestone Idle RPG,
+          Torchlight III, Idle Champions of the Forgotten Realms, GreedFall,
+          FINAL FANTASY X/X-2 HD ,Remaster, RPG Maker MV, Far Cry® New Dawn,
+          Last Oasis, Stay Out, Borderlands: The Pre-Sequel, Heroes of
+          Hammerwatch, Streets of Rogue, Battle Brothers, Mass Effect, STAR
+          WARS™ Knights of the Old Republic™ II - The Sith Lords™, NARUTO TO
+          BORUTO: SHINOBI STRIKER, Into the Breach, Armello, DARK SOULS™:
+          Prepare To Die™ Edition, Mass Effect™：Andromeda, Baldur's Gate II:
+          Enhanced Edition, Middle-earth™: Shadow of Mordor™, The Invisible
+          Guardian, STAR WARS™ - Knights of the Old Republic™, The Elder Scrolls
+          V: Skyrim VR, Temtem, Deus Ex: Human Revolution - Director's Cut, Ni
+          no Kuni™ II: Revenant Kingdom, South Park™: The Stick of Truth™, Will
+          To Live Online, Rakion Chaos Force
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script>
+      const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+      observer.observe();
+    </script>
+  </body>
 </html>

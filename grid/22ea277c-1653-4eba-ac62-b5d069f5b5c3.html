@@ -1,281 +1,628 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<title>BattleCry: World At War</title>
-		<style>
-body {
-  background: #24282f;                                /* main background color in case of no image */
-  font-family: 'Arial';                               /* font arial which should be readable */
-  Height:100%;                                        /* set width to 100% also needed for background */
-  margin:0px;                                         /* hide any margins */
-  background-size: cover;                             /* size background image without distortion along width and height */
-  background-repeat: no-repeat;                       /* no background repeat */
-  Background-attachment:fixed;                        /* needed to make background image behave properly */
-  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+  <head>
+    <title>BattleCry: World At War</title>
+    <style>
+      body {
+        background: #24282f; /* main background color in case of no image */
+        font-family: "Arial"; /* font arial which should be readable */
+        height: 100%; /* set width to 100% also needed for background */
+        margin: 0px; /* hide any margins */
+        background-size: cover; /* size background image without distortion along width and height */
+        background-repeat: no-repeat; /* no background repeat */
+        background-attachment: fixed; /* needed to make background image behave properly */
+        overflow-y: hidden; /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
 }
  
 html {
   height:100%;                                        /* need to set this to 100% to make the background behave propertly */
-}
+      }
 
-.title h2 {
-  padding-left: 25px;                                 /* left padding */
-  color: #ccc;                                        /* text color */
-  margin: 0;                                          /* no margins */
-  background-color: black;                            /* black background */
-  vertical-align: middle;                             /* align vertical middle */
-}
+      .title h2 {
+        padding-left: 25px; /* left padding */
+        color: #ccc; /* text color */
+        margin: 0; /* no margins */
+        background-color: black; /* black background */
+        vertical-align: middle; /* align vertical middle */
+      }
 
-.title img {
-	vertical-align: middle;                           /* images in title aligned vertical middle */
-}
+      .title img {
+        vertical-align: middle; /* images in title aligned vertical middle */
+      }
 
-.title {
-	width: 100%;                                      /* title container width 100% */
-	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
-    grid-row: 1;                                      /* row 1 */
+      .title {
+        width: 100%; /* title container width 100% */
+        grid-column: 1 / span 3; /* column 1 but spans 3 */
+        grid-row: 1; /* row 1 */
+      }
+      .cards {
+        /* empty not used here */
+      }
 
-}
-.cards {                                              /* empty not used here */
-}
+      .card {
+        display: grid; /* container which is the grid */
+        grid-template-columns: min-content; /* size columns to minimum content */
+        grid-template-rows: min-content min-content; /* size rows to minimum content */
+        height: 100vh; /* 100% viewport height */
+      }
 
-.card {
-	display: grid;                                    /* container which is the grid */
-	grid-template-columns: min-content;               /* size columns to minimum content */
-	grid-template-rows: min-content min-content;      /* size rows to minimum content */
-	height: 100vh;                                    /* 100% viewport height */
-}
+      .detailstitle {
+        grid-column: 1; /* 1st column */
+        grid-row: 2; /* 2nd row */
+        width: 350px; /* fixed width set to same size as details */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.detailstitle{
-  grid-column: 1;                                     /* 1st column */
-  grid-row: 2;                                        /* 2nd row */
-  width: 350px;                                       /* fixed width set to same size as details */
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-}
+      .details {
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+        color: #ccc;
+        grid-column: 1; /* 1st column */
+        grid-row: 3; /* 3rd row of grid */
+        width: 350px; /* fixed width of details */
+        overflow-y: auto; /* add vertical scrollbar if needed */
+        overflow-x: hidden; /* don't overflow on x axis (no horz scrollbar) */
+      }
 
-.details {
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-  color: #ccc;
-  grid-column: 1;                                      /* 1st column */
-  grid-row: 3;                                         /* 3rd row of grid */
-  width: 350px;                                        /* fixed width of details */
-  overflow-y: auto;                                     /* add vertical scrollbar if needed */
-  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
- }
- 
-.detailstitle h3,
-.descriptiontitle h3 {
-	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
-	padding: 5px;                                      /* add some padding */
-	color: #ccc;                                       /* text color of the titles */
-}
+      .detailstitle h3,
+      .descriptiontitle h3 {
+        border-bottom: 1px solid #ccc; /* titles of description details should have line under it */
+        padding: 5px; /* add some padding */
+        color: #ccc; /* text color of the titles */
+      }
 
-.detailstable th, td {
-  border: 0px;                                         /* no borders on td, th elements */
-  color: #ccc;                                         /* details table text color */
-}
+      .detailstable th,
+      td {
+        border: 0px; /* no borders on td, th elements */
+        color: #ccc; /* details table text color */
+      }
 
-.detailstable td {
-  text-align: left;                                    /* align text left */
-  vertical-align: top;                                 /* align top */
-}
+      .detailstable td {
+        text-align: left; /* align text left */
+        vertical-align: top; /* align top */
+      }
 
-.detailstable {
-  width: 100%;                                         /* set to full width of details */
-  padding: 5px;                                        /* add some padding */
-}
+      .detailstable {
+        width: 100%; /* set to full width of details */
+        padding: 5px; /* add some padding */
+      }
 
-.details img {
-	max-width: 100%;                                   /* make sure images don't overflow in width on details */
-}
+      .details img {
+        max-width: 100%; /* make sure images don't overflow in width on details */
+      }
 
-.descriptiontitle {
-	grid-column: 2;                                    /* column 2 of grid */
-	grid-row: 2;                                       /* row 2 of grid */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .descriptiontitle {
+        grid-column: 2; /* column 2 of grid */
+        grid-row: 2; /* row 2 of grid */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
+      .description {
+        color: #ccc; /* text color */
+        grid-column: 2; /* 2nd column of grid */
+        grid-row: 3; /* 3rd row of grid */
+        overflow-y: auto; /* overflow-y automatic (for adding scrollbar) */
+        overflow-x: hidden; /* prevent horizontal scrollbar */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.description {
-	color: #ccc;                                       /* text color */
-	grid-column: 2;                                    /* 2nd column of grid */
-	grid-row: 3;                                       /* 3rd row of grid */
-	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
-	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .description img {
+        max-width: 100%; /* make sure images don't overflow in width to prevent scrollbars */
+      }
 
-.description img {
-	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
-}
+      .footer {
+        grid-column: 1; /* 1st column of grid */
+        grid-row: 3; /* 3rd row of grid */
+      }
 
-.footer {
-	grid-column:1;                                     /* 1st column of grid */
-	grid-row:3;                                        /* 3rd row of grid */
-}
+      .MenuButton {
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #888; /* Set a background color */
+        color: #000; /* Text color */
+        padding: 5px; /* Some padding */
+        border-radius: 4px; /* Rounded corners, border */
+        font-size: 20px; /* Increase font size */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        margin-right: 20px; /* to have some space on right side before next element */
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        text-decoration: none;
+      }
 
-.MenuButton {
-  border: none;                                        /* Remove borders */
-  outline: none;                                       /* Remove outline */
-  background-color: #888;                              /* Set a background color */
-  color: #000;                                         /* Text color */
-  padding: 5px;                                        /* Some padding */
-  border-radius: 4px;                                  /* Rounded corners, border */
-  font-size: 20px;                                     /* Increase font size */
-  cursor:pointer;                                         /* Add a mouse pointer on hover */
-  margin-right: 20px;                                  /* to have some space on right side before next element */
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  text-decoration: none;
-}
+      .MenuButton:hover {
+        background-color: #777; /* Add a dark-grey background on hover */
+        color: #ccc; /* Text color */
+      }
 
-.MenuButton:hover {
-  background-color: #777;                              /* Add a dark-grey background on hover */
-  color: #CCC;                                         /* Text color */
-}
+      a {
+        text-decoration: none; /* no text underline in links */
+      }
+      a:link {
+        color: #b1b1b1; /* unvisited link color */
+      }
+      a:visited {
+        color: #b1b1b1; /* visited link color */
+      }
+      a:hover {
+        color: #d1d1d1; /* mouse over link color */
+        text-decoration: underline; /* add text underline in links when mouse over */
+      }
+      a:active {
+        color: #b1b1b1; /* selected link color */
+      }
 
-a {
- text-decoration: none;                                /* no text underline in links */
-}
-a:link {
-  color: #B1B1B1;                                      /* unvisited link color */
-}
-a:visited {
-  color: #B1B1B1;                                      /* visited link color */
-}
-a:hover {
-  color: #D1D1D1;                                      /* mouse over link color */
-  text-decoration: underline;                          /* add text underline in links when mouse over */
-}
-a:active {
-  color: #B1B1B1;                                      /* selected link color */
-}
+      /* scrollbars W3C standard that is currently Firefox-only */
+      * {
+        scrollbar-width: thin; /* small width */
+        scrollbar-color: #888 transparent; /* trackbar color + transparant background */
+      }
 
-                                                       /* scrollbars W3C standard that is currently Firefox-only */
-* {
-  scrollbar-width: thin;                               /* small width */
-  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
-}
+      /* scrollbars on Chrome/Edge/Safari */
+      *::-webkit-scrollbar {
+        width: 12px; /* small width */
+      }
 
-                                                       /* scrollbars on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 12px;                                         /* small width */
-}
+      *::-webkit-scrollbar-track {
+        background: transparent; /* background color track */
+      }
 
-*::-webkit-scrollbar-track {
-  background: transparent;                             /* background color track */
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #AAA;                              /* background */
-  border-radius: 20px;                                 /* rounded corner, border */
-  border: 3px solid #888;                              /* add the border */
-}
-
-		</style>
-	</head>
-	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('22ea277c-1653-4eba-ac62-b5d069f5b5c3/e0afcd39-0d5f-406c-ab3a-d0d087264f53.jpg');">
-		<div class="cards">
-			<div class="card">
-				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="22ea277c-1653-4eba-ac62-b5d069f5b5c3/f279aac8-afe5-4b27-84a6-4a0305fe04e6.ico"/> BattleCry: World At War</h2>
-				</div>
-				<div class="detailstitle">
-				<H3>Details</H3>
-				</div>
-				<div class="details">
-					<div style="overflow: auto;">
-						<TABLE class="detailstable">
-							<col style="width:50%" />
-							<col style="width:50%" />
-							<TR>
-								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="22ea277c-1653-4eba-ac62-b5d069f5b5c3/641cc307-7c0b-44ba-a641-6232a52c2dc8.jpg"/></TD>
-							</TR>
-							<TR>
-								<TD>Playtime</TD>
-								<TD>Not Played</TD>
-							</TR>
-							<TR>
-								<TD>Last Activity</TD>
-								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Added</TD>
-								<TD><a href="default_added_descending_name_ascending.html#quicklink-18/04/2020">18/04/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Modified</TD>
-								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Completion Status</TD>
-								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
-							</TR>
-							<TR>
-								<TD>Source</TD>
-								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
-							</TR>
-							<TR>
-								<TD>Platform</TD>
-								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
-							</TR>
-							<TR>
-								<TD>Release Date</TD>
-								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-01/10/2018">01/10/2018</a> </TD>
-							</TR>
-							<TR>
-								<TD>Community Score</TD>
-								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-59">59</a></TD>
-							</TR>
-							<TR>
-								<TD>Critic Score</TD>
-								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>User Score</TD>
-								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>Genre</TD>
-								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer">Massively Multiplayer</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Developer</TD>
-								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-DYNAMICNEXT">DYNAMICNEXT</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Publisher</TD>
-								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-DYNAMICNEXT">DYNAMICNEXT</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Feature</TD>
-								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer">Cross-Platform Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-MMO">MMO</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Links</TD>
-								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=932810" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/932810" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/932810/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/932810/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/932810" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=932810" target="_blank">News</a><br/></TD>
-							</TR>
-						</TABLE>
-					</div>
-				</div>
-				<div class="descriptiontitle">
-					<H3>Description</H3>
-				</div>
-				<div class="description">
-					In a future world of war and chaos, a hero rises to lead the forces to victory in epic battles with the enemies to bring back order and to dominate them all. Make alliances, build the greatest military force, defend your allies and together rule the world!<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/theme.png?t=1538459253" /><h2 class="bb_tag">Cool New Features</h2>Battle Cry is one of the most feature rich and diverse modern war TEXT-BASED RPG ever created. Get involved in Ops Missions, Battle rivals, Form Alliances and fight enemy alliances. With your team having your back, wage Total Domination Wars, Weekly Tournaments and lots more.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/main_2.png?t=1538459253" /><h2 class="bb_tag">Build your Army, Air Force and Navy with a large set of units to choose from !</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/army_3.png?t=1538459253" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/navy_3.png?t=1538459253" /><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/air_3.png?t=1538459253" /><br>Recruit Soldiers and Military hardware to your army. Each unit has an attack rating, defense rating and an upkeep cost. Make sure you understand the advantages and disadvantages before making the final decision. Choose wisely, commander !<h2 class="bb_tag">Construct Defense emplacement to fortify your base from enemy attacks !</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/outpost_2.png?t=1538459253" /><br>Outposts help you mount an effective defense against enemy raids. Investing wisely in emplacements can help your army with its defensive capabilities as well. It is something which shouldn’t be taken lightly.<h2 class="bb_tag">Recruit Captains to lead your troops in various branches of your Military</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/commanders_3.png?t=1538459253" /><br>Captains are your right-hand Men who are put in charge of commanding your army. Each captain belongs to a particular branch of the Military (Army, Navy, Airforce) and has a limit on how many troops in the branch he/she can command.<h2 class="bb_tag">Earn unique Honor Medals for your achievements and command the respect of your forces</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/honours.png?t=1538459253" /><br>For your hard work and dedication you are awarded Honour Medals which is features in your profile. It shows who you are and what you are capable of!<h2 class="bb_tag">Upgrade your Federation Captains and defend their zone in Federation battles</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/fed_zone_1.png?t=1538459253" /><br>Help defend the zones in control of your allied captains (also know as Federation Captains) from their enemies. In return, they offer their help in commanding your troops. The more you help them defend their zone, more powerful they become in aiding you.<h2 class="bb_tag">Manage your Economy to build your income to strengthen your War Efforts</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/economy.png?t=1538459253" /><br>Maintaining an army is costly and it requires a constant supply of manpower and materials to keep the War Machine running. Construct various economic structures to help you keep your army in shape.<h2 class="bb_tag">Upgrade your military might by investing points in R&amp;D and conducting various military drills</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/drill_3.png?t=1538459253" /><br>As the war progresses, so does the tactics and strategy involved in waging a war. Invest in R&amp;D to gain an edge over your enemies. Also, make sure you conduct drills to ensure your military is in shape to take on any challenges bestowed upon them.<h2 class="bb_tag">Use your COMMAND CENTER to switch your command to various war fronts around the world</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/war_fronts.png?t=1538459253" /><br>Relocate to your Forward Operating Bases over-watching various battle fronts. Each front has its own operations to be executed and you need to make the right decisions to ensure victory.<h2 class="bb_tag">Infiltrate enemy lines and engage in Spec OP missions to capture strategic locations</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/missions_1.png?t=1538459253" /><br>Completing Special Operations successfully will grant you the critical advantage which will aid in your War Efforts but don’t think it will be that easy.<h2 class="bb_tag"> And more... </h2><ul class="bb_ul"><li>Engage OPERATIONS in various parts of the world... capture the land back and clear out the enemy sectors.<br></li><li>Show off your military prowess in battles, defeat and decimate your rivals, destroy their defenses and capture their resources, gain experience and progress through higher levels.<br></li><li>Order commissioned Strike on your rivals to make them restless and bring fear into their minds.<br></li><li>Conduct hunter-killer Drone Hits for rewards</li></ul><h2 class="bb_tag">ALLIANCE WARS ™ : All out Multi-player fun</h2><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/allysquad_1.png?t=1538459253" /><br><br><ul class="bb_ul"><li>Join powerful <strong>ALLIANCES</strong> and rule the WORLD as a team.<br></li><li>Chat and coordinate real-time with your ALLIANCE members and equip powerful <strong>ALLIANCE ARSENALS</strong><br></li><li>Engage in ALLIANCE WARS and win exciting war rewards for you and your team.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/rewards_2.png?t=1538459253" /><br></li><li>Earn Alliance's respect become the <strong>GENERAL</strong>... Or start your own <strong>ALLIANCE</strong> and recruit members to its ranks and build a new team.<br><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/generals.png?t=1538459253" /><br></li><li>Capture other <strong>ALLIANCE STATES</strong> and <strong>STRATEGIC BASES</strong> and collect hourly payouts for your alliance members.<br></li><li>Join TOTAL DOMINATION to war other <strong>ALLIANCES</strong> simultaneously... winner takes all the rewards.<br></li><li>Send and receive powerful <strong>ALLIANCE BACKUPS</strong> from your teammates.<br></li><li>Find matching alliances to join with SEEK N DESTROY<br></li><li>Fight the dreaded <strong>AXIS ALLIANCES</strong> to win exciting rewards and new <strong>ALLIANCE ARSENALS</strong>.<br></li><li>Use COUNTER STRIKES to revenge rivals who messed with your alliance members. <br></li><li>Take part in weekly <strong>TOURNAMENTS</strong> and gain respect and reward for your alliance and yourself.</li></ul><h2 class="bb_tag">Personalization</h2><ul class="bb_ul"><li>Sync your account with Facebook, Google, and Steam<br></li><li>Custom Avatars with Gravatar, Facebook <br></li><li>In-game player profile &amp; live comments feed.<br></li><li>Live leaderboards (Commander-level and Global) to see where you stand against the rest of the players.<br></li><li>Real-time in-game notifications</li></ul><img src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/join_now_2.png?t=1538459253" />
-				</div>
-				<div class="footer"> </div>
-			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-		<script>
-			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-			observer.observe();
-		</script>
-	</body>	
+      *::-webkit-scrollbar-thumb {
+        background-color: #aaa; /* background */
+        border-radius: 20px; /* rounded corner, border */
+        border: 3px solid #888; /* add the border */
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0.73)
+        ),
+        url('22ea277c-1653-4eba-ac62-b5d069f5b5c3/e0afcd39-0d5f-406c-ab3a-d0d087264f53.jpg');
+    "
+  >
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <h2>
+            <button onclick="window.history.back()" class="MenuButton">
+              Back</button
+            ><img
+              alt="icon"
+              height="48"
+              class="lozad"
+              data-src="22ea277c-1653-4eba-ac62-b5d069f5b5c3/f279aac8-afe5-4b27-84a6-4a0305fe04e6.ico"
+            />
+            BattleCry: World At War
+          </h2>
+        </div>
+        <div class="detailstitle">
+          <h3>Details</h3>
+        </div>
+        <div class="details">
+          <div style="overflow: auto">
+            <table class="detailstable">
+              <col style="width: 50%" />
+              <col style="width: 50%" />
+              <tr>
+                <td style="text-align: center" colspan="2">
+                  <img
+                    alt="cover"
+                    height="175"
+                    class="lozad"
+                    data-src="22ea277c-1653-4eba-ac62-b5d069f5b5c3/641cc307-7c0b-44ba-a641-6232a52c2dc8.jpg"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Playtime</td>
+                <td>Not Played</td>
+              </tr>
+              <tr>
+                <td>Last Activity</td>
+                <td>
+                  <a
+                    href="default_lastactivity_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Added</td>
+                <td>
+                  <a
+                    href="default_added_descending_name_ascending.html#quicklink-18/04/2020"
+                    >18/04/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Modified</td>
+                <td>
+                  <a
+                    href="default_modified_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Completion Status</td>
+                <td>
+                  <a
+                    href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played"
+                    >Not Played</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Source</td>
+                <td>
+                  <a
+                    href="default_source_ascending_name_ascending.html#quicklink-Steam"
+                    >Steam</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Platform</td>
+                <td>
+                  <a
+                    href="default_platform_ascending_name_ascending.html#quicklink-PC"
+                    >PC</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Release Date</td>
+                <td>
+                  <a
+                    href="default_releasedate_descending_name_ascending.html#quicklink-01/10/2018"
+                    >01/10/2018</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Community Score</td>
+                <td>
+                  <a
+                    href="default_communityscore_descending_name_ascending.html#quicklink-59"
+                    >59</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Critic Score</td>
+                <td>
+                  <a
+                    href="default_criticscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>User Score</td>
+                <td>
+                  <a
+                    href="default_userscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>Genre</td>
+                <td>
+                  <a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Action"
+                    >Action</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Adventure"
+                    >Adventure</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Casual"
+                    >Casual</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Free to Play"
+                    >Free to Play</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Indie"
+                    >Indie</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Massively Multiplayer"
+                    >Massively Multiplayer</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Simulation"
+                    >Simulation</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Strategy"
+                    >Strategy</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Developer</td>
+                <td>
+                  <a
+                    href="default_developer_ascending_name_ascending.html#quicklink-DYNAMICNEXT"
+                    >DYNAMICNEXT</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Publisher</td>
+                <td>
+                  <a
+                    href="default_publisher_ascending_name_ascending.html#quicklink-DYNAMICNEXT"
+                    >DYNAMICNEXT</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Feature</td>
+                <td>
+                  <a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Cross-Platform Multiplayer"
+                    >Cross-Platform Multiplayer</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases"
+                    >In-App Purchases</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-MMO"
+                    >MMO</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer"
+                    >Multiplayer</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp"
+                    >Online Pvp</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Pvp"
+                    >Pvp</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Single Player"
+                    >Single Player</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Links</td>
+                <td>
+                  <a
+                    href="https://pcgamingwiki.com/api/appid.php?appid=932810"
+                    target="_blank"
+                    >PCGamingWiki</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/932810"
+                    target="_blank"
+                    >Community Hub</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/932810/discussions/"
+                    target="_blank"
+                    >Discussions</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/932810/guides/"
+                    target="_blank"
+                    >Guides</a
+                  ><br /><a
+                    href="https://store.steampowered.com/app/932810"
+                    target="_blank"
+                    >Store Page</a
+                  ><br /><a
+                    href="https://store.steampowered.com/news/?appids=932810"
+                    target="_blank"
+                    >News</a
+                  ><br />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="descriptiontitle">
+          <h3>Description</h3>
+        </div>
+        <div class="description">
+          In a future world of war and chaos, a hero rises to lead the forces to
+          victory in epic battles with the enemies to bring back order and to
+          dominate them all. Make alliances, build the greatest military force,
+          defend your allies and together rule the world!<br /><img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/theme.png?t=1538459253"
+          />
+          <h2 class="bb_tag">Cool New Features</h2>
+          Battle Cry is one of the most feature rich and diverse modern war
+          TEXT-BASED RPG ever created. Get involved in Ops Missions, Battle
+          rivals, Form Alliances and fight enemy alliances. With your team
+          having your back, wage Total Domination Wars, Weekly Tournaments and
+          lots more.<br /><img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/main_2.png?t=1538459253"
+          />
+          <h2 class="bb_tag">
+            Build your Army, Air Force and Navy with a large set of units to
+            choose from !
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/army_3.png?t=1538459253"
+          /><br /><img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/navy_3.png?t=1538459253"
+          /><br /><img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/air_3.png?t=1538459253"
+          /><br />Recruit Soldiers and Military hardware to your army. Each unit
+          has an attack rating, defense rating and an upkeep cost. Make sure you
+          understand the advantages and disadvantages before making the final
+          decision. Choose wisely, commander !
+          <h2 class="bb_tag">
+            Construct Defense emplacement to fortify your base from enemy
+            attacks !
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/outpost_2.png?t=1538459253"
+          /><br />Outposts help you mount an effective defense against enemy
+          raids. Investing wisely in emplacements can help your army with its
+          defensive capabilities as well. It is something which shouldn’t be
+          taken lightly.
+          <h2 class="bb_tag">
+            Recruit Captains to lead your troops in various branches of your
+            Military
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/commanders_3.png?t=1538459253"
+          /><br />Captains are your right-hand Men who are put in charge of
+          commanding your army. Each captain belongs to a particular branch of
+          the Military (Army, Navy, Airforce) and has a limit on how many troops
+          in the branch he/she can command.
+          <h2 class="bb_tag">
+            Earn unique Honor Medals for your achievements and command the
+            respect of your forces
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/honours.png?t=1538459253"
+          /><br />For your hard work and dedication you are awarded Honour
+          Medals which is features in your profile. It shows who you are and
+          what you are capable of!
+          <h2 class="bb_tag">
+            Upgrade your Federation Captains and defend their zone in Federation
+            battles
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/fed_zone_1.png?t=1538459253"
+          /><br />Help defend the zones in control of your allied captains (also
+          know as Federation Captains) from their enemies. In return, they offer
+          their help in commanding your troops. The more you help them defend
+          their zone, more powerful they become in aiding you.
+          <h2 class="bb_tag">
+            Manage your Economy to build your income to strengthen your War
+            Efforts
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/economy.png?t=1538459253"
+          /><br />Maintaining an army is costly and it requires a constant
+          supply of manpower and materials to keep the War Machine running.
+          Construct various economic structures to help you keep your army in
+          shape.
+          <h2 class="bb_tag">
+            Upgrade your military might by investing points in R&amp;D and
+            conducting various military drills
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/drill_3.png?t=1538459253"
+          /><br />As the war progresses, so does the tactics and strategy
+          involved in waging a war. Invest in R&amp;D to gain an edge over your
+          enemies. Also, make sure you conduct drills to ensure your military is
+          in shape to take on any challenges bestowed upon them.
+          <h2 class="bb_tag">
+            Use your COMMAND CENTER to switch your command to various war fronts
+            around the world
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/war_fronts.png?t=1538459253"
+          /><br />Relocate to your Forward Operating Bases over-watching various
+          battle fronts. Each front has its own operations to be executed and
+          you need to make the right decisions to ensure victory.
+          <h2 class="bb_tag">
+            Infiltrate enemy lines and engage in Spec OP missions to capture
+            strategic locations
+          </h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/missions_1.png?t=1538459253"
+          /><br />Completing Special Operations successfully will grant you the
+          critical advantage which will aid in your War Efforts but don’t think
+          it will be that easy.
+          <h2 class="bb_tag">And more...</h2>
+          <ul class="bb_ul">
+            <li>
+              Engage OPERATIONS in various parts of the world... capture the
+              land back and clear out the enemy sectors.<br />
+            </li>
+            <li>
+              Show off your military prowess in battles, defeat and decimate
+              your rivals, destroy their defenses and capture their resources,
+              gain experience and progress through higher levels.<br />
+            </li>
+            <li>
+              Order commissioned Strike on your rivals to make them restless and
+              bring fear into their minds.<br />
+            </li>
+            <li>Conduct hunter-killer Drone Hits for rewards</li>
+          </ul>
+          <h2 class="bb_tag">ALLIANCE WARS ™ : All out Multi-player fun</h2>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/allysquad_1.png?t=1538459253"
+          /><br /><br />
+          <ul class="bb_ul">
+            <li>
+              Join powerful <strong>ALLIANCES</strong> and rule the WORLD as a
+              team.<br />
+            </li>
+            <li>
+              Chat and coordinate real-time with your ALLIANCE members and equip
+              powerful <strong>ALLIANCE ARSENALS</strong><br />
+            </li>
+            <li>
+              Engage in ALLIANCE WARS and win exciting war rewards for you and
+              your team.<br /><img
+                src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/rewards_2.png?t=1538459253"
+              /><br />
+            </li>
+            <li>
+              Earn Alliance's respect become the <strong>GENERAL</strong>... Or
+              start your own <strong>ALLIANCE</strong> and recruit members to
+              its ranks and build a new team.<br /><img
+                src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/generals.png?t=1538459253"
+              /><br />
+            </li>
+            <li>
+              Capture other <strong>ALLIANCE STATES</strong> and
+              <strong>STRATEGIC BASES</strong> and collect hourly payouts for
+              your alliance members.<br />
+            </li>
+            <li>
+              Join TOTAL DOMINATION to war other
+              <strong>ALLIANCES</strong> simultaneously... winner takes all the
+              rewards.<br />
+            </li>
+            <li>
+              Send and receive powerful <strong>ALLIANCE BACKUPS</strong> from
+              your teammates.<br />
+            </li>
+            <li>Find matching alliances to join with SEEK N DESTROY<br /></li>
+            <li>
+              Fight the dreaded <strong>AXIS ALLIANCES</strong> to win exciting
+              rewards and new <strong>ALLIANCE ARSENALS</strong>.<br />
+            </li>
+            <li>
+              Use COUNTER STRIKES to revenge rivals who messed with your
+              alliance members. <br />
+            </li>
+            <li>
+              Take part in weekly <strong>TOURNAMENTS</strong> and gain respect
+              and reward for your alliance and yourself.
+            </li>
+          </ul>
+          <h2 class="bb_tag">Personalization</h2>
+          <ul class="bb_ul">
+            <li>Sync your account with Facebook, Google, and Steam<br /></li>
+            <li>Custom Avatars with Gravatar, Facebook <br /></li>
+            <li>In-game player profile &amp; live comments feed.<br /></li>
+            <li>
+              Live leaderboards (Commander-level and Global) to see where you
+              stand against the rest of the players.<br />
+            </li>
+            <li>Real-time in-game notifications</li>
+          </ul>
+          <img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/932810/extras/join_now_2.png?t=1538459253"
+          />
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script>
+      const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+      observer.observe();
+    </script>
+  </body>
 </html>
