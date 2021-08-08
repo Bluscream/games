@@ -1,281 +1,436 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<title>100 Doors Game - Escape from School</title>
-		<style>
-body {
-  background: #24282f;                                /* main background color in case of no image */
-  font-family: 'Arial';                               /* font arial which should be readable */
-  Height:100%;                                        /* set width to 100% also needed for background */
-  margin:0px;                                         /* hide any margins */
-  background-size: cover;                             /* size background image without distortion along width and height */
-  background-repeat: no-repeat;                       /* no background repeat */
-  Background-attachment:fixed;                        /* needed to make background image behave properly */
-  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+  <head>
+    <title>100 Doors Game - Escape from School</title>
+    <style>
+      body {
+        background: #24282f; /* main background color in case of no image */
+        font-family: "Arial"; /* font arial which should be readable */
+        height: 100%; /* set width to 100% also needed for background */
+        margin: 0px; /* hide any margins */
+        background-size: cover; /* size background image without distortion along width and height */
+        background-repeat: no-repeat; /* no background repeat */
+        background-attachment: fixed; /* needed to make background image behave properly */
+        overflow-y: hidden; /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
 }
  
 html {
   height:100%;                                        /* need to set this to 100% to make the background behave propertly */
-}
+      }
 
-.title h2 {
-  padding-left: 25px;                                 /* left padding */
-  color: #ccc;                                        /* text color */
-  margin: 0;                                          /* no margins */
-  background-color: black;                            /* black background */
-  vertical-align: middle;                             /* align vertical middle */
-}
+      .title h2 {
+        padding-left: 25px; /* left padding */
+        color: #ccc; /* text color */
+        margin: 0; /* no margins */
+        background-color: black; /* black background */
+        vertical-align: middle; /* align vertical middle */
+      }
 
-.title img {
-	vertical-align: middle;                           /* images in title aligned vertical middle */
-}
+      .title img {
+        vertical-align: middle; /* images in title aligned vertical middle */
+      }
 
-.title {
-	width: 100%;                                      /* title container width 100% */
-	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
-    grid-row: 1;                                      /* row 1 */
+      .title {
+        width: 100%; /* title container width 100% */
+        grid-column: 1 / span 3; /* column 1 but spans 3 */
+        grid-row: 1; /* row 1 */
+      }
+      .cards {
+        /* empty not used here */
+      }
 
-}
-.cards {                                              /* empty not used here */
-}
+      .card {
+        display: grid; /* container which is the grid */
+        grid-template-columns: min-content; /* size columns to minimum content */
+        grid-template-rows: min-content min-content; /* size rows to minimum content */
+        height: 100vh; /* 100% viewport height */
+      }
 
-.card {
-	display: grid;                                    /* container which is the grid */
-	grid-template-columns: min-content;               /* size columns to minimum content */
-	grid-template-rows: min-content min-content;      /* size rows to minimum content */
-	height: 100vh;                                    /* 100% viewport height */
-}
+      .detailstitle {
+        grid-column: 1; /* 1st column */
+        grid-row: 2; /* 2nd row */
+        width: 350px; /* fixed width set to same size as details */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.detailstitle{
-  grid-column: 1;                                     /* 1st column */
-  grid-row: 2;                                        /* 2nd row */
-  width: 350px;                                       /* fixed width set to same size as details */
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-}
+      .details {
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+        color: #ccc;
+        grid-column: 1; /* 1st column */
+        grid-row: 3; /* 3rd row of grid */
+        width: 350px; /* fixed width of details */
+        overflow-y: auto; /* add vertical scrollbar if needed */
+        overflow-x: hidden; /* don't overflow on x axis (no horz scrollbar) */
+      }
 
-.details {
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-  color: #ccc;
-  grid-column: 1;                                      /* 1st column */
-  grid-row: 3;                                         /* 3rd row of grid */
-  width: 350px;                                        /* fixed width of details */
-  overflow-y: auto;                                     /* add vertical scrollbar if needed */
-  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
- }
- 
-.detailstitle h3,
-.descriptiontitle h3 {
-	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
-	padding: 5px;                                      /* add some padding */
-	color: #ccc;                                       /* text color of the titles */
-}
+      .detailstitle h3,
+      .descriptiontitle h3 {
+        border-bottom: 1px solid #ccc; /* titles of description details should have line under it */
+        padding: 5px; /* add some padding */
+        color: #ccc; /* text color of the titles */
+      }
 
-.detailstable th, td {
-  border: 0px;                                         /* no borders on td, th elements */
-  color: #ccc;                                         /* details table text color */
-}
+      .detailstable th,
+      td {
+        border: 0px; /* no borders on td, th elements */
+        color: #ccc; /* details table text color */
+      }
 
-.detailstable td {
-  text-align: left;                                    /* align text left */
-  vertical-align: top;                                 /* align top */
-}
+      .detailstable td {
+        text-align: left; /* align text left */
+        vertical-align: top; /* align top */
+      }
 
-.detailstable {
-  width: 100%;                                         /* set to full width of details */
-  padding: 5px;                                        /* add some padding */
-}
+      .detailstable {
+        width: 100%; /* set to full width of details */
+        padding: 5px; /* add some padding */
+      }
 
-.details img {
-	max-width: 100%;                                   /* make sure images don't overflow in width on details */
-}
+      .details img {
+        max-width: 100%; /* make sure images don't overflow in width on details */
+      }
 
-.descriptiontitle {
-	grid-column: 2;                                    /* column 2 of grid */
-	grid-row: 2;                                       /* row 2 of grid */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .descriptiontitle {
+        grid-column: 2; /* column 2 of grid */
+        grid-row: 2; /* row 2 of grid */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
+      .description {
+        color: #ccc; /* text color */
+        grid-column: 2; /* 2nd column of grid */
+        grid-row: 3; /* 3rd row of grid */
+        overflow-y: auto; /* overflow-y automatic (for adding scrollbar) */
+        overflow-x: hidden; /* prevent horizontal scrollbar */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.description {
-	color: #ccc;                                       /* text color */
-	grid-column: 2;                                    /* 2nd column of grid */
-	grid-row: 3;                                       /* 3rd row of grid */
-	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
-	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .description img {
+        max-width: 100%; /* make sure images don't overflow in width to prevent scrollbars */
+      }
 
-.description img {
-	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
-}
+      .footer {
+        grid-column: 1; /* 1st column of grid */
+        grid-row: 3; /* 3rd row of grid */
+      }
 
-.footer {
-	grid-column:1;                                     /* 1st column of grid */
-	grid-row:3;                                        /* 3rd row of grid */
-}
+      .MenuButton {
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #888; /* Set a background color */
+        color: #000; /* Text color */
+        padding: 5px; /* Some padding */
+        border-radius: 4px; /* Rounded corners, border */
+        font-size: 20px; /* Increase font size */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        margin-right: 20px; /* to have some space on right side before next element */
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        text-decoration: none;
+      }
 
-.MenuButton {
-  border: none;                                        /* Remove borders */
-  outline: none;                                       /* Remove outline */
-  background-color: #888;                              /* Set a background color */
-  color: #000;                                         /* Text color */
-  padding: 5px;                                        /* Some padding */
-  border-radius: 4px;                                  /* Rounded corners, border */
-  font-size: 20px;                                     /* Increase font size */
-  cursor:pointer;                                         /* Add a mouse pointer on hover */
-  margin-right: 20px;                                  /* to have some space on right side before next element */
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  text-decoration: none;
-}
+      .MenuButton:hover {
+        background-color: #777; /* Add a dark-grey background on hover */
+        color: #ccc; /* Text color */
+      }
 
-.MenuButton:hover {
-  background-color: #777;                              /* Add a dark-grey background on hover */
-  color: #CCC;                                         /* Text color */
-}
+      a {
+        text-decoration: none; /* no text underline in links */
+      }
+      a:link {
+        color: #b1b1b1; /* unvisited link color */
+      }
+      a:visited {
+        color: #b1b1b1; /* visited link color */
+      }
+      a:hover {
+        color: #d1d1d1; /* mouse over link color */
+        text-decoration: underline; /* add text underline in links when mouse over */
+      }
+      a:active {
+        color: #b1b1b1; /* selected link color */
+      }
 
-a {
- text-decoration: none;                                /* no text underline in links */
-}
-a:link {
-  color: #B1B1B1;                                      /* unvisited link color */
-}
-a:visited {
-  color: #B1B1B1;                                      /* visited link color */
-}
-a:hover {
-  color: #D1D1D1;                                      /* mouse over link color */
-  text-decoration: underline;                          /* add text underline in links when mouse over */
-}
-a:active {
-  color: #B1B1B1;                                      /* selected link color */
-}
+      /* scrollbars W3C standard that is currently Firefox-only */
+      * {
+        scrollbar-width: thin; /* small width */
+        scrollbar-color: #888 transparent; /* trackbar color + transparant background */
+      }
 
-                                                       /* scrollbars W3C standard that is currently Firefox-only */
-* {
-  scrollbar-width: thin;                               /* small width */
-  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
-}
+      /* scrollbars on Chrome/Edge/Safari */
+      *::-webkit-scrollbar {
+        width: 12px; /* small width */
+      }
 
-                                                       /* scrollbars on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 12px;                                         /* small width */
-}
+      *::-webkit-scrollbar-track {
+        background: transparent; /* background color track */
+      }
 
-*::-webkit-scrollbar-track {
-  background: transparent;                             /* background color track */
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #AAA;                              /* background */
-  border-radius: 20px;                                 /* rounded corner, border */
-  border: 3px solid #888;                              /* add the border */
-}
-
-		</style>
-	</head>
-	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('150c980b-da57-436f-8b57-e3f14044ad8a/049261c8-fa79-40a0-b352-38209caef41d.jpg');">
-		<div class="cards">
-			<div class="card">
-				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="150c980b-da57-436f-8b57-e3f14044ad8a/2b52befd-c13c-405a-b5a1-a4b8e9aea477.ico"/> 100 Doors Game - Escape from School</h2>
-				</div>
-				<div class="detailstitle">
-				<H3>Details</H3>
-				</div>
-				<div class="details">
-					<div style="overflow: auto;">
-						<TABLE class="detailstable">
-							<col style="width:50%" />
-							<col style="width:50%" />
-							<TR>
-								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="150c980b-da57-436f-8b57-e3f14044ad8a/aa9ebe3d-69d3-4eb9-b410-98363eba20ad.jpg"/></TD>
-							</TR>
-							<TR>
-								<TD>Playtime</TD>
-								<TD>Not Played</TD>
-							</TR>
-							<TR>
-								<TD>Last Activity</TD>
-								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Added</TD>
-								<TD><a href="default_added_descending_name_ascending.html#quicklink-27/04/2020">27/04/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Modified</TD>
-								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Completion Status</TD>
-								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
-							</TR>
-							<TR>
-								<TD>Source</TD>
-								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
-							</TR>
-							<TR>
-								<TD>Platform</TD>
-								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
-							</TR>
-							<TR>
-								<TD>Release Date</TD>
-								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-20/03/2020">20/03/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Community Score</TD>
-								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-71">71</a></TD>
-							</TR>
-							<TR>
-								<TD>Critic Score</TD>
-								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>User Score</TD>
-								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>Genre</TD>
-								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Adventure">Adventure</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Developer</TD>
-								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Peaksel">Peaksel</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Publisher</TD>
-								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Peaksel">Peaksel</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Feature</TD>
-								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Cloud saves">Cloud saves</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases">In-App Purchases</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Leaderboards">Leaderboards</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Links</TD>
-								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1238280" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1238280" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1238280/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1238280/guides/" target="_blank">Guides</a><br/><a href="https://store.steampowered.com/app/1238280" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1238280" target="_blank">News</a><br/></TD>
-							</TR>
-						</TABLE>
-					</div>
-				</div>
-				<div class="descriptiontitle">
-					<H3>Description</H3>
-				</div>
-				<div class="description">
-					The main objective in this game challenge is to help the girl escape the room and find the exit. To unlock the door lock, you'll have to find hidden objects and solve some awesome puzzles that include all sorts of mini games. In order to escape school, you need to unlock 140 doors and escape different rooms (some of them being the gym, cafeteria, chemistry, history, geography and what not). If you can't make it by yourself, we got you – there are hints that you can use to help you solve the puzzle or skip the level altogether.<br><br><img src="https://cdn.akamai.steamstatic.com/steam/apps/1238280/extras/100Doors-gameplay.gif?t=1618569497" /><br><br>GAME FEATURES<br><br>140 levels<br>16 rooms with a variety of tasks<br>Hints to help you if you get stuck<br>Skip option - in case you can't solve a specific level and want to come back to it later<br>Lucky spin to get FREE HINTS<br>In-app purchase to get more coins<br><br>In order to pass the game, you'll be using your general knowledge of the world as well as some specific areas like chemistry, history, etc. In addition to that, for some of the tasks, you'll have to think logically, for others, you may have to have good reflexes. Overall, it requires a mix of theoretical and practical knowledge as well as analytical thinking in order to solve the puzzles.<br><br><br><strong>Note for YouTubers</strong>: Gameplay and walkthrough videos make this game less challenging for our players. Please, refrain from sharing such recordings publicly.
-				</div>
-				<div class="footer"> </div>
-			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-		<script>
-			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-			observer.observe();
-		</script>
-	</body>	
+      *::-webkit-scrollbar-thumb {
+        background-color: #aaa; /* background */
+        border-radius: 20px; /* rounded corner, border */
+        border: 3px solid #888; /* add the border */
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0.73)
+        ),
+        url('150c980b-da57-436f-8b57-e3f14044ad8a/049261c8-fa79-40a0-b352-38209caef41d.jpg');
+    "
+  >
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <h2>
+            <button onclick="window.history.back()" class="MenuButton">
+              Back</button
+            ><img
+              alt="icon"
+              height="48"
+              class="lozad"
+              data-src="150c980b-da57-436f-8b57-e3f14044ad8a/2b52befd-c13c-405a-b5a1-a4b8e9aea477.ico"
+            />
+            100 Doors Game - Escape from School
+          </h2>
+        </div>
+        <div class="detailstitle">
+          <h3>Details</h3>
+        </div>
+        <div class="details">
+          <div style="overflow: auto">
+            <table class="detailstable">
+              <col style="width: 50%" />
+              <col style="width: 50%" />
+              <tr>
+                <td style="text-align: center" colspan="2">
+                  <img
+                    alt="cover"
+                    height="175"
+                    class="lozad"
+                    data-src="150c980b-da57-436f-8b57-e3f14044ad8a/aa9ebe3d-69d3-4eb9-b410-98363eba20ad.jpg"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Playtime</td>
+                <td>Not Played</td>
+              </tr>
+              <tr>
+                <td>Last Activity</td>
+                <td>
+                  <a
+                    href="default_lastactivity_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Added</td>
+                <td>
+                  <a
+                    href="default_added_descending_name_ascending.html#quicklink-27/04/2020"
+                    >27/04/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Modified</td>
+                <td>
+                  <a
+                    href="default_modified_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Completion Status</td>
+                <td>
+                  <a
+                    href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played"
+                    >Not Played</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Source</td>
+                <td>
+                  <a
+                    href="default_source_ascending_name_ascending.html#quicklink-Steam"
+                    >Steam</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Platform</td>
+                <td>
+                  <a
+                    href="default_platform_ascending_name_ascending.html#quicklink-PC"
+                    >PC</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Release Date</td>
+                <td>
+                  <a
+                    href="default_releasedate_descending_name_ascending.html#quicklink-20/03/2020"
+                    >20/03/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Community Score</td>
+                <td>
+                  <a
+                    href="default_communityscore_descending_name_ascending.html#quicklink-71"
+                    >71</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Critic Score</td>
+                <td>
+                  <a
+                    href="default_criticscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>User Score</td>
+                <td>
+                  <a
+                    href="default_userscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>Genre</td>
+                <td>
+                  <a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Adventure"
+                    >Adventure</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Casual"
+                    >Casual</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Free to Play"
+                    >Free to Play</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Developer</td>
+                <td>
+                  <a
+                    href="default_developer_ascending_name_ascending.html#quicklink-Peaksel"
+                    >Peaksel</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Publisher</td>
+                <td>
+                  <a
+                    href="default_publisher_ascending_name_ascending.html#quicklink-Peaksel"
+                    >Peaksel</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Feature</td>
+                <td>
+                  <a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Cloud saves"
+                    >Cloud saves</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-In-App Purchases"
+                    >In-App Purchases</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Leaderboards"
+                    >Leaderboards</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Single Player"
+                    >Single Player</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Links</td>
+                <td>
+                  <a
+                    href="https://pcgamingwiki.com/api/appid.php?appid=1238280"
+                    target="_blank"
+                    >PCGamingWiki</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1238280"
+                    target="_blank"
+                    >Community Hub</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1238280/discussions/"
+                    target="_blank"
+                    >Discussions</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1238280/guides/"
+                    target="_blank"
+                    >Guides</a
+                  ><br /><a
+                    href="https://store.steampowered.com/app/1238280"
+                    target="_blank"
+                    >Store Page</a
+                  ><br /><a
+                    href="https://store.steampowered.com/news/?appids=1238280"
+                    target="_blank"
+                    >News</a
+                  ><br />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="descriptiontitle">
+          <h3>Description</h3>
+        </div>
+        <div class="description">
+          The main objective in this game challenge is to help the girl escape
+          the room and find the exit. To unlock the door lock, you'll have to
+          find hidden objects and solve some awesome puzzles that include all
+          sorts of mini games. In order to escape school, you need to unlock 140
+          doors and escape different rooms (some of them being the gym,
+          cafeteria, chemistry, history, geography and what not). If you can't
+          make it by yourself, we got you – there are hints that you can use to
+          help you solve the puzzle or skip the level altogether.<br /><br /><img
+            src="https://cdn.akamai.steamstatic.com/steam/apps/1238280/extras/100Doors-gameplay.gif?t=1618569497"
+          /><br /><br />GAME FEATURES<br /><br />140 levels<br />16 rooms with a
+          variety of tasks<br />Hints to help you if you get stuck<br />Skip
+          option - in case you can't solve a specific level and want to come
+          back to it later<br />Lucky spin to get FREE HINTS<br />In-app
+          purchase to get more coins<br /><br />In order to pass the game,
+          you'll be using your general knowledge of the world as well as some
+          specific areas like chemistry, history, etc. In addition to that, for
+          some of the tasks, you'll have to think logically, for others, you may
+          have to have good reflexes. Overall, it requires a mix of theoretical
+          and practical knowledge as well as analytical thinking in order to
+          solve the puzzles.<br /><br /><br /><strong>Note for YouTubers</strong
+          >: Gameplay and walkthrough videos make this game less challenging for
+          our players. Please, refrain from sharing such recordings publicly.
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script>
+      const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+      observer.observe();
+    </script>
+  </body>
 </html>

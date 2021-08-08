@@ -1,281 +1,601 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<title>Paraiso Island</title>
-		<style>
-body {
-  background: #24282f;                                /* main background color in case of no image */
-  font-family: 'Arial';                               /* font arial which should be readable */
-  Height:100%;                                        /* set width to 100% also needed for background */
-  margin:0px;                                         /* hide any margins */
-  background-size: cover;                             /* size background image without distortion along width and height */
-  background-repeat: no-repeat;                       /* no background repeat */
-  Background-attachment:fixed;                        /* needed to make background image behave properly */
-  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+  <head>
+    <title>Paraiso Island</title>
+    <style>
+      body {
+        background: #24282f; /* main background color in case of no image */
+        font-family: "Arial"; /* font arial which should be readable */
+        height: 100%; /* set width to 100% also needed for background */
+        margin: 0px; /* hide any margins */
+        background-size: cover; /* size background image without distortion along width and height */
+        background-repeat: no-repeat; /* no background repeat */
+        background-attachment: fixed; /* needed to make background image behave properly */
+        overflow-y: hidden; /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
 }
  
 html {
   height:100%;                                        /* need to set this to 100% to make the background behave propertly */
-}
+      }
 
-.title h2 {
-  padding-left: 25px;                                 /* left padding */
-  color: #ccc;                                        /* text color */
-  margin: 0;                                          /* no margins */
-  background-color: black;                            /* black background */
-  vertical-align: middle;                             /* align vertical middle */
-}
+      .title h2 {
+        padding-left: 25px; /* left padding */
+        color: #ccc; /* text color */
+        margin: 0; /* no margins */
+        background-color: black; /* black background */
+        vertical-align: middle; /* align vertical middle */
+      }
 
-.title img {
-	vertical-align: middle;                           /* images in title aligned vertical middle */
-}
+      .title img {
+        vertical-align: middle; /* images in title aligned vertical middle */
+      }
 
-.title {
-	width: 100%;                                      /* title container width 100% */
-	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
-    grid-row: 1;                                      /* row 1 */
+      .title {
+        width: 100%; /* title container width 100% */
+        grid-column: 1 / span 3; /* column 1 but spans 3 */
+        grid-row: 1; /* row 1 */
+      }
+      .cards {
+        /* empty not used here */
+      }
 
-}
-.cards {                                              /* empty not used here */
-}
+      .card {
+        display: grid; /* container which is the grid */
+        grid-template-columns: min-content; /* size columns to minimum content */
+        grid-template-rows: min-content min-content; /* size rows to minimum content */
+        height: 100vh; /* 100% viewport height */
+      }
 
-.card {
-	display: grid;                                    /* container which is the grid */
-	grid-template-columns: min-content;               /* size columns to minimum content */
-	grid-template-rows: min-content min-content;      /* size rows to minimum content */
-	height: 100vh;                                    /* 100% viewport height */
-}
+      .detailstitle {
+        grid-column: 1; /* 1st column */
+        grid-row: 2; /* 2nd row */
+        width: 350px; /* fixed width set to same size as details */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.detailstitle{
-  grid-column: 1;                                     /* 1st column */
-  grid-row: 2;                                        /* 2nd row */
-  width: 350px;                                       /* fixed width set to same size as details */
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-}
+      .details {
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+        color: #ccc;
+        grid-column: 1; /* 1st column */
+        grid-row: 3; /* 3rd row of grid */
+        width: 350px; /* fixed width of details */
+        overflow-y: auto; /* add vertical scrollbar if needed */
+        overflow-x: hidden; /* don't overflow on x axis (no horz scrollbar) */
+      }
 
-.details {
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-  color: #ccc;
-  grid-column: 1;                                      /* 1st column */
-  grid-row: 3;                                         /* 3rd row of grid */
-  width: 350px;                                        /* fixed width of details */
-  overflow-y: auto;                                     /* add vertical scrollbar if needed */
-  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
- }
- 
-.detailstitle h3,
-.descriptiontitle h3 {
-	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
-	padding: 5px;                                      /* add some padding */
-	color: #ccc;                                       /* text color of the titles */
-}
+      .detailstitle h3,
+      .descriptiontitle h3 {
+        border-bottom: 1px solid #ccc; /* titles of description details should have line under it */
+        padding: 5px; /* add some padding */
+        color: #ccc; /* text color of the titles */
+      }
 
-.detailstable th, td {
-  border: 0px;                                         /* no borders on td, th elements */
-  color: #ccc;                                         /* details table text color */
-}
+      .detailstable th,
+      td {
+        border: 0px; /* no borders on td, th elements */
+        color: #ccc; /* details table text color */
+      }
 
-.detailstable td {
-  text-align: left;                                    /* align text left */
-  vertical-align: top;                                 /* align top */
-}
+      .detailstable td {
+        text-align: left; /* align text left */
+        vertical-align: top; /* align top */
+      }
 
-.detailstable {
-  width: 100%;                                         /* set to full width of details */
-  padding: 5px;                                        /* add some padding */
-}
+      .detailstable {
+        width: 100%; /* set to full width of details */
+        padding: 5px; /* add some padding */
+      }
 
-.details img {
-	max-width: 100%;                                   /* make sure images don't overflow in width on details */
-}
+      .details img {
+        max-width: 100%; /* make sure images don't overflow in width on details */
+      }
 
-.descriptiontitle {
-	grid-column: 2;                                    /* column 2 of grid */
-	grid-row: 2;                                       /* row 2 of grid */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .descriptiontitle {
+        grid-column: 2; /* column 2 of grid */
+        grid-row: 2; /* row 2 of grid */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
+      .description {
+        color: #ccc; /* text color */
+        grid-column: 2; /* 2nd column of grid */
+        grid-row: 3; /* 3rd row of grid */
+        overflow-y: auto; /* overflow-y automatic (for adding scrollbar) */
+        overflow-x: hidden; /* prevent horizontal scrollbar */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.description {
-	color: #ccc;                                       /* text color */
-	grid-column: 2;                                    /* 2nd column of grid */
-	grid-row: 3;                                       /* 3rd row of grid */
-	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
-	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .description img {
+        max-width: 100%; /* make sure images don't overflow in width to prevent scrollbars */
+      }
 
-.description img {
-	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
-}
+      .footer {
+        grid-column: 1; /* 1st column of grid */
+        grid-row: 3; /* 3rd row of grid */
+      }
 
-.footer {
-	grid-column:1;                                     /* 1st column of grid */
-	grid-row:3;                                        /* 3rd row of grid */
-}
+      .MenuButton {
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #888; /* Set a background color */
+        color: #000; /* Text color */
+        padding: 5px; /* Some padding */
+        border-radius: 4px; /* Rounded corners, border */
+        font-size: 20px; /* Increase font size */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        margin-right: 20px; /* to have some space on right side before next element */
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        text-decoration: none;
+      }
 
-.MenuButton {
-  border: none;                                        /* Remove borders */
-  outline: none;                                       /* Remove outline */
-  background-color: #888;                              /* Set a background color */
-  color: #000;                                         /* Text color */
-  padding: 5px;                                        /* Some padding */
-  border-radius: 4px;                                  /* Rounded corners, border */
-  font-size: 20px;                                     /* Increase font size */
-  cursor:pointer;                                         /* Add a mouse pointer on hover */
-  margin-right: 20px;                                  /* to have some space on right side before next element */
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  text-decoration: none;
-}
+      .MenuButton:hover {
+        background-color: #777; /* Add a dark-grey background on hover */
+        color: #ccc; /* Text color */
+      }
 
-.MenuButton:hover {
-  background-color: #777;                              /* Add a dark-grey background on hover */
-  color: #CCC;                                         /* Text color */
-}
+      a {
+        text-decoration: none; /* no text underline in links */
+      }
+      a:link {
+        color: #b1b1b1; /* unvisited link color */
+      }
+      a:visited {
+        color: #b1b1b1; /* visited link color */
+      }
+      a:hover {
+        color: #d1d1d1; /* mouse over link color */
+        text-decoration: underline; /* add text underline in links when mouse over */
+      }
+      a:active {
+        color: #b1b1b1; /* selected link color */
+      }
 
-a {
- text-decoration: none;                                /* no text underline in links */
-}
-a:link {
-  color: #B1B1B1;                                      /* unvisited link color */
-}
-a:visited {
-  color: #B1B1B1;                                      /* visited link color */
-}
-a:hover {
-  color: #D1D1D1;                                      /* mouse over link color */
-  text-decoration: underline;                          /* add text underline in links when mouse over */
-}
-a:active {
-  color: #B1B1B1;                                      /* selected link color */
-}
+      /* scrollbars W3C standard that is currently Firefox-only */
+      * {
+        scrollbar-width: thin; /* small width */
+        scrollbar-color: #888 transparent; /* trackbar color + transparant background */
+      }
 
-                                                       /* scrollbars W3C standard that is currently Firefox-only */
-* {
-  scrollbar-width: thin;                               /* small width */
-  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
-}
+      /* scrollbars on Chrome/Edge/Safari */
+      *::-webkit-scrollbar {
+        width: 12px; /* small width */
+      }
 
-                                                       /* scrollbars on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 12px;                                         /* small width */
-}
+      *::-webkit-scrollbar-track {
+        background: transparent; /* background color track */
+      }
 
-*::-webkit-scrollbar-track {
-  background: transparent;                             /* background color track */
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #AAA;                              /* background */
-  border-radius: 20px;                                 /* rounded corner, border */
-  border: 3px solid #888;                              /* add the border */
-}
-
-		</style>
-	</head>
-	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('32b5df56-7293-43c3-a592-ca722633672b/34172356-b1b5-4323-8bb5-f54eb2c3855a.jpg');">
-		<div class="cards">
-			<div class="card">
-				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="32b5df56-7293-43c3-a592-ca722633672b/76b2190a-dc53-4b92-ab06-2156c32cc51f.ico"/> Paraiso Island</h2>
-				</div>
-				<div class="detailstitle">
-				<H3>Details</H3>
-				</div>
-				<div class="details">
-					<div style="overflow: auto;">
-						<TABLE class="detailstable">
-							<col style="width:50%" />
-							<col style="width:50%" />
-							<TR>
-								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="32b5df56-7293-43c3-a592-ca722633672b/7c8ee3fc-d2c2-4cd3-8cca-1fc82c04c7e3.jpg"/></TD>
-							</TR>
-							<TR>
-								<TD>Playtime</TD>
-								<TD>Not Played</TD>
-							</TR>
-							<TR>
-								<TD>Last Activity</TD>
-								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Added</TD>
-								<TD><a href="default_added_descending_name_ascending.html#quicklink-13/08/2020">13/08/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Modified</TD>
-								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Completion Status</TD>
-								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
-							</TR>
-							<TR>
-								<TD>Source</TD>
-								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
-							</TR>
-							<TR>
-								<TD>Platform</TD>
-								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
-							</TR>
-							<TR>
-								<TD>Release Date</TD>
-								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-05/06/2020">05/06/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Community Score</TD>
-								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-53">53</a></TD>
-							</TR>
-							<TR>
-								<TD>Critic Score</TD>
-								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>User Score</TD>
-								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>Genre</TD>
-								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Casual">Casual</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Early Access">Early Access</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Indie">Indie</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-RPG">RPG</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Developer</TD>
-								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-One Earth Rising™">One Earth Rising™</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Publisher</TD>
-								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-One Earth Rising™">One Earth Rising™</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Feature</TD>
-								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Links</TD>
-								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=1272500" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/1272500" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/1272500/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/1272500/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/1272500/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/1272500" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=1272500" target="_blank">News</a><br/></TD>
-							</TR>
-						</TABLE>
-					</div>
-				</div>
-				<div class="descriptiontitle">
-					<H3>Description</H3>
-				</div>
-				<div class="description">
-					<h1>Buzz</h1><p><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Ahoy_.png?t=1591896184" /><br>After a hurricane devastated Noodoo's island, she asks you to help her start a new life and get well. But she's not alone on Paraiso Island. The Islanders and the daily quests will put you to the test. Don't panic. There is always time for some fishing, decorate your home, farm your own food, or just take in the majestic sunrise from the beach and relax. Paraiso Island will capture your heart in no time. <br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/495x188_Iggy_Head.png?t=1591896184" /><br><br><strong>Choose between the main free-to-play game and the main game plus paid extensions:</strong><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/tourist__visa.png?t=1591896184" /><br><strong>Paraiso Island - Free to Play - Tourist Visa.</strong><br><br><ul class="bb_ul"><li>Paraiso Island (main game)</li></ul><br>A free tourist visa to paradise. Stay on the island as long as you wish and meet its incredible Islanders. Go fishing with Jet or  farming with Fay. Every Islander has her own story and you'll soon be part of it. Daily quests and decorating your home will keep you busy for sure. We are certain, you will fall in love with the island in no time.<br><br>If you want to get more involved with the Islanders and start your proper journey, we've got the Islander Package for you.<br><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Islander_package.png?t=1591896184" /><br><strong>Paraiso Island - The Islander Package.</strong><br><br>Expand your island experience and get really busy. Add all the current <strong>(not future)</strong> DLC: <br><br><ul class="bb_ul"><li><strong>Paraiso Island (main game)</strong><br></li><li><strong>Restaurant Expansion DLC</strong><br>Are you ready to be the island’s top chef and restaurant owner? Chop, mix and cook Caribbean recipes; play the cooking mini-game; serve islanders meals in your restaurant.<br></li><li><strong>Hotel Expansion DLC</strong><br>Can you be the island’s hotel owner and the host-with-the-most? This expansion includes the customizable hotel building; earn extra coins by entertaining and looking after tourists. Enjoy additional quests.<br></li><li><strong>Day of the Dead Pack DLC</strong><br>Freshen up your look with this collection of colorful items inspired by the Day of the Dead! Includes Day of the Dead flooring, wallpaper, furniture set, home skin and character skin.<br></li><li><strong>Mysterious Stranger DLC</strong><br>Who is the Mysterious Stranger, why does he want to make the world a more colorful place? Introduces more quests and expands your island experience.<br></li><li><strong>Carnival Pack DLC</strong><br>A collection of in-game items: two unique chairs; two tables; an exclusive Carnival character skin.<br></li><li><strong>Unbreakable Tools DLC</strong><br>Never worry about wearing out your equipment ever again with this set of unbreakable tools! This download gives you access to a machete, a shovel and a fishing rod that never breaks no matter how much you use them!</li></ul><br>The <strong>Disaster Relief DLC</strong> is not included in the Islander Pack. This is due to 100% of the developer revenue from this DLC being donated to <strong>our charity partner All Hands and Hearts</strong>.</p><br><h1>Buzz</h1><p>One Earth Rising is a social impact gaming company. Our games are helping support initiatives which make our world a better place for us all. This includes <strong>widening participation socially</strong>, <strong>climate change</strong> and <strong>heralding video gaming culture as a force for good</strong>.<br><br><strong>Paraiso Island</strong> is also partnering with the <strong>United Nations Shaping our future</strong> initiative.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/UN_steam.png?t=1591896184" /><br><br>The world is undergoing a number of transformations. Our climate is changing rapidly. We are seeing major shifts in technology and in the make-up of our population. And we face risks from growing inequalities, long-running conflicts and new forms of violence. Managing these trends will require cooperation across borders, sectors and generations. So will achieving our shared vision for a safer, fairer and more sustainable world.</p><br><h1>About the Game</h1><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/This_is_a_Social_Impact_Game_.png?t=1591896184" /><br>One Earth Rising will donate a portion of sales to support our marvelous charity partners and their work in rebuilding the lives affected by real natural disasters like hurricanes and earthquakes.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/495x188_Chef_Shark.png?t=1591896184" /><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Making_new_friends.png?t=1591896184" /><br>There are so many different fun and interesting characters living on Paraiso Island. Make new friends on the island, from the dancing raccoon Nacheline to Senorita Bomba who has the habit of wanting to explode everything.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/parade.gif?t=1591896184" /><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Farming.png?t=1591896184" /><br>Feel like farming? Fay Fuzz sells seeds that allow you to plant vegetables and fruit, grow your own farm, and use the ingredients at your restaurant to give the customers Caribbean flavors that will make them ecstatic. <br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Fay.png?t=1591896184" /><br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Decorating.png?t=1591896184" /><br>Make the island your own, decorate the inside of your house however you want, go either dark and gritty like a pirate or bright and colorful like the day of the dead, change the colors of the grass and sand with the help of the magic of Papa Bois. Your creativity is limitless and we can't wait to see how your make your own little paradise.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/decorating.gif?t=1591896184" /><h2 class="bb_tag">Go beyond Free to Play and get all current DLC in the</h2><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Islander_package.png?t=1591896184" /><br><br>Become a proper Islander, open the restaurant and hotel, and unlock so many new features. Learn more about what this paid bundle contains.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Restaurant_Expansion.png?t=1591896184" /><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/cooking.gif?t=1591896184" /><br><br>Are you ready to be the island’s top chef and restaurant owner? Chop, mix and cook Caribbean recipes; play the cooking mini-game; serve islanders meals in your restaurant.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Day_of_the_Dead.png?t=1591896184" /><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/dayofthedead.gif?t=1591896184" /><br><br>Freshen up your look with this collection of colorful items inspired by the Day of the Dead! Includes Day of the Dead flooring, wallpaper, furniture set, home skin and character skin.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Mysterious_Stranger.png?t=1591896184" /><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/mysteriousstranger.gif?t=1591896184" /><br><br>Who is the Mysterious Stranger, why does he want to make the world a more colorful place? Introduces more quests and expands your island experience.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Carnival_Pack.png?t=1591896184" /><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/carnival.gif?t=1591896184" /><br><br>A collection of in-game items: two unique chairs; two tables; an exclusive Carnival character skin.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Hotel_Expansion.png?t=1591896184" /><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/hotel.gif?t=1591896184" /><br><br>Can you be the island’s hotel owner and the host-with-the-most? This expansion includes the customizable hotel building; earn extra coins by entertaining and looking after tourists. Enjoy additional quests.<br><br><img src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Unbreakable_Tools.png?t=1591896184" /><br>Never worry about wearing out your equipment ever again with this set of unbreakable tools! This download gives you access to a machete, a shovel and a fishing rod that never breaks no matter how much you use them!
-				</div>
-				<div class="footer"> </div>
-			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-		<script>
-			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-			observer.observe();
-		</script>
-	</body>	
+      *::-webkit-scrollbar-thumb {
+        background-color: #aaa; /* background */
+        border-radius: 20px; /* rounded corner, border */
+        border: 3px solid #888; /* add the border */
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0.73)
+        ),
+        url('32b5df56-7293-43c3-a592-ca722633672b/34172356-b1b5-4323-8bb5-f54eb2c3855a.jpg');
+    "
+  >
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <h2>
+            <button onclick="window.history.back()" class="MenuButton">
+              Back</button
+            ><img
+              alt="icon"
+              height="48"
+              class="lozad"
+              data-src="32b5df56-7293-43c3-a592-ca722633672b/76b2190a-dc53-4b92-ab06-2156c32cc51f.ico"
+            />
+            Paraiso Island
+          </h2>
+        </div>
+        <div class="detailstitle">
+          <h3>Details</h3>
+        </div>
+        <div class="details">
+          <div style="overflow: auto">
+            <table class="detailstable">
+              <col style="width: 50%" />
+              <col style="width: 50%" />
+              <tr>
+                <td style="text-align: center" colspan="2">
+                  <img
+                    alt="cover"
+                    height="175"
+                    class="lozad"
+                    data-src="32b5df56-7293-43c3-a592-ca722633672b/7c8ee3fc-d2c2-4cd3-8cca-1fc82c04c7e3.jpg"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Playtime</td>
+                <td>Not Played</td>
+              </tr>
+              <tr>
+                <td>Last Activity</td>
+                <td>
+                  <a
+                    href="default_lastactivity_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Added</td>
+                <td>
+                  <a
+                    href="default_added_descending_name_ascending.html#quicklink-13/08/2020"
+                    >13/08/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Modified</td>
+                <td>
+                  <a
+                    href="default_modified_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Completion Status</td>
+                <td>
+                  <a
+                    href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played"
+                    >Not Played</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Source</td>
+                <td>
+                  <a
+                    href="default_source_ascending_name_ascending.html#quicklink-Steam"
+                    >Steam</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Platform</td>
+                <td>
+                  <a
+                    href="default_platform_ascending_name_ascending.html#quicklink-PC"
+                    >PC</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Release Date</td>
+                <td>
+                  <a
+                    href="default_releasedate_descending_name_ascending.html#quicklink-05/06/2020"
+                    >05/06/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Community Score</td>
+                <td>
+                  <a
+                    href="default_communityscore_descending_name_ascending.html#quicklink-53"
+                    >53</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Critic Score</td>
+                <td>
+                  <a
+                    href="default_criticscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>User Score</td>
+                <td>
+                  <a
+                    href="default_userscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>Genre</td>
+                <td>
+                  <a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Casual"
+                    >Casual</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Early Access"
+                    >Early Access</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Indie"
+                    >Indie</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-RPG"
+                    >RPG</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Simulation"
+                    >Simulation</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Strategy"
+                    >Strategy</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Developer</td>
+                <td>
+                  <a
+                    href="default_developer_ascending_name_ascending.html#quicklink-One Earth Rising™"
+                    >One Earth Rising™</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Publisher</td>
+                <td>
+                  <a
+                    href="default_publisher_ascending_name_ascending.html#quicklink-One Earth Rising™"
+                    >One Earth Rising™</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Feature</td>
+                <td>
+                  <a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Achievements"
+                    >Achievements</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support"
+                    >Partial Controller Support</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Single Player"
+                    >Single Player</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Links</td>
+                <td>
+                  <a
+                    href="https://pcgamingwiki.com/api/appid.php?appid=1272500"
+                    target="_blank"
+                    >PCGamingWiki</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1272500"
+                    target="_blank"
+                    >Community Hub</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1272500/discussions/"
+                    target="_blank"
+                    >Discussions</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/1272500/guides/"
+                    target="_blank"
+                    >Guides</a
+                  ><br /><a
+                    href="https://steamcommunity.com/stats/1272500/achievements"
+                    target="_blank"
+                    >Achievements</a
+                  ><br /><a
+                    href="https://store.steampowered.com/app/1272500"
+                    target="_blank"
+                    >Store Page</a
+                  ><br /><a
+                    href="https://store.steampowered.com/news/?appids=1272500"
+                    target="_blank"
+                    >News</a
+                  ><br />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="descriptiontitle">
+          <h3>Description</h3>
+        </div>
+        <div class="description">
+          <h1>Buzz</h1>
+          <p>
+            <img
+              src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Ahoy_.png?t=1591896184"
+            /><br />After a hurricane devastated Noodoo's island, she asks you
+            to help her start a new life and get well. But she's not alone on
+            Paraiso Island. The Islanders and the daily quests will put you to
+            the test. Don't panic. There is always time for some fishing,
+            decorate your home, farm your own food, or just take in the majestic
+            sunrise from the beach and relax. Paraiso Island will capture your
+            heart in no time. <br /><br /><img
+              src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/495x188_Iggy_Head.png?t=1591896184"
+            /><br /><br /><strong
+              >Choose between the main free-to-play game and the main game plus
+              paid extensions:</strong
+            ><br /><br /><img
+              src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/tourist__visa.png?t=1591896184"
+            /><br /><strong
+              >Paraiso Island - Free to Play - Tourist Visa.</strong
+            ><br /><br />
+            <ul class="bb_ul">
+              <li>Paraiso Island (main game)</li>
+            </ul>
+            <br />A free tourist visa to paradise. Stay on the island as long as
+            you wish and meet its incredible Islanders. Go fishing with Jet or
+            farming with Fay. Every Islander has her own story and you'll soon
+            be part of it. Daily quests and decorating your home will keep you
+            busy for sure. We are certain, you will fall in love with the island
+            in no time.<br /><br />If you want to get more involved with the
+            Islanders and start your proper journey, we've got the Islander
+            Package for you.<br /><br /><br /><img
+              src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Islander_package.png?t=1591896184"
+            /><br /><strong>Paraiso Island - The Islander Package.</strong
+            ><br /><br />Expand your island experience and get really busy. Add
+            all the current <strong>(not future)</strong> DLC: <br /><br />
+            <ul class="bb_ul">
+              <li><strong>Paraiso Island (main game)</strong><br /></li>
+              <li>
+                <strong>Restaurant Expansion DLC</strong><br />Are you ready to
+                be the island’s top chef and restaurant owner? Chop, mix and
+                cook Caribbean recipes; play the cooking mini-game; serve
+                islanders meals in your restaurant.<br />
+              </li>
+              <li>
+                <strong>Hotel Expansion DLC</strong><br />Can you be the
+                island’s hotel owner and the host-with-the-most? This expansion
+                includes the customizable hotel building; earn extra coins by
+                entertaining and looking after tourists. Enjoy additional
+                quests.<br />
+              </li>
+              <li>
+                <strong>Day of the Dead Pack DLC</strong><br />Freshen up your
+                look with this collection of colorful items inspired by the Day
+                of the Dead! Includes Day of the Dead flooring, wallpaper,
+                furniture set, home skin and character skin.<br />
+              </li>
+              <li>
+                <strong>Mysterious Stranger DLC</strong><br />Who is the
+                Mysterious Stranger, why does he want to make the world a more
+                colorful place? Introduces more quests and expands your island
+                experience.<br />
+              </li>
+              <li>
+                <strong>Carnival Pack DLC</strong><br />A collection of in-game
+                items: two unique chairs; two tables; an exclusive Carnival
+                character skin.<br />
+              </li>
+              <li>
+                <strong>Unbreakable Tools DLC</strong><br />Never worry about
+                wearing out your equipment ever again with this set of
+                unbreakable tools! This download gives you access to a machete,
+                a shovel and a fishing rod that never breaks no matter how much
+                you use them!
+              </li>
+            </ul>
+            <br />The <strong>Disaster Relief DLC</strong> is not included in
+            the Islander Pack. This is due to 100% of the developer revenue from
+            this DLC being donated to
+            <strong>our charity partner All Hands and Hearts</strong>.
+          </p>
+          <br />
+          <h1>Buzz</h1>
+          <p>
+            One Earth Rising is a social impact gaming company. Our games are
+            helping support initiatives which make our world a better place for
+            us all. This includes
+            <strong>widening participation socially</strong>,
+            <strong>climate change</strong> and
+            <strong>heralding video gaming culture as a force for good</strong
+            >.<br /><br /><strong>Paraiso Island</strong> is also partnering
+            with the
+            <strong>United Nations Shaping our future</strong>
+            initiative.<br /><br /><img
+              src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/UN_steam.png?t=1591896184"
+            /><br /><br />The world is undergoing a number of transformations.
+            Our climate is changing rapidly. We are seeing major shifts in
+            technology and in the make-up of our population. And we face risks
+            from growing inequalities, long-running conflicts and new forms of
+            violence. Managing these trends will require cooperation across
+            borders, sectors and generations. So will achieving our shared
+            vision for a safer, fairer and more sustainable world.
+          </p>
+          <br />
+          <h1>About the Game</h1>
+          <img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/This_is_a_Social_Impact_Game_.png?t=1591896184"
+          /><br />One Earth Rising will donate a portion of sales to support our
+          marvelous charity partners and their work in rebuilding the lives
+          affected by real natural disasters like hurricanes and earthquakes.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/495x188_Chef_Shark.png?t=1591896184"
+          /><br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Making_new_friends.png?t=1591896184"
+          /><br />There are so many different fun and interesting characters
+          living on Paraiso Island. Make new friends on the island, from the
+          dancing raccoon Nacheline to Senorita Bomba who has the habit of
+          wanting to explode everything.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/parade.gif?t=1591896184"
+          /><br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Farming.png?t=1591896184"
+          /><br />Feel like farming? Fay Fuzz sells seeds that allow you to
+          plant vegetables and fruit, grow your own farm, and use the
+          ingredients at your restaurant to give the customers Caribbean flavors
+          that will make them ecstatic. <br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Fay.png?t=1591896184"
+          /><br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Decorating.png?t=1591896184"
+          /><br />Make the island your own, decorate the inside of your house
+          however you want, go either dark and gritty like a pirate or bright
+          and colorful like the day of the dead, change the colors of the grass
+          and sand with the help of the magic of Papa Bois. Your creativity is
+          limitless and we can't wait to see how your make your own little
+          paradise.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/decorating.gif?t=1591896184"
+          />
+          <h2 class="bb_tag">
+            Go beyond Free to Play and get all current DLC in the
+          </h2>
+          <img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Islander_package.png?t=1591896184"
+          /><br /><br />Become a proper Islander, open the restaurant and hotel,
+          and unlock so many new features. Learn more about what this paid
+          bundle contains.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Restaurant_Expansion.png?t=1591896184"
+          /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/cooking.gif?t=1591896184"
+          /><br /><br />Are you ready to be the island’s top chef and restaurant
+          owner? Chop, mix and cook Caribbean recipes; play the cooking
+          mini-game; serve islanders meals in your restaurant.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Day_of_the_Dead.png?t=1591896184"
+          /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/dayofthedead.gif?t=1591896184"
+          /><br /><br />Freshen up your look with this collection of colorful
+          items inspired by the Day of the Dead! Includes Day of the Dead
+          flooring, wallpaper, furniture set, home skin and character skin.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Mysterious_Stranger.png?t=1591896184"
+          /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/mysteriousstranger.gif?t=1591896184"
+          /><br /><br />Who is the Mysterious Stranger, why does he want to make
+          the world a more colorful place? Introduces more quests and expands
+          your island experience.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Carnival_Pack.png?t=1591896184"
+          /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/carnival.gif?t=1591896184"
+          /><br /><br />A collection of in-game items: two unique chairs; two
+          tables; an exclusive Carnival character skin.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Hotel_Expansion.png?t=1591896184"
+          /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/hotel.gif?t=1591896184"
+          /><br /><br />Can you be the island’s hotel owner and the
+          host-with-the-most? This expansion includes the customizable hotel
+          building; earn extra coins by entertaining and looking after tourists.
+          Enjoy additional quests.<br /><br /><img
+            src="https://cdn.cloudflare.steamstatic.com/steam/apps/1272500/extras/Paraiso_Island__Unbreakable_Tools.png?t=1591896184"
+          /><br />Never worry about wearing out your equipment ever again with
+          this set of unbreakable tools! This download gives you access to a
+          machete, a shovel and a fishing rod that never breaks no matter how
+          much you use them!
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script>
+      const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+      observer.observe();
+    </script>
+  </body>
 </html>

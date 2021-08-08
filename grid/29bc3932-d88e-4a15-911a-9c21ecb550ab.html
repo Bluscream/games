@@ -1,285 +1,428 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<title>Predynastic Egypt Demo</title>
-		<style>
-body {
-  background: #24282f;                                /* main background color in case of no image */
-  font-family: 'Arial';                               /* font arial which should be readable */
-  Height:100%;                                        /* set width to 100% also needed for background */
-  margin:0px;                                         /* hide any margins */
-  background-size: cover;                             /* size background image without distortion along width and height */
-  background-repeat: no-repeat;                       /* no background repeat */
-  Background-attachment:fixed;                        /* needed to make background image behave properly */
-  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+  <head>
+    <title>Predynastic Egypt Demo</title>
+    <style>
+      body {
+        background: #24282f; /* main background color in case of no image */
+        font-family: "Arial"; /* font arial which should be readable */
+        height: 100%; /* set width to 100% also needed for background */
+        margin: 0px; /* hide any margins */
+        background-size: cover; /* size background image without distortion along width and height */
+        background-repeat: no-repeat; /* no background repeat */
+        background-attachment: fixed; /* needed to make background image behave properly */
+        overflow-y: hidden; /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
 }
  
 html {
   height:100%;                                        /* need to set this to 100% to make the background behave propertly */
-}
+      }
 
-.title h2 {
-  padding-left: 25px;                                 /* left padding */
-  color: #ccc;                                        /* text color */
-  margin: 0;                                          /* no margins */
-  background-color: black;                            /* black background */
-  vertical-align: middle;                             /* align vertical middle */
-}
+      .title h2 {
+        padding-left: 25px; /* left padding */
+        color: #ccc; /* text color */
+        margin: 0; /* no margins */
+        background-color: black; /* black background */
+        vertical-align: middle; /* align vertical middle */
+      }
 
-.title img {
-	vertical-align: middle;                           /* images in title aligned vertical middle */
-}
+      .title img {
+        vertical-align: middle; /* images in title aligned vertical middle */
+      }
 
-.title {
-	width: 100%;                                      /* title container width 100% */
-	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
-    grid-row: 1;                                      /* row 1 */
+      .title {
+        width: 100%; /* title container width 100% */
+        grid-column: 1 / span 3; /* column 1 but spans 3 */
+        grid-row: 1; /* row 1 */
+      }
+      .cards {
+        /* empty not used here */
+      }
 
-}
-.cards {                                              /* empty not used here */
-}
+      .card {
+        display: grid; /* container which is the grid */
+        grid-template-columns: min-content; /* size columns to minimum content */
+        grid-template-rows: min-content min-content; /* size rows to minimum content */
+        height: 100vh; /* 100% viewport height */
+      }
 
-.card {
-	display: grid;                                    /* container which is the grid */
-	grid-template-columns: min-content;               /* size columns to minimum content */
-	grid-template-rows: min-content min-content;      /* size rows to minimum content */
-	height: 100vh;                                    /* 100% viewport height */
-}
+      .detailstitle {
+        grid-column: 1; /* 1st column */
+        grid-row: 2; /* 2nd row */
+        width: 350px; /* fixed width set to same size as details */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.detailstitle{
-  grid-column: 1;                                     /* 1st column */
-  grid-row: 2;                                        /* 2nd row */
-  width: 350px;                                       /* fixed width set to same size as details */
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-}
+      .details {
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+        color: #ccc;
+        grid-column: 1; /* 1st column */
+        grid-row: 3; /* 3rd row of grid */
+        width: 350px; /* fixed width of details */
+        overflow-y: auto; /* add vertical scrollbar if needed */
+        overflow-x: hidden; /* don't overflow on x axis (no horz scrollbar) */
+      }
 
-.details {
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-  color: #ccc;
-  grid-column: 1;                                      /* 1st column */
-  grid-row: 3;                                         /* 3rd row of grid */
-  width: 350px;                                        /* fixed width of details */
-  overflow-y: auto;                                     /* add vertical scrollbar if needed */
-  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
- }
- 
-.detailstitle h3,
-.descriptiontitle h3 {
-	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
-	padding: 5px;                                      /* add some padding */
-	color: #ccc;                                       /* text color of the titles */
-}
+      .detailstitle h3,
+      .descriptiontitle h3 {
+        border-bottom: 1px solid #ccc; /* titles of description details should have line under it */
+        padding: 5px; /* add some padding */
+        color: #ccc; /* text color of the titles */
+      }
 
-.detailstable th, td {
-  border: 0px;                                         /* no borders on td, th elements */
-  color: #ccc;                                         /* details table text color */
-}
+      .detailstable th,
+      td {
+        border: 0px; /* no borders on td, th elements */
+        color: #ccc; /* details table text color */
+      }
 
-.detailstable td {
-  text-align: left;                                    /* align text left */
-  vertical-align: top;                                 /* align top */
-}
+      .detailstable td {
+        text-align: left; /* align text left */
+        vertical-align: top; /* align top */
+      }
 
-.detailstable {
-  width: 100%;                                         /* set to full width of details */
-  padding: 5px;                                        /* add some padding */
-}
+      .detailstable {
+        width: 100%; /* set to full width of details */
+        padding: 5px; /* add some padding */
+      }
 
-.details img {
-	max-width: 100%;                                   /* make sure images don't overflow in width on details */
-}
+      .details img {
+        max-width: 100%; /* make sure images don't overflow in width on details */
+      }
 
-.descriptiontitle {
-	grid-column: 2;                                    /* column 2 of grid */
-	grid-row: 2;                                       /* row 2 of grid */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .descriptiontitle {
+        grid-column: 2; /* column 2 of grid */
+        grid-row: 2; /* row 2 of grid */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
+      .description {
+        color: #ccc; /* text color */
+        grid-column: 2; /* 2nd column of grid */
+        grid-row: 3; /* 3rd row of grid */
+        overflow-y: auto; /* overflow-y automatic (for adding scrollbar) */
+        overflow-x: hidden; /* prevent horizontal scrollbar */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.description {
-	color: #ccc;                                       /* text color */
-	grid-column: 2;                                    /* 2nd column of grid */
-	grid-row: 3;                                       /* 3rd row of grid */
-	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
-	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .description img {
+        max-width: 100%; /* make sure images don't overflow in width to prevent scrollbars */
+      }
 
-.description img {
-	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
-}
+      .footer {
+        grid-column: 1; /* 1st column of grid */
+        grid-row: 3; /* 3rd row of grid */
+      }
 
-.footer {
-	grid-column:1;                                     /* 1st column of grid */
-	grid-row:3;                                        /* 3rd row of grid */
-}
+      .MenuButton {
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #888; /* Set a background color */
+        color: #000; /* Text color */
+        padding: 5px; /* Some padding */
+        border-radius: 4px; /* Rounded corners, border */
+        font-size: 20px; /* Increase font size */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        margin-right: 20px; /* to have some space on right side before next element */
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        text-decoration: none;
+      }
 
-.MenuButton {
-  border: none;                                        /* Remove borders */
-  outline: none;                                       /* Remove outline */
-  background-color: #888;                              /* Set a background color */
-  color: #000;                                         /* Text color */
-  padding: 5px;                                        /* Some padding */
-  border-radius: 4px;                                  /* Rounded corners, border */
-  font-size: 20px;                                     /* Increase font size */
-  cursor:pointer;                                         /* Add a mouse pointer on hover */
-  margin-right: 20px;                                  /* to have some space on right side before next element */
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  text-decoration: none;
-}
+      .MenuButton:hover {
+        background-color: #777; /* Add a dark-grey background on hover */
+        color: #ccc; /* Text color */
+      }
 
-.MenuButton:hover {
-  background-color: #777;                              /* Add a dark-grey background on hover */
-  color: #CCC;                                         /* Text color */
-}
+      a {
+        text-decoration: none; /* no text underline in links */
+      }
+      a:link {
+        color: #b1b1b1; /* unvisited link color */
+      }
+      a:visited {
+        color: #b1b1b1; /* visited link color */
+      }
+      a:hover {
+        color: #d1d1d1; /* mouse over link color */
+        text-decoration: underline; /* add text underline in links when mouse over */
+      }
+      a:active {
+        color: #b1b1b1; /* selected link color */
+      }
 
-a {
- text-decoration: none;                                /* no text underline in links */
-}
-a:link {
-  color: #B1B1B1;                                      /* unvisited link color */
-}
-a:visited {
-  color: #B1B1B1;                                      /* visited link color */
-}
-a:hover {
-  color: #D1D1D1;                                      /* mouse over link color */
-  text-decoration: underline;                          /* add text underline in links when mouse over */
-}
-a:active {
-  color: #B1B1B1;                                      /* selected link color */
-}
+      /* scrollbars W3C standard that is currently Firefox-only */
+      * {
+        scrollbar-width: thin; /* small width */
+        scrollbar-color: #888 transparent; /* trackbar color + transparant background */
+      }
 
-                                                       /* scrollbars W3C standard that is currently Firefox-only */
-* {
-  scrollbar-width: thin;                               /* small width */
-  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
-}
+      /* scrollbars on Chrome/Edge/Safari */
+      *::-webkit-scrollbar {
+        width: 12px; /* small width */
+      }
 
-                                                       /* scrollbars on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 12px;                                         /* small width */
-}
+      *::-webkit-scrollbar-track {
+        background: transparent; /* background color track */
+      }
 
-*::-webkit-scrollbar-track {
-  background: transparent;                             /* background color track */
-}
+      *::-webkit-scrollbar-thumb {
+        background-color: #aaa; /* background */
+        border-radius: 20px; /* rounded corner, border */
+        border: 3px solid #888; /* add the border */
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0.73)
+        ),
+        url('29bc3932-d88e-4a15-911a-9c21ecb550ab/8b1b9439-eeb4-4a68-a3e7-75d08084d1d7.jpg');
+    "
+  >
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <h2>
+            <button onclick="window.history.back()" class="MenuButton">
+              Back</button
+            ><img
+              alt="icon"
+              height="48"
+              class="lozad"
+              data-src="29bc3932-d88e-4a15-911a-9c21ecb550ab/c0222868-3274-4ecb-988a-3be9f3904a11.png"
+            />
+            Predynastic Egypt Demo
+          </h2>
+        </div>
+        <div class="detailstitle">
+          <h3>Details</h3>
+        </div>
+        <div class="details">
+          <div style="overflow: auto">
+            <table class="detailstable">
+              <col style="width: 50%" />
+              <col style="width: 50%" />
+              <tr>
+                <td style="text-align: center" colspan="2">
+                  <img
+                    alt="cover"
+                    height="175"
+                    class="lozad"
+                    data-src="29bc3932-d88e-4a15-911a-9c21ecb550ab/242fec7e-1a09-4516-908d-4e2c66112b2b.jpg"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Playtime</td>
+                <td>Not Played</td>
+              </tr>
+              <tr>
+                <td>Last Activity</td>
+                <td>
+                  <a
+                    href="default_lastactivity_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Added</td>
+                <td>
+                  <a
+                    href="default_added_descending_name_ascending.html#quicklink-07/08/2021"
+                    >07/08/2021</a
+                  >
+                  17:38:42
+                </td>
+              </tr>
+              <tr>
+                <td>Modified</td>
+                <td>
+                  <a
+                    href="default_modified_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Completion Status</td>
+                <td>
+                  <a
+                    href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played"
+                    >Not Played</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Source</td>
+                <td>
+                  <a
+                    href="default_source_ascending_name_ascending.html#quicklink-GOG"
+                    >GOG</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Platform</td>
+                <td>
+                  <a
+                    href="default_platform_ascending_name_ascending.html#quicklink-PC"
+                    >PC</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Release Date</td>
+                <td>
+                  <a
+                    href="default_releasedate_descending_name_ascending.html#quicklink-09/10/2016"
+                    >09/10/2016</a
+                  >
+                  23:00:00
+                </td>
+              </tr>
+              <tr>
+                <td>Community Score</td>
+                <td>
+                  <a
+                    href="default_communityscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>Critic Score</td>
+                <td>
+                  <a
+                    href="default_criticscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>User Score</td>
+                <td>
+                  <a
+                    href="default_userscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>Genre</td>
+                <td>
+                  <a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Historical"
+                    >Historical</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Strategy"
+                    >Strategy</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Turn-based"
+                    >Turn-based</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Developer</td>
+                <td>
+                  <a
+                    href="default_developer_ascending_name_ascending.html#quicklink-Clarus Victoria"
+                    >Clarus Victoria</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Publisher</td>
+                <td>
+                  <a
+                    href="default_publisher_ascending_name_ascending.html#quicklink-Clarus Victoria"
+                    >Clarus Victoria</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Feature</td>
+                <td>
+                  <a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Achievements"
+                    >Achievements</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Single Player"
+                    >Single Player</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Links</td>
+                <td>
+                  <a
+                    href="https://www.gog.com/game/predynastic_egypt_demo"
+                    target="_blank"
+                    >Store</a
+                  ><br />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="descriptiontitle">
+          <h3>Description</h3>
+        </div>
+        <div class="description">
+          Get ready to witness evolutionary breakthroughs that enabled early
+          Egyptians to march into faraway lands, fight catastrophes, hardships
+          and ultimately establish first Egyptian state. Will you be able to
+          re-enact the events that unfolded historically or will you doom your
+          fledgling chiefdom into forgotten annals of history? Get an intimate
+          knowledge about events that took place before the Classic Egypt eras
+          through this unique game.
+          <h4>Simulation of the ancient world</h4>
+          Wars, drought, enemy invasions, epidemics, internal turmoil, migration
+          of the tribes, religious ceremonies, exploration of distant lands,
+          celebrations and more than 100+ other events and trials await you in
+          the game!
+          <h4>Technological evolution of mankind</h4>
+          48 historically accurate technologies and cultural achievements of
+          Predynastic Egypt with interesting descriptions, will show the
+          technological evolution of mankind on the example of the Egyptian
+          civilization.
+          <h4>Mysteries of Egyptian religion and culture</h4>
+          You will see the birth of the unique religion of the Nile
+          civilization, starting with beliefs in spirits and ending with the
+          gods of Predynastic Egypt and you will learn the secrets known only to
+          archeologists and Egyptologists!
+          <h4>Reconstructed map of Ancient Egypt</h4>
+          Accurate reconstruction of the geographic map of ancient Egypt
+          5000-3000 BC, taking into account the climatic changes of that period
+          when the Sahara was a Savannah and not a desert and Wadies were rivers
+          and not roads.
+          <h4>Reconstructed city of Hierakonpolis</h4>
+          Accurate archaeological reconstruction of the Hierakonpolis - the
+          former center of Predynastic Egypt. You will build the real houses,
+          temples and tombs, that were excavated by archeologists in XX-XXI
+          century.
+          <br />
 
-*::-webkit-scrollbar-thumb {
-  background-color: #AAA;                              /* background */
-  border-radius: 20px;                                 /* rounded corner, border */
-  border: 3px solid #888;                              /* add the border */
-}
-
-		</style>
-	</head>
-	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('29bc3932-d88e-4a15-911a-9c21ecb550ab/8b1b9439-eeb4-4a68-a3e7-75d08084d1d7.jpg');">
-		<div class="cards">
-			<div class="card">
-				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="29bc3932-d88e-4a15-911a-9c21ecb550ab/c0222868-3274-4ecb-988a-3be9f3904a11.png"/> Predynastic Egypt Demo</h2>
-				</div>
-				<div class="detailstitle">
-				<H3>Details</H3>
-				</div>
-				<div class="details">
-					<div style="overflow: auto;">
-						<TABLE class="detailstable">
-							<col style="width:50%" />
-							<col style="width:50%" />
-							<TR>
-								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="29bc3932-d88e-4a15-911a-9c21ecb550ab/242fec7e-1a09-4516-908d-4e2c66112b2b.jpg"/></TD>
-							</TR>
-							<TR>
-								<TD>Playtime</TD>
-								<TD>Not Played</TD>
-							</TR>
-							<TR>
-								<TD>Last Activity</TD>
-								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Added</TD>
-								<TD><a href="default_added_descending_name_ascending.html#quicklink-07/08/2021">07/08/2021</a> 17:38:42</TD>
-							</TR>
-							<TR>
-								<TD>Modified</TD>
-								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Completion Status</TD>
-								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
-							</TR>
-							<TR>
-								<TD>Source</TD>
-								<TD><a href="default_source_ascending_name_ascending.html#quicklink-GOG">GOG</a></TD>
-							</TR>
-							<TR>
-								<TD>Platform</TD>
-								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
-							</TR>
-							<TR>
-								<TD>Release Date</TD>
-								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-09/10/2016">09/10/2016</a> 23:00:00</TD>
-							</TR>
-							<TR>
-								<TD>Community Score</TD>
-								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>Critic Score</TD>
-								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>User Score</TD>
-								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>Genre</TD>
-								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Historical">Historical</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Turn-based">Turn-based</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Developer</TD>
-								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Clarus Victoria">Clarus Victoria</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Publisher</TD>
-								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-Clarus Victoria">Clarus Victoria</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Feature</TD>
-								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Single Player">Single Player</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Links</TD>
-								<TD><a href="https://www.gog.com/game/predynastic_egypt_demo" target="_blank">Store</a><br/></TD>
-							</TR>
-						</TABLE>
-					</div>
-				</div>
-				<div class="descriptiontitle">
-					<H3>Description</H3>
-				</div>
-				<div class="description">
-					Get ready to witness evolutionary breakthroughs that enabled early Egyptians to march into faraway lands, fight catastrophes, hardships and ultimately establish first Egyptian state. Will you be able to re-enact the events that unfolded historically or will you doom your fledgling chiefdom into forgotten annals of history? Get an intimate knowledge about events that took place before the Classic Egypt eras through this unique game.<h4>Simulation of the ancient world</h4>Wars, drought, enemy invasions, epidemics, internal turmoil, migration of the tribes, religious ceremonies, exploration of distant lands, celebrations and more than 100+ other events and trials await you in the game!<h4>Technological evolution of mankind</h4>48 historically accurate technologies and cultural achievements of Predynastic Egypt with interesting descriptions, will show the technological evolution of mankind on the example of the Egyptian civilization.<h4>Mysteries of Egyptian religion and culture</h4>You will see the birth of the unique religion of the Nile civilization, starting with beliefs in spirits and ending with the gods of Predynastic Egypt and you will learn the secrets known only to archeologists and Egyptologists!<h4>Reconstructed map of Ancient Egypt</h4>Accurate reconstruction of the geographic map of ancient Egypt 5000-3000 BC, taking into account the climatic changes of that period when the Sahara was a Savannah and not a desert and Wadies were rivers and not roads.<h4>Reconstructed city of Hierakonpolis</h4>Accurate archaeological reconstruction of the Hierakonpolis - the former center of Predynastic Egypt. You will build the real houses, temples and tombs, that were excavated by archeologists in XX-XXI century.
-<br>
-
-<br>
-The fate of the whole nation is in your hands. Make important decisions in real historical situations, wars, disasters. True story will immerse you into the mysterious atmosphere of the ancient world, you will see through the eyes of the ancient Egyptians.
-				</div>
-				<div class="footer"> </div>
-			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-		<script>
-			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-			observer.observe();
-		</script>
-	</body>	
+          <br />
+          The fate of the whole nation is in your hands. Make important
+          decisions in real historical situations, wars, disasters. True story
+          will immerse you into the mysterious atmosphere of the ancient world,
+          you will see through the eyes of the ancient Egyptians.
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script>
+      const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+      observer.observe();
+    </script>
+  </body>
 </html>

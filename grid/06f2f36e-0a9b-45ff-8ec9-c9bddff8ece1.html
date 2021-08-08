@@ -1,281 +1,484 @@
 ﻿<!DOCTYPE html>
 <html>
-	<head>
-		<title>Microsoft Allegiance</title>
-		<style>
-body {
-  background: #24282f;                                /* main background color in case of no image */
-  font-family: 'Arial';                               /* font arial which should be readable */
-  Height:100%;                                        /* set width to 100% also needed for background */
-  margin:0px;                                         /* hide any margins */
-  background-size: cover;                             /* size background image without distortion along width and height */
-  background-repeat: no-repeat;                       /* no background repeat */
-  Background-attachment:fixed;                        /* needed to make background image behave properly */
-  overflow-y:hidden;                                  /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
+  <head>
+    <title>Microsoft Allegiance</title>
+    <style>
+      body {
+        background: #24282f; /* main background color in case of no image */
+        font-family: "Arial"; /* font arial which should be readable */
+        height: 100%; /* set width to 100% also needed for background */
+        margin: 0px; /* hide any margins */
+        background-size: cover; /* size background image without distortion along width and height */
+        background-repeat: no-repeat; /* no background repeat */
+        background-attachment: fixed; /* needed to make background image behave properly */
+        overflow-y: hidden; /* no normal overflow, only our containers (details & description) will overflow or have scrollbar * /
 }
  
 html {
   height:100%;                                        /* need to set this to 100% to make the background behave propertly */
-}
+      }
 
-.title h2 {
-  padding-left: 25px;                                 /* left padding */
-  color: #ccc;                                        /* text color */
-  margin: 0;                                          /* no margins */
-  background-color: black;                            /* black background */
-  vertical-align: middle;                             /* align vertical middle */
-}
+      .title h2 {
+        padding-left: 25px; /* left padding */
+        color: #ccc; /* text color */
+        margin: 0; /* no margins */
+        background-color: black; /* black background */
+        vertical-align: middle; /* align vertical middle */
+      }
 
-.title img {
-	vertical-align: middle;                           /* images in title aligned vertical middle */
-}
+      .title img {
+        vertical-align: middle; /* images in title aligned vertical middle */
+      }
 
-.title {
-	width: 100%;                                      /* title container width 100% */
-	grid-column: 1 / span 3;                          /* column 1 but spans 3 */
-    grid-row: 1;                                      /* row 1 */
+      .title {
+        width: 100%; /* title container width 100% */
+        grid-column: 1 / span 3; /* column 1 but spans 3 */
+        grid-row: 1; /* row 1 */
+      }
+      .cards {
+        /* empty not used here */
+      }
 
-}
-.cards {                                              /* empty not used here */
-}
+      .card {
+        display: grid; /* container which is the grid */
+        grid-template-columns: min-content; /* size columns to minimum content */
+        grid-template-rows: min-content min-content; /* size rows to minimum content */
+        height: 100vh; /* 100% viewport height */
+      }
 
-.card {
-	display: grid;                                    /* container which is the grid */
-	grid-template-columns: min-content;               /* size columns to minimum content */
-	grid-template-rows: min-content min-content;      /* size rows to minimum content */
-	height: 100vh;                                    /* 100% viewport height */
-}
+      .detailstitle {
+        grid-column: 1; /* 1st column */
+        grid-row: 2; /* 2nd row */
+        width: 350px; /* fixed width set to same size as details */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.detailstitle{
-  grid-column: 1;                                     /* 1st column */
-  grid-row: 2;                                        /* 2nd row */
-  width: 350px;                                       /* fixed width set to same size as details */
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-}
+      .details {
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+        color: #ccc;
+        grid-column: 1; /* 1st column */
+        grid-row: 3; /* 3rd row of grid */
+        width: 350px; /* fixed width of details */
+        overflow-y: auto; /* add vertical scrollbar if needed */
+        overflow-x: hidden; /* don't overflow on x axis (no horz scrollbar) */
+      }
 
-.details {
-  padding-left: 10px;                                 /* some padding left */
-  padding-right: 10px;                                /* some padding right */
-  color: #ccc;
-  grid-column: 1;                                      /* 1st column */
-  grid-row: 3;                                         /* 3rd row of grid */
-  width: 350px;                                        /* fixed width of details */
-  overflow-y: auto;                                     /* add vertical scrollbar if needed */
-  overflow-x:hidden;                                   /* don't overflow on x axis (no horz scrollbar) */
- }
- 
-.detailstitle h3,
-.descriptiontitle h3 {
-	border-bottom: 1px solid #ccc;                     /* titles of description details should have line under it */
-	padding: 5px;                                      /* add some padding */
-	color: #ccc;                                       /* text color of the titles */
-}
+      .detailstitle h3,
+      .descriptiontitle h3 {
+        border-bottom: 1px solid #ccc; /* titles of description details should have line under it */
+        padding: 5px; /* add some padding */
+        color: #ccc; /* text color of the titles */
+      }
 
-.detailstable th, td {
-  border: 0px;                                         /* no borders on td, th elements */
-  color: #ccc;                                         /* details table text color */
-}
+      .detailstable th,
+      td {
+        border: 0px; /* no borders on td, th elements */
+        color: #ccc; /* details table text color */
+      }
 
-.detailstable td {
-  text-align: left;                                    /* align text left */
-  vertical-align: top;                                 /* align top */
-}
+      .detailstable td {
+        text-align: left; /* align text left */
+        vertical-align: top; /* align top */
+      }
 
-.detailstable {
-  width: 100%;                                         /* set to full width of details */
-  padding: 5px;                                        /* add some padding */
-}
+      .detailstable {
+        width: 100%; /* set to full width of details */
+        padding: 5px; /* add some padding */
+      }
 
-.details img {
-	max-width: 100%;                                   /* make sure images don't overflow in width on details */
-}
+      .details img {
+        max-width: 100%; /* make sure images don't overflow in width on details */
+      }
 
-.descriptiontitle {
-	grid-column: 2;                                    /* column 2 of grid */
-	grid-row: 2;                                       /* row 2 of grid */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .descriptiontitle {
+        grid-column: 2; /* column 2 of grid */
+        grid-row: 2; /* row 2 of grid */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
+      .description {
+        color: #ccc; /* text color */
+        grid-column: 2; /* 2nd column of grid */
+        grid-row: 3; /* 3rd row of grid */
+        overflow-y: auto; /* overflow-y automatic (for adding scrollbar) */
+        overflow-x: hidden; /* prevent horizontal scrollbar */
+        padding-left: 10px; /* some padding left */
+        padding-right: 10px; /* some padding right */
+      }
 
-.description {
-	color: #ccc;                                       /* text color */
-	grid-column: 2;                                    /* 2nd column of grid */
-	grid-row: 3;                                       /* 3rd row of grid */
-	overflow-y: auto;                                  /* overflow-y automatic (for adding scrollbar) */
-	overflow-x:hidden;                                 /* prevent horizontal scrollbar */
-	padding-left: 10px;                                /* some padding left */
-	padding-right: 10px;                               /* some padding right */
-}
+      .description img {
+        max-width: 100%; /* make sure images don't overflow in width to prevent scrollbars */
+      }
 
-.description img {
-	max-width: 100%;                                   /* make sure images don't overflow in width to prevent scrollbars */
-}
+      .footer {
+        grid-column: 1; /* 1st column of grid */
+        grid-row: 3; /* 3rd row of grid */
+      }
 
-.footer {
-	grid-column:1;                                     /* 1st column of grid */
-	grid-row:3;                                        /* 3rd row of grid */
-}
+      .MenuButton {
+        border: none; /* Remove borders */
+        outline: none; /* Remove outline */
+        background-color: #888; /* Set a background color */
+        color: #000; /* Text color */
+        padding: 5px; /* Some padding */
+        border-radius: 4px; /* Rounded corners, border */
+        font-size: 20px; /* Increase font size */
+        cursor: pointer; /* Add a mouse pointer on hover */
+        margin-right: 20px; /* to have some space on right side before next element */
+        -webkit-appearance: button;
+        -moz-appearance: button;
+        appearance: button;
+        text-decoration: none;
+      }
 
-.MenuButton {
-  border: none;                                        /* Remove borders */
-  outline: none;                                       /* Remove outline */
-  background-color: #888;                              /* Set a background color */
-  color: #000;                                         /* Text color */
-  padding: 5px;                                        /* Some padding */
-  border-radius: 4px;                                  /* Rounded corners, border */
-  font-size: 20px;                                     /* Increase font size */
-  cursor:pointer;                                         /* Add a mouse pointer on hover */
-  margin-right: 20px;                                  /* to have some space on right side before next element */
-  -webkit-appearance: button;
-  -moz-appearance: button;
-  appearance: button;
-  text-decoration: none;
-}
+      .MenuButton:hover {
+        background-color: #777; /* Add a dark-grey background on hover */
+        color: #ccc; /* Text color */
+      }
 
-.MenuButton:hover {
-  background-color: #777;                              /* Add a dark-grey background on hover */
-  color: #CCC;                                         /* Text color */
-}
+      a {
+        text-decoration: none; /* no text underline in links */
+      }
+      a:link {
+        color: #b1b1b1; /* unvisited link color */
+      }
+      a:visited {
+        color: #b1b1b1; /* visited link color */
+      }
+      a:hover {
+        color: #d1d1d1; /* mouse over link color */
+        text-decoration: underline; /* add text underline in links when mouse over */
+      }
+      a:active {
+        color: #b1b1b1; /* selected link color */
+      }
 
-a {
- text-decoration: none;                                /* no text underline in links */
-}
-a:link {
-  color: #B1B1B1;                                      /* unvisited link color */
-}
-a:visited {
-  color: #B1B1B1;                                      /* visited link color */
-}
-a:hover {
-  color: #D1D1D1;                                      /* mouse over link color */
-  text-decoration: underline;                          /* add text underline in links when mouse over */
-}
-a:active {
-  color: #B1B1B1;                                      /* selected link color */
-}
+      /* scrollbars W3C standard that is currently Firefox-only */
+      * {
+        scrollbar-width: thin; /* small width */
+        scrollbar-color: #888 transparent; /* trackbar color + transparant background */
+      }
 
-                                                       /* scrollbars W3C standard that is currently Firefox-only */
-* {
-  scrollbar-width: thin;                               /* small width */
-  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
-}
+      /* scrollbars on Chrome/Edge/Safari */
+      *::-webkit-scrollbar {
+        width: 12px; /* small width */
+      }
 
-                                                       /* scrollbars on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 12px;                                         /* small width */
-}
+      *::-webkit-scrollbar-track {
+        background: transparent; /* background color track */
+      }
 
-*::-webkit-scrollbar-track {
-  background: transparent;                             /* background color track */
-}
-
-*::-webkit-scrollbar-thumb {
-  background-color: #AAA;                              /* background */
-  border-radius: 20px;                                 /* rounded corner, border */
-  border: 3px solid #888;                              /* add the border */
-}
-
-		</style>
-	</head>
-	<body style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.52), rgba(0,0,0,0.73)), url('06f2f36e-0a9b-45ff-8ec9-c9bddff8ece1/3df0d58b-1b74-43a2-8cd1-29069c1966d4.jpg');">
-		<div class="cards">
-			<div class="card">
-				<div class="title">
-					<h2><button onclick="window.history.back()" class="MenuButton">Back</button><img alt="icon" Height="48" class="lozad" data-src="06f2f36e-0a9b-45ff-8ec9-c9bddff8ece1/09711712-53d8-496a-b1eb-fb02f4198310.ico"/> Microsoft Allegiance</h2>
-				</div>
-				<div class="detailstitle">
-				<H3>Details</H3>
-				</div>
-				<div class="details">
-					<div style="overflow: auto;">
-						<TABLE class="detailstable">
-							<col style="width:50%" />
-							<col style="width:50%" />
-							<TR>
-								<TD style="text-align:center" Colspan="2"><img alt="cover" Height="175" class="lozad" data-src="06f2f36e-0a9b-45ff-8ec9-c9bddff8ece1/042452c2-dd35-4c28-9079-7b3eb1926e55.jpg"/></TD>
-							</TR>
-							<TR>
-								<TD>Playtime</TD>
-								<TD>Not Played</TD>
-							</TR>
-							<TR>
-								<TD>Last Activity</TD>
-								<TD><a href="default_lastactivity_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Added</TD>
-								<TD><a href="default_added_descending_name_ascending.html#quicklink-16/04/2020">16/04/2020</a> </TD>
-							</TR>
-							<TR>
-								<TD>Modified</TD>
-								<TD><a href="default_modified_descending_name_ascending.html#quicklink-Never">Never</a> </TD>
-							</TR>
-							<TR>
-								<TD>Completion Status</TD>
-								<TD><a href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played">Not Played</a></TD>
-							</TR>
-							<TR>
-								<TD>Source</TD>
-								<TD><a href="default_source_ascending_name_ascending.html#quicklink-Steam">Steam</a></TD>
-							</TR>
-							<TR>
-								<TD>Platform</TD>
-								<TD><a href="default_platform_ascending_name_ascending.html#quicklink-PC">PC</a></TD>
-							</TR>
-							<TR>
-								<TD>Release Date</TD>
-								<TD><a href="default_releasedate_descending_name_ascending.html#quicklink-29/09/2017">29/09/2017</a> </TD>
-							</TR>
-							<TR>
-								<TD>Community Score</TD>
-								<TD><a href="default_communityscore_descending_name_ascending.html#quicklink-71">71</a></TD>
-							</TR>
-							<TR>
-								<TD>Critic Score</TD>
-								<TD><a href="default_criticscore_descending_name_ascending.html#quicklink-86">86</a></TD>
-							</TR>
-							<TR>
-								<TD>User Score</TD>
-								<TD><a href="default_userscore_descending_name_ascending.html#quicklink-"></a></TD>
-							</TR>
-							<TR>
-								<TD>Genre</TD>
-								<TD><a href="default_genre_ascending_name_ascending.html#quicklink-Action">Action</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Free to Play">Free to Play</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Simulation">Simulation</a><br/><a href="default_genre_ascending_name_ascending.html#quicklink-Strategy">Strategy</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Developer</TD>
-								<TD><a href="default_developer_ascending_name_ascending.html#quicklink-Microsoft Game Studios">Microsoft Game Studios</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Publisher</TD>
-								<TD><a href="default_publisher_ascending_name_ascending.html#quicklink-ZapHop Games">ZapHop Games</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Feature</TD>
-								<TD><a href="default_feature_ascending_name_ascending.html#quicklink-Achievements">Achievements</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Leaderboards">Leaderboards</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer">Multiplayer</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp">Online Pvp</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support">Partial Controller Support</a><br/><a href="default_feature_ascending_name_ascending.html#quicklink-Pvp">Pvp</a><br/></TD>
-							</TR>
-							<TR>
-								<TD>Links</TD>
-								<TD><a href="https://pcgamingwiki.com/api/appid.php?appid=700480" target="_blank">PCGamingWiki</a><br/><a href="https://steamcommunity.com/app/700480" target="_blank">Community Hub</a><br/><a href="https://steamcommunity.com/app/700480/discussions/" target="_blank">Discussions</a><br/><a href="https://steamcommunity.com/app/700480/guides/" target="_blank">Guides</a><br/><a href="https://steamcommunity.com/stats/700480/achievements" target="_blank">Achievements</a><br/><a href="https://store.steampowered.com/app/700480" target="_blank">Store Page</a><br/><a href="https://store.steampowered.com/news/?appids=700480" target="_blank">News</a><br/></TD>
-							</TR>
-						</TABLE>
-					</div>
-				</div>
-				<div class="descriptiontitle">
-					<H3>Description</H3>
-				</div>
-				<div class="description">
-					<h2 class="bb_tag">Space Combat Action / Simulation</h2><br>Allegiance uses a unique Newtonian flight model which perfectly balances fun with flight. Space ships turn, slide and boost. You have fluid control of your ship in a wide variety of combat types. Select an agile scout, a hidden stealth fighter, an in your face interceptor or an all around fighter. Or, perhaps you would like to team up with a few friends and pilot a base killing bomber while your friends man the turrets. Get even bigger in a full line of capital ships with better fire power, and even more turrets, and a wide range of support ships all controlled by your teammates. Play it your way; even the sky is no limit.<h2 class="bb_tag">Real Time Strategy</h2>Allegiance is also a fully formed RTS with tech trees, exploration, base building, and resource gathering. But there’s a twist: most of your ships are flown by real human beings! As the commander of your team, you bring your strategic vision to life by gives direction to the team from an overhead command view. Allegiance melds RTS elements like steering expansion by building new bases, investing in technology upgrades to a seamless command experience designed to help you lead your team to ultimate victory.<h2 class="bb_tag">Unique Gameplay</h2>Allegiance is easy to learn. Hop in a ship and start flying. Get with a wingman and start achieving your goals: exploration, map control, research and resource collection and best of all, end game dominance. Allegiance is deep. Dip in your toes in for some quick combat or dive all the way in for a rich and rewarding experience.<br>Most matches average forty minutes, with some competitive matches going the distance for two hours or more. Play for a bit or for a whole match. Or better yet, stay and play for a bunch of matches. <br><br><strong>Unique fog of war system</strong><br>Like many RTS games, you start with most of the map undiscovered. Maps are broken down into several sectors connected by wormholes, which contain resources vital to your team’s survival. But not only finding resources, but also observing the movements of the enemy is vital to your team’s success. Each team has a shared view of the world, seeing only what at least one of its scanners (from ships, bases and deployed sensor probes) picks up. This results in various levels of stealth, misdirection, spying and surveillance emerging.<br><br><strong>Economy and Base Building</strong><br>Economy is key in Allegiance so both hunting enemy miners and defending your own is essential. Base placement drives miner offense and miner defense. Ensuring your own bases build in a timely manner is vital to your success.<br><br><strong>Technological Upgrades</strong><br>As the game goes on, the commander invests money into better technology. The ships you fly become more and more powerful, until instead of lowly scouts and fighters, you’re piloting massive capital ships with several turret gunners each, facing off against swarms of heavy interceptors with powerful weapons.<br><br><strong>Countless Tactical Options</strong><br>Every match is played between teams picking different factions, lead by commanders with different mindsets and divergent leadership approaches, with different players of varying playstyles, emphasizing different technology research paths and expansion strategies.<br>The end result is almost limitless replayability.<br><br>Download Allegiance and experience this unique and award-winning game for free!
-				</div>
-				<div class="footer"> </div>
-			</div>
-		</div>
-		<script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
-		<script>
-			const observer = lozad(); // lazy loads elements with default selector as '.lozad'
-			observer.observe();
-		</script>
-	</body>	
+      *::-webkit-scrollbar-thumb {
+        background-color: #aaa; /* background */
+        border-radius: 20px; /* rounded corner, border */
+        border: 3px solid #888; /* add the border */
+      }
+    </style>
+  </head>
+  <body
+    style="
+      background-image: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.52),
+          rgba(0, 0, 0, 0.73)
+        ),
+        url('06f2f36e-0a9b-45ff-8ec9-c9bddff8ece1/3df0d58b-1b74-43a2-8cd1-29069c1966d4.jpg');
+    "
+  >
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <h2>
+            <button onclick="window.history.back()" class="MenuButton">
+              Back</button
+            ><img
+              alt="icon"
+              height="48"
+              class="lozad"
+              data-src="06f2f36e-0a9b-45ff-8ec9-c9bddff8ece1/09711712-53d8-496a-b1eb-fb02f4198310.ico"
+            />
+            Microsoft Allegiance
+          </h2>
+        </div>
+        <div class="detailstitle">
+          <h3>Details</h3>
+        </div>
+        <div class="details">
+          <div style="overflow: auto">
+            <table class="detailstable">
+              <col style="width: 50%" />
+              <col style="width: 50%" />
+              <tr>
+                <td style="text-align: center" colspan="2">
+                  <img
+                    alt="cover"
+                    height="175"
+                    class="lozad"
+                    data-src="06f2f36e-0a9b-45ff-8ec9-c9bddff8ece1/042452c2-dd35-4c28-9079-7b3eb1926e55.jpg"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>Playtime</td>
+                <td>Not Played</td>
+              </tr>
+              <tr>
+                <td>Last Activity</td>
+                <td>
+                  <a
+                    href="default_lastactivity_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Added</td>
+                <td>
+                  <a
+                    href="default_added_descending_name_ascending.html#quicklink-16/04/2020"
+                    >16/04/2020</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Modified</td>
+                <td>
+                  <a
+                    href="default_modified_descending_name_ascending.html#quicklink-Never"
+                    >Never</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Completion Status</td>
+                <td>
+                  <a
+                    href="default_completionstatus_ascending_name_ascending.html#quicklink-Not Played"
+                    >Not Played</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Source</td>
+                <td>
+                  <a
+                    href="default_source_ascending_name_ascending.html#quicklink-Steam"
+                    >Steam</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Platform</td>
+                <td>
+                  <a
+                    href="default_platform_ascending_name_ascending.html#quicklink-PC"
+                    >PC</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Release Date</td>
+                <td>
+                  <a
+                    href="default_releasedate_descending_name_ascending.html#quicklink-29/09/2017"
+                    >29/09/2017</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Community Score</td>
+                <td>
+                  <a
+                    href="default_communityscore_descending_name_ascending.html#quicklink-71"
+                    >71</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>Critic Score</td>
+                <td>
+                  <a
+                    href="default_criticscore_descending_name_ascending.html#quicklink-86"
+                    >86</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>User Score</td>
+                <td>
+                  <a
+                    href="default_userscore_descending_name_ascending.html#quicklink-"
+                  ></a>
+                </td>
+              </tr>
+              <tr>
+                <td>Genre</td>
+                <td>
+                  <a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Action"
+                    >Action</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Free to Play"
+                    >Free to Play</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Simulation"
+                    >Simulation</a
+                  ><br /><a
+                    href="default_genre_ascending_name_ascending.html#quicklink-Strategy"
+                    >Strategy</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Developer</td>
+                <td>
+                  <a
+                    href="default_developer_ascending_name_ascending.html#quicklink-Microsoft Game Studios"
+                    >Microsoft Game Studios</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Publisher</td>
+                <td>
+                  <a
+                    href="default_publisher_ascending_name_ascending.html#quicklink-ZapHop Games"
+                    >ZapHop Games</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Feature</td>
+                <td>
+                  <a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Achievements"
+                    >Achievements</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Leaderboards"
+                    >Leaderboards</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Multiplayer"
+                    >Multiplayer</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Online Pvp"
+                    >Online Pvp</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Partial Controller Support"
+                    >Partial Controller Support</a
+                  ><br /><a
+                    href="default_feature_ascending_name_ascending.html#quicklink-Pvp"
+                    >Pvp</a
+                  ><br />
+                </td>
+              </tr>
+              <tr>
+                <td>Links</td>
+                <td>
+                  <a
+                    href="https://pcgamingwiki.com/api/appid.php?appid=700480"
+                    target="_blank"
+                    >PCGamingWiki</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/700480"
+                    target="_blank"
+                    >Community Hub</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/700480/discussions/"
+                    target="_blank"
+                    >Discussions</a
+                  ><br /><a
+                    href="https://steamcommunity.com/app/700480/guides/"
+                    target="_blank"
+                    >Guides</a
+                  ><br /><a
+                    href="https://steamcommunity.com/stats/700480/achievements"
+                    target="_blank"
+                    >Achievements</a
+                  ><br /><a
+                    href="https://store.steampowered.com/app/700480"
+                    target="_blank"
+                    >Store Page</a
+                  ><br /><a
+                    href="https://store.steampowered.com/news/?appids=700480"
+                    target="_blank"
+                    >News</a
+                  ><br />
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="descriptiontitle">
+          <h3>Description</h3>
+        </div>
+        <div class="description">
+          <h2 class="bb_tag">Space Combat Action / Simulation</h2>
+          <br />Allegiance uses a unique Newtonian flight model which perfectly
+          balances fun with flight. Space ships turn, slide and boost. You have
+          fluid control of your ship in a wide variety of combat types. Select
+          an agile scout, a hidden stealth fighter, an in your face interceptor
+          or an all around fighter. Or, perhaps you would like to team up with a
+          few friends and pilot a base killing bomber while your friends man the
+          turrets. Get even bigger in a full line of capital ships with better
+          fire power, and even more turrets, and a wide range of support ships
+          all controlled by your teammates. Play it your way; even the sky is no
+          limit.
+          <h2 class="bb_tag">Real Time Strategy</h2>
+          Allegiance is also a fully formed RTS with tech trees, exploration,
+          base building, and resource gathering. But there’s a twist: most of
+          your ships are flown by real human beings! As the commander of your
+          team, you bring your strategic vision to life by gives direction to
+          the team from an overhead command view. Allegiance melds RTS elements
+          like steering expansion by building new bases, investing in technology
+          upgrades to a seamless command experience designed to help you lead
+          your team to ultimate victory.
+          <h2 class="bb_tag">Unique Gameplay</h2>
+          Allegiance is easy to learn. Hop in a ship and start flying. Get with
+          a wingman and start achieving your goals: exploration, map control,
+          research and resource collection and best of all, end game dominance.
+          Allegiance is deep. Dip in your toes in for some quick combat or dive
+          all the way in for a rich and rewarding experience.<br />Most matches
+          average forty minutes, with some competitive matches going the
+          distance for two hours or more. Play for a bit or for a whole match.
+          Or better yet, stay and play for a bunch of matches.
+          <br /><br /><strong>Unique fog of war system</strong><br />Like many
+          RTS games, you start with most of the map undiscovered. Maps are
+          broken down into several sectors connected by wormholes, which contain
+          resources vital to your team’s survival. But not only finding
+          resources, but also observing the movements of the enemy is vital to
+          your team’s success. Each team has a shared view of the world, seeing
+          only what at least one of its scanners (from ships, bases and deployed
+          sensor probes) picks up. This results in various levels of stealth,
+          misdirection, spying and surveillance emerging.<br /><br /><strong
+            >Economy and Base Building</strong
+          ><br />Economy is key in Allegiance so both hunting enemy miners and
+          defending your own is essential. Base placement drives miner offense
+          and miner defense. Ensuring your own bases build in a timely manner is
+          vital to your success.<br /><br /><strong
+            >Technological Upgrades</strong
+          ><br />As the game goes on, the commander invests money into better
+          technology. The ships you fly become more and more powerful, until
+          instead of lowly scouts and fighters, you’re piloting massive capital
+          ships with several turret gunners each, facing off against swarms of
+          heavy interceptors with powerful weapons.<br /><br /><strong
+            >Countless Tactical Options</strong
+          ><br />Every match is played between teams picking different factions,
+          lead by commanders with different mindsets and divergent leadership
+          approaches, with different players of varying playstyles, emphasizing
+          different technology research paths and expansion strategies.<br />The
+          end result is almost limitless replayability.<br /><br />Download
+          Allegiance and experience this unique and award-winning game for free!
+        </div>
+        <div class="footer"></div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+    <script>
+      const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+      observer.observe();
+    </script>
+  </body>
 </html>
